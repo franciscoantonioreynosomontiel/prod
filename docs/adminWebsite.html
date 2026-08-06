@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Panel de Administración | MenuTech Developer Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8fafc;
+            color: #1f2937;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Anti-Inspect scripts preserved from original code -->
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') e.preventDefault();
+            if (e.ctrlKey && e.shiftKey && ['i','c','j'].includes(e.key.toLowerCase())) e.preventDefault();
+            if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
+        });
+    </script>
+
+    <!-- Header / Navbar -->
+    <header class="bg-white border-b border-gray-200/80 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Brand logo -->
+                <div class="flex items-center gap-3">
+                    <img src="assets/img/menutech.png" alt="MenuTech Logo" class="h-9 w-auto">
+                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">
+                        MenuTech <span class="text-gray-800 font-medium">Admin</span>
+                    </span>
+                    <span class="bg-orange-100 text-orange-600 text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-full shadow-sm">
+                        Database Supabase
+                    </span>
+                </div>
+
+                <!-- Right items -->
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-orange-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition duration-200">
+                        <i class="fa-solid fa-arrow-left"></i> Volver al Portafolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-10">
+
+        <!-- Supabase Connection Config Banner/Panel -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-6">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <i class="fa-solid fa-plug text-emerald-500"></i> Configuración de Conexión Supabase
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1">
+                        Ingresa los accesos de tu base de datos de Supabase para habilitar la sincronización en vivo.
+                    </p>
+                </div>
+                <span id="connection-status" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-600 border border-amber-100">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Conectado con credenciales locales
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Supabase URL -->
+                <div>
+                    <label for="supabase-url-input" class="block text-xs font-bold uppercase text-gray-500 mb-2">Supabase Project URL</label>
+                    <input type="text" id="supabase-url-input" class="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-150" placeholder="https://your-project.supabase.co">
+                </div>
+
+                <!-- Supabase Anon Key -->
+                <div>
+                    <label for="supabase-key-input" class="block text-xs font-bold uppercase text-gray-500 mb-2">Supabase Anon Key</label>
+                    <input type="password" id="supabase-key-input" class="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-150" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="clearCredentials()" class="bg-slate-100 hover:bg-slate-200 text-gray-700 text-xs font-bold px-5 py-3 rounded-xl transition duration-150">
+                    Limpiar
+                </button>
+                <button onclick="initializeSupabase()" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-extrabold px-6 py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.01] transition duration-150">
+                    Guardar y Conectar
+                </button>
+            </div>
+        </section>
+
+        <!-- Main Workspace split (Left: Add/Edit Web, Right: List and Actions) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- Add/Edit form -->
+            <section class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-md space-y-6">
+                <div>
+                    <h3 id="form-title" class="text-lg font-bold text-gray-900">Añadir Nueva Web</h3>
+                    <p class="text-xs text-gray-400 mt-1">Carga un nuevo diseño para mostrar en el carrusel infinito del portafolio.</p>
+                </div>
+
+                <form id="portfolio-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                    <!-- ID field hidden (only used during updates) -->
+                    <input type="hidden" id="web-id">
+
+                    <!-- Title -->
+                    <div>
+                        <label for="web-title" class="block text-xs font-bold uppercase text-gray-500 mb-2">Título de la Web *</label>
+                        <input type="text" id="web-title" required class="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-150" placeholder="Ej. Taquería El Tío Restaurant">
+                    </div>
+
+                    <!-- URL -->
+                    <div>
+                        <label for="web-url" class="block text-xs font-bold uppercase text-gray-500 mb-2">URL del Sitio Web *</label>
+                        <input type="url" id="web-url" required class="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-150" placeholder="https://taqueriaeltiorestaurant.com">
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label for="web-desc" class="block text-xs font-bold uppercase text-gray-500 mb-2">Descripción Corta *</label>
+                        <textarea id="web-desc" required rows="4" class="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-150" placeholder="Describe los puntos fuertes de diseño, velocidad de carga y optimizaciones..."></textarea>
+                    </div>
+
+                    <!-- Grid of Category & Image URL -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="web-category" class="block text-xs font-bold uppercase text-gray-500 mb-2">Categoría *</label>
+                            <input type="text" id="web-category" required class="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-150" placeholder="Ej. Gastronomía">
+                        </div>
+
+                        <div>
+                            <label for="web-image" class="block text-xs font-bold uppercase text-gray-500 mb-2">URL de Imagen</label>
+                            <input type="url" id="web-image" class="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-150" placeholder="https://unsplash.com/photo...">
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex items-center justify-between gap-3">
+                        <button type="button" id="cancel-btn" onclick="resetForm()" class="hidden bg-slate-100 hover:bg-slate-200 text-gray-700 text-xs font-bold px-4 py-3 rounded-xl transition duration-150">
+                            Cancelar Edición
+                        </button>
+                        <button type="submit" id="submit-btn" class="flex-grow bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl transition duration-150 flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Web
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Table of list items -->
+            <section class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-md space-y-6">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900">Listado de Sitios Web</h3>
+                        <p class="text-xs text-gray-400 mt-1">Sitios actualmente guardados en tu base de datos de Supabase.</p>
+                    </div>
+                    <button onclick="fetchPortfolioItems()" class="h-10 w-10 rounded-xl bg-slate-50 hover:bg-slate-100 border border-gray-200 text-gray-600 flex items-center justify-center transition" title="Refrescar Lista">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+                </div>
+
+                <!-- Feed loading indicator -->
+                <div id="loading-state" class="py-12 flex flex-col items-center justify-center text-gray-400 space-y-3">
+                    <i class="fa-solid fa-spinner text-3xl animate-spin text-orange-500"></i>
+                    <p class="text-xs font-semibold">Cargando portafolio de Supabase...</p>
+                </div>
+
+                <!-- Empty state -->
+                <div id="empty-state" class="hidden py-12 flex flex-col items-center justify-center text-center text-gray-400 space-y-3">
+                    <div class="h-16 w-16 bg-orange-50 text-orange-400 rounded-full flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-900">Base de datos sin registros</h4>
+                        <p class="text-xs text-gray-500 mt-1 max-w-xs mx-auto">Para sincronizar, ingresa las credenciales de Supabase válidas o crea tu primer registro.</p>
+                    </div>
+                </div>
+
+                <!-- Dynamic Items Feed -->
+                <div id="items-table-wrapper" class="hidden overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-gray-100 text-xs font-bold uppercase text-gray-400">
+                                <th class="py-3 px-4">Info Web</th>
+                                <th class="py-3 px-4">Categoría</th>
+                                <th class="py-3 px-4 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="items-tbody" class="divide-y divide-gray-50 text-sm">
+                            <!-- Injected by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Default fallback websites banner (for visualization) -->
+                <div class="bg-amber-50/50 rounded-2xl p-4 border border-amber-100/60 flex items-start gap-3">
+                    <i class="fa-solid fa-circle-info text-amber-500 mt-0.5"></i>
+                    <div class="space-y-1">
+                        <h5 class="text-xs font-bold text-amber-800">Nota sobre Datos de Respaldo</h5>
+                        <p class="text-[11px] text-amber-700/90 leading-relaxed">
+                            Si no configuras Supabase, el sitio web principal cargará por defecto de forma automática los 3 sitios predeterminados (Taquería, Rehobot, Lmil Amores) para que la página nunca se muestre vacía.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Simple footer -->
+    <footer class="bg-white border-t border-gray-200/80 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-xs text-gray-400">
+                &copy; Panel de Administración Integrado Supabase. MenuTech Developer.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Main Admin JS Logic -->
+    <script>
+        let supabaseClient = null;
+        let activeWebsites = [];
+
+        // Save local key inputs so user does not need to type every time
+        const STORAGE_URL_KEY = "mt_supabase_url";
+        const STORAGE_KEY_KEY = "mt_supabase_key";
+
+        // Initialize Supabase client
+        function initializeSupabase() {
+            const urlInput = document.getElementById('supabase-url-input').value.trim();
+            const keyInput = document.getElementById('supabase-key-input').value.trim();
+
+            const statusLabel = document.getElementById('connection-status');
+
+            if (!urlInput || !keyInput) {
+                alert("Por favor, ingresa tanto la URL de Supabase como la Anon Key.");
+                return;
+            }
+
+            try {
+                supabaseClient = supabase.createClient(urlInput, keyInput);
+
+                // Save keys to localStorage
+                localStorage.setItem(STORAGE_URL_KEY, urlInput);
+                localStorage.setItem(STORAGE_KEY_KEY, keyInput);
+
+                statusLabel.innerHTML = `<i class="fa-solid fa-circle-check"></i> Conectado con Éxito`;
+                statusLabel.className = "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-100";
+
+                // Query items in database
+                fetchPortfolioItems();
+            } catch (err) {
+                console.error(err);
+                statusLabel.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Error de Conexión`;
+                statusLabel.className = "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-100";
+                alert("Ocurrió un error inicializando el cliente de Supabase. Revisa las llaves.");
+            }
+        }
+
+        // Clean user config
+        function clearCredentials() {
+            localStorage.removeItem(STORAGE_URL_KEY);
+            localStorage.removeItem(STORAGE_KEY_KEY);
+            document.getElementById('supabase-url-input').value = '';
+            document.getElementById('supabase-key-input').value = '';
+
+            const statusLabel = document.getElementById('connection-status');
+            statusLabel.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Conexión Inactiva`;
+            statusLabel.className = "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-600 border border-amber-100";
+
+            supabaseClient = null;
+            renderItemsTable([]);
+        }
+
+        // Fetch database items from 'websites' table
+        async function fetchPortfolioItems() {
+            if (!supabaseClient) {
+                setStates('empty');
+                return;
+            }
+
+            setStates('loading');
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('websites')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                activeWebsites = data || [];
+                renderItemsTable(activeWebsites);
+            } catch (err) {
+                console.error("Supabase read error:", err);
+                alert("No se pudo obtener información de la tabla 'websites'. ¿Has creado la tabla en tu panel de Supabase?\n\nEsquema requerido:\n- id (uuid o int)\n- title (text)\n- url (text)\n- description (text)\n- category (text)\n- image (text, opcional)\n- created_at (timestamp)");
+                setStates('empty');
+            }
+        }
+
+        // Render data to feed
+        function renderItemsTable(items) {
+            if (!items || items.length === 0) {
+                setStates('empty');
+                return;
+            }
+
+            setStates('table');
+
+            const tbody = document.getElementById('items-tbody');
+            tbody.innerHTML = '';
+
+            items.forEach((item) => {
+                const tr = `
+                    <tr class="hover:bg-slate-50/50 transition">
+                        <td class="py-4 px-4">
+                            <div class="flex items-start gap-3">
+                                <div class="h-10 w-10 rounded-lg bg-slate-100 overflow-hidden shrink-0 border border-gray-100 flex items-center justify-center text-gray-400">
+                                    ${item.image ? `<img src="${item.image}" class="w-full h-full object-cover">` : '<i class="fa-solid fa-globe"></i>'}
+                                </div>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-gray-900 truncate">${item.title}</h4>
+                                    <p class="text-xs text-gray-500 truncate max-w-sm">${item.url}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-4 px-4">
+                            <span class="inline-block bg-orange-100 text-orange-700 text-xs font-bold px-2.5 py-1 rounded-full">
+                                ${item.category || 'Sitio Pro'}
+                            </span>
+                        </td>
+                        <td class="py-4 px-4 text-right">
+                            <div class="inline-flex gap-2">
+                                <button onclick="editWeb('${item.id}')" class="h-8 px-3 rounded-lg border border-gray-200 bg-white text-gray-600 hover:text-orange-500 hover:border-orange-500 text-xs font-bold transition flex items-center gap-1">
+                                    <i class="fa-solid fa-pen"></i> Editar
+                                </button>
+                                <button onclick="deleteWeb('${item.id}')" class="h-8 px-3 rounded-lg border border-gray-200 bg-white text-rose-500 hover:bg-rose-50 hover:border-rose-200 text-xs font-bold transition flex items-center gap-1">
+                                    <i class="fa-solid fa-trash"></i> Eliminar
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', tr);
+            });
+        }
+
+        // Toggle admin panel loading states
+        function setStates(state) {
+            const loading = document.getElementById('loading-state');
+            const empty = document.getElementById('empty-state');
+            const table = document.getElementById('items-table-wrapper');
+
+            loading.classList.add('hidden');
+            empty.classList.add('hidden');
+            table.classList.add('hidden');
+
+            if (state === 'loading') loading.classList.remove('hidden');
+            if (state === 'empty') empty.classList.remove('hidden');
+            if (state === 'table') table.classList.remove('hidden');
+        }
+
+        // Fill form fields for updating record
+        function editWeb(id) {
+            const record = activeWebsites.find(item => item.id == id);
+            if (!record) return;
+
+            document.getElementById('web-id').value = record.id;
+            document.getElementById('web-title').value = record.title;
+            document.getElementById('web-url').value = record.url;
+            document.getElementById('web-desc').value = record.description;
+            document.getElementById('web-category').value = record.category;
+            document.getElementById('web-image').value = record.image || '';
+
+            document.getElementById('form-title').innerText = "Editar Sitio Web";
+            document.getElementById('submit-btn').innerHTML = `<i class="fa-solid fa-rotate"></i> Actualizar Web`;
+            document.getElementById('cancel-btn').classList.remove('hidden');
+
+            // Scroll form smoothly into view
+            document.getElementById('portfolio-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reset inputs
+        function resetForm() {
+            document.getElementById('portfolio-form').reset();
+            document.getElementById('web-id').value = '';
+            document.getElementById('form-title').innerText = "Añadir Nueva Web";
+            document.getElementById('submit-btn').innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Guardar Web`;
+            document.getElementById('cancel-btn').classList.add('hidden');
+        }
+
+        // Handle submission for inserts & updates
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+
+            if (!supabaseClient) {
+                alert("Por favor, primero ingresa tus accesos de Supabase y conéctate.");
+                return;
+            }
+
+            const id = document.getElementById('web-id').value;
+            const title = document.getElementById('web-title').value.trim();
+            const url = document.getElementById('web-url').value.trim();
+            const description = document.getElementById('web-desc').value.trim();
+            const category = document.getElementById('web-category').value.trim();
+            const image = document.getElementById('web-image').value.trim() || null;
+
+            const payload = { title, url, description, category, image };
+
+            try {
+                if (id) {
+                    // Update flow
+                    const { error } = await supabaseClient
+                        .from('websites')
+                        .update(payload)
+                        .eq('id', id);
+
+                    if (error) throw error;
+                    alert("Sitio web actualizado con éxito.");
+                } else {
+                    // Insert flow
+                    const { error } = await supabaseClient
+                        .from('websites')
+                        .insert([payload]);
+
+                    if (error) throw error;
+                    alert("Sitio web añadido con éxito.");
+                }
+
+                resetForm();
+                fetchPortfolioItems();
+            } catch (err) {
+                console.error("Supabase Save Error:", err);
+                alert("Ocurrió un error guardando el registro: " + err.message);
+            }
+        }
+
+        // Delete record
+        async function deleteWeb(id) {
+            if (!supabaseClient) return;
+
+            if (!confirm("¿Estás seguro de que deseas eliminar este sitio web del portafolio?")) return;
+
+            try {
+                const { error } = await supabaseClient
+                    .from('websites')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                alert("Sitio web eliminado.");
+                fetchPortfolioItems();
+            } catch (err) {
+                console.error("Supabase Delete Error:", err);
+                alert("No se pudo eliminar el registro: " + err.message);
+            }
+        }
+
+        // Load cached keys from localStorage on bootstrap
+        window.addEventListener('DOMContentLoaded', () => {
+            const cachedUrl = localStorage.getItem(STORAGE_URL_KEY);
+            const cachedKey = localStorage.getItem(STORAGE_KEY_KEY);
+
+            if (cachedUrl && cachedKey) {
+                document.getElementById('supabase-url-input').value = cachedUrl;
+                document.getElementById('supabase-key-input').value = cachedKey;
+                initializeSupabase();
+            } else {
+                setStates('empty');
+            }
+        });
+    </script>
+</body>
+
+</html>
