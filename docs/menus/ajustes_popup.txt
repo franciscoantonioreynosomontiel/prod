@@ -1,0 +1,83 @@
+================================================================================
+GUÍA DE AJUSTES Y PERSONALIZACIÓN DE TAMAÑOS DEL POPUP Y EL MENÚ
+================================================================================
+
+Para hacer pruebas y ajustar las dimensiones del popup y el menú (alto y ancho),
+solo debes modificar las variables CSS personalizadas que se encuentran al inicio
+del archivo:
+
+👉 Archivo: docs/menus/assets/css/swiper.css
+👉 Sección: :root (Líneas ~15-35)
+
+--------------------------------------------------------------------------------
+VARIABLES DISPONIBLES Y SU EXPLICACIÓN
+--------------------------------------------------------------------------------
+
+1. CONFIGURACIÓN PARA PC / ESCRITORIO (Pantallas grandes)
+   -----------------------------------------------------------------------------
+   * --popup-width-pc:
+     - Qué es: El ancho del contenedor blanco del popup.
+     - Valor actual: 95% (puedes cambiarlo a 90%, 80% o usar pixeles como 1100px).
+
+   * --popup-max-width-pc:
+     - Qué es: El límite máximo de ancho para que no se vea exageradamente gigante.
+     - Valor actual: 1250px.
+
+   * --popup-height-pc:
+     - Qué es: El alto del contenedor blanco del popup.
+     - Valor actual: 90% (puedes reducirlo si prefieres un popup más bajo).
+
+   * --menu-width-pc:
+     - Qué es: El ancho del menú (iframe) dentro del popup.
+     - Valor actual: 100%.
+
+   * --menu-max-width-pc:
+     - Qué es: Límite de ancho para que el menú no se ensanche indefinidamente.
+     - Valor actual: 1200px.
+
+   * --menu-height-pc:
+     - Qué es: El alto del menú (iframe) dentro de la tarjeta blanca.
+     - Valor actual: 82% (REDUCIDO para que se vea completo, no se recorte y
+       quede espacio perfecto para el botón de cerrar arriba).
+
+
+2. CONFIGURACIÓN PARA LAPTOPS Y TABLETS (Pantallas de hasta 1366px)
+   -----------------------------------------------------------------------------
+   * --popup-width-tablet:
+     - Ancho del popup en pantallas medianas. Valor actual: 95%.
+
+   * --popup-height-tablet:
+     - Alto del popup en pantallas medianas. Valor actual: 92%.
+
+   * --menu-width-tablet:
+     - Ancho del menú (iframe) en pantallas medianas. Valor actual: 100%.
+
+   * --menu-height-tablet:
+     - Alto del menú (iframe) en pantallas medianas. Valor actual: 85%.
+
+
+3. CONFIGURACIÓN PARA MÓVILES (Pantallas de hasta 768px de ancho)
+   -----------------------------------------------------------------------------
+   * --popup-width-mobile:
+     - Ancho del popup en celulares. Valor actual: 96% (aprovecha casi todo el ancho).
+
+   * --popup-height-mobile:
+     - Alto del popup en celulares. Valor actual: 90% (evita desbordarse verticalmente).
+
+   * --menu-width-mobile:
+     - Ancho del menú en celulares. Valor actual: 100%.
+
+   * --menu-height-mobile:
+     - Alto del menú en celulares. Valor actual: 85% (perfectamente redimensionado).
+
+
+--------------------------------------------------------------------------------
+¿CÓMO HACER PRUEBAS?
+--------------------------------------------------------------------------------
+1. Abre el archivo `docs/menus/assets/css/swiper.css`.
+2. Busca la regla `:root` al principio.
+3. Modifica los valores (por ejemplo, reduce `--menu-height-pc: 75%` si deseas que
+   el menú sea aún más bajo, o aumenta `--popup-max-width-pc: 1400px` si quieres
+   un popup súper ancho en pantallas 4K).
+4. Guarda el archivo y recarga la página de menús en tu navegador para ver
+   los resultados de manera inmediata.
