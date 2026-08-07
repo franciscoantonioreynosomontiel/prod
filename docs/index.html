@@ -55,9 +55,42 @@
             background: #cbd5e1;
         }
 
-        /* Continuous marquee effect for Swiper */
-        .swiper-wrapper {
-            transition-timing-function: linear !important;
+        /* Custom Swiper 3D Carousel Styles */
+        .swiper-container-infinite {
+            padding: 40px 0 60px 0 !important;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .swiper-slide {
+            transition: opacity 0.5s ease, filter 0.5s ease;
+            opacity: 0.4;
+            filter: grayscale(35%) blur(1.5px);
+        }
+        .swiper-slide-active {
+            opacity: 1;
+            filter: grayscale(0%) blur(0px);
+        }
+
+        /* Custom Pagination */
+        .swiper-pagination-custom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+        .swiper-pagination-custom .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background-color: #cbd5e1;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 1;
+        }
+        .swiper-pagination-custom .swiper-pagination-bullet-active {
+            width: 28px;
+            background-color: #f97316; /* active orange */
         }
 
         /* 3D Model viewer container */
@@ -249,13 +282,31 @@
             </div>
         </div>
 
-        <!-- Carousel Area -->
-        <div class="w-full relative px-4" data-aos="fade-up">
-            <div class="swiper-container-infinite overflow-hidden py-10 relative">
+        <!-- Carousel Area with 3D Coverflow Perspective -->
+        <div class="w-full relative px-4 md:px-12 max-w-7xl mx-auto" data-aos="fade-up">
+            <!-- Left Arrow Button -->
+            <div class="absolute inset-y-0 left-2 md:left-4 z-30 flex items-center">
+                <button class="swiper-button-prev-custom bg-white/95 text-slate-800 hover:text-white hover:bg-orange-500 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <i class="fa-solid fa-chevron-left text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Swiper Slider Container -->
+            <div class="swiper-container-infinite overflow-hidden relative px-4 md:px-8">
                 <div class="swiper-wrapper" id="infinite-swiper-wrapper">
                     <!-- Dynamic CSS Laptop Slides will be injected here -->
                 </div>
             </div>
+
+            <!-- Right Arrow Button -->
+            <div class="absolute inset-y-0 right-2 md:right-4 z-30 flex items-center">
+                <button class="swiper-button-next-custom bg-white/95 text-slate-800 hover:text-white hover:bg-orange-500 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Custom Premium Pagination Bullets -->
+            <div class="swiper-pagination-custom"></div>
         </div>
     </section>
 
@@ -547,17 +598,32 @@
                 wrapper.insertAdjacentHTML('beforeend', slideHtml);
             });
 
-            // Initialize Infinite Loop Swiper with smooth scrolling (Continuous ticker effect)
+            // Initialize Infinite Loop Swiper with premium 3D Coverflow Perspective
             new Swiper('.swiper-container-infinite', {
-                slidesPerView: 'auto',
-                spaceBetween: 32,
+                effect: 'coverflow',
                 grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
                 loop: true,
-                freeMode: true,
-                speed: 8000,
+                speed: 1200,
                 autoplay: {
-                    delay: 0,
+                    delay: 3500,
                     disableOnInteraction: false,
+                },
+                coverflowEffect: {
+                    rotate: 40,          // 3D rotation angle of the non-active slides
+                    stretch: -10,        // Overlap/spacing between slides (negative brings them closer)
+                    depth: 180,          // Depth offset (Z-axis translation)
+                    modifier: 1.2,       // Effect multiplier for stronger depth curves
+                    slideShadows: true,  // Adds gorgeous realistic 3D shading on side elements
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next-custom',
+                    prevEl: '.swiper-button-prev-custom',
+                },
+                pagination: {
+                    el: '.swiper-pagination-custom',
+                    clickable: true,
                 }
             });
         }
