@@ -50,9 +50,9 @@
   --menu-logical-height: 610px;
 
   /* --- TAMAÑO DEL POPUP (PC / ESCRITORIO) --- */
-  --popup-width-pc: 95%;           /* Ancho del popup en PC */
+  --popup-width-pc: 90%;           /* Ancho del popup en PC 95 */
   --popup-max-width-pc: 1250px;     /* Límite máximo de ancho en PC */
-  --popup-height-pc: 92%;          /* Alto del popup en PC (Más grande) */
+  --popup-height-pc: 95%;          /* Alto del popup en PC (Más grande) 92 */
 
   /* --- TAMAÑO DEL POPUP (LAPTOPS / TABLETS) --- */
   --popup-width-tablet: 95%;
