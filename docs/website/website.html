@@ -1,109 +1,482 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Website Deluxe</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/Lightbox-Gallery-baguetteBox.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+
+        /* Swiper 3D Carousel Styling */
+        .swiper-container-3d {
+            padding: 40px 0 60px 0 !important;
+        }
+        .swiper-slide {
+            transition: all 0.5s ease;
+            opacity: 0.4;
+            filter: grayscale(40%) blur(1px);
+        }
+        .swiper-slide-active {
+            opacity: 1;
+            filter: grayscale(0%) blur(0px);
+        }
+
+        /* Custom Pagination */
+        .swiper-pagination-custom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        .swiper-pagination-custom .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background-color: #cbd5e1;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 1;
+        }
+        .swiper-pagination-custom .swiper-pagination-bullet-active {
+            width: 28px;
+            background-color: #f97316;
+        }
+
+        /* 3D Model viewer customization */
+        model-viewer {
+            width: 100%;
+            height: 480px;
+            --poster-color: transparent;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-white selection:bg-orange-100 selection:text-orange-950">
+
+    <!-- Anti-Inspect scripts preserved from original code -->
     <script>
-  // Bloquear clic derecho silenciosamente
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-  });
+        // Bloquear clic derecho silenciosamente
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
 
-  // Bloquear combinaciones de teclas para inspeccionar
-  document.addEventListener('keydown', function(e) {
-    // F12
-    if (e.key === 'F12') e.preventDefault();
-    // Ctrl + Shift + I / C / J
-    if (e.ctrlKey && e.shiftKey && ['i','c','j'].includes(e.key.toLowerCase())) e.preventDefault();
-    // Ctrl + U (Ver código fuente)
-    if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
-  });
-</script>
+        // Bloquear combinaciones de teclas para inspeccionar
+        document.addEventListener('keydown', function(e) {
+            // F12
+            if (e.key === 'F12') e.preventDefault();
+            // Ctrl + Shift + I / C / J
+            if (e.ctrlKey && e.shiftKey && ['i','c','j'].includes(e.key.toLowerCase())) e.preventDefault();
+            // Ctrl + U (Ver código fuente)
+            if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
+        });
+    </script>
 
-    <div id="modelo3d">
-    <model-viewer
-        id="reveal" 
-        loading="eager" 
-        poster="https://wisbe.xyz/assets/img/2respon.png"
-        src="https://menutechdeveloper.github.io/bddImg/assets/laptop/laptop.gltf"  
-        shadow-intensity="5" 
-        camera-controls
-         auto-rotate
-        ar-scale="fixed"
-        alt="app3D"
-        exposure="1"
-        environment-image="neutral"
-        style="height: 500px;">
-    </model-viewer>
-        <div class="dbanner">
-            <h1>Restaurant Website Pro</h1>
-            <p>A clear, modern, and reliable way to showcase your restaurant.</p><a class="btn" role="button" href="https://menutech.biz/website/website#textform">Enjoy 10% off</a>
+    <!-- Header / Navigation Bar -->
+    <header class="w-full bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
+                <span class="h-9 w-9 bg-orange-500 rounded-xl flex items-center justify-center text-white text-lg">
+                    <i class="fa-solid fa-utensils"></i>
+                </span>
+                Website Deluxe
+            </span>
+            <a href="#formulario" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2.5 px-5 rounded-xl transition duration-200 text-sm shadow-sm">
+                Get Started
+            </a>
         </div>
-    </div>
-     <div id="cuadros" class="cuadros">
-        <!-- Start: 1 Row 4 Columns -->
-        <div class="container-sm">
-            <div class="row">
-                <div class="col-6 col-md-3 colun">
-                    <h2>CTA Buttons</h2>
-                    <p>Strategically placed to boost conversions</p>
+    </header>
+
+    <!-- Hero / Top Section -->
+    <section class="relative bg-white pt-12 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                <!-- Left Content Area -->
+                <div class="lg:col-span-7 space-y-8" data-aos="fade-right">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-bold tracking-wide">
+                        <i class="fa-solid fa-sparkles"></i> Premium Quality
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-[1.1]">
+                        Restaurant Website Pro
+                    </h1>
+
+                    <p class="text-lg text-slate-600 font-medium leading-relaxed max-w-2xl">
+                        A clear, modern, and reliable way to showcase your restaurant.
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="https://menutech.biz/website/website#textform" class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-2xl transition duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                            Enjoy 10% off <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 colun">
-                    <h2>Dynamic Gallery</h2>
-                    <p>Showcase your dishes and drinks attractively.</p>
+
+                <!-- Right 3D Model Area -->
+                <div class="lg:col-span-5 relative" data-aos="fade-left">
+                    <div class="relative mx-auto max-w-[460px] lg:max-w-none">
+                        <!-- Soft background glow element -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-orange-200 to-amber-200 rounded-full filter blur-[50px] opacity-25 -z-10"></div>
+
+                        <div class="bg-white p-3 rounded-3xl border border-slate-100 shadow-xl relative">
+                            <!-- Model Viewer -->
+                            <model-viewer
+                                id="reveal"
+                                loading="eager"
+                                poster="https://wisbe.xyz/assets/img/2respon.png"
+                                src="https://menutechdeveloper.github.io/bddImg/assets/laptop/laptop.gltf"
+                                shadow-intensity="5"
+                                camera-controls
+                                auto-rotate
+                                ar-scale="fixed"
+                                alt="app3D"
+                                exposure="1"
+                                environment-image="neutral">
+                            </model-viewer>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 colun">
-                    <h2>Quick Updates</h2>
-                    <p>Change text or images instantly.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (cuadros) -->
+    <section class="py-20 bg-slate-50/50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- CTA Buttons -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-500 flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-arrow-pointer"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 mb-2">CTA Buttons</h2>
+                    <p class="text-slate-500 text-sm leading-relaxed">Strategically placed to boost conversions</p>
                 </div>
-                <div class="col-6 col-md-3 colun">
-                    <h2>24/7 support</h2>
-                    <p>Connect with real people who really get restaurant 24/7.</p>
+
+                <!-- Dynamic Gallery -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-500 flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-images"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 mb-2">Dynamic Gallery</h2>
+                    <p class="text-slate-500 text-sm leading-relaxed">Showcase your dishes and drinks attractively.</p>
+                </div>
+
+                <!-- Quick Updates -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-500 flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 mb-2">Quick Updates</h2>
+                    <p class="text-slate-500 text-sm leading-relaxed">Change text or images instantly.</p>
+                </div>
+
+                <!-- 24/7 support -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-500 flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 mb-2">24/7 support</h2>
+                    <p class="text-slate-500 text-sm leading-relaxed">Connect with real people who really get restaurant 24/7.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Swiper Laptop Showcase Carousel -->
+    <section class="py-24 bg-white border-t border-slate-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center mb-12">
+            <span class="text-xs font-bold uppercase tracking-widest text-orange-500">Live Demonstrations</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 mt-2">Interactive Website Carousel</h2>
+        </div>
+
+        <div class="w-full relative px-4 md:px-12 max-w-7xl mx-auto" data-aos="fade-up">
+            <!-- Navigation buttons -->
+            <div class="absolute inset-y-0 left-2 md:left-4 z-30 flex items-center">
+                <button class="swiper-prev-btn bg-white text-slate-800 hover:text-white hover:bg-orange-500 w-12 h-12 rounded-full flex items-center justify-center shadow-md transition duration-200 border border-slate-100">
+                    <i class="fa-solid fa-chevron-left text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Swiper Slider -->
+            <div class="swiper-container-3d overflow-hidden relative px-4 md:px-8">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1: taqueriaeltiorestaurant.com -->
+                    <div class="swiper-slide h-auto flex flex-col items-center py-4" style="width: auto;">
+                        <div class="w-[280px] sm:w-[360px] md:w-[440px] lg:w-[480px] flex flex-col items-center">
+                            <!-- Beautiful Laptop Mockup -->
+                            <div class="relative w-full aspect-[16/10] bg-slate-950 rounded-t-xl sm:rounded-t-2xl border-[5px] sm:border-[8px] border-slate-900 shadow-2xl overflow-hidden group">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80" alt="Taquería El Tío Restaurant" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                                <div class="absolute inset-x-0 bottom-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <span class="bg-slate-950/90 text-white text-xs font-bold tracking-wide px-3 py-1.5 rounded-full border border-white/10 truncate">
+                                        taqueriaeltiorestaurant.com
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Laptop Base -->
+                            <div class="relative w-[112%] h-[6px] sm:h-[8px] bg-slate-300 rounded-b-md shadow-md flex items-center justify-center border-t border-white/20">
+                                <div class="w-12 sm:w-16 h-[2px] sm:h-[3px] bg-slate-400 rounded-full mb-[1px]"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: rehobotreceptionthalls.com -->
+                    <div class="swiper-slide h-auto flex flex-col items-center py-4" style="width: auto;">
+                        <div class="w-[280px] sm:w-[360px] md:w-[440px] lg:w-[480px] flex flex-col items-center">
+                            <!-- Beautiful Laptop Mockup -->
+                            <div class="relative w-full aspect-[16/10] bg-slate-950 rounded-t-xl sm:rounded-t-2xl border-[5px] sm:border-[8px] border-slate-900 shadow-2xl overflow-hidden group">
+                                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="Rehobot Reception Halls" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                                <div class="absolute inset-x-0 bottom-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <span class="bg-slate-950/90 text-white text-xs font-bold tracking-wide px-3 py-1.5 rounded-full border border-white/10 truncate">
+                                        rehobotreceptionthalls.com
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Laptop Base -->
+                            <div class="relative w-[112%] h-[6px] sm:h-[8px] bg-slate-300 rounded-b-md shadow-md flex items-center justify-center border-t border-white/20">
+                                <div class="w-12 sm:w-16 h-[2px] sm:h-[3px] bg-slate-400 rounded-full mb-[1px]"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: lmilamoresrestaurant.com -->
+                    <div class="swiper-slide h-auto flex flex-col items-center py-4" style="width: auto;">
+                        <div class="w-[280px] sm:w-[360px] md:w-[440px] lg:w-[480px] flex flex-col items-center">
+                            <!-- Beautiful Laptop Mockup -->
+                            <div class="relative w-full aspect-[16/10] bg-slate-950 rounded-t-xl sm:rounded-t-2xl border-[5px] sm:border-[8px] border-slate-900 shadow-2xl overflow-hidden group">
+                                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Lmil Amores Restaurant" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                                <div class="absolute inset-x-0 bottom-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <span class="bg-slate-950/90 text-white text-xs font-bold tracking-wide px-3 py-1.5 rounded-full border border-white/10 truncate">
+                                        lmilamoresrestaurant.com
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Laptop Base -->
+                            <div class="relative w-[112%] h-[6px] sm:h-[8px] bg-slate-300 rounded-b-md shadow-md flex items-center justify-center border-t border-white/20">
+                                <div class="w-12 sm:w-16 h-[2px] sm:h-[3px] bg-slate-400 rounded-full mb-[1px]"></div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div><!-- End: 1 Row 4 Columns -->
-    </div>
-    <div id="columnas" class="columnas">
-        <div class="columna"><video src="https://menutechdeveloper.github.io/bddImg/assets/web/webmk.mp4" autoplay loop muted></video><p><strong>Restaurant Website</strong><br />We build fast, secure, and SEO-friendly websites with responsive design, clear navigation, online ordering, and CTA buttons. Integrated with social media, contact forms, and conversion-focused features to maximize results.</p></div>
-        <div class="columna2"><p><strong>Responsive & Mobile-Optimized</strong><br/>
-A responsive website is key to success in today’s mobile-first world. We create sites that adapt to any device, ensuring smooth usability and maximum engagement.</p><img src="https://wisbe.xyz/assets/img/responsive.png" /></div>
-        <div class="columna"><img src="https://menutechdeveloper.github.io/bddImg/assets/web/webmk2.png" /><p><strong>Customized designs</strong><br/>
-We create unique, visually stunning, and functional websites that reflect your brand’s personality and values, ensuring a strong online presence that engages your audience.</p></div>
-    </div>
-    <div id="formulario" class="formulario">
-        <div id="miform">
-            <form data-bss-recipient="0769ed07de9623dd212a615bc33516e5">
-                <!-- Start: Success Example -->
-                <div class="mb-3"><input class="form-control" type="text" id="name-2" name="Name" placeholder="Name" style="background: rgba(255,255,255,0.5);"></div><!-- End: Success Example -->
-                <!-- Start: Success Example -->
-                <div class="mb-3"><input class="form-control" type="text" id="email" name="email" placeholder="Email" style="background: rgba(255,255,255,0.5);"></div><!-- End: Success Example -->
-                <!-- Start: Success Example -->
-                <div class="mb-3"><input class="form-control" type="text" id="phone" name="phone" placeholder="Phone" style="background: rgba(255,255,255,0.5);"></div><!-- End: Success Example -->
-                <!-- Start: Success Example --><div class="mb-3"><input id="phone-1" class="form-control" type="hidden" name="App Web" value="10% off" placeholder="app" style="background: rgba(255,255,255,0.5);" /></div><!-- End: Success Example -->
-                <div><button class="btn w-100 d-block" type="submit">Send </button></div>
-            </form>
+
+            <div class="absolute inset-y-0 right-2 md:right-4 z-30 flex items-center">
+                <button class="swiper-next-btn bg-white text-slate-800 hover:text-white hover:bg-orange-500 w-12 h-12 rounded-full flex items-center justify-center shadow-md transition duration-200 border border-slate-100">
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Custom Bullet Points -->
+            <div class="swiper-pagination-custom"></div>
         </div>
-        <div id="textform">
-            <h1>Subscribe now and get 10% off</h1>
-            <p>Don’t miss out — it won’t last forever!</p>
+    </section>
+
+    <!-- In-Depth Showcases (columnas) -->
+    <section class="py-24 bg-white border-t border-slate-100 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 space-y-28">
+
+            <!-- Column 1: Video -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-6 relative" data-aos="fade-right">
+                    <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden relative">
+                        <div class="bg-slate-50 px-4 py-3 border-b border-slate-100 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                            <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                            <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                        </div>
+                        <div class="relative aspect-video bg-slate-900">
+                            <video src="https://menutechdeveloper.github.io/bddImg/assets/web/webmk.mp4" autoplay loop muted class="w-full h-full object-cover"></video>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-6 space-y-4" data-aos="fade-left">
+                    <p class="text-slate-600 leading-relaxed font-medium">
+                        <strong>Restaurant Website</strong><br />We build fast, secure, and SEO-friendly websites with responsive design, clear navigation, online ordering, and CTA buttons. Integrated with social media, contact forms, and conversion-focused features to maximize results.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Column 2: Responsive -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-6 md:order-2 relative" data-aos="fade-left">
+                    <div class="p-6 bg-slate-50/50 rounded-3xl border border-slate-100 flex items-center justify-center">
+                        <img src="https://wisbe.xyz/assets/img/responsive.png" alt="Responsive Website Design" class="max-h-[300px] object-contain drop-shadow-md">
+                    </div>
+                </div>
+                <div class="md:col-span-6 md:order-1 space-y-4" data-aos="fade-right">
+                    <p class="text-slate-600 leading-relaxed font-medium">
+                        <strong>Responsive & Mobile-Optimized</strong><br/>
+                        A responsive website is key to success in today’s mobile-first world. We create sites that adapt to any device, ensuring smooth usability and maximum engagement.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Column 3: Customized Designs -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-6 relative" data-aos="fade-right">
+                    <div class="bg-slate-50/50 rounded-3xl p-6 border border-slate-100">
+                        <img src="https://menutechdeveloper.github.io/bddImg/assets/web/webmk2.png" alt="Customized Designs" class="rounded-2xl shadow-md w-full aspect-[4/3] object-cover">
+                    </div>
+                </div>
+                <div class="md:col-span-6 space-y-4" data-aos="fade-left">
+                    <p class="text-slate-600 leading-relaxed font-medium">
+                        <strong>Customized designs</strong><br/>
+                        We create unique, visually stunning, and functional websites that reflect your brand’s personality and values, ensuring a strong online presence that engages your audience.
+                    </p>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </section>
+
+    <!-- Subscription Form Section (formulario) -->
+    <section id="formulario" class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                <!-- Textform (left side) -->
+                <div id="textform" class="lg:col-span-5 space-y-4" data-aos="fade-right">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 leading-tight">
+                        Subscribe now and get 10% off
+                    </h1>
+                    <p class="text-slate-600 font-medium leading-relaxed">
+                        Don’t miss out — it won’t last forever!
+                    </p>
+                </div>
+
+                <!-- Form Card (right side) -->
+                <div id="miform" class="lg:col-span-7" data-aos="fade-left">
+                    <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-100">
+                        <form data-bss-recipient="0769ed07de9623dd212a615bc33516e5" class="space-y-6">
+
+                            <!-- Name -->
+                            <div>
+                                <label for="name-2" class="block text-xs font-bold uppercase text-slate-500 mb-2">Name</label>
+                                <input type="text" id="name-2" name="Name" required class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-200" placeholder="Name">
+                            </div>
+
+                            <!-- Email and Phone in a row -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- Email -->
+                                <div>
+                                    <label for="email" class="block text-xs font-bold uppercase text-slate-500 mb-2">Email</label>
+                                    <input type="email" id="email" name="email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-200" placeholder="Email">
+                                </div>
+
+                                <!-- Phone -->
+                                <div>
+                                    <label for="phone" class="block text-xs font-bold uppercase text-slate-500 mb-2">Phone</label>
+                                    <input type="tel" id="phone" name="phone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition duration-200" placeholder="Phone">
+                                </div>
+                            </div>
+
+                            <!-- Hidden field -->
+                            <input id="phone-1" type="hidden" name="App Web" value="10% off" placeholder="app" />
+
+                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg">
+                                Send
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center text-sm text-slate-400">
+            &copy; <script>document.write(new Date().getFullYear())</script> Website Deluxe. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/smart-forms.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle-min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
-    <script src="./assets/js/Lightbox-Gallery-baguetteBox.min.js"></script>
-    <script src="./assets/js/Lightbox-Gallery.js"></script>
-    <script src="./assets/js/scroll.js"></script>
-    <script src="./assets/js/untitled.js"></script>
+
+    <!-- App Scripts -->
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 80
+        });
+
+        // Initialize 3D Swiper coverflow carousel
+        new Swiper('.swiper-container-3d', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            loop: true,
+            speed: 1000,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            coverflowEffect: {
+                rotate: 35,
+                stretch: -15,
+                depth: 160,
+                modifier: 1.2,
+                slideShadows: true,
+            },
+            navigation: {
+                nextEl: '.swiper-next-btn',
+                prevEl: '.swiper-prev-btn',
+            },
+            pagination: {
+                el: '.swiper-pagination-custom',
+                clickable: true,
+            }
+        });
+    </script>
 </body>
 
 </html>
