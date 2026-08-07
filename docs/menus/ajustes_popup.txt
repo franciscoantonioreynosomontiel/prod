@@ -1,83 +1,61 @@
 ================================================================================
-GUÍA DE AJUSTES Y PERSONALIZACIÓN DE TAMAÑOS DEL POPUP Y EL MENÚ
+GUÍA DE AJUSTES Y PERSONALIZACIÓN DE TAMAÑOS DEL POPUP Y EL MENÚ (IFRAME)
 ================================================================================
 
-Para hacer pruebas y ajustar las dimensiones del popup y el menú (alto y ancho),
-solo debes modificar las variables CSS personalizadas que se encuentran al inicio
-del archivo:
+Para hacer pruebas y ajustar las dimensiones del popup y del menú interactivo (turn.js),
+puedes modificar los valores de forma inmediata.
 
-👉 Archivo: docs/menus/assets/css/swiper.css
-👉 Sección: :root (Líneas ~15-35)
+👉 Archivo de estilos principal: docs/menus/assets/css/swiper.css
+👉 Sección: :root (Líneas al inicio del archivo)
 
 --------------------------------------------------------------------------------
 VARIABLES DISPONIBLES Y SU EXPLICACIÓN
 --------------------------------------------------------------------------------
 
-1. CONFIGURACIÓN PARA PC / ESCRITORIO (Pantallas grandes)
+1. DIMENSIONES LÓGICAS DEL MENÚ (CARRUSEL / IFRAME)
    -----------------------------------------------------------------------------
-   * --popup-width-pc:
-     - Qué es: El ancho del contenedor blanco del popup.
-     - Valor actual: 95% (puedes cambiarlo a 90%, 80% o usar pixeles como 1100px).
+   Los menús de turn.js externos están diseñados originalmente sobre un lienzo de
+   922px de ancho por 700px de alto. Para reducir únicamente el alto de las
+   páginas del menú en el popup para que se vean estilizados y entren enteros:
 
-   * --popup-max-width-pc:
-     - Qué es: El límite máximo de ancho para que no se vea exageradamente gigante.
-     - Valor actual: 1250px.
+   * --menu-logical-width:
+     - Qué es: El ancho lógico base sobre el cual se calcula la escala del menú.
+     - Valor recomendado: 922px
 
-   * --popup-height-pc:
-     - Qué es: El alto del contenedor blanco del popup.
-     - Valor actual: 90% (puedes reducirlo si prefieres un popup más bajo).
-
-   * --menu-width-pc:
-     - Qué es: El ancho del menú (iframe) dentro del popup.
-     - Valor actual: 100%.
-
-   * --menu-max-width-pc:
-     - Qué es: Límite de ancho para que el menú no se ensanche indefinidamente.
-     - Valor actual: 1200px.
-
-   * --menu-height-pc:
-     - Qué es: El alto del menú (iframe) dentro de la tarjeta blanca.
-     - Valor actual: 82% (REDUCIDO para que se vea completo, no se recorte y
-       quede espacio perfecto para el botón de cerrar arriba).
+   * --menu-logical-height:
+     - Qué es: El alto lógico base. Reducir este valor reducirá proporcionalmente
+       el tamaño de alto del menú dentro del popup.
+     - Valor actual: 610px (Ajustado para que el menú sea más bajo y estilizado)
 
 
-2. CONFIGURACIÓN PARA LAPTOPS Y TABLETS (Pantallas de hasta 1366px)
+2. TAMAÑO DEL CONTENEDOR BLANCO (POPUP) POR DISPOSITIVO
    -----------------------------------------------------------------------------
-   * --popup-width-tablet:
-     - Ancho del popup en pantallas medianas. Valor actual: 95%.
+   Estas variables ajustan el tamaño del contenedor blanco del popup, obligando
+   a que se mantenga perfectamente centrado, visible y sin desbordamientos.
 
-   * --popup-height-tablet:
-     - Alto del popup en pantallas medianas. Valor actual: 92%.
+   * PARA PC / ESCRITORIO:
+     - --popup-width-pc: Ancho del popup en PC (Valor actual: 95%).
+     - --popup-max-width-pc: Límite máximo de ancho en PC (Valor actual: 1250px).
+     - --popup-height-pc: Alto total del popup en PC (Valor actual: 92%).
 
-   * --menu-width-tablet:
-     - Ancho del menú (iframe) en pantallas medianas. Valor actual: 100%.
+   * PARA LAPTOPS Y TABLETS:
+     - --popup-width-tablet: Ancho en pantallas medianas (Valor actual: 95%).
+     - --popup-height-tablet: Alto en pantallas medianas (Valor actual: 92%).
 
-   * --menu-height-tablet:
-     - Alto del menú (iframe) en pantallas medianas. Valor actual: 85%.
-
-
-3. CONFIGURACIÓN PARA MÓVILES (Pantallas de hasta 768px de ancho)
-   -----------------------------------------------------------------------------
-   * --popup-width-mobile:
-     - Ancho del popup en celulares. Valor actual: 96% (aprovecha casi todo el ancho).
-
-   * --popup-height-mobile:
-     - Alto del popup en celulares. Valor actual: 90% (evita desbordarse verticalmente).
-
-   * --menu-width-mobile:
-     - Ancho del menú en celulares. Valor actual: 100%.
-
-   * --menu-height-mobile:
-     - Alto del menú en celulares. Valor actual: 85% (perfectamente redimensionado).
+   * PARA MÓVILES (Celulares):
+     - --popup-width-mobile: Ancho del popup en móviles (Valor actual: 95%).
+     - --popup-height-mobile: Alto del popup en móviles (Valor actual: 90% - para que
+       no se salga del alto de la pantalla de los teléfonos).
 
 
 --------------------------------------------------------------------------------
-¿CÓMO HACER PRUEBAS?
+¿CÓMO HACER PRUEBAS DE TAMAÑO?
 --------------------------------------------------------------------------------
 1. Abre el archivo `docs/menus/assets/css/swiper.css`.
-2. Busca la regla `:root` al principio.
-3. Modifica los valores (por ejemplo, reduce `--menu-height-pc: 75%` si deseas que
-   el menú sea aún más bajo, o aumenta `--popup-max-width-pc: 1400px` si quieres
-   un popup súper ancho en pantallas 4K).
-4. Guarda el archivo y recarga la página de menús en tu navegador para ver
-   los resultados de manera inmediata.
+2. Dirígete a la regla `:root` al principio.
+3. Modifica los valores. Por ejemplo:
+   - Si quieres hacer el menú aún más bajo (menos alto), disminuye `--menu-logical-height` (ej. a 580px o 550px).
+   - Si quieres hacer el menú un poco más alto, aumenta `--menu-logical-height` (ej. a 650px o 700px).
+4. Guarda el archivo y recarga la página. Gracias al sistema de escala dinámica
+   definido en JS (`zswiper.js`), el iframe se redimensionará y se centrará
+   automáticamente de forma impecable en cualquier pantalla o resolución móvil.
