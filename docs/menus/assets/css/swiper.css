@@ -31,107 +31,144 @@
   margin-bottom: 30px;
 }
 
-/* === POPUP === */
-/* === POPUP === */
-.popup {
-  display: none; /* oculto al inicio */
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* evita scroll de fondo */
+/* === CONFIGURACIÓN Y PERSONALIZACIÓN DEL POPUP === */
+:root {
+  /* --- CONFIGURACIÓN PARA PC / ESCRITORIO --- */
+  --popup-width-pc: 95%;          /* Ancho total del popup en PC */
+  --popup-max-width-pc: 1250px;    /* Límite máximo de ancho en PC (más amplio para mayor visibilidad) */
+  --popup-height-pc: 90%;         /* Alto total del popup en PC (más grande verticalmente) */
+  --menu-width-pc: 100%;          /* Ancho del menú (iframe) dentro del popup */
+  --menu-max-width-pc: 1200px;    /* Límite máximo del ancho del menú en PC */
+  --menu-height-pc: 82%;          /* Alto del menú (iframe) en PC (reducido para que se vea completo sin recortarse) */
+
+  /* --- CONFIGURACIÓN PARA LAPTOPS Y TABLETS (hasta 1366px) --- */
+  --popup-width-tablet: 95%;
+  --popup-height-tablet: 92%;
+  --menu-width-tablet: 100%;
+  --menu-height-tablet: 85%;
+
+  /* --- CONFIGURACIÓN PARA MÓVILES (hasta 768px) --- */
+  --popup-width-mobile: 96%;      /* Ancho total del popup en móviles */
+  --popup-height-mobile: 90%;     /* Alto total del popup en móviles (evita salirse de la pantalla) */
+  --menu-width-mobile: 100%;      /* Ancho del menú en móviles */
+  --menu-height-mobile: 85%;      /* Alto del menú en móviles (reducido para no salirse y dejar espacio a botones) */
 }
 
+/* Contenedor de fondo oscuro del popup */
+.popup {
+  display: none; /* Oculto al inicio */
+  position: fixed;
+  z-index: 10000; /* Asegura estar por encima de todos los elementos */
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Fondo ligeramente más oscuro para mayor contraste */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Evita scrolls raros del fondo */
+  box-sizing: border-box;
+}
+
+/* Tarjeta/Contenido del popup */
 .popup-content {
   background: #fff;
-  width: 80%;          /* ancho en PC */
-  max-width: 800px;    /* límite máximo en PC */
-  height: 70%;         /* altura vertical en PC */
-  border-radius: 10px;
+  width: var(--popup-width-pc);
+  max-width: var(--popup-max-width-pc);
+  height: var(--popup-height-pc);
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  zoom: 120%;
-
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  padding: 20px; /* Margen interior elegante */
 }
 
-
+/* El menú interactivo (iframe) */
 .popup-content iframe {
-  width: 100%;        /* ocupa todo el ancho posible del popup */
-  max-width: 700px;   /* no superamos tu límite */
-  height: 100%;        /* más alto que antes, ocupa más verticalmente */
+  width: var(--menu-width-pc);
+  max-width: var(--menu-max-width-pc);
+  height: var(--menu-height-pc);
   border: none;
-  margin: auto;       /* centrado horizontal y vertical */
-  display: block;     /* necesario para margin auto */
-  margin-top: 50px;
-  margin-right: 20px;
+  display: block;
+  margin: auto; /* Centrado perfecto tanto horizontal como verticalmente */
+  border-radius: 6px;
+  background: #fff; /* Evita destellos negros/transparentes durante la carga */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-
-/* Botón cerrar */
+/* Botón cerrar circular, moderno y muy visible */
 .close {
   position: absolute;
-  top: 8px;
+  top: 15px;
   right: 15px;
-  font-size: 30px;
+  font-size: 32px;
   font-weight: bold;
   color: #333;
   cursor: pointer;
-  z-index: 10;
+  z-index: 10100; /* Siempre encima del iframe */
+  background: rgba(255, 255, 255, 0.85);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
 
-/* Responsive móviles */
+.close:hover {
+  background-color: #e03131;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Responsive para laptops y pantallas medianas (hasta 1366px) */
+@media (max-width: 1366px) {
+  .popup-content {
+    width: var(--popup-width-tablet);
+    height: var(--popup-height-tablet);
+    max-width: none;
+    padding: 15px;
+  }
+
+  .popup-content iframe {
+    width: var(--menu-width-tablet);
+    height: var(--menu-height-tablet);
+    max-width: none;
+  }
+}
+
+/* Responsive para dispositivos móviles (hasta 768px) */
 @media (max-width: 768px) {
   html, body {
-    overflow-x: hidden; /* evita scroll horizontal al abrir popup */
+    overflow-x: hidden; /* Evita scrolls horizontales indeseados */
   }
 
   .popup-content {
-    width: 100%;       /* ocupar todo el ancho */
-    height: 90%;      /* ocupar toda la altura */
-    margin: 2px;       /* margen pequeño para no pegarse a los bordes */
-    max-width: none;   /* ignorar el max-width */
-    border-radius: 5px; 
+    width: var(--popup-width-mobile);
+    height: var(--popup-height-mobile);
+    max-width: none;
+    border-radius: 8px;
+    padding: 10px; /* Reducimos padding para aprovechar el espacio al máximo */
   }
 
   .popup-content iframe {
-     width: 90%;
-  max-width: 800px;
-  height: 80%;
-  margin-top: 30px; /* ajusta este valor a lo que necesites */
+    width: var(--menu-width-mobile);
+    height: var(--menu-height-mobile);
+    max-width: none;
+  }
+
+  .close {
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 26px;
   }
 }
-@media (max-width: 1366px){
-  .popup-content {
-    width: 90%;       
-    height: 95%;      
-    margin: 2px auto;      
-    max-width: none;   
-    border-radius: 5px; 
-    overflow: hidden;
-    position: relative;
-  }
-
-  .popup-content iframe {
-    display: block;
-    width: 100%;        
-    height: 100%;      
-    border: none;
-    margin: 0 auto;    
-  }
-}
-
-
-
-
-
-
-
