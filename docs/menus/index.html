@@ -52,22 +52,33 @@
         <script>
             $(document).ready(function() {
                 var $flipbook = $(".flipbook");
+                var isMobile = window.innerWidth <= 992;
 
-                // Initialize turn.js with fixed coordinates
+                // Initialize turn.js depending on viewport size
                 $flipbook.turn({
-                    width: 922,
+                    width: isMobile ? 461 : 922,
                     height: 600,
                     elevation: 50,
                     gradients: true,
-                    autoCenter: true
+                    autoCenter: true,
+                    display: isMobile ? 'single' : 'double'
                 });
 
                 function resizeFlipbook() {
+                    var currentIsMobile = window.innerWidth <= 992;
+
+                    // If display mode changed, turn.js should update its mode and base sizes
+                    if (currentIsMobile !== isMobile) {
+                        isMobile = currentIsMobile;
+                        $flipbook.turn('display', isMobile ? 'single' : 'double');
+                        $flipbook.turn('size', isMobile ? 461 : 922, 600);
+                    }
+
                     var containerWidth = $(".menu1").width();
                     var containerHeight = $(".menu1").height();
 
                     // Base dimensions used during turn.js initialization
-                    var baseWidth = 922;
+                    var baseWidth = isMobile ? 461 : 922;
                     var baseHeight = 600;
 
                     // Calculate scale to perfectly fit within parent container without overflow
@@ -75,9 +86,9 @@
                     var scaleY = containerHeight / baseHeight;
                     var scale = Math.min(scaleX, scaleY);
 
-                    // Restrict scale to a maximum of 1 to avoid pixelation
-                    if (scale > 1) {
-                        scale = 1;
+                    // Restrict scale to a maximum of 1 to avoid pixelation, or let it scale up slightly if needed
+                    if (scale > 1.2) {
+                        scale = 1.2;
                     }
 
                     // Apply the scale transformation smoothly to scale the entire turn.js structure
