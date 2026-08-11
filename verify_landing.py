@@ -33,17 +33,17 @@ async def run_verification():
         await page.screenshot(path="/home/jules/verification/landing_order_success.png", full_page=False)
         print("Captured order success state screenshot with recalculated pricing.")
 
-        # Click Anniversary seasonal theme inside browser mockup
-        await page.click("id=btn-theme-anniversary")
+        # Click Harvest seasonal theme inside browser mockup
+        await page.click("id=btn-theme-harvest")
         await page.wait_for_timeout(800) # Wait for style transitions
-        await page.screenshot(path="/home/jules/verification/landing_seasonal_anniversary.png", full_page=False)
-        print("Captured anniversary mockup theme screenshot.")
+        await page.screenshot(path="/home/jules/verification/landing_seasonal_harvest.png", full_page=False)
+        print("Captured harvest mockup theme screenshot.")
 
-        # Click San Valentín theme
-        await page.click("id=btn-theme-romance")
+        # Click Standard theme back
+        await page.click("id=btn-theme-standard")
         await page.wait_for_timeout(800) # Wait for style transitions
-        await page.screenshot(path="/home/jules/verification/landing_seasonal_romance.png", full_page=False)
-        print("Captured romance mockup theme screenshot.")
+        await page.screenshot(path="/home/jules/verification/landing_seasonal_standard.png", full_page=False)
+        print("Captured standard mockup theme screenshot.")
 
         await browser.close()
 
