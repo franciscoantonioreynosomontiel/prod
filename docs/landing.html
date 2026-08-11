@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>GastroWebs Elite | Diseño & Desarrollo Web Premium para Restaurantes</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316', // Main orange
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                            950: '#431407',
+                        },
+                        luxury: {
+                            gold: '#D4AF37',
+                            charcoal: '#111827',
+                            slate: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS CSS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        /* High-end custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 999px;
+            border: 2px solid #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(249, 115, 22, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.15);
+        }
+
+        /* Interactive Showcase Mockup Animations */
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes drift-petal {
+            0% {
+                transform: translateY(-20px) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(400px) translateX(50px) rotate(120deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes drift-sparkle {
+            0% {
+                transform: translateY(400px) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .ambient-effect {
+            pointer-events: none;
+            overflow: hidden;
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            display: none;
+        }
+
+        /* Rose petals for Valentine */
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, #f43f5e, #be123c);
+            border-radius: 150px 0 150px 150px;
+            opacity: 0;
+            animation: drift-petal 6s linear infinite;
+        }
+
+        /* Sparkles for Anniversary */
+        .sparkle {
+            position: absolute;
+            background: radial-gradient(circle, #fbbf24 10%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: drift-sparkle 5s ease-in-out infinite;
+        }
+
+        /* Glow effects */
+        .orange-glow {
+            filter: drop-shadow(0 0 15px rgba(249, 115, 22, 0.4));
+        }
+
+        .rose-glow {
+            filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.4));
+        }
+
+        .gold-glow {
+            filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.4));
+        }
+
+        /* Custom transition helper */
+        .theme-transition {
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-brand-500 selection:text-white">
+
+    <!-- Anti-Inspect script (Preserved to maintain parity with indices) -->
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') e.preventDefault();
+            if (e.ctrlKey && e.shiftKey && ['i','c','j'].includes(e.key.toLowerCase())) e.preventDefault();
+            if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
+        });
+    </script>
+
+    <!-- Background decorative grids -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none -z-10"></div>
+
+    <!-- Header / Navigation Bar -->
+    <header class="fixed top-0 inset-x-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-all duration-300">
+                    <i class="fa-solid fa-utensils text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white font-extrabold text-lg tracking-tight uppercase leading-none">GastroWebs</span>
+                    <span class="text-[10px] text-brand-400 font-semibold uppercase tracking-wider mt-0.5">Elite Digital</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#proyectos" class="text-gray-400 hover:text-white font-medium text-sm tracking-wide transition duration-200">Proyectos</a>
+                <a href="#experiencia-estacional" class="text-gray-400 hover:text-white font-medium text-sm tracking-wide transition duration-200">Demostración En Vivo</a>
+                <a href="#caracteristicas" class="text-gray-400 hover:text-white font-medium text-sm tracking-wide transition duration-200">Funcionalidades</a>
+                <a href="#beneficios" class="text-gray-400 hover:text-white font-medium text-sm tracking-wide transition duration-200">Por qué Nosotros</a>
+            </nav>
+
+            <!-- CTA Header Button -->
+            <a href="#contacto" class="relative group inline-flex items-center justify-center bg-gradient-to-r from-brand-500 to-brand-600 text-white font-bold text-sm tracking-wide py-3 px-6 rounded-xl transition duration-300 shadow-md shadow-brand-500/10 hover:shadow-lg hover:shadow-brand-500/20 hover:-translate-y-0.5">
+                <span class="relative z-10">Cotizar Proyecto</span>
+                <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-brand-600 to-brand-700 opacity-0 group-hover:opacity-100 rounded-xl transition-all duration-300 -z-10"></span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-36 pb-24 flex items-center overflow-hidden">
+        <!-- Floating ambient light -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                <!-- Left: Headline & Copy -->
+                <div class="lg:col-span-7 space-y-8" data-aos="fade-right">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20">
+                        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Desarrollo Exclusivo para Gastronomía</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6.5xl font-extrabold text-white tracking-tight leading-[1.12]">
+                        Páginas Web Premium <br class="hidden sm:inline">
+                        <span class="bg-gradient-to-r from-brand-400 via-brand-500 to-amber-500 bg-clip-text text-transparent">
+                            Para Restaurantes de Alto Nivel
+                        </span>
+                    </h1>
+
+                    <p class="text-gray-400 text-lg sm:text-xl font-medium leading-relaxed max-w-2xl">
+                        Diseñamos y desarrollamos plataformas de élite que transforman comensales digitales en clientes leales. Automatiza comandas sin pagar comisiones absurdas a terceros y adapta tu imagen de forma exclusiva ante cada evento comercial.
+                    </p>
+
+                    <!-- Quick stats / bullet values -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-2">
+                        <div class="border-l-2 border-brand-500 pl-4 space-y-1">
+                            <span class="block text-2xl font-extrabold text-white">0%</span>
+                            <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Comisiones de Terceros</span>
+                        </div>
+                        <div class="border-l-2 border-brand-500 pl-4 space-y-1">
+                            <span class="block text-2xl font-extrabold text-white">100%</span>
+                            <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Autoadministrable</span>
+                        </div>
+                        <div class="border-l-2 border-brand-500 pl-4 col-span-2 sm:col-span-1 space-y-1">
+                            <span class="block text-2xl font-extrabold text-white">X2</span>
+                            <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Reservas Directas</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+                        <a href="#contacto" class="bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-bold text-center py-4 px-8 rounded-xl transition duration-300 shadow-lg shadow-brand-500/25 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-paper-plane"></i> Impulsar Mi Restaurante
+                        </a>
+                        <a href="#proyectos" class="bg-slate-800 hover:bg-slate-700 text-white font-bold text-center py-4 px-8 rounded-xl transition duration-300 border border-slate-700 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-eye"></i> Ver Portafolio
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Sleek Interactive Isometric Display -->
+                <div class="lg:col-span-5 relative" data-aos="fade-left">
+                    <div class="relative mx-auto max-w-[420px] lg:max-w-none">
+                        <!-- Neon background aura -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-amber-500/10 rounded-full filter blur-[80px] -z-10"></div>
+
+                        <!-- Main Screen Display Component -->
+                        <div class="bg-slate-900 rounded-3xl p-3 border border-slate-800 shadow-2xl relative" style="animation: float-slow 6s ease-in-out infinite;">
+                            <!-- Header Bar -->
+                            <div class="bg-slate-950/80 rounded-t-2xl px-4 py-3 border-b border-slate-800/80 flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/60"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500/60"></span>
+                                <div class="bg-slate-900 text-slate-400 text-[11px] font-medium px-4 py-1 rounded-lg mx-auto w-1/2 text-center select-none truncate border border-slate-800">
+                                    aurabistro.com/luxury
+                                </div>
+                            </div>
+
+                            <!-- Inside frame showcase (Representing a real restaurant menu app) -->
+                            <div class="bg-slate-950 rounded-b-2xl overflow-hidden aspect-[4/3] relative group">
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Plato Premium" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 ease-out">
+
+                                <!-- Floating banner overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent flex flex-col justify-end p-6">
+                                    <span class="inline-block self-start px-2.5 py-0.5 rounded-full bg-brand-500 text-white font-extrabold text-[10px] uppercase tracking-wider mb-2">Recomendación del Chef</span>
+                                    <h3 class="text-white font-extrabold text-xl">Filete de Wagyu en Costra de Hierbas</h3>
+                                    <p class="text-slate-300 text-xs mt-1.5 line-clamp-2">Carne seleccionada de importación directa, sazonada con romero silvestre, ajo negro asado y mantequilla trufada de montaña.</p>
+
+                                    <!-- Embedded dynamic checkout preview -->
+                                    <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+                                        <span class="text-brand-400 font-extrabold text-lg">$89.00 USD</span>
+                                        <div class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg flex items-center gap-1.5 transition">
+                                            <i class="fa-solid fa-cart-shopping"></i> Ordenar Mesa
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Decorative phone badge next to it representing responsiveness -->
+                        <div class="absolute -bottom-8 -left-8 bg-slate-900 border border-slate-800 rounded-2xl p-2 shadow-2xl hidden sm:block max-w-[150px] transform rotate-3" style="animation: float-slow 6s ease-in-out infinite 1.5s;">
+                            <div class="bg-slate-950 rounded-xl overflow-hidden aspect-[9/16] relative">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80" alt="Sushi de lujo" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent flex flex-col justify-end p-2.5">
+                                    <span class="text-[9px] font-extrabold text-white leading-tight">Umi Sushi</span>
+                                    <span class="text-[7px] text-brand-400 font-semibold mt-0.5">Menú Táctil</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Showcases Section -->
+    <section id="proyectos" class="py-24 border-y border-slate-800/80 bg-slate-950 relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-brand-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative">
+
+            <div class="max-w-3xl mb-16 space-y-4" data-aos="fade-up">
+                <span class="text-brand-500 font-extrabold text-xs uppercase tracking-widest block">Proyectos Realizados</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                    Experiencias Gastronómicas Digitales Desarrolladas
+                </h2>
+                <p class="text-gray-400 text-base max-w-2xl">
+                    Cada uno de nuestros sitios web está desarrollado desde cero, garantizando una arquitectura moderna y libre de plantillas genéricas. Todos optimizados al 100% para dispositivos móviles.
+                </p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Project 1: Aura Bistro -->
+                <div class="glass-card rounded-3xl overflow-hidden group transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-[16/10] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Aura Bistro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-slate-900/90 text-brand-400 text-xs font-bold tracking-wide px-3 py-1.5 rounded-full border border-slate-800">
+                            Alta Cocina & Bistro
+                        </span>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="text-2xl font-extrabold text-white">Aura Bistro</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Diseño minimalista y elegante enfocado en la cocina francesa-italiana contemporánea. Implementa un sistema de reservación directa de salones VIP, optimizado para cargar en menos de 0.8 segundos.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Sistema Reservas</span>
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Diseño Minimalista</span>
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Velocidad Extrema</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Rustika Grill -->
+                <div class="glass-card rounded-3xl overflow-hidden group transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="aspect-[16/10] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Rustika Grill" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-slate-900/90 text-brand-400 text-xs font-bold tracking-wide px-3 py-1.5 rounded-full border border-slate-800">
+                            Cortes de Carne & Asador
+                        </span>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="text-2xl font-extrabold text-white">Rustika Grill</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Layout imponente con alto contraste visual que resalta la jugosidad de las carnes a la brasa. Incluye botones de pedido directo a cocina a través de WhatsApp para maximizar las comandas.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Botón de Ordenar</span>
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Comandas Directas</span>
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Optimizado SEO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Umi Sushi & Lounge -->
+                <div class="glass-card rounded-3xl overflow-hidden group transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="aspect-[16/10] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80" alt="Umi Sushi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-slate-900/90 text-brand-400 text-xs font-bold tracking-wide px-3 py-1.5 rounded-full border border-slate-800">
+                            Comida Fusión & Sushi
+                        </span>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="text-2xl font-extrabold text-white">Umi Sushi & Lounge</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Interfaz en modo oscuro refinado con animaciones interactivas inspiradas en la elegancia nipona. Los usuarios pueden explorar ingredientes e información nutricional de forma sumamente ágil.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Modo Oscuro Premium</span>
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Menú Desplegable</span>
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Transiciones Fluidas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: La Piazza Trattoria -->
+                <div class="glass-card rounded-3xl overflow-hidden group transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="aspect-[16/10] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="La Piazza Trattoria" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-slate-900/90 text-brand-400 text-xs font-bold tracking-wide px-3 py-1.5 rounded-full border border-slate-800">
+                            Gastronomía Italiana Tradicional
+                        </span>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="text-2xl font-extrabold text-white">La Piazza Trattoria</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Enfoque cálido y tradicional optimizado para atraer familias y banquetes. Destaca una sección interactiva de ofertas de fin de semana que incrementa los pedidos de pizza un 35% promedio.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Sección Ofertas</span>
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Carga Adaptativa</span>
+                            <span class="text-xs bg-slate-800 text-gray-300 px-3 py-1.5 rounded-lg border border-slate-700">Integración Mapas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Seasonal Adaptability Showcase -->
+    <section id="experiencia-estacional" class="py-24 bg-gradient-to-b from-slate-900 to-slate-950 relative overflow-hidden border-b border-slate-800/80">
+        <!-- Floating effects background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            <div id="ambient-container" class="w-full h-full relative">
+                <!-- JavaScript will append floating elements here dynamically -->
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                <!-- Left Column: Copy & Controller -->
+                <div class="lg:col-span-6 space-y-8" data-aos="fade-right">
+                    <div class="space-y-4">
+                        <span class="text-brand-500 font-extrabold text-xs uppercase tracking-widest block">Tecnología Inteligente</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                            Adaptabilidad Estacional Dinámica y Automatizada
+                        </h2>
+                        <p class="text-gray-400 text-base leading-relaxed">
+                            Los restaurantes más influyentes aumentan su facturación hasta un 40% durante eventos y épocas comerciales clave del año. Desarrollamos sitios web inteligentes capaces de modificar su ambientación de manera automática y sumamente sofisticada, atrayendo más comensales según la ocasión.
+                        </p>
+                        <p class="text-gray-400 text-base leading-relaxed">
+                            Para evitar una imagen infantil, no utilizamos decoraciones burdas. En su lugar, aplicamos transformaciones estéticas profundas: variaciones elegantes en la paleta de colores de la marca, overlays translúcidos premium y sutiles efectos dinámicos en alta definición que transportan al visitante a la atmósfera deseada.
+                        </p>
+                    </div>
+
+                    <!-- Interactive Controller Panel -->
+                    <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 space-y-5">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Panel de Control: Simular Temporadas en Vivo</span>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <!-- Toggle Standard -->
+                            <button onclick="setSeasonalTheme('standard')" id="btn-theme-standard" class="flex flex-col items-center justify-center p-4 rounded-xl border border-brand-500 bg-brand-500/10 text-white font-bold transition duration-300 focus:outline-none">
+                                <i class="fa-solid fa-hotel text-lg mb-2 text-brand-400"></i>
+                                <span class="text-xs tracking-wide">Modo Estándar</span>
+                            </button>
+
+                            <!-- Toggle Valentine -->
+                            <button onclick="setSeasonalTheme('valentine')" id="btn-theme-valentine" class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-800 bg-slate-900/40 text-gray-400 font-bold hover:border-slate-700 hover:bg-slate-900 transition duration-300 focus:outline-none">
+                                <i class="fa-solid fa-heart text-lg mb-2 text-rose-400"></i>
+                                <span class="text-xs tracking-wide">San Valentín</span>
+                            </button>
+
+                            <!-- Toggle Anniversary -->
+                            <button onclick="setSeasonalTheme('anniversary')" id="btn-theme-anniversary" class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-800 bg-slate-900/40 text-gray-400 font-bold hover:border-slate-700 hover:bg-slate-900 transition duration-300 focus:outline-none">
+                                <i class="fa-solid fa-crown text-lg mb-2 text-amber-400"></i>
+                                <span class="text-xs tracking-wide">Gala / Aniversario</span>
+                            </button>
+                        </div>
+
+                        <!-- Explanatory block -->
+                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                            <p id="theme-explanation" class="text-xs text-gray-400 leading-relaxed">
+                                <strong class="text-white">Modo Estándar:</strong> Estilo moderno por defecto de la marca. Colores refinados y enfoque en la excelencia del servicio gastronómico tradicional.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Smartphone Mockup -->
+                <div class="lg:col-span-6 flex justify-center" data-aos="fade-left">
+                    <div class="relative w-[300px] sm:w-[340px] aspect-[9/18.5] bg-slate-950 rounded-[40px] border-[10px] border-slate-900 shadow-[0_0_50px_-12px_rgba(0,0,0,0.8)] overflow-hidden theme-transition" id="phone-shell">
+                        <!-- Top notch camera -->
+                        <div class="absolute top-0 inset-x-0 h-6 bg-slate-900 flex justify-center items-center z-30">
+                            <div class="w-20 h-4 bg-black rounded-full"></div>
+                        </div>
+
+                        <!-- Inside Website content -->
+                        <div class="w-full h-full flex flex-col pt-6 relative overflow-y-auto no-scrollbar" id="phone-screen">
+
+                            <!-- Internal ambient particle container -->
+                            <div id="phone-ambient" class="absolute inset-0 pointer-events-none z-10 overflow-hidden"></div>
+
+                            <!-- Website Mockup Header -->
+                            <div class="px-5 py-4 border-b border-white/5 flex justify-between items-center z-20 theme-transition" id="web-header">
+                                <span class="text-white font-black text-sm tracking-tight" id="web-logo">AURA BISTRO</span>
+                                <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xs">
+                                    <i class="fa-solid fa-bars"></i>
+                                </div>
+                            </div>
+
+                            <!-- Website Mockup Hero Banner -->
+                            <div class="p-5 flex-1 flex flex-col justify-between relative z-20">
+                                <div class="space-y-4 pt-4">
+                                    <span class="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold text-white uppercase tracking-wider theme-transition" id="web-tag" style="background-color: #ea580c;">RESERVA HOY</span>
+
+                                    <h3 class="text-xl sm:text-2xl font-extrabold text-white leading-tight theme-transition" id="web-title">
+                                        Una Experiencia Gastronómica Memorable
+                                    </h3>
+
+                                    <p class="text-xs text-slate-300 leading-relaxed theme-transition" id="web-description">
+                                        Sabor tradicional con toques vanguardistas europeos. Platillos elaborados con ingredientes de granjas locales orgánicas y seleccionados minuciosamente.
+                                    </p>
+                                </div>
+
+                                <!-- Dish image card within mobile viewport -->
+                                <div class="bg-white/5 border border-white/10 rounded-2xl p-3 space-y-3 mt-6 theme-transition" id="web-dish-card">
+                                    <div class="aspect-[16/10] rounded-xl overflow-hidden relative">
+                                        <img id="web-dish-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80" alt="Platillo" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-white" id="web-dish-title">Corte de Ribeye Dry-Aged</h4>
+                                            <span class="text-[10px] text-gray-400">Sazonado con sal de mar gruesa</span>
+                                        </div>
+                                        <span class="text-sm font-extrabold text-brand-400 theme-transition" id="web-dish-price">$45.00</span>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="space-y-2.5 mt-6 pb-6">
+                                    <!-- Order button -->
+                                    <button class="w-full text-white font-bold text-xs py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg transition duration-300 theme-transition" id="web-btn-order" style="background-color: #ea580c;">
+                                        <i class="fa-solid fa-cart-shopping"></i> Ordenar para Delivery
+                                    </button>
+
+                                    <!-- Reserve button -->
+                                    <button class="w-full bg-white/10 hover:bg-white/15 text-white font-semibold text-xs py-3 rounded-xl flex items-center justify-center gap-2 transition">
+                                        <i class="fa-solid fa-calendar-days text-gray-400"></i> Agendar Reservación
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="caracteristicas" class="py-24 bg-slate-950 border-b border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+
+            <div class="max-w-3xl mb-20 space-y-4" data-aos="fade-up">
+                <span class="text-brand-500 font-extrabold text-xs uppercase tracking-widest block">Capacidades del Sistema</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                    ¿Qué Obtienes con Nuestra Plataforma Profesional?
+                </h2>
+                <p class="text-gray-400 text-base max-w-2xl">
+                    No creamos simples webs de presentación. Integramos herramientas operativas robustas diseñadas a la medida para agilizar las operaciones de tu restaurante y disparar tus ventas digitales.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1: Order Button -->
+                <div class="glass-card p-8 rounded-3xl space-y-6 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-500 text-2xl border border-brand-500/20">
+                        <i class="fa-solid fa-cash-register"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Botón de Ordenar Sin Comisión</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Recibe solicitudes de pedido directamente en el panel del restaurante o mediante integraciones de mensajería instantánea como WhatsApp. Permite a tus comensales armar su orden, elegir complementos y pagar de manera fluida sin pagar el 30% a aplicaciones.
+                    </p>
+                </div>
+
+                <!-- Feature 2: Seasonal Activation -->
+                <div class="glass-card p-8 rounded-3xl space-y-6 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-500 text-2xl border border-brand-500/20">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Promociones de Temporada</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Activa y desactiva campañas en segundos. El sitio web cambia automáticamente su banners, menús y paletas gráficas durante celebraciones comerciales críticas, despertando urgencia y deleitando visualmente de manera muy elegante.
+                    </p>
+                </div>
+
+                <!-- Feature 3: Self-Managed Menu -->
+                <div class="glass-card p-8 rounded-3xl space-y-6 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-500 text-2xl border border-brand-500/20">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Menú Autoadministrable</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Olvídate de subir engorrosos e inaccesibles PDFs que frustran a tus comensales en móviles. Ofrecemos un panel intuitivo para actualizar platillos, precios, descripciones, etiquetas de alérgenos e ingredientes al instante.
+                    </p>
+                </div>
+
+                <!-- Feature 4: Smart Reservations -->
+                <div class="glass-card p-8 rounded-3xl space-y-6 transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-500 text-2xl border border-brand-500/20">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Reservaciones Inteligentes</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Controla el aforo de tu salón de banquetes o restaurante. Tus clientes pueden pre-reservar mesas, cotizar paquetes de eventos de forma autónoma y recibir confirmación directa reduciendo drásticamente las llamadas telefónicas de consulta.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value proposition & ROI -->
+    <section id="beneficios" class="py-24 bg-gradient-to-b from-slate-950 to-slate-900 border-b border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <!-- Left: visual representations -->
+                <div class="lg:col-span-6 relative" data-aos="fade-right">
+                    <div class="relative bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-2xl space-y-6">
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-brand-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                        <h4 class="text-sm font-extrabold text-brand-400 uppercase tracking-widest">¿Por qué una web personalizada?</h4>
+                        <h3 class="text-2xl font-bold text-white leading-tight">El Impacto Real en Tu Negocio Gastronómico</h3>
+
+                        <div class="space-y-4">
+                            <!-- point 1 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold border border-emerald-500/20 shrink-0">
+                                    <i class="fa-solid fa-percent text-sm"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-bold text-sm">Maximiza tus Márgenes</h5>
+                                    <p class="text-gray-400 text-xs mt-1 leading-relaxed">Al canalizar los pedidos online a través de tu propia plataforma, conservas el 100% del valor de cada venta, recuperando la rentabilidad de tu delivery.</p>
+                                </div>
+                            </div>
+
+                            <!-- point 2 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-500 font-bold border border-brand-500/20 shrink-0">
+                                    <i class="fa-solid fa-bolt text-sm"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-bold text-sm">Carga Instantánea Mobile-First</h5>
+                                    <p class="text-gray-400 text-xs mt-1 leading-relaxed">El hambre no da tregua. Optimizamos al extremo la velocidad de carga para garantizar una interacción instantánea incluso con conexiones de red móvil lentas.</p>
+                                </div>
+                            </div>
+
+                            <!-- point 3 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold border border-blue-500/20 shrink-0">
+                                    <i class="fa-solid fa-signature text-sm"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-bold text-sm">Identidad Visual y Prestigio</h5>
+                                    <p class="text-gray-400 text-xs mt-1 leading-relaxed">Diferénciate drásticamente de la competencia local. Una estética premium transmite confianza inmediata y valida el valor de tus platillos de autor.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: explanation block -->
+                <div class="lg:col-span-6 space-y-6" data-aos="fade-left">
+                    <span class="text-brand-500 font-extrabold text-xs uppercase tracking-widest block">Beneficio Comercial</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                        La Diferencia entre un Folleto Inerte y un Activo Digital
+                    </h2>
+                    <p class="text-gray-400 text-base leading-relaxed">
+                        Muchos restaurantes asumen erróneamente que una presencia en redes sociales o un archivo PDF enlazado es suficiente. La realidad es que pierden hasta el 55% de sus visitas debido a fricciones en la carga o la falta de un botón directo de acción.
+                    </p>
+                    <p class="text-gray-400 text-base leading-relaxed">
+                        Nuestras plataformas están diseñadas meticulosamente como embudos de venta gastronómicos. Reducen el número de pasos requeridos para ordenar, muestran de forma provocativa tus alimentos con fotografía optimizada en alta definición, y motivan la conversión mediante incentivos visuales dinámicos.
+                    </p>
+                    <div class="pt-4 border-t border-slate-800 grid grid-cols-2 gap-8">
+                        <div>
+                            <span class="block text-3xl font-extrabold text-white">40%</span>
+                            <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mt-1">Aumento de Pedidos Web</span>
+                        </div>
+                        <div>
+                            <span class="block text-3xl font-extrabold text-white">2.5X</span>
+                            <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mt-1">Mayor Retención de Visitas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capturing Form Section -->
+    <section id="contacto" class="py-24 bg-slate-950 relative overflow-hidden">
+        <!-- Radial light accent -->
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                <!-- Left Title Information -->
+                <div class="lg:col-span-5 space-y-6" data-aos="fade-right">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20">
+                        <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">¿Listo para comenzar?</span>
+                    </div>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                        Elevemos la Experiencia Digital de tu Marca
+                    </h3>
+                    <p class="text-gray-400 text-base leading-relaxed font-medium">
+                        Cuéntanos los desafíos actuales de tu restaurante. Evaluaremos tu modelo de menú, configuraremos tus flujos de pedidos directos y crearemos una propuesta visual exclusiva para tu negocio gastronómico.
+                    </p>
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-3 text-sm font-semibold text-gray-300">
+                            <i class="fa-solid fa-envelope text-brand-500"></i> contacto@gastrowebselite.com
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-semibold text-gray-300">
+                            <i class="fa-solid fa-phone text-brand-500"></i> +1 (555) 321-4567
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Form Box -->
+                <div class="lg:col-span-7" data-aos="fade-left">
+                    <div class="bg-slate-900/60 p-8 sm:p-10 rounded-3xl border border-slate-800 shadow-2xl relative">
+                        <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                            <!-- Name input -->
+                            <div>
+                                <label for="form-name" class="block text-xs font-bold uppercase text-slate-400 mb-2">Tu Nombre Completo</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <input type="text" id="form-name" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-4 pl-11 pr-4 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition duration-200" placeholder="Ej. Carlos Mendoza">
+                                </div>
+                            </div>
+
+                            <!-- Restaurant Name input -->
+                            <div>
+                                <label for="form-restaurant" class="block text-xs font-bold uppercase text-slate-400 mb-2">Nombre del Restaurante</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500">
+                                        <i class="fa-solid fa-utensils"></i>
+                                    </span>
+                                    <input type="text" id="form-restaurant" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-4 pl-11 pr-4 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition duration-200" placeholder="Ej. Rustika Parrilla">
+                                </div>
+                            </div>
+
+                            <!-- Email and Phone in a row -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="form-email" class="block text-xs font-bold uppercase text-slate-400 mb-2">Correo Electrónico</label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </span>
+                                        <input type="email" id="form-email" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-4 pl-11 pr-4 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition duration-200" placeholder="carlos@correo.com">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="form-phone" class="block text-xs font-bold uppercase text-slate-400 mb-2">Teléfono de Contacto</label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500">
+                                            <i class="fa-solid fa-phone"></i>
+                                        </span>
+                                        <input type="tel" id="form-phone" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-4 pl-11 pr-4 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition duration-200" placeholder="Ej. +1 (555) 000-0000">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notes/Special Requirements -->
+                            <div>
+                                <label for="form-notes" class="block text-xs font-bold uppercase text-slate-400 mb-2">Cuéntanos sobre tu negocio</label>
+                                <textarea id="form-notes" rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-4 px-4 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition duration-200" placeholder="Ej. Necesito habilitar reservas de mesas VIP y contar con un menú interactivo autoadministrable..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-extrabold py-4 px-6 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-lg shadow-brand-500/10">
+                                <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje & Agendar Consulta Gratis
+                            </button>
+                        </form>
+
+                        <!-- Success Banner (Hidden by default) -->
+                        <div id="form-success" class="absolute inset-0 bg-slate-900 rounded-3xl p-8 flex flex-col justify-center items-center text-center space-y-4 opacity-0 pointer-events-none transition-all duration-300">
+                            <div class="w-20 h-20 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full flex items-center justify-center text-3xl">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <h4 class="text-2xl font-extrabold text-white">¡Mensaje Recibido!</h4>
+                            <p class="text-gray-400 text-sm max-w-sm">
+                                Tu solicitud ha sido registrada con éxito. Uno de nuestros ingenieros de diseño se pondrá en contacto contigo en menos de 24 horas hábiles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-600 to-amber-500 flex items-center justify-center text-white">
+                    <i class="fa-solid fa-utensils text-sm"></i>
+                </div>
+                <span class="text-white font-extrabold text-base tracking-tight uppercase">GastroWebs Elite</span>
+            </div>
+
+            <p class="text-xs text-gray-500 text-center md:text-right">
+                &copy; <span id="year"></span> GastroWebs Elite. Todos los derechos reservados. Diseñado bajo estándares de ingeniería de alto impacto.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Set copyright year
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 80
+        });
+
+        // Interactive Seasonal Demonstration Controller Logic
+        const phoneShell = document.getElementById('phone-shell');
+        const phoneScreen = document.getElementById('phone-screen');
+        const webLogo = document.getElementById('web-logo');
+        const webTitle = document.getElementById('web-title');
+        const webDescription = document.getElementById('web-description');
+        const webTag = document.getElementById('web-tag');
+        const webDishCard = document.getElementById('web-dish-card');
+        const webDishImg = document.getElementById('web-dish-img');
+        const webDishTitle = document.getElementById('web-dish-title');
+        const webDishPrice = document.getElementById('web-dish-price');
+        const webBtnOrder = document.getElementById('web-btn-order');
+        const webHeader = document.getElementById('web-header');
+        const phoneAmbient = document.getElementById('phone-ambient');
+        const themeExplanation = document.getElementById('theme-explanation');
+
+        // Main theme controller buttons
+        const btnStandard = document.getElementById('btn-theme-standard');
+        const btnValentine = document.getElementById('btn-theme-valentine');
+        const btnAnniversary = document.getElementById('btn-theme-anniversary');
+
+        function setSeasonalTheme(theme) {
+            // Reset active classes on controls
+            [btnStandard, btnValentine, btnAnniversary].forEach(btn => {
+                btn.className = "flex flex-col items-center justify-center p-4 rounded-xl border border-slate-800 bg-slate-900/40 text-gray-400 font-bold hover:border-slate-700 hover:bg-slate-900 transition duration-300 focus:outline-none";
+            });
+
+            // Clean ambient particles in phone viewport
+            phoneAmbient.innerHTML = '';
+
+            if (theme === 'standard') {
+                btnStandard.className = "flex flex-col items-center justify-center p-4 rounded-xl border border-brand-500 bg-brand-500/10 text-white font-bold transition duration-300 focus:outline-none";
+
+                // Explanations
+                themeExplanation.innerHTML = `<strong class="text-white">Modo Estándar:</strong> Estilo moderno por defecto de la marca. Colores refinados y enfoque en la excelencia del servicio gastronómico tradicional.`;
+
+                // Transform phone website styles to standard
+                phoneScreen.style.backgroundColor = '#0b0f19';
+                phoneShell.style.borderColor = '#1e293b';
+                webLogo.innerText = 'AURA BISTRO';
+                webLogo.style.color = '#ffffff';
+                webTitle.innerText = 'Una Experiencia Gastronómica Memorable';
+                webDescription.innerText = 'Sabor tradicional con toques vanguardistas europeos. Platillos elaborados con ingredientes de granjas locales orgánicas y seleccionados minuciosamente.';
+                webTag.innerText = 'RESERVA HOY';
+                webTag.style.backgroundColor = '#ea580c';
+                webTag.style.color = '#ffffff';
+                webDishImg.src = 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80';
+                webDishTitle.innerText = 'Corte de Ribeye Dry-Aged';
+                webDishPrice.innerText = '$45.00';
+                webDishPrice.style.color = '#f97316';
+                webBtnOrder.style.backgroundColor = '#ea580c';
+                webBtnOrder.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Ordenar para Delivery`;
+                webDishCard.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                webHeader.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+
+            } else if (theme === 'valentine') {
+                btnValentine.className = "flex flex-col items-center justify-center p-4 rounded-xl border border-rose-500 bg-rose-500/10 text-white font-bold transition duration-300 focus:outline-none";
+
+                // Explanations
+                themeExplanation.innerHTML = `<strong class="text-white">Modo San Valentín:</strong> Atmósfera de romance de gran nivel. Cambia a tonalidades de vino tinto, rosa y oro rosado, con una sutil caída de pétalos elegantes que deleita sin saturar.`;
+
+                // Transform phone website styles to Valentine
+                phoneScreen.style.backgroundColor = '#2d0612'; // Deep Burgundy Red
+                phoneShell.style.borderColor = '#ec4899'; // Rose border
+                webLogo.innerText = 'AURA ROMANTIQUE';
+                webLogo.style.color = '#fecdd3';
+                webTitle.innerText = 'Cena Exclusiva para Compartir en Pareja';
+                webDescription.innerText = 'Un menú de degustación sensorial diseñado para celebrar la complicidad. Maridaje premium seleccionado por nuestro sommelier estrella.';
+                webTag.innerText = 'ESPECIAL DE AMOR';
+                webTag.style.backgroundColor = '#e11d48'; // Rose red
+                webTag.style.color = '#ffffff';
+                webDishImg.src = 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80';
+                webDishTitle.innerText = 'Duo de Chateaubriand & Trufas';
+                webDishPrice.innerText = '$110.00';
+                webDishPrice.style.color = '#f43f5e';
+                webBtnOrder.style.backgroundColor = '#be123c';
+                webBtnOrder.innerHTML = `<i class="fa-solid fa-heart"></i> Reservar Menú Pareja`;
+                webDishCard.style.borderColor = 'rgba(244, 63, 94, 0.2)';
+                webHeader.style.borderColor = 'rgba(244, 63, 94, 0.1)';
+
+                // Append floating elegant rose petals
+                for (let i = 0; i < 8; i++) {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    petal.style.left = Math.random() * 95 + '%';
+                    petal.style.top = -10 - Math.random() * 20 + 'px';
+                    petal.style.width = 6 + Math.random() * 8 + 'px';
+                    petal.style.height = 6 + Math.random() * 8 + 'px';
+                    petal.style.animationDelay = Math.random() * 5 + 's';
+                    petal.style.animationDuration = 5 + Math.random() * 3 + 's';
+                    phoneAmbient.appendChild(petal);
+                }
+
+            } else if (theme === 'anniversary') {
+                btnAnniversary.className = "flex flex-col items-center justify-center p-4 rounded-xl border border-amber-500 bg-amber-500/10 text-white font-bold transition duration-300 focus:outline-none";
+
+                // Explanations
+                themeExplanation.innerHTML = `<strong class="text-white">Modo Gala de Aniversario:</strong> Look de gran prestigio. Se viste de negro absoluto y oro de alta gama, acompañado por finos destellos dorados que refuerzan la exclusividad y el estatus VIP de la celebración.`;
+
+                // Transform phone website styles to Anniversary
+                phoneScreen.style.backgroundColor = '#020617'; // Absolute deep slate black
+                phoneShell.style.borderColor = '#d4af37'; // Luxury gold border
+                webLogo.innerText = 'AURA GRAND GALA';
+                webLogo.style.color = '#fef08a';
+                webTitle.innerText = 'Noche de Gala: Celebración de Aniversario';
+                webDescription.innerText = 'Diez años redefiniendo la alta gastronomía. Únete a una velada legendaria con música instrumental de cámara y postres bañados en oro comestible.';
+                webTag.innerText = 'EVENTO DE GALA';
+                webTag.style.backgroundColor = '#d4af37'; // Luxury gold
+                webTag.style.color = '#020617';
+                webDishImg.src = 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=400&q=80';
+                webDishTitle.innerText = 'Postre Imperial con Láminas de Oro';
+                webDishPrice.innerText = '$65.00';
+                webDishPrice.style.color = '#fbbf24';
+                webBtnOrder.style.backgroundColor = '#d4af37';
+                webBtnOrder.style.color = '#020617';
+                webBtnOrder.innerHTML = `<i class="fa-solid fa-crown"></i> Reservar Boleto VIP`;
+                webDishCard.style.borderColor = 'rgba(212, 175, 55, 0.2)';
+                webHeader.style.borderColor = 'rgba(212, 175, 55, 0.1)';
+
+                // Append floating elegant gold sparkles
+                for (let i = 0; i < 10; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = Math.random() * 95 + '%';
+                    sparkle.style.bottom = -10 - Math.random() * 20 + 'px';
+                    sparkle.style.width = 3 + Math.random() * 4 + 'px';
+                    sparkle.style.height = 3 + Math.random() * 4 + 'px';
+                    sparkle.style.animationDelay = Math.random() * 5 + 's';
+                    sparkle.style.animationDuration = 4 + Math.random() * 4 + 's';
+                    phoneAmbient.appendChild(sparkle);
+                }
+            }
+        }
+
+        // Handle Contact Lead Form Simulation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('lead-form');
+            const success = document.getElementById('form-success');
+
+            // Trigger animation fade in for success banner
+            success.style.opacity = '1';
+            success.style.pointerEvents = 'auto';
+
+            // Clear inputs
+            form.reset();
+        }
+    </script>
+</body>
+
+</html>
