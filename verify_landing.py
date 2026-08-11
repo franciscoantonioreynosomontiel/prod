@@ -13,45 +13,25 @@ async def run_verification():
 
         # Set viewport to standard high definition screen
         await page.set_viewport_size({"width": 1440, "height": 900})
-        await page.wait_for_timeout(2000) # Let AOS animations initialize
+        await page.wait_for_timeout(1000)
 
         os.makedirs("/home/jules/verification", exist_ok=True)
 
-        # Screenshot 1: Top hero section
-        await page.screenshot(path="/home/jules/verification/landing_hero.png", full_page=False)
-        print("Captured landing top hero screenshot.")
+        # Screenshot 1: Full Page View of visual catalog & features
+        await page.screenshot(path="/home/jules/verification/landing_full_minimal.png", full_page=True)
+        print("Captured full page minimal landing screenshot.")
 
-        # Screenshot 2: Projects showcase
-        await page.evaluate("document.getElementById('proyectos').scrollIntoView()")
-        await page.wait_for_timeout(1000)
-        await page.screenshot(path="/home/jules/verification/landing_projects.png", full_page=False)
-        print("Captured projects showcase screenshot.")
+        # Let's interact with the ordering button simulation
+        await page.click("id=btn-simulate-order")
+        await page.wait_for_timeout(500)
+        await page.screenshot(path="/home/jules/verification/landing_order_success.png", full_page=False)
+        print("Captured order success state screenshot.")
 
-        # Scroll to interactive demonstrator
-        await page.evaluate("document.getElementById('experiencia-estacional').scrollIntoView()")
-        await page.wait_for_timeout(1000)
-
-        # Screenshot 3: Demonstrator - Standard Mode
-        await page.screenshot(path="/home/jules/verification/landing_demo_standard.png", full_page=False)
-        print("Captured demonstrator in standard mode screenshot.")
-
-        # Click Valentine button
-        await page.click("id=btn-theme-valentine")
-        await page.wait_for_timeout(1500) # Wait for style transitions and petals to render
-        await page.screenshot(path="/home/jules/verification/landing_demo_valentine.png", full_page=False)
-        print("Captured demonstrator in valentine mode screenshot.")
-
-        # Click Anniversary button
-        await page.click("id=btn-theme-anniversary")
-        await page.wait_for_timeout(1500) # Wait for style transitions and sparkles to render
-        await page.screenshot(path="/home/jules/verification/landing_demo_anniversary.png", full_page=False)
-        print("Captured demonstrator in anniversary mode screenshot.")
-
-        # Scroll to Contact form
-        await page.evaluate("document.getElementById('contacto').scrollIntoView()")
-        await page.wait_for_timeout(1000)
-        await page.screenshot(path="/home/jules/verification/landing_contact.png", full_page=False)
-        print("Captured contact form screenshot.")
+        # Click Seasonal design button
+        await page.click("id=btn-design-seasonal")
+        await page.wait_for_timeout(1000) # Wait for style transitions
+        await page.screenshot(path="/home/jules/verification/landing_seasonal_design.png", full_page=False)
+        print("Captured seasonal design mode screenshot.")
 
         await browser.close()
 
