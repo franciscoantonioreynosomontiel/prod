@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="h-full">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Modelos de Interfaces Web para Restaurantes</title>
+    <title>Showcase</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,7 +19,7 @@
                             200: '#fed7aa',
                             300: '#fdba74',
                             400: '#fb923c',
-                            500: '#f97316', // Orange corporate accent
+                            500: '#f97316', /* Marca Naranja */
                             600: '#ea580c',
                             700: '#c2410c',
                             800: '#9a3412',
@@ -28,37 +28,29 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
-
-    <!-- Google Fonts (Inter & Playfair Display for minimalist design) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fafafa;
-            color: #0f172a;
+            background-color: #ffffff; /* Fondo Blanco */
+            color: #1e293b;
         }
 
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Smooth state transitions */
         .theme-transition {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
 </head>
 
-<body class="antialiased bg-slate-50 selection:bg-orange-500 selection:text-white">
+<body class="h-full overflow-hidden antialiased bg-white">
 
-    <!-- Anti-Inspect script (Preserved to maintain parity across site) -->
+    <!-- Anti-Inspect -->
     <script>
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
@@ -70,38 +62,120 @@
         });
     </script>
 
-    <!-- Header Navigation (Completely stripped of branding/logos/titles) -->
-    <header class="w-full border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <span class="h-4 w-1.5 bg-orange-500 rounded-full"></span>
-                <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Modelos de Interfaz</span>
+    <!-- Layout Split Screen (Left: Controls, Right: Gallery of Mockups) -->
+    <div class="h-full flex flex-col lg:flex-row overflow-hidden bg-white">
+
+        <!-- LEFT COLUMN: Controllers & Interactive Playground (Light Grey Theme, Orange Accents) -->
+        <aside class="w-full lg:w-[400px] bg-slate-50 border-b lg:border-b-0 lg:border-r border-slate-200/60 flex flex-col justify-between shrink-0 overflow-y-auto">
+
+            <!-- Header (Ultra minimal) -->
+            <div class="p-6 border-b border-slate-200/60 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="h-3 w-3 rounded-full bg-orange-500"></span>
+                    <span class="text-xs font-semibold tracking-widest text-slate-500 uppercase">CONTROLES</span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-mono">v2.1</span>
             </div>
-            <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Catálogo Técnico</span>
-        </div>
-    </header>
 
-    <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-6 py-16 space-y-24">
+            <!-- Controllers Grid -->
+            <div class="p-6 space-y-8 flex-1">
 
-        <!-- HERO SECTION (Minimalist, visual-focused, no marketing fluff/promises) -->
-        <section class="max-w-4xl mx-auto text-center py-4 space-y-4">
-            <h1 class="text-3xl md:text-5xl font-normal font-serif text-slate-900 tracking-tight">
-                Modelos de Diseño Web para Restaurantes
-            </h1>
-            <div class="w-12 h-0.5 bg-orange-500 mx-auto rounded"></div>
-        </section>
+                <!-- 1. Estética Dinámica (Seasonal Switcher) -->
+                <div class="space-y-3">
+                    <div class="grid grid-cols-2 gap-2 bg-slate-200/50 p-1 rounded-xl">
+                        <button onclick="changeShowcaseTheme('standard')" id="btn-theme-standard" class="py-2.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider theme-transition bg-orange-500 text-white shadow-sm">
+                            Estándar
+                        </button>
+                        <button onclick="changeShowcaseTheme('harvest')" id="btn-theme-harvest" class="py-2.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider theme-transition text-slate-500 hover:text-slate-800">
+                            Temporada
+                        </button>
+                    </div>
+                </div>
 
-        <!-- PORTFOLIO SECTION (Only the mockups and names. No description paragraphs, no bullets, no specs) -->
-        <section class="space-y-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 2. Módulo de Ordenar (Interactive calculations) -->
+                <div class="bg-white rounded-2xl p-5 border border-slate-200/60 shadow-sm space-y-4">
+                    <!-- Preview of Selected Item -->
+                    <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=150&q=80" alt="Plato" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-bold text-slate-800">Menú Sugerido</p>
+                        </div>
+                        <span class="text-xs font-bold text-slate-800" id="base-price-val">$35.00</span>
+                    </div>
 
-                <!-- Concept 1: Aura Bistro -->
-                <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <!-- Virtual Browser Frame -->
-                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white">
+                    <!-- Addon Selector -->
+                    <div class="space-y-2">
+                        <label class="flex justify-between items-center p-2.5 rounded-xl border border-slate-100 bg-slate-50/40 cursor-pointer hover:bg-slate-50 transition">
+                            <div class="flex items-center gap-2.5">
+                                <input type="checkbox" id="add-truffle" value="4.00" onchange="recalculatePrice()" class="w-4 h-4 accent-orange-500 rounded border-slate-300">
+                                <span class="text-xs text-slate-600">Extra 1</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-orange-500">+$4.00</span>
+                        </label>
+
+                        <label class="flex justify-between items-center p-2.5 rounded-xl border border-slate-100 bg-slate-50/40 cursor-pointer hover:bg-slate-50 transition">
+                            <div class="flex items-center gap-2.5">
+                                <input type="checkbox" id="add-asparagus" value="3.00" onchange="recalculatePrice()" class="w-4 h-4 accent-orange-500 rounded border-slate-300">
+                                <span class="text-xs text-slate-600">Extra 2</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-orange-500">+$3.00</span>
+                        </label>
+                    </div>
+
+                    <!-- Checkout Total and Submit -->
+                    <div id="interactive-checkout-controls" class="space-y-3 pt-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-slate-400">Total:</span>
+                            <span class="text-sm font-bold text-slate-800" id="showcase-total-amount">$35.00</span>
+                        </div>
+                        <button onclick="submitOrderSimulation()" id="btn-submit-checkout" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs py-3 rounded-xl transition tracking-wider uppercase">
+                            Ordenar
+                        </button>
+                    </div>
+
+                    <!-- Receipt output -->
+                    <div id="showcase-receipt-box" class="hidden p-4 bg-orange-50 border border-orange-200 rounded-xl space-y-3 theme-transition">
+                        <div class="text-center pb-2 border-b border-orange-200">
+                            <p class="text-[10px] font-extrabold text-orange-600 uppercase tracking-wider">Confirmado</p>
+                        </div>
+                        <div class="space-y-1.5 text-[11px] text-slate-600">
+                            <div class="flex justify-between">
+                                <span>Menú Sugerido</span>
+                                <span>$35.00</span>
+                            </div>
+                            <div id="receipt-added-addons" class="space-y-1 text-[10px] text-orange-600"></div>
+                            <div class="flex justify-between font-bold text-slate-800 pt-2 border-t border-dashed border-orange-200">
+                                <span>Total:</span>
+                                <span id="receipt-final-price" class="text-orange-500">$35.00</span>
+                            </div>
+                        </div>
+                        <button onclick="resetOrderSimulation()" class="w-full text-center text-[9px] font-bold text-orange-500 uppercase tracking-widest hover:underline">
+                            Reiniciar
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Footer (Ultra minimal) -->
+            <div class="p-6 border-t border-slate-200/60 text-center">
+                <p class="text-[9px] font-mono text-slate-400 uppercase tracking-wider">Showcase Independiente</p>
+            </div>
+        </aside>
+
+        <!-- RIGHT COLUMN: Responsive Mockups Grid (Pure White Background) -->
+        <section class="flex-1 bg-white overflow-y-auto p-6 md:p-12 space-y-12">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+                <!-- Mockup 1: Aura Bistro -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white theme-transition" id="card-aura-bg">
                         <!-- Browser Header -->
-                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between">
+                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between theme-transition" id="bar-aura">
                             <div class="flex items-center gap-1">
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
@@ -111,21 +185,20 @@
                             <div class="w-2"></div>
                         </div>
                         <!-- Web Image -->
-                        <div class="aspect-[16/10] overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Aura Bistro" class="w-full h-full object-cover">
+                        <div class="aspect-[16/10] overflow-hidden relative theme-transition" id="body-aura">
+                            <img id="img-aura" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Aura Bistro" class="w-full h-full object-cover theme-transition">
                         </div>
                     </div>
                     <div class="pt-3">
-                        <h3 class="text-sm font-semibold text-slate-800">Aura Bistro</h3>
+                        <h3 class="text-xs font-semibold text-slate-800" id="title-aura">Aura Bistro</h3>
                     </div>
                 </div>
 
-                <!-- Concept 2: Rustika Grill -->
-                <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <!-- Virtual Browser Frame -->
-                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white">
+                <!-- Mockup 2: Rustika Grill -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white theme-transition" id="card-rustika-bg">
                         <!-- Browser Header -->
-                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between">
+                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between theme-transition" id="bar-rustika">
                             <div class="flex items-center gap-1">
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
@@ -135,21 +208,20 @@
                             <div class="w-2"></div>
                         </div>
                         <!-- Web Image -->
-                        <div class="aspect-[16/10] overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Rustika Grill" class="w-full h-full object-cover">
+                        <div class="aspect-[16/10] overflow-hidden relative theme-transition" id="body-rustika">
+                            <img id="img-rustika" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Rustika Grill" class="w-full h-full object-cover theme-transition">
                         </div>
                     </div>
                     <div class="pt-3">
-                        <h3 class="text-sm font-semibold text-slate-800">Rustika Grill</h3>
+                        <h3 class="text-xs font-semibold text-slate-800" id="title-rustika">Rustika Grill</h3>
                     </div>
                 </div>
 
-                <!-- Concept 3: Umi Sushi & Lounge -->
-                <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <!-- Virtual Browser Frame -->
-                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white">
+                <!-- Mockup 3: Umi Sushi & Lounge -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white theme-transition" id="card-umi-bg">
                         <!-- Browser Header -->
-                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between">
+                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between theme-transition" id="bar-umi">
                             <div class="flex items-center gap-1">
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
@@ -159,69 +231,66 @@
                             <div class="w-2"></div>
                         </div>
                         <!-- Web Image -->
-                        <div class="aspect-[16/10] overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80" alt="Umi Sushi" class="w-full h-full object-cover">
+                        <div class="aspect-[16/10] overflow-hidden relative theme-transition" id="body-umi">
+                            <img id="img-umi" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80" alt="Umi Sushi" class="w-full h-full object-cover theme-transition">
                         </div>
                     </div>
                     <div class="pt-3">
-                        <h3 class="text-sm font-semibold text-slate-800">Umi Sushi & Lounge</h3>
+                        <h3 class="text-xs font-semibold text-slate-800" id="title-umi">Umi Sushi & Lounge</h3>
                     </div>
                 </div>
 
-                <!-- Concept 4: La Piazza -->
-                <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <!-- Virtual Browser Frame -->
-                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white">
+                <!-- Mockup 4: La Piazza -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white theme-transition" id="card-piazza-bg">
                         <!-- Browser Header -->
-                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between">
+                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between theme-transition" id="bar-piazza">
                             <div class="flex items-center gap-1">
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                             </div>
-                            <span class="text-[8px] text-slate-400 font-mono">lapiazzatrattoria.com</span>
+                            <span class="text-[8px] text-slate-400 font-mono">lapiazza.com</span>
                             <div class="w-2"></div>
                         </div>
                         <!-- Web Image -->
-                        <div class="aspect-[16/10] overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="La Piazza Trattoria" class="w-full h-full object-cover">
+                        <div class="aspect-[16/10] overflow-hidden relative theme-transition" id="body-piazza">
+                            <img id="img-piazza" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="La Piazza" class="w-full h-full object-cover theme-transition">
                         </div>
                     </div>
                     <div class="pt-3">
-                        <h3 class="text-sm font-semibold text-slate-800">La Piazza</h3>
+                        <h3 class="text-xs font-semibold text-slate-800" id="title-piazza">La Piazza</h3>
                     </div>
                 </div>
 
-                <!-- Concept 5: Le Parisien -->
-                <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <!-- Virtual Browser Frame -->
-                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white">
+                <!-- Mockup 5: Le Parisien -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white theme-transition" id="card-parisien-bg">
                         <!-- Browser Header -->
-                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between">
+                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between theme-transition" id="bar-parisien">
                             <div class="flex items-center gap-1">
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                             </div>
-                            <span class="text-[8px] text-slate-400 font-mono">leparisienshop.com</span>
+                            <span class="text-[8px] text-slate-400 font-mono">leparisien.com</span>
                             <div class="w-2"></div>
                         </div>
                         <!-- Web Image -->
-                        <div class="aspect-[16/10] overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80" alt="Le Parisien Pâtisserie" class="w-full h-full object-cover">
+                        <div class="aspect-[16/10] overflow-hidden relative theme-transition" id="body-parisien">
+                            <img id="img-parisien" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80" alt="Le Parisien" class="w-full h-full object-cover theme-transition">
                         </div>
                     </div>
                     <div class="pt-3">
-                        <h3 class="text-sm font-semibold text-slate-800">Le Parisien</h3>
+                        <h3 class="text-xs font-semibold text-slate-800" id="title-parisien">Le Parisien</h3>
                     </div>
                 </div>
 
-                <!-- Concept 6: El Santo -->
-                <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
-                    <!-- Virtual Browser Frame -->
-                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white">
+                <!-- Mockup 6: El Santo -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                    <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-white theme-transition" id="card-santo-bg">
                         <!-- Browser Header -->
-                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between">
+                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-100 flex items-center justify-between theme-transition" id="bar-santo">
                             <div class="flex items-center gap-1">
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
                                 <span class="w-1 h-1 rounded-full bg-slate-300"></span>
@@ -231,305 +300,112 @@
                             <div class="w-2"></div>
                         </div>
                         <!-- Web Image -->
-                        <div class="aspect-[16/10] overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" alt="El Santo Taco Bar" class="w-full h-full object-cover">
+                        <div class="aspect-[16/10] overflow-hidden relative theme-transition" id="body-santo">
+                            <img id="img-santo" src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" alt="El Santo" class="w-full h-full object-cover theme-transition">
                         </div>
                     </div>
                     <div class="pt-3">
-                        <h3 class="text-sm font-semibold text-slate-800">El Santo</h3>
+                        <h3 class="text-xs font-semibold text-slate-800" id="title-santo">El Santo</h3>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- FUNCTIONAL SIMULATORS (Interactive Demonstration of Capabilities, no sales text) -->
-        <section class="space-y-12">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    </div>
 
-                <!-- SIMULATOR 1: Order Button Simulator -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-6">
-                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Módulo de Interacción</span>
-                        <span class="text-[10px] bg-orange-100 text-orange-600 px-2 py-0.5 rounded font-bold uppercase">Botón de Ordenar</span>
-                    </div>
-
-                    <!-- Simulator Interface -->
-                    <div class="space-y-4">
-                        <!-- Simulated Menu Item -->
-                        <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-xl border border-slate-100/80">
-                            <div class="w-14 h-14 rounded-lg overflow-hidden bg-slate-200 shrink-0">
-                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=150&q=80" alt="Item" class="w-full h-full object-cover">
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-xs font-bold text-slate-800">Filete de Res 400g</p>
-                                <p class="text-[10px] text-slate-400">Guarnición incluida</p>
-                            </div>
-                            <span class="text-xs font-bold text-slate-800" id="dish-base-price">$35.00</span>
-                        </div>
-
-                        <!-- Checkbox extras -->
-                        <div class="space-y-2">
-                            <label class="flex justify-between items-center p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-50 transition">
-                                <div class="flex items-center gap-2">
-                                    <input type="checkbox" id="chk-truffle" value="4" onchange="calculateOrderTotal()" class="w-3.5 h-3.5 accent-orange-500 rounded">
-                                    <span class="text-xs text-slate-600">Mantequilla de Trufa</span>
-                                </div>
-                                <span class="text-[10px] font-bold text-slate-500">+$4.00</span>
-                            </label>
-
-                            <label class="flex justify-between items-center p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-50 transition">
-                                <div class="flex items-center gap-2">
-                                    <input type="checkbox" id="chk-asparagus" value="3" onchange="calculateOrderTotal()" class="w-3.5 h-3.5 accent-orange-500 rounded">
-                                    <span class="text-xs text-slate-600">Espárragos Asados</span>
-                                </div>
-                                <span class="text-[10px] font-bold text-slate-500">+$3.00</span>
-                            </label>
-                        </div>
-
-                        <!-- Action controls -->
-                        <div id="checkout-interactive-actions" class="space-y-3 pt-2">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-slate-500">Total:</span>
-                                <span class="text-sm font-bold text-slate-800" id="checkout-total-price">$35.00</span>
-                            </div>
-                            <button onclick="triggerOrderSubmit()" id="btn-simulate-order" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs py-3 rounded-lg transition">
-                                Ordenar
-                            </button>
-                        </div>
-
-                        <!-- Output Receipt -->
-                        <div id="receipt-state" class="hidden p-4 bg-orange-50/40 border border-orange-100/60 rounded-xl space-y-3">
-                            <div class="text-center pb-2 border-b border-orange-100/50">
-                                <p class="text-xs font-bold text-orange-600">Pedido Recibido</p>
-                                <p class="text-[9px] text-slate-400">Ticket #G-88127</p>
-                            </div>
-                            <div class="space-y-1.5 text-xs text-slate-600">
-                                <div class="flex justify-between">
-                                    <span>Filete de Res</span>
-                                    <span>$35.00</span>
-                                </div>
-                                <div id="receipt-extras" class="space-y-1 text-[11px] text-slate-400"></div>
-                                <div class="flex justify-between font-bold text-slate-800 pt-2 border-t border-dashed border-orange-100">
-                                    <span>Total:</span>
-                                    <span id="receipt-total-display">$35.00</span>
-                                </div>
-                            </div>
-                            <button onclick="resetCheckoutSimulator()" class="w-full text-center text-[10px] font-bold text-orange-500 uppercase tracking-wider hover:underline">
-                                Nueva Simulación
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- SIMULATOR 2: Adaptive Interface Switcher (Autum/Harvest theme shift, strictly professional/light background, no holidays/darkness) -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-6">
-                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Estética Dinámica</span>
-                        <span class="text-[10px] bg-orange-100 text-orange-600 px-2 py-0.5 rounded font-bold uppercase">Cambio Estacional</span>
-                    </div>
-
-                    <!-- Theme toggle selectors -->
-                    <div class="grid grid-cols-2 gap-2 bg-slate-50 p-1 rounded-lg">
-                        <button onclick="activateSeasonalTheme('standard')" id="btn-theme-standard" class="py-2 px-3 rounded text-[10px] font-bold uppercase tracking-wider theme-transition bg-orange-500 text-white">
-                            Estándar
-                        </button>
-                        <button onclick="activateSeasonalTheme('harvest')" id="btn-theme-harvest" class="py-2 px-3 rounded text-[10px] font-bold uppercase tracking-wider theme-transition text-slate-500 hover:text-slate-800">
-                            Temporada
-                        </button>
-                    </div>
-
-                    <!-- Virtual Site Frame Container -->
-                    <div id="mockup-frame" class="bg-white rounded-xl border border-slate-100 overflow-hidden shadow-sm">
-                        <!-- Browser Header -->
-                        <div class="bg-slate-50 px-3 py-2 border-b border-slate-100 flex justify-between items-center">
-                            <span class="text-[8px] text-slate-400 font-mono">https://www.aurabistro.com</span>
-                        </div>
-
-                        <!-- Mockup Web Page content -->
-                        <div id="mockup-body" class="p-6 space-y-4 theme-transition" style="background-color: #ffffff;">
-
-                            <!-- Inside header -->
-                            <div class="flex justify-between items-center pb-2 border-b border-slate-100" id="mockup-header">
-                                <span class="text-[10px] font-bold tracking-wider text-slate-800 font-serif" id="mockup-logo">AURA BISTRO</span>
-                            </div>
-
-                            <!-- Inside banner (Shown only in season) -->
-                            <div id="mockup-seasonal-banner" class="hidden p-2 rounded text-center border border-dashed theme-transition">
-                                <p class="text-[9px] font-bold uppercase tracking-wider" id="mockup-banner-text">Muestra Activa</p>
-                            </div>
-
-                            <!-- Mockup visual text -->
-                            <div class="space-y-1">
-                                <span id="mockup-tag" class="inline-block px-1.5 py-0.5 rounded text-[8px] font-bold uppercase bg-slate-100 text-slate-600">Menú Actual</span>
-                                <h4 id="mockup-title" class="text-sm font-serif font-bold text-slate-800">Culinaria de Origen</h4>
-                                <p id="mockup-desc" class="text-[10px] text-slate-400 leading-normal font-light">Especialidades locales elaboradas con materias primas seleccionadas.</p>
-                            </div>
-
-                            <!-- Inside item card -->
-                            <div id="mockup-dish-card" class="p-3 rounded-lg bg-slate-50 border border-slate-100/60 flex items-center justify-between theme-transition">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded bg-slate-200 overflow-hidden">
-                                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=100&q=80" alt="Platillo" class="w-full h-full object-cover">
-                                    </div>
-                                    <p id="mockup-dish-title" class="text-[10px] font-bold text-slate-700">Carpaccio de la Casa</p>
-                                </div>
-                                <span id="mockup-dish-price" class="text-[10px] font-bold text-orange-500">$18.00</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer (Extremely minimal) -->
-    <footer class="w-full border-t border-slate-100 py-8 bg-white">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <span class="text-[10px] text-slate-400 uppercase tracking-widest">Catálogo de Modelos Digitales 2025</span>
-        </div>
-    </footer>
-
-    <!-- INTERACTIVE SCRIPTS -->
+    <!-- SCRIPTS -->
     <script>
-        // Order Simulation
-        const chkTruffle = document.getElementById('chk-truffle');
-        const chkAsparagus = document.getElementById('chk-asparagus');
-        const checkoutTotalDisplay = document.getElementById('checkout-total-price');
-        const actionsContainer = document.getElementById('checkout-interactive-actions');
-        const receiptContainer = document.getElementById('receipt-state');
-        const receiptExtras = document.getElementById('receipt-extras');
-        const receiptTotalDisplay = document.getElementById('receipt-total-display');
+        const truffleAddon = document.getElementById('add-truffle');
+        const asparagusAddon = document.getElementById('add-asparagus');
+        const totalDisplay = document.getElementById('showcase-total-amount');
+        const actionsBox = document.getElementById('interactive-checkout-controls');
+        const receiptBox = document.getElementById('showcase-receipt-box');
+        const receiptAddons = document.getElementById('receipt-added-addons');
+        const receiptTotal = document.getElementById('receipt-final-price');
 
-        function calculateOrderTotal() {
+        function recalculatePrice() {
             let total = 35.00;
-            if (chkTruffle.checked) total += parseFloat(chkTruffle.value);
-            if (chkAsparagus.checked) total += parseFloat(chkAsparagus.value);
-            checkoutTotalDisplay.innerText = `$${total.toFixed(2)}`;
+            if (truffleAddon.checked) total += parseFloat(truffleAddon.value);
+            if (asparagusAddon.checked) total += parseFloat(asparagusAddon.value);
+            totalDisplay.innerText = `$${total.toFixed(2)}`;
             return total;
         }
 
-        function triggerOrderSubmit() {
-            const finalTotal = calculateOrderTotal();
-            receiptExtras.innerHTML = '';
-            let hasExtras = false;
+        function submitOrderSimulation() {
+            const finalPrice = recalculatePrice();
+            receiptAddons.innerHTML = '';
+            let hasAny = false;
 
-            if (chkTruffle.checked) {
-                hasExtras = true;
-                receiptExtras.innerHTML += `
+            if (truffleAddon.checked) {
+                hasAny = true;
+                receiptAddons.innerHTML += `
                     <div class="flex justify-between">
-                        <span>+ Mantequilla de Trufa</span>
+                        <span>+ Extra 1</span>
                         <span>$4.00</span>
                     </div>
                 `;
             }
-            if (chkAsparagus.checked) {
-                hasExtras = true;
-                receiptExtras.innerHTML += `
+            if (asparagusAddon.checked) {
+                hasAny = true;
+                receiptAddons.innerHTML += `
                     <div class="flex justify-between">
-                        <span>+ Espárragos Asados</span>
+                        <span>+ Extra 2</span>
                         <span>$3.00</span>
                     </div>
                 `;
             }
-            if (!hasExtras) {
-                receiptExtras.innerHTML = `<p class="text-[9px] italic text-slate-400">Sin adicionales</p>`;
+            if (!hasAny) {
+                receiptAddons.innerHTML = `<p class="text-[9px] italic text-slate-400">Sin adicionales</p>`;
             }
 
-            receiptTotalDisplay.innerText = `$${finalTotal.toFixed(2)}`;
-            actionsContainer.classList.add('hidden');
-            receiptContainer.classList.remove('hidden');
+            receiptTotal.innerText = `$${finalPrice.toFixed(2)}`;
+            actionsBox.classList.add('hidden');
+            receiptBox.classList.remove('hidden');
         }
 
-        function resetCheckoutSimulator() {
-            chkTruffle.checked = false;
-            chkAsparagus.checked = false;
-            calculateOrderTotal();
-            receiptContainer.classList.add('hidden');
-            actionsContainer.classList.remove('hidden');
+        function resetOrderSimulation() {
+            truffleAddon.checked = false;
+            asparagusAddon.checked = false;
+            recalculatePrice();
+            receiptBox.classList.add('hidden');
+            actionsBox.classList.remove('hidden');
         }
 
-
-        // Seasonal Aesthetics Shift (Harvest / Earthy values, completely professional, NO dark mode)
+        // Global Seasonal Themes (Transition effect)
         const btnStandard = document.getElementById('btn-theme-standard');
         const btnHarvest = document.getElementById('btn-theme-harvest');
 
-        const mockupBody = document.getElementById('mockup-body');
-        const mockupHeader = document.getElementById('mockup-header');
-        const mockupLogo = document.getElementById('mockup-logo');
-        const mockupBanner = document.getElementById('mockup-seasonal-banner');
-        const mockupBannerText = document.getElementById('mockup-banner-text');
-        const mockupTag = document.getElementById('mockup-tag');
-        const mockupTitle = document.getElementById('mockup-title');
-        const mockupDesc = document.getElementById('mockup-desc');
-        const mockupDishCard = document.getElementById('mockup-dish-card');
-        const mockupDishTitle = document.getElementById('mockup-dish-title');
-        const mockupDishPrice = document.getElementById('mockup-dish-price');
+        const cardAuraBg = document.getElementById('card-aura-bg');
+        const cardRustikaBg = document.getElementById('card-rustika-bg');
+        const cardUmiBg = document.getElementById('card-umi-bg');
+        const cardPiazzaBg = document.getElementById('card-piazza-bg');
+        const cardParisienBg = document.getElementById('card-parisien-bg');
+        const cardSantoBg = document.getElementById('card-santo-bg');
 
-        function activateSeasonalTheme(themeName) {
-            btnStandard.className = "py-2 px-3 rounded text-[10px] font-bold uppercase tracking-wider theme-transition text-slate-500 hover:text-slate-800";
-            btnHarvest.className = "py-2 px-3 rounded text-[10px] font-bold uppercase tracking-wider theme-transition text-slate-500 hover:text-slate-800";
+        function changeShowcaseTheme(name) {
+            btnStandard.className = "py-2.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider theme-transition text-slate-500 hover:text-slate-800";
+            btnHarvest.className = "py-2.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider theme-transition text-slate-500 hover:text-slate-800";
 
-            if (themeName === 'standard') {
-                btnStandard.className = "py-2 px-3 rounded text-[10px] font-bold uppercase tracking-wider theme-transition bg-orange-500 text-white";
+            if (name === 'standard') {
+                btnStandard.className = "py-2.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider theme-transition bg-orange-500 text-white shadow-sm";
 
-                mockupBody.style.backgroundColor = '#ffffff';
-                mockupHeader.style.borderColor = '#e2e8f0';
+                // standard styling (pure white bg & gray accents)
+                const mockups = [cardAuraBg, cardRustikaBg, cardUmiBg, cardPiazzaBg, cardParisienBg, cardSantoBg];
+                mockups.forEach(card => {
+                    card.style.backgroundColor = '#ffffff';
+                    card.style.borderColor = '#e2e8f0';
+                });
 
-                mockupLogo.style.color = '#1e293b';
-                mockupLogo.innerText = "AURA BISTRO";
+            } else if (name === 'harvest') {
+                btnHarvest.className = "py-2.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider theme-transition bg-orange-500 text-white shadow-sm";
 
-                mockupBanner.classList.add('hidden');
-
-                mockupTag.innerText = "Menú Actual";
-                mockupTag.style.backgroundColor = '#f1f5f9';
-                mockupTag.style.color = '#475569';
-
-                mockupTitle.innerText = "Culinaria de Origen";
-                mockupTitle.style.color = '#1e293b';
-
-                mockupDesc.innerText = "Especialidades locales elaboradas con materias primas seleccionadas.";
-                mockupDesc.style.color = '#94a3b8';
-
-                mockupDishCard.style.backgroundColor = '#f8fafc';
-                mockupDishCard.style.borderColor = '#e2e8f0';
-                mockupDishTitle.style.color = '#334155';
-                mockupDishPrice.style.color = '#f97316';
-
-            } else if (themeName === 'harvest') {
-                btnHarvest.className = "py-2 px-3 rounded text-[10px] font-bold uppercase tracking-wider theme-transition bg-orange-500 text-white";
-
-                // Harvest/Autumn Premium Look - All Light Themed (No dark mode background)
-                mockupBody.style.backgroundColor = '#fdfaf5'; // Soft wheat cream
-                mockupHeader.style.borderColor = 'rgba(120, 53, 4, 0.12)';
-
-                mockupLogo.style.color = '#7c2d12';
-                mockupLogo.innerText = "AURA - COSECHA";
-
-                mockupBanner.classList.remove('hidden');
-                mockupBanner.style.backgroundColor = 'rgba(234, 88, 12, 0.05)';
-                mockupBanner.style.borderColor = 'rgba(234, 88, 12, 0.15)';
-                mockupBannerText.innerText = "Menú Especial de Temporada Activo";
-                mockupBannerText.style.color = '#c2410c';
-
-                mockupTag.innerText = "Selección de Otoño";
-                mockupTag.style.backgroundColor = 'rgba(234, 88, 12, 0.08)';
-                mockupTag.style.color = '#c2410c';
-
-                mockupTitle.innerText = "Productos de Cosecha Propia";
-                mockupTitle.style.color = '#431407';
-
-                mockupDesc.innerText = "Recetas de temporada que destacan setas silvestres, hortalizas de raíz y reducciones aromáticas.";
-                mockupDesc.style.color = '#7c2d12';
-
-                mockupDishCard.style.backgroundColor = '#fbf6ee';
-                mockupDishCard.style.borderColor = 'rgba(120, 53, 4, 0.08)';
-                mockupDishTitle.style.color = '#431407';
-                mockupDishPrice.style.color = '#c2410c';
+                // premium harvest seasonal shift (warm light tones & subtle orange highlights)
+                const mockups = [cardAuraBg, cardRustikaBg, cardUmiBg, cardPiazzaBg, cardParisienBg, cardSantoBg];
+                mockups.forEach(card => {
+                    card.style.backgroundColor = '#fdfaf5'; // warm beige
+                    card.style.borderColor = '#fed7aa'; // warm orange-200 accent border
+                });
             }
         }
     </script>
