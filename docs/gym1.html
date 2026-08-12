@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth h-full">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>IRON HOUSE - Hardcore Fitness Club</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        orange: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316', /* Marca Naranja */
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        zinc: {
+                            950: '#09090b',
+                            900: '#18181b',
+                            800: '#27272a',
+                            700: '#3f3f46',
+                            600: '#52525b',
+                            500: '#71717a',
+                            400: '#a1a1aa',
+                            300: '#d4d4d8',
+                            200: '#e4e4e7',
+                            100: '#f4f4f5',
+                            50: '#fafafa',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+        }
+
+        .font-display {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-50 selection:bg-orange-500 selection:text-white antialiased">
+
+    <!-- Header / Sticky Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent bg-zinc-950/80 backdrop-blur-md" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center gap-2.5 group">
+                    <span class="inline-flex p-2 rounded bg-orange-500 text-black group-hover:bg-orange-600 transition duration-300">
+                        <i data-lucide="dumbbell" class="w-6 h-6 stroke-[2.5]"></i>
+                    </span>
+                    <span class="text-xl md:text-2xl font-bold font-display uppercase tracking-widest text-white">
+                        IRON<span class="text-orange-500 transition-colors duration-300 group-hover:text-white">HOUSE</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Nav Items -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#inicio" class="text-sm font-semibold tracking-wider uppercase text-zinc-300 hover:text-orange-500 transition duration-200">Inicio</a>
+                    <a href="#filosofia" class="text-sm font-semibold tracking-wider uppercase text-zinc-300 hover:text-orange-500 transition duration-200">Filosofía</a>
+                    <a href="#especialidades" class="text-sm font-semibold tracking-wider uppercase text-zinc-300 hover:text-orange-500 transition duration-200">Especialidades</a>
+                    <a href="#galeria" class="text-sm font-semibold tracking-wider uppercase text-zinc-300 hover:text-orange-500 transition duration-200">Instalaciones</a>
+                    <a href="#planes" class="text-sm font-semibold tracking-wider uppercase text-zinc-300 hover:text-orange-500 transition duration-200">Planes</a>
+                    <a href="#contacto" class="text-sm font-semibold tracking-wider uppercase text-zinc-300 hover:text-orange-500 transition duration-200">Contacto</a>
+                </nav>
+
+                <!-- Desktop CTA -->
+                <div class="hidden md:flex items-center">
+                    <a href="#planes" class="bg-orange-500 hover:bg-orange-600 text-black font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition duration-300 font-display">
+                        Únete Ahora
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-900 focus:outline-none transition duration-200">
+                        <i data-lucide="menu" class="w-6 h-6 block" id="menu-icon-open"></i>
+                        <i data-lucide="x" class="w-6 h-6 hidden" id="menu-icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="hidden md:hidden bg-zinc-950 border-t border-zinc-900 transition duration-300" id="mobile-menu">
+            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 text-center">
+                <a href="#inicio" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-semibold uppercase tracking-wider text-zinc-300 hover:text-orange-500 hover:bg-zinc-900 transition duration-200">Inicio</a>
+                <a href="#filosofia" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-semibold uppercase tracking-wider text-zinc-300 hover:text-orange-500 hover:bg-zinc-900 transition duration-200">Filosofía</a>
+                <a href="#especialidades" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-semibold uppercase tracking-wider text-zinc-300 hover:text-orange-500 hover:bg-zinc-900 transition duration-200">Especialidades</a>
+                <a href="#galeria" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-semibold uppercase tracking-wider text-zinc-300 hover:text-orange-500 hover:bg-zinc-900 transition duration-200">Instalaciones</a>
+                <a href="#planes" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-semibold uppercase tracking-wider text-zinc-300 hover:text-orange-500 hover:bg-zinc-900 transition duration-200">Planes</a>
+                <a href="#contacto" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-semibold uppercase tracking-wider text-zinc-300 hover:text-orange-500 hover:bg-zinc-900 transition duration-200">Contacto</a>
+                <div class="pt-4 px-4">
+                    <a href="#planes" class="mobile-nav-link block w-full bg-orange-500 hover:bg-orange-600 text-black text-center font-bold uppercase tracking-wider py-3 rounded-lg transition duration-200 font-display">
+                        Únete Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
+        <!-- Background Image with intense overlay gradients -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80" alt="Iron House Gym" class="w-full h-full object-cover object-center opacity-40 scale-105 animate-[pulse_8s_infinite_alternate]">
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950/40"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center md:text-left flex flex-col md:flex-row items-center gap-12">
+            <!-- Left Headline Column -->
+            <div class="w-full md:w-3/5 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 border border-orange-500/30 rounded-full text-orange-500">
+                    <i data-lucide="zap" class="w-4 h-4 fill-orange-500/20"></i>
+                    <span class="text-xs font-bold tracking-widest uppercase">ZONA DE ALTO RENDIMIENTO</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight font-display text-white leading-none">
+                    EL DOLOR ES <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">TEMPORAL</span>,<br>
+                    EL LEGADO ES PARA <span class="underline decoration-orange-500 decoration-wavy underline-offset-4">SIEMPRE</span>.
+                </h1>
+
+                <p class="text-zinc-400 text-base sm:text-lg max-w-xl font-light">
+                    Bienvenido a la casa del hierro. Sin distracciones, sin luces de neón decorativas ni espejos para selfies. Solo equipamiento de nivel olímpico, tiza libre y el sonido de los discos chocando contra la tarima. Entrena rudo, entrena de verdad.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 justify-center md:justify-start">
+                    <a href="#planes" class="w-full sm:w-auto text-center bg-orange-500 hover:bg-orange-600 text-black font-bold uppercase tracking-wider text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-lg shadow-orange-500/25 hover:scale-[1.02] font-display">
+                        COMENZAR EL DESAFÍO
+                    </a>
+                    <a href="#filosofia" class="w-full sm:w-auto text-center bg-transparent hover:bg-zinc-900 text-white border border-zinc-700 hover:border-zinc-500 font-bold uppercase tracking-wider text-sm px-8 py-4 rounded-xl transition duration-300 font-display">
+                        NUESTRA FILOSOFÍA
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Visual Panel (Interactive Stats Dashboard card) -->
+            <div class="w-full md:w-2/5 flex justify-center">
+                <div class="relative bg-zinc-900/90 border border-zinc-800 p-8 rounded-3xl shadow-2xl max-w-md w-full backdrop-blur-md">
+                    <!-- Top subtle pattern -->
+                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                        <i data-lucide="shield" class="w-32 h-32 text-orange-500"></i>
+                    </div>
+
+                    <h3 class="text-lg font-bold uppercase tracking-wider font-display text-orange-500 mb-6 flex items-center gap-2">
+                        <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                    </h3>
+                    <p class="text-2xl font-bold font-display uppercase text-white mb-2">SÉ PARTE DEL REINO DE HIERRO</p>
+                    <p class="text-zinc-400 text-sm mb-6">
+                        Aquí no vienes a pasar el rato. Diseñado para atletas serios, levantadores de potencia, powerlifters y personas comprometidas con romper sus límites.
+                    </p>
+
+                    <!-- Features bullets inside container -->
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="p-1 rounded bg-orange-500/10 text-orange-500 shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase">Soportes y Tarimas de Competición</h4>
+                                <p class="text-xs text-zinc-500">Racks Eleiko, barras Rogue y discos calibrados oficiales.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="p-1 rounded bg-orange-500/10 text-orange-500 shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase">Acceso Libre a Tiza y Cadenas</h4>
+                                <p class="text-xs text-zinc-500">Toma el control con el soporte mecánico que necesitas.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="p-1 rounded bg-orange-500/10 text-orange-500 shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase">Cero Clientes de Recreo</h4>
+                                <p class="text-xs text-zinc-500">Un entorno libre de distracciones con enfoque 100% rudo.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="border-t border-zinc-800 pt-6 flex justify-between items-center">
+                        <div>
+                            <span class="block text-2xl font-extrabold font-display text-white">Abierto 24/7</span>
+                            <span class="text-xs text-zinc-500 uppercase tracking-widest">365 días al año</span>
+                        </div>
+                        <span class="inline-flex items-center gap-1 text-xs font-bold text-orange-500 bg-orange-500/10 px-3 py-1.5 rounded-full border border-orange-500/20">
+                            <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
+                            DISPONIBLE
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner Stats Strip -->
+        <div class="absolute bottom-0 left-0 right-0 bg-zinc-900 border-t border-zinc-800/80 z-20 py-6 md:py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+                    <div class="pt-4 md:pt-0">
+                        <p class="text-3xl md:text-5xl font-extrabold font-display text-orange-500 tracking-tight">1,500m²</p>
+                        <p class="text-xs text-zinc-400 uppercase tracking-widest mt-1 font-medium">De puro hierro y acero</p>
+                    </div>
+                    <div class="pt-4 md:pt-0">
+                        <p class="text-3xl md:text-5xl font-extrabold font-display text-white tracking-tight">25+</p>
+                        <p class="text-xs text-zinc-400 uppercase tracking-widest mt-1 font-medium">Racks y jaulas Eleiko</p>
+                    </div>
+                    <div class="pt-4 md:pt-0">
+                        <p class="text-3xl md:text-5xl font-extrabold font-display text-orange-500 tracking-tight">70kg</p>
+                        <p class="text-xs text-zinc-400 uppercase tracking-widest mt-1 font-medium">Mancuernas de uso rudo</p>
+                    </div>
+                    <div class="pt-4 md:pt-0">
+                        <p class="text-3xl md:text-5xl font-extrabold font-display text-white tracking-tight">100%</p>
+                        <p class="text-xs text-zinc-400 uppercase tracking-widest mt-1 font-medium">Compromiso y rudeza</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY & ATTRIBUTES -->
+    <section id="filosofia" class="py-24 bg-zinc-950 border-t border-zinc-900 relative">
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-orange-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-10 w-72 h-72 bg-zinc-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold tracking-widest text-orange-500 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20">CÓDIGO DE HIERRO</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                    NUESTROS PILARES FUNDAMENTALES
+                </h2>
+                <div class="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded"></div>
+                <p class="text-zinc-400 mt-4 text-base font-light">
+                    No pretendemos agradar a todo el mundo. Nos enfocamos exclusivamente en la excelencia del entrenamiento rudo de fuerza, acondicionamiento salvaje y superación implacable.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Pillar 1 -->
+                <div class="bg-zinc-900/60 border border-zinc-850 p-8 rounded-2xl hover:border-orange-500/40 transition-all duration-300 group">
+                    <div class="inline-flex p-3 rounded-xl bg-zinc-800 text-orange-500 mb-6 group-hover:bg-orange-500 group-hover:text-black transition-all duration-300">
+                        <i data-lucide="anvil" class="w-8 h-8 stroke-[1.8]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-display uppercase tracking-wider text-white mb-3">CONSTRUIDO PARA EL IMPACTO</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        No escatimamos en materiales. Tarimas integrales de madera de arce canadiense, amortiguación acústica de caucho de alta densidad y barras con un moleteado agresivo que garantiza un agarre letal en cada tirón.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-zinc-900/60 border border-zinc-850 p-8 rounded-2xl hover:border-orange-500/40 transition-all duration-300 group">
+                    <div class="inline-flex p-3 rounded-xl bg-zinc-800 text-orange-500 mb-6 group-hover:bg-orange-500 group-hover:text-black transition-all duration-300">
+                        <i data-lucide="flame" class="w-8 h-8 stroke-[1.8]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-display uppercase tracking-wider text-white mb-3">ZONA DE MÁXIMA INTENSIDAD</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        La atmósfera es eléctrica. Música que te impulsa a romper récords personales, iluminación focalizada de alto contraste para mantener la concentración profunda y una hermandad de acero unida por el mismo sudor.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-zinc-900/60 border border-zinc-850 p-8 rounded-2xl hover:border-orange-500/40 transition-all duration-300 group">
+                    <div class="inline-flex p-3 rounded-xl bg-zinc-800 text-orange-500 mb-6 group-hover:bg-orange-500 group-hover:text-black transition-all duration-300">
+                        <i data-lucide="scale" class="w-8 h-8 stroke-[1.8]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-display uppercase tracking-wider text-white mb-3">EQUIPAMIENTO CALIBRADO</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Cada kilo cuenta. Contamos con discos de acero calibrados competitivos aprobados por federaciones. Cuando cargas la barra con 200 kg, sabes con absoluta precisión matemática que estás levantando exactamente eso.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Accent Banner Box (Highlighting raw fitness focus) -->
+            <div class="mt-16 bg-gradient-to-r from-zinc-900 via-zinc-900 to-orange-950/20 rounded-3xl p-8 md:p-12 border border-zinc-850 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="space-y-3 max-w-2xl">
+                    <h3 class="text-2xl md:text-3xl font-bold font-display uppercase tracking-wider text-white">¿SIN EXPERIENCIA PERO CON DETERMINACIÓN?</h3>
+                    <p class="text-zinc-400 text-sm">
+                        La rudeza no se mide por la cantidad de discos en la barra, sino por la disciplina y voluntad implacable de volver cada día. Si estás dispuesto a dar tu 100%, este es tu hogar.
+                    </p>
+                </div>
+                <a href="#planes" class="bg-orange-500 hover:bg-orange-600 text-black font-extrabold uppercase tracking-widest text-sm px-8 py-4 rounded-xl transition duration-300 font-display shrink-0 w-full md:w-auto text-center">
+                    RESERVAR MI PASE DE PRUEBA
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SPECIALTIES / PROGRAMS -->
+    <section id="especialidades" class="py-24 bg-zinc-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold tracking-widest text-orange-500 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20">DISCIPLINAS PESADAS</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                    NUESTROS PROGRAMAS DE FUERZA Y PODER
+                </h2>
+                <div class="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded"></div>
+                <p class="text-zinc-400 mt-4 text-base font-light">
+                    Rutinas estandarizadas de alta efectividad. Entrenamientos implacables enfocados en romper barreras genéticas y potenciar tu rendimiento bruto.
+                </p>
+            </div>
+
+            <!-- Program Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Specialty 1 -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/30 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <!-- Image representation of powerlifting -->
+                        <div class="relative h-48 overflow-hidden bg-black">
+                            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Powerlifting" class="w-full h-full object-cover opacity-75 hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-orange-500 text-black px-2.5 py-1 rounded">MÁXIMA POTENCIA</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-display uppercase tracking-wider text-white">POWERLIFTING</h3>
+                            <p class="text-xs text-zinc-400 leading-relaxed">
+                                Domina los tres movimientos reyes: Sentadilla (Squat), Peso Muerto (Deadlift) y Press de Banca (Bench Press). Programación matemática basada en porcentajes de RM (Repetición Máxima).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div class="border-t border-zinc-900 pt-4 flex justify-between items-center text-xs">
+                            <span class="text-zinc-500">Enfoque principal:</span>
+                            <span class="font-bold text-orange-500 uppercase tracking-widest">Fuerza Absoluta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialty 2 -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/30 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <!-- Image representation of Strongman -->
+                        <div class="relative h-48 overflow-hidden bg-black">
+                            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80" alt="Strongman" class="w-full h-full object-cover opacity-75 hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-orange-500 text-black px-2.5 py-1 rounded">RUDEZA BRUTA</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-display uppercase tracking-wider text-white">STRONGMAN</h3>
+                            <p class="text-xs text-zinc-400 leading-relaxed">
+                                Carga de piedras de Atlas, arrastre de yugos pesados, caminatas de granjero brutales y volteo de neumáticos de tractor gigantes. Desata la fuerza funcional oculta en tu cadena posterior.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div class="border-t border-zinc-900 pt-4 flex justify-between items-center text-xs">
+                            <span class="text-zinc-500">Enfoque principal:</span>
+                            <span class="font-bold text-orange-500 uppercase tracking-widest">Resistencia Física</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialty 3 -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/30 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <!-- Image representation of Metcon -->
+                        <div class="relative h-48 overflow-hidden bg-black">
+                            <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=600&q=80" alt="Metcon" class="w-full h-full object-cover opacity-75 hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-orange-500 text-black px-2.5 py-1 rounded">ACONDICIONAMIENTO</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-display uppercase tracking-wider text-white">METCON BRUTAL</h3>
+                            <p class="text-xs text-zinc-400 leading-relaxed">
+                                Acondicionamiento metabólico implacable. Combinaciones letales de saltos a cajón pliométricos de gran altura, remo indoor, asalto en bicicleta estática de resistencia al aire, y balones medicinales contra pared.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div class="border-t border-zinc-900 pt-4 flex justify-between items-center text-xs">
+                            <span class="text-zinc-500">Enfoque principal:</span>
+                            <span class="font-bold text-orange-500 uppercase tracking-widest">Capacidad Aeróbica</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialty 4 -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/30 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <!-- Image representation of combat training -->
+                        <div class="relative h-48 overflow-hidden bg-black">
+                            <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=600&q=80" alt="Combate" class="w-full h-full object-cover opacity-75 hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-orange-500 text-black px-2.5 py-1 rounded">COMBATE Y AGRESIVIDAD</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-display uppercase tracking-wider text-white">COMBAT PREP</h3>
+                            <p class="text-xs text-zinc-400 leading-relaxed">
+                                Boxeo real, golpeo pesado en saco y entrenamiento táctico de resistencia cardiovascular. Canaliza la agresividad y conviértela en disciplina táctica de resistencia extrema bajo tensión.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div class="border-t border-zinc-900 pt-4 flex justify-between items-center text-xs">
+                            <span class="text-zinc-500">Enfoque principal:</span>
+                            <span class="font-bold text-orange-500 uppercase tracking-widest">Agilidad Mental</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALERÍA / INSTALACIONES (HARDCORE HIGHLIGHTS) -->
+    <section id="galeria" class="py-24 bg-zinc-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold tracking-widest text-orange-500 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20">INSTALACIONES DETALLADAS</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                    NUESTRO MAUSOLEO DE HIERRO
+                </h2>
+                <div class="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded"></div>
+                <p class="text-zinc-400 mt-4 text-base font-light">
+                    Una galería visual de los racks, mancuernas, tarimas y equipamiento diseñado específicamente para soportar el castigo diario más duro.
+                </p>
+            </div>
+
+            <!-- Custom 2-Column Responsive Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+                <!-- Left Details Checklist -->
+                <div class="lg:col-span-5 space-y-8">
+                    <h3 class="text-2xl font-bold font-display uppercase tracking-wider text-white leading-tight">
+                        EQUIPAMIENTO QUE SE SIENTE COMO DEBERÍA SENTIRSE
+                    </h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Aquí no encontrarás pantallas táctiles en las máquinas de fuerza ni asientos acolchados con costuras de lujo. Todo nuestro metal ha sido seleccionado para proporcionar una palanca de fuerza perfecta.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 bg-zinc-900 p-4 rounded-xl border border-zinc-800">
+                            <span class="p-2.5 rounded bg-orange-500/10 text-orange-500 shrink-0">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase">Barras Eleiko e Ivanko Originales</h4>
+                                <p class="text-xs text-zinc-500">Moleteado oficial IPFC y durabilidad probada ante cargas de +400kg.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 bg-zinc-900 p-4 rounded-xl border border-zinc-800">
+                            <span class="p-2.5 rounded bg-orange-500/10 text-orange-500 shrink-0">
+                                <i data-lucide="shield" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase">Suelos Vulcanizados de 2 Pulgadas</h4>
+                                <p class="text-xs text-zinc-500">Absorción total de impacto que protege las articulaciones y los discos.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 bg-zinc-900 p-4 rounded-xl border border-zinc-800">
+                            <span class="p-2.5 rounded bg-orange-500/10 text-orange-500 shrink-0">
+                                <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase">Estación de Hidratación Militar</h4>
+                                <p class="text-xs text-zinc-500">Filtro de carbón activado industrial de alto caudal para agua helada.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Masonry Gallery Collage -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <div class="relative rounded-2xl overflow-hidden group aspect-[4/5] bg-black">
+                            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a25f1?auto=format&fit=crop&w=600&q=80" alt="Hierro Duro" class="w-full h-full object-cover opacity-75 group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <p class="text-[10px] font-bold text-orange-500 uppercase tracking-widest">ZONA DE RACKS</p>
+                                <p class="text-sm font-bold text-white font-display uppercase">Pesos Muertos Infinitos</p>
+                            </div>
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden group aspect-[4/3] bg-black">
+                            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80" alt="Agarre letal" class="w-full h-full object-cover opacity-75 group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <p class="text-[10px] font-bold text-orange-500 uppercase tracking-widest">MANCUERNAS MACIZAS</p>
+                                <p class="text-sm font-bold text-white font-display uppercase">Hasta 70 kg reales</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-0 sm:pt-8">
+                        <div class="relative rounded-2xl overflow-hidden group aspect-[4/3] bg-black">
+                            <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=600&q=80" alt="Tiza libre" class="w-full h-full object-cover opacity-75 group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <p class="text-[10px] font-bold text-orange-500 uppercase tracking-widest">TIZA INDUSTRIAL</p>
+                                <p class="text-sm font-bold text-white font-display uppercase">Soporte Libre de Agarre</p>
+                            </div>
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden group aspect-[4/5] bg-black">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Maquinaria pura" class="w-full h-full object-cover opacity-75 group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <p class="text-[10px] font-bold text-orange-500 uppercase tracking-widest">LINAJE DE ACERO</p>
+                                <p class="text-sm font-bold text-white font-display uppercase">Hammer Strength Estructural</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MEMBERSHIP PLANS -->
+    <section id="planes" class="py-24 bg-zinc-900 border-t border-zinc-950 relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold tracking-widest text-orange-500 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20">MEMBRESÍAS PURAS</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                    ELIGE TU MODO DE COMBATE
+                </h2>
+                <div class="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded"></div>
+                <p class="text-zinc-400 mt-4 text-base font-light">
+                    Suscripciones claras, directas y sin cláusulas engañosas de cancelación automática. Sin contratos de permanencia obligatorios de largo plazo.
+                </p>
+
+                <!-- Billing Cycle Switcher -->
+                <div class="inline-flex items-center gap-3 bg-zinc-950 p-1 rounded-xl border border-zinc-850 mt-8">
+                    <button id="toggle-monthly" onclick="setBillingCycle('monthly')" class="px-5 py-2 rounded-lg text-xs font-bold tracking-widest uppercase transition bg-orange-500 text-black">
+                        MENSUAL
+                    </button>
+                    <button id="toggle-annual" onclick="setBillingCycle('annual')" class="px-5 py-2 rounded-lg text-xs font-bold tracking-widest uppercase transition text-zinc-400 hover:text-white">
+                        ANUAL (AHORRA 20%)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Plan 1: Pase Diario -->
+                <div class="bg-zinc-950 border border-zinc-850 rounded-3xl p-8 flex flex-col justify-between hover:border-zinc-700 transition duration-300 relative">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold tracking-widest text-zinc-500 uppercase">ACCESO EXPEDIDO</span>
+                            <span class="inline-flex items-center gap-1 text-[10px] bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 rounded-full font-bold uppercase">Único</span>
+                        </div>
+                        <h3 class="text-2xl font-bold font-display uppercase tracking-wider text-white">PASE DIARIO</h3>
+                        <p class="text-zinc-500 text-xs mt-2">Para atletas de paso por la ciudad o entrenamientos evaluativos rápidos.</p>
+
+                        <!-- Price display -->
+                        <div class="my-8">
+                            <span class="text-5xl font-extrabold font-display text-white" id="price-daily">$15</span>
+                            <span class="text-zinc-500 text-xs tracking-wider uppercase ml-1" id="cycle-daily">/ entrada</span>
+                        </div>
+
+                        <!-- Separator -->
+                        <div class="h-px bg-zinc-900 mb-8"></div>
+
+                        <!-- Feature list -->
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Acceso total 24 horas continuo</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Uso libre de todas las áreas de fuerza</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Tiza libre y correas de levantamiento</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-500 line-through">
+                                <i data-lucide="x" class="w-4 h-4 text-zinc-700 shrink-0"></i>
+                                <span>Acceso prioritario a racks Eleiko</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA -->
+                    <button onclick="selectPlan('Pase Diario')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-extrabold uppercase tracking-wider text-xs py-4 rounded-xl transition duration-300 font-display">
+                        COMPRAR EN TAQUILLA
+                    </button>
+                </div>
+
+                <!-- Plan 2: Membresía Básica (Popular) -->
+                <div class="bg-zinc-950 border-2 border-orange-500 rounded-3xl p-8 flex flex-col justify-between hover:shadow-2xl hover:shadow-orange-500/5 transition duration-300 relative">
+                    <!-- Absolute badge -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-black text-xs font-extrabold tracking-widest uppercase px-5 py-1.5 rounded-full font-display">
+                        EL MÁS ADQUIRIDO
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-6 mt-2">
+                            <span class="text-xs font-bold tracking-widest text-orange-500 uppercase">GUERRERO COMPROMETIDO</span>
+                            <span class="inline-flex items-center gap-1 text-[10px] bg-orange-500/10 border border-orange-500/20 text-orange-500 px-2.5 py-1 rounded-full font-bold uppercase">Mensual</span>
+                        </div>
+                        <h3 class="text-2xl font-bold font-display uppercase tracking-wider text-white">IRON MEMBER</h3>
+                        <p class="text-zinc-500 text-xs mt-2">El plan estándar para los verdaderos amantes del entrenamiento continuo e intenso.</p>
+
+                        <!-- Price display -->
+                        <div class="my-8">
+                            <span class="text-5xl font-extrabold font-display text-white" id="price-basic">$49</span>
+                            <span class="text-zinc-500 text-xs tracking-wider uppercase ml-1" id="cycle-basic">/ mes</span>
+                        </div>
+
+                        <!-- Separator -->
+                        <div class="h-px bg-zinc-900 mb-8"></div>
+
+                        <!-- Feature list -->
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Acceso ilimitado 24/7/365</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Rutinas y plantillas de fuerza actualizadas</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Casillero de día personal gratis</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Descuento de 10% en barras de proteínas</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA -->
+                    <button onclick="selectPlan('Iron Member')" class="w-full bg-orange-500 hover:bg-orange-600 text-black font-extrabold uppercase tracking-wider text-xs py-4 rounded-xl transition duration-300 font-display shadow-lg shadow-orange-500/20">
+                        REGISTRARME HOY
+                    </button>
+                </div>
+
+                <!-- Plan 3: Elite Iron Pass -->
+                <div class="bg-zinc-950 border border-zinc-850 rounded-3xl p-8 flex flex-col justify-between hover:border-zinc-700 transition duration-300 relative">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold tracking-widest text-zinc-500 uppercase">POTENCIA ILIMITADA</span>
+                            <span class="inline-flex items-center gap-1 text-[10px] bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 rounded-full font-bold uppercase">VIP</span>
+                        </div>
+                        <h3 class="text-2xl font-bold font-display uppercase tracking-wider text-white">ELITE BLACK</h3>
+                        <p class="text-zinc-500 text-xs mt-2">Para competidores profesionales de powerlifting o halterofilia que exigen todo.</p>
+
+                        <!-- Price display -->
+                        <div class="my-8">
+                            <span class="text-5xl font-extrabold font-display text-white" id="price-elite">$79</span>
+                            <span class="text-zinc-500 text-xs tracking-wider uppercase ml-1" id="cycle-elite">/ mes</span>
+                        </div>
+
+                        <!-- Separator -->
+                        <div class="h-px bg-zinc-900 mb-8"></div>
+
+                        <!-- Feature list -->
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Todo lo incluido en plan Iron Member</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Casillero privado permanente asignado</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Acceso preferente a zona de tiza de competición</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-xs text-zinc-300">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-500 shrink-0"></i>
+                                <span>Toallas y bebidas isotónicas ilimitadas</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA -->
+                    <button onclick="selectPlan('Elite Black')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-extrabold uppercase tracking-wider text-xs py-4 rounded-xl transition duration-300 font-display">
+                        SOLICITAR PASE ELITE
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Sleek feedback modal simulator (Pure UI, no backend forms) -->
+            <div id="selection-banner" class="hidden mt-12 bg-zinc-900 border border-orange-500 p-6 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <div class="flex items-center gap-3 justify-center md:justify-start">
+                    <span class="p-2 rounded bg-orange-500 text-black">
+                        <i data-lucide="dumbbell" class="w-5 h-5"></i>
+                    </span>
+                    <div>
+                        <p class="text-sm font-bold uppercase tracking-wider text-white">HAS SELECCIONADO EL PLAN: <span id="selected-plan-name" class="text-orange-500">N/A</span></p>
+                        <p class="text-xs text-zinc-400">Dirígete a la recepción del club para formalizar tu registro. ¡Te esperamos!</p>
+                    </div>
+                </div>
+                <button onclick="resetSelection()" class="text-xs font-bold text-zinc-400 hover:text-white uppercase tracking-widest underline">
+                    Limpiar Selección
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT, LOCATION & MAP -->
+    <section id="contacto" class="py-24 bg-zinc-950 relative border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+                <!-- Left Details (no forms as per requirements) -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-orange-500 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20">ESTAMOS AQUÍ</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                            ENCUENTRA EL TEMPLO
+                        </h2>
+                        <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
+                            Nuestras instalaciones están estratégicamente ubicadas para ofrecer fácil acceso y estacionamiento amplio para vehículos de carga. Pásate por aquí cuando estés listo para entrenar de verdad.
+                        </p>
+                    </div>
+
+                    <!-- Direct Contact Blocks -->
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="p-3 rounded-lg bg-zinc-900 text-orange-500 border border-zinc-800 shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">DIRECCIÓN FÍSICA</h4>
+                                <p class="text-sm font-bold text-white mt-1">Avenida del Metal 1024, Polígono Industrial San Acero</p>
+                                <p class="text-xs text-zinc-500">A solo 2 minutos de la salida de autopista Norte.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <span class="p-3 rounded-lg bg-zinc-900 text-orange-500 border border-zinc-800 shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">ATENCIÓN DIRECTA</h4>
+                                <p class="text-sm font-bold text-white mt-1">+34 900 800 700</p>
+                                <p class="text-xs text-zinc-500">Responderemos llamadas de lunes a viernes, 8:00 a 20:00.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <span class="p-3 rounded-lg bg-zinc-900 text-orange-500 border border-zinc-800 shrink-0">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">HORARIOS DEL CLUB</h4>
+                                <p class="text-sm font-bold text-white mt-1">Abierto 24 Horas al Día</p>
+                                <p class="text-xs text-zinc-500">Atención en recepción y admisiones de 07:00 a 22:00.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Beautiful Interactive-looking Custom Map Mockup -->
+                <div class="lg:col-span-7">
+                    <div class="bg-zinc-900 rounded-3xl p-4 border border-zinc-800 shadow-xl space-y-4">
+                        <!-- Simulated browser header for the map -->
+                        <div class="flex items-center justify-between px-2 pb-2 border-b border-zinc-800/60">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                            </div>
+                            <span class="text-[10px] text-zinc-500 font-mono tracking-wider lowercase">mapas.ironhouse.com</span>
+                            <div class="w-4"></div>
+                        </div>
+
+                        <!-- Simulated High Contrast Map Visuals -->
+                        <div class="relative aspect-video w-full rounded-2xl overflow-hidden bg-zinc-950 border border-zinc-850">
+                            <!-- High contrast map background overlay pattern -->
+                            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#27272a_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
+
+                            <!-- Road simulation layout using css borders -->
+                            <div class="absolute inset-0 flex flex-col justify-between p-12 pointer-events-none">
+                                <div class="w-full h-px bg-zinc-800 rotate-[5deg] origin-left"></div>
+                                <div class="w-full h-px bg-zinc-800 -rotate-[10deg] origin-right"></div>
+                            </div>
+                            <div class="absolute inset-y-0 left-1/3 w-px bg-zinc-800 rotate-[45deg] origin-top pointer-events-none"></div>
+
+                            <!-- Map Pins / Points of interest -->
+                            <div class="absolute top-1/4 left-1/4 flex items-center gap-2 bg-zinc-900 border border-zinc-800 rounded-lg p-2 shadow">
+                                <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
+                                <span class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Estación de Tren</span>
+                            </div>
+
+                            <div class="absolute bottom-1/4 right-1/4 flex items-center gap-2 bg-zinc-900 border border-zinc-800 rounded-lg p-2 shadow">
+                                <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
+                                <span class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Autopista A-5</span>
+                            </div>
+
+                            <!-- THE GYM PIN (GLOWING ORANGE) -->
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                                <!-- Glowing pulses -->
+                                <div class="absolute w-12 h-12 bg-orange-500/20 rounded-full animate-ping"></div>
+                                <div class="absolute w-24 h-24 bg-orange-500/5 rounded-full"></div>
+
+                                <!-- Actual Icon Pin -->
+                                <div class="relative bg-orange-500 text-black p-3 rounded-full border-4 border-zinc-900 shadow-2xl z-10">
+                                    <i data-lucide="dumbbell" class="w-6 h-6 stroke-[2.5]"></i>
+                                </div>
+                                <span class="relative mt-2 bg-zinc-900 text-white border border-orange-500/50 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md shadow-xl z-10 whitespace-nowrap">
+                                    IRON HOUSE (Polígono Industrial)
+                                </span>
+                            </div>
+
+                            <!-- Bottom left zoom controls simulator -->
+                            <div class="absolute bottom-4 left-4 flex flex-col gap-1 z-10">
+                                <button class="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 font-bold flex items-center justify-center hover:bg-zinc-800 hover:text-white transition">+</button>
+                                <button class="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 font-bold flex items-center justify-center hover:bg-zinc-800 hover:text-white transition">-</button>
+                            </div>
+                        </div>
+
+                        <!-- Directions Text button -->
+                        <div class="flex items-center justify-between text-xs pt-1">
+                            <span class="text-zinc-500">Coordenadas: 40.416775, -3.703790</span>
+                            <a href="https://maps.google.com" target="_blank" class="text-orange-500 hover:text-orange-600 font-bold uppercase tracking-widest flex items-center gap-1">
+                                Ver en Google Maps <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-zinc-900 pb-8 mb-8">
+
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center gap-2.5 group">
+                    <span class="inline-flex p-2 rounded bg-orange-500 text-black group-hover:bg-orange-600 transition duration-300">
+                        <i data-lucide="dumbbell" class="w-5 h-5 stroke-[2.5]"></i>
+                    </span>
+                    <span class="text-lg font-bold font-display uppercase tracking-widest text-white">
+                        IRON<span class="text-orange-500">HOUSE</span>
+                    </span>
+                </a>
+
+                <!-- Quick links -->
+                <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-zinc-500">
+                    <a href="#inicio" class="hover:text-white transition">Inicio</a>
+                    <a href="#filosofia" class="hover:text-white transition">Filosofía</a>
+                    <a href="#especialidades" class="hover:text-white transition">Especialidades</a>
+                    <a href="#galeria" class="hover:text-white transition">Instalaciones</a>
+                    <a href="#planes" class="hover:text-white transition">Planes</a>
+                    <a href="#contacto" class="hover:text-white transition">Contacto</a>
+                </div>
+
+                <!-- Socials -->
+                <div class="flex items-center gap-4 text-zinc-500">
+                    <a href="#" class="hover:text-white transition p-2 rounded-md hover:bg-zinc-900">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="hover:text-white transition p-2 rounded-md hover:bg-zinc-900">
+                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="hover:text-white transition p-2 rounded-md hover:bg-zinc-900">
+                        <i data-lucide="youtube" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-600">
+                <p>&copy; <span id="current-year"></span> IRON HOUSE Gym. Todos los derechos reservados.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:underline">Aviso Legal</a>
+                    <a href="#" class="hover:underline">Política de Privacidad</a>
+                    <a href="#" class="hover:underline">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- SCRIPTS -->
+    <script>
+        // Set year dynamically
+        document.getElementById('current-year').innerText = new Date().getFullYear();
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Responsive Mobile Menu Drawer Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            }
+        });
+
+        // Close mobile menu on links click
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+
+        // Sticky header styling on scroll
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('bg-zinc-950/95', 'border-zinc-900/80', 'py-1');
+                header.classList.remove('bg-zinc-950/80', 'border-transparent', 'py-0');
+            } else {
+                header.classList.remove('bg-zinc-950/95', 'border-zinc-900/80', 'py-1');
+                header.classList.add('bg-zinc-950/80', 'border-transparent', 'py-0');
+            }
+        });
+
+        // Membership Plan selection simulator
+        const selectionBanner = document.getElementById('selection-banner');
+        const selectedPlanName = document.getElementById('selected-plan-name');
+
+        function selectPlan(planName) {
+            selectedPlanName.innerText = planName.toUpperCase();
+            selectionBanner.classList.remove('hidden');
+            // smooth scroll down to the feedback banner
+            selectionBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function resetSelection() {
+            selectionBanner.classList.add('hidden');
+            selectedPlanName.innerText = 'N/A';
+        }
+
+        // Pricing Toggle Script (Monthly vs. Annual)
+        const toggleMonthlyBtn = document.getElementById('toggle-monthly');
+        const toggleAnnualBtn = document.getElementById('toggle-annual');
+
+        const priceDaily = document.getElementById('price-daily');
+        const priceBasic = document.getElementById('price-basic');
+        const priceElite = document.getElementById('price-elite');
+
+        const cycleDaily = document.getElementById('cycle-daily');
+        const cycleBasic = document.getElementById('cycle-basic');
+        const cycleElite = document.getElementById('cycle-elite');
+
+        function setBillingCycle(cycle) {
+            if (cycle === 'monthly') {
+                // Style Active Monthly Button
+                toggleMonthlyBtn.className = "px-5 py-2 rounded-lg text-xs font-bold tracking-widest uppercase transition bg-orange-500 text-black";
+                toggleAnnualBtn.className = "px-5 py-2 rounded-lg text-xs font-bold tracking-widest uppercase transition text-zinc-400 hover:text-white";
+
+                // Prices
+                priceDaily.innerText = "$15";
+                priceBasic.innerText = "$49";
+                priceElite.innerText = "$79";
+
+                cycleDaily.innerText = "/ entrada";
+                cycleBasic.innerText = "/ mes";
+                cycleElite.innerText = "/ mes";
+
+            } else if (cycle === 'annual') {
+                // Style Active Annual Button
+                toggleAnnualBtn.className = "px-5 py-2 rounded-lg text-xs font-bold tracking-widest uppercase transition bg-orange-500 text-black";
+                toggleMonthlyBtn.className = "px-5 py-2 rounded-lg text-xs font-bold tracking-widest uppercase transition text-zinc-400 hover:text-white";
+
+                // Prices calculated with 20% discount (annualized billing value shown monthly)
+                priceDaily.innerText = "$12"; // 15 - 20%
+                priceBasic.innerText = "$39"; // 49 - 20% (approx)
+                priceElite.innerText = "$63"; // 79 - 20% (approx)
+
+                cycleDaily.innerText = "/ entrada";
+                cycleBasic.innerText = "/ mes (fac. anual)";
+                cycleElite.innerText = "/ mes (fac. anual)";
+            }
+        }
+    </script>
+</body>
+
+</html>
