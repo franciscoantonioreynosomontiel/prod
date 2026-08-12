@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body{
+   overflow-x: hidden;
+}
+
+
+.container {
+  
+  max-width: var(--container);
+  padding: 0 2rem;
+  margin: var(--m-auto);
+}
+
+
+.swiper {
+  position: relative;
+  width: 340px;
+  height: 500px;
+}
+.swipercol {
+  position: relative;
+  width: 240px;
+  height: 400px;
+}
+.swipersticker {
+  position: relative;
+  width: 250px;
+  height: 250px;
+}
+.swipersflyer {
+  position: relative;
+  width: 240px;
+  height: 350px;
+}
+.swiperscard {
+  position: relative;
+  width: 280px;
+  height: 180px;
+}
+
+.swiper-slide {
+  border-radius: 5px;
+}
+
+.swiper-slide img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.heading {
+  padding-top: 3rem;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom:5px;
+  color:black;
+}
+.separador {
+    width: 100%;
+    height: 150px;
+  }
+.instruccion{
+   width: 100%;
+  margin:auto;
+  text-align: center;
+}
+.instruccion h2{
+  text-align: center;
+}
+kbd{
+  background-color:#eee;
+  border: 1px solid #b4b4b4;
+  border-radius:5px;
+  box-shadow:0 2px #ccc;
+  padding: 4px 8px;
+  margin: 0 2px;
+  font-size: 16px;
+  font-family: monospace;
+  color:black;
+}
