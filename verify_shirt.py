@@ -13,34 +13,22 @@ async def run_verification():
 
         # Desktop Viewport
         await page.set_viewport_size({"width": 1440, "height": 900})
-        await page.wait_for_timeout(2000) # Let model-viewer and page elements render
+        await page.wait_for_timeout(3000) # Let model-viewer and page elements render
 
         # Ensure directory exists
         os.makedirs("/home/jules/verification_shirt", exist_ok=True)
 
-        # Desktop Hero and Grid Screenshots
-        await page.screenshot(path="/home/jules/verification_shirt/shirt_desktop_hero.png", full_page=False)
-        print("Captured desktop hero screenshot.")
+        # Full page desktop screenshot
+        await page.screenshot(path="/home/jules/verification_shirt/shirt_desktop_full.png", full_page=True)
+        print("Captured desktop full page screenshot.")
 
-        # Scroll to columns
-        await page.evaluate("window.scrollTo(0, 800)")
-        await page.wait_for_timeout(500)
-        await page.screenshot(path="/home/jules/verification_shirt/shirt_desktop_grid.png", full_page=False)
-        print("Captured desktop grid screenshot.")
-
-        # Scroll to carousel and form
-        await page.evaluate("window.scrollTo(0, 1600)")
-        await page.wait_for_timeout(500)
-        await page.screenshot(path="/home/jules/verification_shirt/shirt_desktop_form.png", full_page=False)
-        print("Captured desktop form screenshot.")
-
-        # Mobile Viewport
+        # Full page mobile screenshot
         await page.set_viewport_size({"width": 375, "height": 812})
         await page.wait_for_timeout(1000)
         await page.goto(f"file://{file_path}")
-        await page.wait_for_timeout(2000)
-        await page.screenshot(path="/home/jules/verification_shirt/shirt_mobile_hero.png", full_page=False)
-        print("Captured mobile hero screenshot.")
+        await page.wait_for_timeout(3000)
+        await page.screenshot(path="/home/jules/verification_shirt/shirt_mobile_full.png", full_page=True)
+        print("Captured mobile full page screenshot.")
 
         await browser.close()
 
