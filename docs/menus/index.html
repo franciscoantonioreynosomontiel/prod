@@ -30,96 +30,33 @@
     if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
   });
 </script>
-<div id="modelo3d">
-    <div class="menu1">
-        <div class="flipbook-viewport">
-            <div class="container">
-                <div class="flipbook">
-                    <img src="https://vikingantonio.github.io/bddCards/assets/img/a1.png"/>
-                    <img src="https://vikingantonio.github.io/bddCards/assets/img/a2.png"/>
-                    <img src="https://vikingantonio.github.io/bddCards/assets/img/a3.png"/>
-                    <img src="https://vikingantonio.github.io/bddCards/assets/img/a4.png"/>
-                    <img src="https://vikingantonio.github.io/bddCards/assets/img/a5.png"/>
-                    <img src="https://vikingantonio.github.io/bddCards/assets/img/a6.png"/>
-                    <img src="https://vikingantonio.github.io/bddCards/assets/img/a7.png"/>
-                    <img src="https://vikingantonio.github.io/bddCards/assets/img/a8.png"/>
-                </div>
-            </div>
+    <div id="modelo3d"><div class="menu1">
+<div class="flipbook-viewport">
+        <div class="container">
+          <div class="flipbook">
+            <img src="https://vikingantonio.github.io/bddCards/assets/img/a1.png"/>
+            <img src="https://vikingantonio.github.io/bddCards/assets/img/a2.png"/>
+            <img src="https://vikingantonio.github.io/bddCards/assets/img/a3.png"/>
+            <img src="https://vikingantonio.github.io/bddCards/assets/img/a4.png"/>
+            <img src="https://vikingantonio.github.io/bddCards/assets/img/a5.png"/>
+            <img src="https://vikingantonio.github.io/bddCards/assets/img/a6.png"/>
+            <img src="https://vikingantonio.github.io/bddCards/assets/img/a7.png"/>
+            <img src="https://vikingantonio.github.io/bddCards/assets/img/a8.png"/>
+          </div>
         </div>
-        <script src="./assets/js/jquery.js"></script>
-        <script src="./assets/js/turn.js"></script>
+      </div>
+<script src="./assets/js/jquery.js"></script>
+  <script src="./assets/js/turn.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                var $flipbook = $(".flipbook");
-                var isMobile = window.innerWidth <= 992;
-
-                // Initialize turn.js depending on viewport size
-                $flipbook.turn({
-                    width: isMobile ? 461 : 922,
-                    height: 600,
-                    elevation: 50,
-                    gradients: true,
-                    autoCenter: true,
-                    display: isMobile ? 'single' : 'double'
-                });
-
-                function resizeFlipbook() {
-                    var currentIsMobile = window.innerWidth <= 992;
-
-                    // If display mode changed, turn.js should update its mode and base sizes
-                    if (currentIsMobile !== isMobile) {
-                        isMobile = currentIsMobile;
-                        $flipbook.turn('display', isMobile ? 'single' : 'double');
-                        $flipbook.turn('size', isMobile ? 461 : 922, 600);
-                    }
-
-                    var containerWidth = $(".menu1").width();
-                    var containerHeight = $(".menu1").height();
-
-                    // Base dimensions used during turn.js initialization
-                    var baseWidth = isMobile ? 461 : 922;
-                    var baseHeight = 600;
-
-                    // Calculate scale to perfectly fit within parent container without overflow
-                    var scaleX = containerWidth / baseWidth;
-                    var scaleY = containerHeight / baseHeight;
-                    var scale = Math.min(scaleX, scaleY);
-
-                    // Restrict scale to a maximum of 1 to avoid pixelation, or let it scale up slightly if needed
-                    if (scale > 1.2) {
-                        scale = 1.2;
-                    }
-
-                    // Apply the scale transformation smoothly to scale the entire turn.js structure
-                    $flipbook.css({
-                        "transform": "scale(" + scale + ")",
-                        "-webkit-transform": "scale(" + scale + ")",
-                        "-moz-transform": "scale(" + scale + ")",
-                        "-ms-transform": "scale(" + scale + ")",
-                        "-o-transform": "scale(" + scale + ")",
-                        "transform-origin": "center center",
-                        "-webkit-transform-origin": "center center",
-                        "-moz-transform-origin": "center center",
-                        "-ms-transform-origin": "center center",
-                        "-o-transform-origin": "center center"
-                    });
-                }
-
-                // Initial scale call and set handler on window resize
-                $(window).on('resize', resizeFlipbook);
-
-                // Extra trigger with timeout to make sure elements are fully loaded & measured
-                setTimeout(resizeFlipbook, 200);
-                setTimeout(resizeFlipbook, 1000);
-            });
-        </script>
-    </div>
-    <div class="dbanner">
-        <h1>Personalized menus that enhance your diners’ experience</h1>
-        <p>perfect for promotion, resale, and for your staff to wear.</p><a class="btn" role="button" href="https://menutech.biz/menus/index.html#textform">Enjoy 10% off</a>
-    </div>
+  <script>
+    $(".flipbook").turn();
+  </script>
 </div>
+        <div class="dbanner">
+            <h1>Personalized menus that enhance your diners’ experience</h1>
+            <p>perfect for promotion, resale, and for your staff to wear.</p><a class="btn" role="button" href="https://menutech.biz/menus/index.html#textform">Enjoy 10% off</a>
+        </div>
+    </div>
    <div id="columnas" class="columnas">
         <div class="columna"><img src="./assets/img/papel.jpg"><p><strong>Paper Material</strong><br />Coated paper: Satin or glossy finish, ideal for vibrant colors and high definition.<br/>
 

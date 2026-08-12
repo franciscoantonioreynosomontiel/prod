@@ -31,144 +31,107 @@
   margin-bottom: 30px;
 }
 
-/* === CONFIGURACIÓN Y PERSONALIZACIÓN DEL POPUP === */
-:root {
-  /* ==========================================================================
-     CONFIGURACIÓN DE TAMAÑOS DEL POPUP (Contenedor Blanco) Y DEL MENÚ (Iframe)
-     ==========================================================================
-     Usa estas variables para realizar pruebas de ancho y alto de forma rápida.
-  */
-
-  /* --- DIMENSIONES LÓGICAS DEL MENÚ (IFRAME) ---
-     Las páginas de turn.js en los menús externos están diseñadas sobre un lienzo
-     fijo de 922px de ancho por 700px de alto.
-     - Para hacer el menú más compacto de alto, reduce '--menu-logical-height'.
-     - Manteniendo 922px de ancho y bajando el alto a 600px o 610px, se logra
-       un menú más estilizado que reduce el alto de las páginas del menú en el popup.
-  */
-  --menu-logical-width: 922px;
-  --menu-logical-height: 610px;
-
-  /* --- TAMAÑO DEL POPUP (PC / ESCRITORIO) --- */
-  --popup-width-pc: 90%;           /* Ancho del popup en PC 95 */
-  --popup-max-width-pc: 1250px;     /* Límite máximo de ancho en PC */
-  --popup-height-pc: 95%;          /* Alto del popup en PC (Más grande) 92 */
-
-  /* --- TAMAÑO DEL POPUP (LAPTOPS / TABLETS) --- */
-  --popup-width-tablet: 95%;
-  --popup-height-tablet: 92%;
-
-  /* --- TAMAÑO DEL POPUP (MÓVILES) --- */
-  --popup-width-mobile: 95%;       /* Ancho del popup en celulares */
-  --popup-height-mobile: 90%;      /* Alto del popup en celulares (no se sale de la pantalla) */
-}
-
-/* Contenedor de fondo oscuro del popup */
+/* === POPUP === */
+/* === POPUP === */
 .popup {
-  display: none; /* Oculto por defecto, se activa con JS como 'flex' */
+  display: none; /* oculto al inicio */
   position: fixed;
-  z-index: 10000;
+  z-index: 1000;
   left: 0;
   top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro elegante */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  box-sizing: border-box;
+  overflow: hidden; /* evita scroll de fondo */
 }
 
-/* Tarjeta/Contenedor blanco del popup */
 .popup-content {
   background: #fff;
-  width: var(--popup-width-pc);
-  max-width: var(--popup-max-width-pc);
-  height: var(--popup-height-pc);
-  border-radius: 14px;
+  width: 80%;          /* ancho en PC */
+  max-width: 800px;    /* límite máximo en PC */
+  height: 70%;         /* altura vertical en PC */
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
-  box-sizing: border-box;
-  padding: 20px;
+  flex-direction: column;
+  zoom: 120%;
+
 }
 
-/* Iframe del menú (escalado dinámicamente mediante JS para centrado absoluto perfecto) */
+
 .popup-content iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transform-origin: center center;
+  width: 100%;        /* ocupa todo el ancho posible del popup */
+  max-width: 700px;   /* no superamos tu límite */
+  height: 100%;        /* más alto que antes, ocupa más verticalmente */
   border: none;
-  display: block;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
-  max-width: none !important; /* Desactiva límites que puedan romper la escala */
-  max-height: none !important;
+  margin: auto;       /* centrado horizontal y vertical */
+  display: block;     /* necesario para margin auto */
+  margin-top: 50px;
+  margin-right: 20px;
 }
 
-/* Botón cerrar circular, moderno y muy visible */
+
+/* Botón cerrar */
 .close {
   position: absolute;
-  top: 15px;
+  top: 8px;
   right: 15px;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: bold;
   color: #333;
   cursor: pointer;
-  z-index: 10100; /* Siempre visible por encima del iframe */
-  background: rgba(255, 255, 255, 0.9);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+  z-index: 10;
 }
 
-.close:hover {
-  background-color: #e03131;
-  color: #fff;
-  transform: scale(1.08);
-}
-
-/* Responsive para laptops y pantallas medianas (hasta 1366px) */
-@media (max-width: 1366px) {
-  .popup-content {
-    width: var(--popup-width-tablet);
-    height: var(--popup-height-tablet);
-    max-width: none;
-    padding: 15px;
-  }
-}
-
-/* Responsive para dispositivos móviles (hasta 768px) */
+/* Responsive móviles */
 @media (max-width: 768px) {
   html, body {
-    overflow-x: hidden;
+    overflow-x: hidden; /* evita scroll horizontal al abrir popup */
   }
 
   .popup-content {
-    width: var(--popup-width-mobile);
-    height: var(--popup-height-mobile);
-    max-width: none;
-    border-radius: 10px;
-    padding: 10px;
+    width: 100%;       /* ocupar todo el ancho */
+    height: 90%;      /* ocupar toda la altura */
+    margin: 2px;       /* margen pequeño para no pegarse a los bordes */
+    max-width: none;   /* ignorar el max-width */
+    border-radius: 5px; 
   }
 
-  .close {
-    top: 10px;
-    right: 10px;
-    width: 38px;
-    height: 38px;
-    font-size: 26px;
+  .popup-content iframe {
+     width: 90%;
+  max-width: 800px;
+  height: 80%;
+  margin-top: 30px; /* ajusta este valor a lo que necesites */
   }
 }
+@media (max-width: 1366px){
+  .popup-content {
+    width: 90%;       
+    height: 95%;      
+    margin: 2px auto;      
+    max-width: none;   
+    border-radius: 5px; 
+    overflow: hidden;
+    position: relative;
+  }
+
+  .popup-content iframe {
+    display: block;
+    width: 100%;        
+    height: 100%;      
+    border: none;
+    margin: 0 auto;    
+  }
+}
+
+
+
+
+
+
+
