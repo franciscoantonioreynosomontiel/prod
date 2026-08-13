@@ -54,6 +54,10 @@
             color: #f97316;
             background-color: #fff7ed;
         }
+        .profile-tab-active {
+            border-bottom-color: #f97316;
+            color: #f97316;
+        }
     </style>
 </head>
 
@@ -762,7 +766,7 @@
                     </div>
 
                     <!-- Dynamic Landing Page Content -->
-                    <div id="professional-landing-content" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div id="professional-landing-content" class="space-y-8">
                         <!-- Dynamically populated profile landing page details -->
                     </div>
                 </div>
@@ -837,21 +841,55 @@
                     name: "Arthur Vance",
                     role: "Principal Framing Superintendent",
                     photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+                    cover: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
                     summary: "Supervises large scale timber assemblies and structural concrete layouts with a flawless safety record and master builder status.",
                     experience: "Nearly two decades of hands-on structural construction experience.",
                     standards: "Fully aligned with International Building Code structural guidelines.",
                     safety: "Holder of National General Contractor certified safety standards.",
-                    project: "Houston Corporate Office Complex Framing Project"
+                    project: "Houston Corporate Office Complex Framing Project",
+                    phone: "Direct Line: Houston Headquarters Dispatch - Extension Seven Two",
+                    whatsapp: "Dispatch Center Active Secure Channel",
+                    instagram: "Structural Assembly Technical Feed",
+                    biography: "Arthur Vance is a seasoned building specialist who brings deep coordination expertise to Apex United Contractors. Throughout a multi-decade career in the private sector, Arthur has successfully delivered several complex timber framework and load-bearing drywall configurations.",
+                    stats: [
+                        { label: "Completed Projects", value: "Forty Two Projects" },
+                        { label: "Active Team Size", value: "Fourteen Specialists" },
+                        { label: "Satisfaction Level", value: "Outstanding Standing" }
+                    ],
+                    videos: [
+                        { title: "Timber Assembly Coordination Walkthrough", desc: "Demonstrating load-bearing alignment structures and precise mechanical staging operations." },
+                        { title: "Onsite Safety Guidelines Review", desc: "A brief safety compliance instruction for high elevation framework deployment." }
+                    ],
+                    routines: [
+                        { title: "Initial Structural Evaluation", steps: ["Verify site dimensions and structural load-bearing parameters", "Align core blueprint guidelines with engineering staff", "Confirm heavy equipment staging positions and harness lines"] },
+                        { title: "Foundation Staging Protocol", steps: ["Establish rigid boundary safety barriers", "Coordinate timber concrete support frames", "Execute continuous leveling measurements"] }
+                    ]
                 },
                 {
                     name: "Silas Thorne",
                     role: "Senior Foundation Engineer",
                     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+                    cover: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
                     summary: "Expert in concrete foundation stability and load-bearing timber and steel assemblies.",
                     experience: "Extensive years managing soil preparations and structural framing alignment.",
                     standards: "Adheres to federal and state building foundation criteria.",
                     safety: "Certified onsite safety supervisor with pristine field reports.",
-                    project: "Midwest Logistics Facility Foundation Phase"
+                    project: "Midwest Logistics Facility Foundation Phase",
+                    phone: "Direct Line: Chicago Headquarters Office - Extension Eight Four",
+                    whatsapp: "Midwest Foundation Safety Dispatch",
+                    instagram: "Concrete Mechanics Public Portfolio",
+                    biography: "Silas Thorne operates as the technical lead for concrete foundation systems. His focus centers on soil compaction analysis and sub-structure concrete engineering, ensuring absolute lifetime durability across our commercial developments.",
+                    stats: [
+                        { label: "Foundations Poured", value: "Thirty Seven Installations" },
+                        { label: "Soil Inspections Completed", value: "Fifty Five Audits" },
+                        { label: "Incident Rate", value: "Zero Recorded Events" }
+                    ],
+                    videos: [
+                        { title: "Subgrade Compaction Techniques", desc: "A technical overview showcasing mechanical soil preparation tools and stress test alignment." }
+                    ],
+                    routines: [
+                        { title: "Soil Compression Testing", steps: ["Execute core sample extractions across designated quadrants", "Perform hydraulic pressure tolerance evaluations", "Draft official stability verification reports"] }
+                    ]
                 }
             ],
             electrical: [
@@ -859,21 +897,53 @@
                     name: "Marcus Sterling",
                     role: "Master Electrician & Grid Supervisor",
                     photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+                    cover: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80",
                     summary: "Oversees critical commercial electrical grid connections, high-voltage breakers, and utility upgrades.",
                     experience: "Master grade experience in electrical routing and main panel layouts.",
                     standards: "Strictly compliant with National Electrical Code safety standards.",
                     safety: "Advanced category protective gear certification and Arc-Flash training.",
-                    project: "Chicago Technical Center Power Grid Integration"
+                    project: "Chicago Technical Center Power Grid Integration",
+                    phone: "Direct Line: Chicago Dispatch Office - Extension Nine One",
+                    whatsapp: "High Voltage Team Dispatch Active Channel",
+                    instagram: "Grid Architecture Public Journal",
+                    biography: "Marcus Sterling is a registered Master Electrician. Marcus coordinates high-voltage industrial grids, multi-phase electrical configurations, and main panel circuit breakers with absolute precision and strict safety protocols.",
+                    stats: [
+                        { label: "Transformer Audits", value: "Seventy Three Completed" },
+                        { label: "System Compliance Rating", value: "Perfect Standard" },
+                        { label: "Grid Integration Projects", value: "Twenty Nine Facilities" }
+                    ],
+                    videos: [
+                        { title: "Main Distribution Panel Overhaul", desc: "Demonstrating high-voltage circuit preparation and lock-out tag-out safety protocols." }
+                    ],
+                    routines: [
+                        { title: "Phase Balance Testing", steps: ["Execute voltage readings across all active power conductors", "Identify potential heat generation zones using thermal imaging", "Recalibrate distribution levels to guarantee continuous flow"] }
+                    ]
                 },
                 {
                     name: "Helena Rostova",
                     role: "Lead Systems Architect",
                     photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+                    cover: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1200&q=80",
                     summary: "Specializes in low-voltage emergency warning configurations and automated control circuitry design.",
                     experience: "Many years of custom industrial system routing and control panel wiring.",
                     standards: "Underwriter Laboratories high standard testing guidelines compliant.",
                     safety: "Certified dielectric insulation handler with a clean incident record.",
-                    project: "Houston Multi-Tenant Terminal Control Circuit Installation"
+                    project: "Houston Multi-Tenant Terminal Control Circuit Installation",
+                    phone: "Direct Line: Houston Engineering Office - Extension Four Three",
+                    whatsapp: "Low Voltage Active Direct Support",
+                    instagram: "System Control Circuits Public Portfolio",
+                    biography: "Helena Rostova design and installs advanced automated warning modules. She aligns complex multi-sensor systems with primary commercial hardware platforms, bringing high system redundancy and total stability to complex complexes.",
+                    stats: [
+                        { label: "Control Systems Built", value: "Sixty Two Architectures" },
+                        { label: "Sensor Audits Handled", value: "One Hundred Plus" },
+                        { label: "Client Handover Score", value: "Unanimous Excellence" }
+                    ],
+                    videos: [
+                        { title: "Low Voltage Circuit Routing Standards", desc: "A detailed review of automated panel terminations and cable bundling guidelines." }
+                    ],
+                    routines: [
+                        { title: "Automation Redundancy Test", steps: ["Simulate sensor dropouts across key control segments", "Verify auxiliary backup power triggers instantly", "Log response measurements to central data bank"] }
+                    ]
                 }
             ],
             mechanical: [
@@ -881,21 +951,53 @@
                     name: "Julian Brooks",
                     role: "Lead Sanitary Engineer",
                     photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80",
+                    cover: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
                     summary: "Directs water supply installations, backflow preventers, and sanitary sewer routing projects.",
                     experience: "Decade of master level mechanical piping and high-pressure system checks.",
                     standards: "Aligned with International Plumbing Code structural guidelines.",
                     safety: "Certified water-resistant safety gear inspector and onsite team lead.",
-                    project: "Houston Industrial Wastewater Facility Piping Overhaul"
+                    project: "Houston Industrial Wastewater Facility Piping Overhaul",
+                    phone: "Direct Line: Houston Headquarters Dispatch - Extension Two Two",
+                    whatsapp: "Sanitary Systems Urgent Support Active Link",
+                    instagram: "Mechanical Fluid Systems Technical feed",
+                    biography: "Julian Brooks has overseen the implementation of high-capacity water flow, sanitation lines, and pressure-regulation valves for commercial developments. His work emphasizes physical durability and strict material standard guidelines.",
+                    stats: [
+                        { label: "Hydrostatic Tests Executed", value: "Ninety Eight Certified" },
+                        { label: "Sanitary Systems Placed", value: "Forty Core Projects" },
+                        { label: "Team Training Level", value: "Master Level Certified" }
+                    ],
+                    videos: [
+                        { title: "Hydrostatic Pressure Testing Protocol", desc: "Demonstrating sanitary pipe sealing, joint evaluations, and fluid-retention measurements." }
+                    ],
+                    routines: [
+                        { title: "Pipe joint Fusion Check", steps: ["Inspect copper and PVC junctions using electronic leak detectors", "Apply high pressure hydrostatic load tests", "Certify compliance with regional wastewater guidelines"] }
+                    ]
                 },
                 {
                     name: "Clara Mendoza",
                     role: "Senior Pressure Testing Specialist",
                     photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
+                    cover: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
                     summary: "Specializes in hydrostatic pressure testing, backflow prevention systems, and boiler integrations.",
                     experience: "Extensive background in mechanical pipe systems and fluid logistics.",
                     standards: "Complies with Uniform Plumbing Standards and city safety regulations.",
                     safety: "Advanced certified safety manager for hazardous liquid handling.",
-                    project: "Chicago High-Rise Water Distribution Loop"
+                    project: "Chicago High-Rise Water Distribution Loop",
+                    phone: "Direct Line: Chicago Support Desk - Extension One Nine",
+                    whatsapp: "Chicago Direct Pressure Support Link",
+                    instagram: "Fluid Dynamics Engineering Stream",
+                    biography: "Clara Mendoza leads high-altitude water supply loop design and testing. Her focus guarantees correct water pressures across high-rise layouts, applying strict physics calculations to every commercial project.",
+                    stats: [
+                        { label: "High Rise Loops Placed", value: "Eighteen Assemblies" },
+                        { label: "Boiler Integrations Done", value: "Twenty Seven Systems" },
+                        { label: "Standards Verified Score", value: "Flawless Standard" }
+                    ],
+                    videos: [
+                        { title: "High Elevation Water Flow Dynamics", desc: "A technical breakdown of pressure boosting systems and vertical flow regulation." }
+                    ],
+                    routines: [
+                        { title: "Backflow Prevention Verification", steps: ["Verify check-valve alignment under varying pressure ranges", "Calibrate mechanical relief valves", "Log certification parameters with municipal offices"] }
+                    ]
                 }
             ],
             roofing: [
@@ -903,21 +1005,53 @@
                     name: "Kenneth Cole",
                     role: "Lead Flat Roof Superintendent",
                     photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
+                    cover: "https://images.unsplash.com/photo-1632759162444-18300061324e?auto=format&fit=crop&w=1200&q=80",
                     summary: "Expert in single-ply flat roof installations, hot-air welded membranes, and wind-uplift mitigation.",
                     experience: "Longstanding career in weatherproofing membranes and flat deck drainage.",
                     standards: "Aligned with National Roofing Contractors Association guidelines.",
                     safety: "OSHA-compliant structural harness anchor point certification holder.",
-                    project: "Houston Logistics Center TPO Membrane Envelope"
+                    project: "Houston Logistics Center TPO Membrane Envelope",
+                    phone: "Direct Line: Houston Support - Extension Five Nine",
+                    whatsapp: "Envelope Operations Direct Dispatch Channel",
+                    instagram: "Flat Roof Engineering Technical Stream",
+                    biography: "Kenneth Cole supervises advanced commercial flat roofing tasks. His expertise ranges from TPO membrane welding to complete drainage layout optimization to eliminate any water retention risks.",
+                    stats: [
+                        { label: "Flat Roof Area Sealed", value: "Thousands of Yards" },
+                        { label: "Membrane Audits Completed", value: "Ninety One Certified" },
+                        { label: "Wind Uplift Rating Standard", value: "Maximum Level Certified" }
+                    ],
+                    videos: [
+                        { title: "TPO Membrane Hot Air Welding", desc: "Demonstrating dynamic weld assessments, hand welding tool usage, and seam verification checkups." }
+                    ],
+                    routines: [
+                        { title: "Seam Integrity Inspection", steps: ["Perform mechanical stress testing on welded membrane seams", "Execute ultrasonic verification across high stress junctions", "Log roofing membrane safety compliance dossiers"] }
+                    ]
                 },
                 {
                     name: "Fiona Gallagher",
                     role: "Senior Envelope Specialist",
                     photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+                    cover: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
                     summary: "Coordinates exterior flashing designs, single-ply thermal barriers, and rain drain integrations.",
                     experience: "Years of advanced structural building envelope shielding.",
                     standards: "Adheres to stringent commercial weatherproofing requirements.",
                     safety: "First-grade fall protection equipment supervisor.",
-                    project: "Chicago Central Depot Weatherproofing Renewal"
+                    project: "Chicago Central Depot Weatherproofing Renewal",
+                    phone: "Direct Line: Chicago Support office - Extension Three Six",
+                    whatsapp: "Chicago Weatherproofing Active Desk",
+                    instagram: "Building Envelope Integrity Portfolio",
+                    biography: "Fiona Gallagher manages detailed building envelope operations, with a strong focus on thermal performance and moisture isolation. She handles wall transitions and rain barrier integrations.",
+                    stats: [
+                        { label: "Envelope Audits Handled", value: "Seventy Three Evaluations" },
+                        { label: "Moisture Protection Ratings", value: "Excellent Standards" },
+                        { label: "Insulated Projects Completed", value: "Thirty One Facilities" }
+                    ],
+                    videos: [
+                        { title: "Exterior Flashing System Alignment", desc: "Showcasing metal flashing adjustments and joint moisture sealant application guides." }
+                    ],
+                    routines: [
+                        { title: "Envelope Thermal Scan", steps: ["Execute infrared thermal analysis across structural junctions", "Locate potential heat leakage corridors", "Optimize thermal insulation blankets to close gaps"] }
+                    ]
                 }
             ]
         };
@@ -945,18 +1079,19 @@
                 container.innerHTML += `
                     <div class="border border-slate-200/80 rounded-2xl p-5 flex flex-col justify-between bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
                         <div class="flex gap-4 items-start">
-                            <div class="h-16 w-16 bg-slate-200 rounded-full overflow-hidden flex-shrink-0 border border-slate-300">
+                            <div class="h-20 w-20 bg-slate-200 rounded-2xl overflow-hidden flex-shrink-0 border border-slate-300 shadow-sm">
                                 <img src="${pro.photo}" alt="${pro.name}" class="h-full w-full object-cover">
                             </div>
-                            <div>
+                            <div class="space-y-1">
                                 <h4 class="font-extrabold text-slate-900 text-base leading-snug">${pro.name}</h4>
-                                <p class="text-xs font-bold text-orange-500 uppercase tracking-wide mt-0.5">${pro.role}</p>
-                                <p class="text-xs text-slate-500 mt-2 leading-relaxed">${pro.summary}</p>
+                                <p class="text-xs font-bold text-orange-500 uppercase tracking-wide">${pro.role}</p>
+                                <p class="text-[11px] text-slate-400 font-medium font-sans">${pro.phone}</p>
+                                <p class="text-xs text-slate-500 leading-relaxed pt-1">${pro.summary}</p>
                             </div>
                         </div>
                         <div class="pt-4 mt-4 border-t border-slate-100 flex justify-end">
                             <button onclick="viewProfessionalLanding('${category}', ${index})" class="text-[11px] font-bold uppercase tracking-wider text-white bg-slate-900 hover:bg-orange-500 py-2.5 px-4 rounded-xl transition-all duration-300 focus:outline-none">
-                                View Capability Profile
+                                View Full Landing Page
                             </button>
                         </div>
                     </div>
@@ -987,78 +1122,166 @@
             document.getElementById('modal-scroll-area').scrollTop = 0;
         }
 
+        let currentActiveProfile = null;
+
         function viewProfessionalLanding(category, index) {
             const pro = professionalsData[category][index];
+            currentActiveProfile = pro;
             const landingContainer = document.getElementById('professional-landing-content');
 
+            // Build the complete high-fidelity landing page profile
             landingContainer.innerHTML = `
-                <!-- Left Side: Profile Banner & Core Bio -->
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="flex flex-col sm:flex-row gap-6 items-start">
-                        <div class="h-28 w-28 bg-slate-100 rounded-3xl overflow-hidden shadow-md flex-shrink-0 border border-slate-300">
-                            <img src="${pro.photo}" alt="${pro.name}" class="h-full w-full object-cover">
-                        </div>
-                        <div class="space-y-2">
-                            <span class="inline-block bg-orange-50 border border-orange-200 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
-                                Master Grade Status
-                            </span>
-                            <h4 class="text-2xl font-black text-slate-900 tracking-tight leading-none">${pro.name}</h4>
-                            <p class="text-sm font-semibold text-slate-600">${pro.role}</p>
-                        </div>
-                    </div>
+                <!-- Full Width Cover Banner -->
+                <div class="relative w-full h-44 sm:h-56 rounded-2xl overflow-hidden bg-slate-200 border border-slate-200">
+                    <img src="${pro.cover}" alt="Corporate Project Cover" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+                </div>
 
-                    <div class="pt-4 border-t border-slate-100 space-y-4">
-                        <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400">Professional Dossier</h5>
-                        <p class="text-sm text-slate-600 leading-relaxed font-medium">
-                            As a verified lead within our multi-state operations, this professional maintains active field credentials and serves as a supervisor for structural site integrations. They are committed to absolute technical precision and flawless site security.
-                        </p>
-                        <p class="text-sm text-slate-500 leading-relaxed">
-                            Under their supervision, all field layouts undergo thorough structural calculations and quality testing before any municipal walk-throughs are requested.
-                        </p>
+                <!-- Overlapping Profile Avatar & Principal Details -->
+                <div class="relative px-4 sm:px-6 -mt-16 sm:-mt-20 flex flex-col md:flex-row md:items-end gap-5 z-10">
+                    <div class="h-28 w-28 sm:h-36 sm:w-36 bg-white rounded-3xl overflow-hidden border-4 border-white shadow-lg flex-shrink-0">
+                        <img src="${pro.photo}" alt="${pro.name}" class="h-full w-full object-cover">
                     </div>
-
-                    <!-- Dynamic attributes -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
-                            <h6 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Standard Compliance</h6>
-                            <p class="text-xs font-bold text-slate-800 mt-1 leading-snug">${pro.standards}</p>
-                        </div>
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
-                            <h6 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Field Experience</h6>
-                            <p class="text-xs font-bold text-slate-800 mt-1 leading-snug">${pro.experience}</p>
-                        </div>
+                    <div class="pb-2 space-y-1">
+                        <span class="inline-block bg-orange-50 border border-orange-200 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                            Master Grade Specialist
+                        </span>
+                        <h4 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-none">${pro.name}</h4>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-wider">${pro.role}</p>
                     </div>
                 </div>
 
-                <!-- Right Side: Details & Interactive Action -->
-                <div class="lg:col-span-5 space-y-6 bg-slate-50 p-6 rounded-3xl border border-slate-200/80">
-                    <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Active Site Assignment</h5>
+                <!-- Main Grid Layout: Info vs Dynamic Tab Content -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6">
 
-                    <div class="space-y-4 text-xs">
-                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <span class="font-bold text-slate-700">Project Oversight</span>
-                            <span class="font-semibold text-slate-600 text-right max-w-[180px]">${pro.project}</span>
+                    <!-- Left Column: Biography & Social Connections -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="space-y-3">
+                            <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400">Professional Biography</h5>
+                            <p class="text-sm text-slate-600 leading-relaxed font-medium">
+                                ${pro.biography}
+                            </p>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                Maintaining active field safety standards and representing Apex United Contractors on major nationwide general contracting projects. All field operations are executed under strict code alignments.
+                            </p>
                         </div>
-                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <span class="font-bold text-slate-700">Safety Credential</span>
-                            <span class="font-semibold text-slate-600 text-right">${pro.safety}</span>
-                        </div>
-                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <span class="font-bold text-slate-700">Licensing Standing</span>
-                            <span class="font-semibold text-slate-600 text-right">Active Multi-State</span>
+
+                        <!-- Communication & Secure Dispatch Links (Narrative, no numbers, no icons) -->
+                        <div class="pt-4 border-t border-slate-100 space-y-4">
+                            <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400">Secure Correspondence Channels</h5>
+
+                            <div class="space-y-2.5">
+                                <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl border border-slate-200/60 text-xs">
+                                    <span class="font-bold text-slate-700">Direct Telephone Connection</span>
+                                    <span class="font-medium text-slate-500 text-right">${pro.phone}</span>
+                                </div>
+
+                                <div class="flex flex-col sm:flex-row gap-2">
+                                    <a href="#" onclick="return false;" class="flex-1 text-center text-xs font-bold uppercase tracking-wider text-white bg-slate-900 hover:bg-orange-500 py-3 px-4 rounded-xl transition-all duration-300">
+                                        Send WhatsApp Secure Dispatch
+                                    </a>
+                                    <a href="#" onclick="return false;" class="flex-1 text-center text-xs font-bold uppercase tracking-wider text-slate-700 bg-slate-100 hover:bg-slate-200 py-3 px-4 rounded-xl transition-all duration-300">
+                                        Follow Instagram Technical Feed
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 space-y-3">
-                        <h6 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Request Assignment</h6>
-                        <p class="text-[11px] text-slate-500 leading-normal">
-                            You can request to assign this specialist to lead the structural design phase of your upcoming technical general contracting project.
-                        </p>
-                        <div id="planner-action-area">
-                            <button onclick="requestPlannerAssignment()" class="w-full text-center text-xs font-bold uppercase tracking-wider text-white bg-orange-500 hover:bg-orange-600 py-3 px-4 rounded-xl transition-all duration-300 focus:outline-none shadow-sm hover:shadow">
-                                Assign To Project Planner
+                    <!-- Right Column: Interactive Sub-Tabs Manager (Statistics, Videos, Routines) -->
+                    <div class="lg:col-span-6 space-y-6 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200/80">
+
+                        <!-- Profile Sub-Tab Buttons -->
+                        <div class="flex border-b border-slate-200 pb-2">
+                            <button id="profile-tab-btn-stats" onclick="switchProfileSubTab('stats')" class="flex-1 pb-3 text-xs font-bold uppercase tracking-wider text-center border-b-2 border-transparent transition-all duration-200 profile-tab-active">
+                                Statistics
+                            </button>
+                            <button id="profile-tab-btn-videos" onclick="switchProfileSubTab('videos')" class="flex-1 pb-3 text-xs font-bold uppercase tracking-wider text-center border-b-2 border-transparent transition-all duration-200 text-slate-400 hover:text-slate-600">
+                                Technical Videos
+                            </button>
+                            <button id="profile-tab-btn-routines" onclick="switchProfileSubTab('routines')" class="flex-1 pb-3 text-xs font-bold uppercase tracking-wider text-center border-b-2 border-transparent transition-all duration-200 text-slate-400 hover:text-slate-600">
+                                Procedures
                             </button>
                         </div>
+
+                        <!-- Tab 1: Statistics Panel -->
+                        <div id="profile-panel-stats" class="space-y-5">
+                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Performance Metrics</h5>
+
+                            <div class="space-y-4">
+                                ${pro.stats.map(s => `
+                                    <div class="flex items-center justify-between border-b border-slate-200/60 pb-3 text-xs">
+                                        <span class="font-bold text-slate-700">${s.label}</span>
+                                        <span class="font-semibold text-slate-600">${s.value}</span>
+                                    </div>
+                                `).join('')}
+
+                                <div class="flex items-center justify-between border-b border-slate-200/60 pb-3 text-xs">
+                                    <span class="font-bold text-slate-700">Onsite Project Assignment</span>
+                                    <span class="font-semibold text-slate-600 text-right max-w-[200px]">${pro.project}</span>
+                                </div>
+                                <div class="flex items-center justify-between border-b border-slate-200/60 pb-3 text-xs">
+                                    <span class="font-bold text-slate-700">Safety Credential Status</span>
+                                    <span class="font-semibold text-slate-600 text-right">${pro.safety}</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-2xl border border-slate-200/80 space-y-3 mt-4">
+                                <h6 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Planner Assignment Request</h6>
+                                <p class="text-[11px] text-slate-500 leading-normal">
+                                    You can request to assign this specialist to lead the structural design phase of your upcoming technical general contracting project.
+                                </p>
+                                <div id="planner-action-area">
+                                    <button onclick="requestPlannerAssignment()" class="w-full text-center text-xs font-bold uppercase tracking-wider text-white bg-orange-500 hover:bg-orange-600 py-3 px-4 rounded-xl transition-all duration-300 focus:outline-none shadow-sm hover:shadow">
+                                        Assign To Project Planner
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Videos Panel (Initially Hidden) -->
+                        <div id="profile-panel-videos" class="hidden space-y-4">
+                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Published Technical Demonstrations</h5>
+
+                            <div class="space-y-4">
+                                ${pro.videos.map((vid, idx) => `
+                                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm space-y-2">
+                                        <div class="aspect-video w-full rounded-xl bg-slate-900 flex items-center justify-center text-white relative overflow-hidden group">
+                                            <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-transparent"></div>
+                                            <span class="text-xs font-bold tracking-widest uppercase bg-slate-950/85 px-4 py-2 rounded-xl border border-slate-800">
+                                                Play Technical Video Demonstration
+                                            </span>
+                                        </div>
+                                        <h6 class="text-xs font-bold text-slate-900 pt-1">${vid.title}</h6>
+                                        <p class="text-[11px] text-slate-500 leading-relaxed">${vid.desc}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Tab 3: Routines Panel (Initially Hidden) -->
+                        <div id="profile-panel-routines" class="hidden space-y-5">
+                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Standard Operating Procedures</h5>
+
+                            <div class="space-y-5">
+                                ${pro.routines.map(routine => `
+                                    <div class="space-y-3">
+                                        <h6 class="text-xs font-bold text-slate-800 border-l-2 border-orange-500 pl-2 uppercase tracking-wide">
+                                            ${routine.title}
+                                        </h6>
+                                        <ul class="text-[11px] text-slate-600 space-y-2 pl-2">
+                                            ${routine.steps.map(step => `
+                                                <li class="flex items-start gap-2 leading-relaxed">
+                                                    <span class="text-orange-500 font-bold">&#8250;</span>
+                                                    <span>${step}</span>
+                                                </li>
+                                            `).join('')}
+                                        </ul>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             `;
@@ -1068,6 +1291,30 @@
             landingDiv.classList.remove('hidden');
 
             document.getElementById('modal-scroll-area').scrollTop = 0;
+        }
+
+        function switchProfileSubTab(activeTab) {
+            const tabs = ['stats', 'videos', 'routines'];
+
+            tabs.forEach(t => {
+                const btn = document.getElementById(`profile-tab-btn-${t}`);
+                const panel = document.getElementById(`profile-panel-${t}`);
+                if (btn) {
+                    btn.className = "flex-1 pb-3 text-xs font-bold uppercase tracking-wider text-center border-b-2 border-transparent transition-all duration-200 text-slate-400 hover:text-slate-600";
+                }
+                if (panel) {
+                    panel.classList.add('hidden');
+                }
+            });
+
+            const activeBtn = document.getElementById(`profile-tab-btn-${activeTab}`);
+            const activePanel = document.getElementById(`profile-panel-${activeTab}`);
+            if (activeBtn) {
+                activeBtn.className = "flex-1 pb-3 text-xs font-bold uppercase tracking-wider text-center border-b-2 border-transparent transition-all duration-200 profile-tab-active";
+            }
+            if (activePanel) {
+                activePanel.classList.remove('hidden');
+            }
         }
 
         function requestPlannerAssignment() {
