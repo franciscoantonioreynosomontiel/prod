@@ -59,18 +59,6 @@
 
 <body class="bg-white text-slate-800 antialiased selection:bg-orange-100 selection:text-orange-800">
 
-    <!-- Anti-Inspect Logic -->
-    <script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12') e.preventDefault();
-            if (e.ctrlKey && e.shiftKey && ['i','c','j'].includes(e.key.toLowerCase())) e.preventDefault();
-            if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
-        });
-    </script>
-
     <!-- Top Info Bar (Corporate Status & Safety Alignment) - NO NUMBERS, NO ICONS, NO EMOJIS -->
     <div class="bg-slate-900 text-slate-300 text-[11px] font-medium tracking-wider py-2 px-6 border-b border-slate-800">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
@@ -224,7 +212,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                 <!-- Division: Structural & Building -->
-                <div class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                <div onclick="openProfessionalsPopup('structural')" class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between cursor-pointer transition-all duration-300 hover:border-orange-500 hover:shadow-lg hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-48 w-full overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Structural timber house frame structure" class="w-full h-full object-cover">
                     </div>
@@ -242,7 +230,7 @@
                 </div>
 
                 <!-- Division: Master Electrical Systems -->
-                <div class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                <div onclick="openProfessionalsPopup('electrical')" class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between cursor-pointer transition-all duration-300 hover:border-orange-500 hover:shadow-lg hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-48 w-full overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Professional electrician working on wires" class="w-full h-full object-cover">
                     </div>
@@ -260,7 +248,7 @@
                 </div>
 
                 <!-- Division: Mechanical & Plumbing -->
-                <div class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                <div onclick="openProfessionalsPopup('mechanical')" class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between cursor-pointer transition-all duration-300 hover:border-orange-500 hover:shadow-lg hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-48 w-full overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" alt="Plumbing and mechanical piping design" class="w-full h-full object-cover">
                     </div>
@@ -278,7 +266,7 @@
                 </div>
 
                 <!-- Division: Certified Roofing & Weatherproofing -->
-                <div class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="400">
+                <div onclick="openProfessionalsPopup('roofing')" class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between cursor-pointer transition-all duration-300 hover:border-orange-500 hover:shadow-lg hover:-translate-y-1" data-aos="fade-up" data-aos-delay="400">
                     <div class="h-48 w-full overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1632759162444-18300061324e?auto=format&fit=crop&w=800&q=80" alt="Roofing envelope membrane installation" class="w-full h-full object-cover">
                     </div>
@@ -736,6 +724,54 @@
         </div>
     </footer>
 
+    <!-- Professionals Interactive Popup Modal -->
+    <div id="professionals-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div id="professionals-modal-card" class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-all duration-300">
+
+            <!-- Modal Header -->
+            <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                <div>
+                    <span id="modal-category-label" class="text-[10px] font-bold uppercase tracking-widest text-orange-500">Corporate Division</span>
+                    <h3 id="modal-title" class="text-xl font-extrabold text-slate-900 tracking-tight">Trade Specialists</h3>
+                </div>
+                <button onclick="closeProfessionalsPopup()" class="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-orange-500 transition-colors py-2 px-4 rounded-xl hover:bg-slate-100 focus:outline-none">
+                    Dismiss
+                </button>
+            </div>
+
+            <!-- Modal Content Area (Scrollable) -->
+            <div id="modal-scroll-area" class="overflow-y-auto p-6 md:p-8 bg-white flex-1">
+
+                <!-- STATE A: Grid of Professional Digital Cards -->
+                <div id="state-professionals-grid" class="space-y-6">
+                    <p class="text-sm text-slate-500 font-medium">Select a licensed professional below to explore their capability dossier and view their dedicated landing profile.</p>
+                    <div id="professionals-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Dynamically populated card items -->
+                    </div>
+                </div>
+
+                <!-- STATE B: Professional Landing Page Profile (Initially Hidden) -->
+                <div id="state-professional-landing" class="hidden space-y-8 animate-fade-in">
+
+                    <!-- Back navigation bar -->
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                        <button onclick="showProfessionalsGrid()" class="text-xs font-bold uppercase tracking-wider text-orange-500 hover:text-orange-600 transition-colors flex items-center gap-1 focus:outline-none">
+                            Back To Division Team
+                        </button>
+                        <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">Verified Credentials Dossier</span>
+                    </div>
+
+                    <!-- Dynamic Landing Page Content -->
+                    <div id="professional-landing-content" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        <!-- Dynamically populated profile landing page details -->
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
     <!-- Scripts: AOS Animations, Local Tab Interactions -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -792,6 +828,255 @@
                 document.getElementById('tab-btn-roof').className = "py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-left border border-transparent transition-all duration-200 trade-tab-active";
                 document.getElementById('tab-panel-roof').classList.remove('hidden');
             }
+        }
+
+        // --- Professionals Interactive Modal Data and Logic ---
+        const professionalsData = {
+            structural: [
+                {
+                    name: "Arthur Vance",
+                    role: "Principal Framing Superintendent",
+                    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+                    summary: "Supervises large scale timber assemblies and structural concrete layouts with a flawless safety record and master builder status.",
+                    experience: "Nearly two decades of hands-on structural construction experience.",
+                    standards: "Fully aligned with International Building Code structural guidelines.",
+                    safety: "Holder of National General Contractor certified safety standards.",
+                    project: "Houston Corporate Office Complex Framing Project"
+                },
+                {
+                    name: "Silas Thorne",
+                    role: "Senior Foundation Engineer",
+                    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+                    summary: "Expert in concrete foundation stability and load-bearing timber and steel assemblies.",
+                    experience: "Extensive years managing soil preparations and structural framing alignment.",
+                    standards: "Adheres to federal and state building foundation criteria.",
+                    safety: "Certified onsite safety supervisor with pristine field reports.",
+                    project: "Midwest Logistics Facility Foundation Phase"
+                }
+            ],
+            electrical: [
+                {
+                    name: "Marcus Sterling",
+                    role: "Master Electrician & Grid Supervisor",
+                    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+                    summary: "Oversees critical commercial electrical grid connections, high-voltage breakers, and utility upgrades.",
+                    experience: "Master grade experience in electrical routing and main panel layouts.",
+                    standards: "Strictly compliant with National Electrical Code safety standards.",
+                    safety: "Advanced category protective gear certification and Arc-Flash training.",
+                    project: "Chicago Technical Center Power Grid Integration"
+                },
+                {
+                    name: "Helena Rostova",
+                    role: "Lead Systems Architect",
+                    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+                    summary: "Specializes in low-voltage emergency warning configurations and automated control circuitry design.",
+                    experience: "Many years of custom industrial system routing and control panel wiring.",
+                    standards: "Underwriter Laboratories high standard testing guidelines compliant.",
+                    safety: "Certified dielectric insulation handler with a clean incident record.",
+                    project: "Houston Multi-Tenant Terminal Control Circuit Installation"
+                }
+            ],
+            mechanical: [
+                {
+                    name: "Julian Brooks",
+                    role: "Lead Sanitary Engineer",
+                    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80",
+                    summary: "Directs water supply installations, backflow preventers, and sanitary sewer routing projects.",
+                    experience: "Decade of master level mechanical piping and high-pressure system checks.",
+                    standards: "Aligned with International Plumbing Code structural guidelines.",
+                    safety: "Certified water-resistant safety gear inspector and onsite team lead.",
+                    project: "Houston Industrial Wastewater Facility Piping Overhaul"
+                },
+                {
+                    name: "Clara Mendoza",
+                    role: "Senior Pressure Testing Specialist",
+                    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
+                    summary: "Specializes in hydrostatic pressure testing, backflow prevention systems, and boiler integrations.",
+                    experience: "Extensive background in mechanical pipe systems and fluid logistics.",
+                    standards: "Complies with Uniform Plumbing Standards and city safety regulations.",
+                    safety: "Advanced certified safety manager for hazardous liquid handling.",
+                    project: "Chicago High-Rise Water Distribution Loop"
+                }
+            ],
+            roofing: [
+                {
+                    name: "Kenneth Cole",
+                    role: "Lead Flat Roof Superintendent",
+                    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
+                    summary: "Expert in single-ply flat roof installations, hot-air welded membranes, and wind-uplift mitigation.",
+                    experience: "Longstanding career in weatherproofing membranes and flat deck drainage.",
+                    standards: "Aligned with National Roofing Contractors Association guidelines.",
+                    safety: "OSHA-compliant structural harness anchor point certification holder.",
+                    project: "Houston Logistics Center TPO Membrane Envelope"
+                },
+                {
+                    name: "Fiona Gallagher",
+                    role: "Senior Envelope Specialist",
+                    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+                    summary: "Coordinates exterior flashing designs, single-ply thermal barriers, and rain drain integrations.",
+                    experience: "Years of advanced structural building envelope shielding.",
+                    standards: "Adheres to stringent commercial weatherproofing requirements.",
+                    safety: "First-grade fall protection equipment supervisor.",
+                    project: "Chicago Central Depot Weatherproofing Renewal"
+                }
+            ]
+        };
+
+        function openProfessionalsPopup(category) {
+            const modal = document.getElementById('professionals-modal');
+            const modalCard = document.getElementById('professionals-modal-card');
+            const label = document.getElementById('modal-category-label');
+            const title = document.getElementById('modal-title');
+
+            let divisionName = "Specialty Trade Division";
+            if (category === 'structural') divisionName = "Structural & Building Division";
+            else if (category === 'electrical') divisionName = "Master Electrical Division";
+            else if (category === 'mechanical') divisionName = "Mechanical & Plumbing Division";
+            else if (category === 'roofing') divisionName = "Roofing Envelope Division";
+
+            label.innerText = divisionName;
+            title.innerText = "Division Specialists";
+
+            const container = document.getElementById('professionals-cards-container');
+            container.innerHTML = '';
+
+            const team = professionalsData[category] || [];
+            team.forEach((pro, index) => {
+                container.innerHTML += `
+                    <div class="border border-slate-200/80 rounded-2xl p-5 flex flex-col justify-between bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
+                        <div class="flex gap-4 items-start">
+                            <div class="h-16 w-16 bg-slate-200 rounded-full overflow-hidden flex-shrink-0 border border-slate-300">
+                                <img src="${pro.photo}" alt="${pro.name}" class="h-full w-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900 text-base leading-snug">${pro.name}</h4>
+                                <p class="text-xs font-bold text-orange-500 uppercase tracking-wide mt-0.5">${pro.role}</p>
+                                <p class="text-xs text-slate-500 mt-2 leading-relaxed">${pro.summary}</p>
+                            </div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-100 flex justify-end">
+                            <button onclick="viewProfessionalLanding('${category}', ${index})" class="text-[11px] font-bold uppercase tracking-wider text-white bg-slate-900 hover:bg-orange-500 py-2.5 px-4 rounded-xl transition-all duration-300 focus:outline-none">
+                                View Capability Profile
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            showProfessionalsGrid();
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalCard.classList.remove('scale-95');
+            modalCard.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProfessionalsPopup() {
+            const modal = document.getElementById('professionals-modal');
+            const modalCard = document.getElementById('professionals-modal-card');
+
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalCard.classList.remove('scale-100');
+            modalCard.classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
+
+        function showProfessionalsGrid() {
+            document.getElementById('state-professionals-grid').classList.remove('hidden');
+            document.getElementById('state-professional-landing').classList.add('hidden');
+            document.getElementById('modal-scroll-area').scrollTop = 0;
+        }
+
+        function viewProfessionalLanding(category, index) {
+            const pro = professionalsData[category][index];
+            const landingContainer = document.getElementById('professional-landing-content');
+
+            landingContainer.innerHTML = `
+                <!-- Left Side: Profile Banner & Core Bio -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex flex-col sm:flex-row gap-6 items-start">
+                        <div class="h-28 w-28 bg-slate-100 rounded-3xl overflow-hidden shadow-md flex-shrink-0 border border-slate-300">
+                            <img src="${pro.photo}" alt="${pro.name}" class="h-full w-full object-cover">
+                        </div>
+                        <div class="space-y-2">
+                            <span class="inline-block bg-orange-50 border border-orange-200 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                                Master Grade Status
+                            </span>
+                            <h4 class="text-2xl font-black text-slate-900 tracking-tight leading-none">${pro.name}</h4>
+                            <p class="text-sm font-semibold text-slate-600">${pro.role}</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 space-y-4">
+                        <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400">Professional Dossier</h5>
+                        <p class="text-sm text-slate-600 leading-relaxed font-medium">
+                            As a verified lead within our multi-state operations, this professional maintains active field credentials and serves as a supervisor for structural site integrations. They are committed to absolute technical precision and flawless site security.
+                        </p>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Under their supervision, all field layouts undergo thorough structural calculations and quality testing before any municipal walk-throughs are requested.
+                        </p>
+                    </div>
+
+                    <!-- Dynamic attributes -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <h6 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Standard Compliance</h6>
+                            <p class="text-xs font-bold text-slate-800 mt-1 leading-snug">${pro.standards}</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <h6 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Field Experience</h6>
+                            <p class="text-xs font-bold text-slate-800 mt-1 leading-snug">${pro.experience}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Details & Interactive Action -->
+                <div class="lg:col-span-5 space-y-6 bg-slate-50 p-6 rounded-3xl border border-slate-200/80">
+                    <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Active Site Assignment</h5>
+
+                    <div class="space-y-4 text-xs">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <span class="font-bold text-slate-700">Project Oversight</span>
+                            <span class="font-semibold text-slate-600 text-right max-w-[180px]">${pro.project}</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <span class="font-bold text-slate-700">Safety Credential</span>
+                            <span class="font-semibold text-slate-600 text-right">${pro.safety}</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <span class="font-bold text-slate-700">Licensing Standing</span>
+                            <span class="font-semibold text-slate-600 text-right">Active Multi-State</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 space-y-3">
+                        <h6 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Request Assignment</h6>
+                        <p class="text-[11px] text-slate-500 leading-normal">
+                            You can request to assign this specialist to lead the structural design phase of your upcoming technical general contracting project.
+                        </p>
+                        <div id="planner-action-area">
+                            <button onclick="requestPlannerAssignment()" class="w-full text-center text-xs font-bold uppercase tracking-wider text-white bg-orange-500 hover:bg-orange-600 py-3 px-4 rounded-xl transition-all duration-300 focus:outline-none shadow-sm hover:shadow">
+                                Assign To Project Planner
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('state-professionals-grid').classList.add('hidden');
+            const landingDiv = document.getElementById('state-professional-landing');
+            landingDiv.classList.remove('hidden');
+
+            document.getElementById('modal-scroll-area').scrollTop = 0;
+        }
+
+        function requestPlannerAssignment() {
+            const actionArea = document.getElementById('planner-action-area');
+            actionArea.innerHTML = `
+                <div class="bg-emerald-50 text-emerald-800 p-3.5 rounded-xl border border-emerald-200 text-xs font-bold text-center leading-normal">
+                    Specialist assignment successfully requested for your project planner
+                </div>
+            `;
         }
     </script>
 </body>
