@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth h-full">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Chuze Fitness - Club de Bienestar e Información</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        chuze: {
+                            yellow: '#FCD116', /* Golden Yellow matched to Chuze Logo */
+                            yellowHover: '#E5BD10',
+                            dark: '#0A0A0A',
+                            darkGray: '#121212',
+                            lightGray: '#1C1C1E',
+                            accent: '#FCD116'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Animate On Scroll (AOS) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #F3F4F6;
+        }
+
+        .font-display {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* custom thin scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0A0A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FCD116;
+        }
+
+        /* custom tab styling transition */
+        .tab-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-chuze-dark text-gray-200 selection:bg-chuze-yellow selection:text-black antialiased overflow-x-hidden">
+
+    <!-- Sticky Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent bg-chuze-dark/85 backdrop-blur-md" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+
+                <!-- Logo Section -->
+                <a href="#inicio" class="flex items-center gap-3 group transition duration-300">
+                    <img src="assets/img/Chuze-RECT-rgb.jpg" alt="Chuze Fitness Logo" class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://chuze-marketing-assets.s3.amazonaws.com/Chuze-RECT-rgb.jpg';">
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#inicio" class="text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow transition-colors duration-200">Inicio</a>
+                    <a href="#filosofia" class="text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow transition-colors duration-200">Filosofía</a>
+                    <a href="#instalaciones" class="text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow transition-colors duration-200">Instalaciones</a>
+                    <a href="#clases" class="text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow transition-colors duration-200">Clases Grupales</a>
+                    <a href="#recuperacion" class="text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow transition-colors duration-200">Recuperación</a>
+                    <a href="#ubicacion" class="text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow transition-colors duration-200">Horarios y Ubicación</a>
+                    <a href="#preguntas" class="text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow transition-colors duration-200">Preguntas</a>
+                </nav>
+
+                <!-- Header CTA (Non-sales oriented, focuses on booking a free tour/information visit) -->
+                <div class="hidden lg:flex items-center">
+                    <a href="#contacto" class="bg-chuze-yellow hover:bg-chuze-yellowHover text-black font-extrabold uppercase tracking-widest text-xs px-5 py-3 rounded-lg transition duration-300 font-display">
+                        Solicitar Visita Informativa
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex lg:hidden">
+                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-chuze-lightGray focus:outline-none transition duration-200">
+                        <i data-lucide="menu" class="w-6 h-6 block" id="menu-icon-open"></i>
+                        <i data-lucide="x" class="w-6 h-6 hidden" id="menu-icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="hidden lg:hidden bg-chuze-dark border-t border-chuze-lightGray transition duration-300" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <a href="#inicio" class="mobile-nav-link block px-3 py-3 rounded-md text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow hover:bg-chuze-lightGray transition duration-200">Inicio</a>
+                <a href="#filosofia" class="mobile-nav-link block px-3 py-3 rounded-md text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow hover:bg-chuze-lightGray transition duration-200">Filosofía</a>
+                <a href="#instalaciones" class="mobile-nav-link block px-3 py-3 rounded-md text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow hover:bg-chuze-lightGray transition duration-200">Instalaciones</a>
+                <a href="#clases" class="mobile-nav-link block px-3 py-3 rounded-md text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow hover:bg-chuze-lightGray transition duration-200">Clases Grupales</a>
+                <a href="#recuperacion" class="mobile-nav-link block px-3 py-3 rounded-md text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow hover:bg-chuze-lightGray transition duration-200">Recuperación</a>
+                <a href="#ubicacion" class="mobile-nav-link block px-3 py-3 rounded-md text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow hover:bg-chuze-lightGray transition duration-200">Horarios y Ubicación</a>
+                <a href="#preguntas" class="mobile-nav-link block px-3 py-3 rounded-md text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-chuze-yellow hover:bg-chuze-lightGray transition duration-200">Preguntas</a>
+                <div class="pt-4">
+                    <a href="#contacto" class="mobile-nav-link block w-full bg-chuze-yellow hover:bg-chuze-yellowHover text-black text-center font-extrabold uppercase tracking-widest py-3 rounded-lg transition duration-200 font-display text-xs">
+                        Solicitar Visita Informativa
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-chuze-dark pt-20">
+        <!-- Background Image with dynamic color overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1920&q=80" alt="Chuze Wellness Experience" class="w-full h-full object-cover object-center opacity-40 scale-100 animate-[pulse_10s_infinite_alternate]">
+            <!-- Dark gradient overlay matching branding -->
+            <div class="absolute inset-0 bg-gradient-to-t from-chuze-dark via-chuze-dark/75 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-chuze-dark via-transparent to-chuze-dark/50"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center lg:text-left flex flex-col lg:flex-row items-center gap-12">
+
+            <!-- Left Info Panel -->
+            <div class="w-full lg:w-1/2 space-y-6" data-aos="fade-right">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-chuze-yellow/10 border border-chuze-yellow/30 rounded-full text-chuze-yellow">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span class="text-xs font-extrabold tracking-widest uppercase font-display">BIENVENIDO A LA EXPERIENCIA CHUZE</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight font-display text-white leading-tight">
+                    EL BIENESTAR <br>QUE SE <span class="text-chuze-yellow">ADAPTA A TI</span>.
+                </h1>
+
+                <p class="text-gray-400 text-sm sm:text-base max-w-xl font-normal leading-relaxed">
+                    Creemos que un gimnasio debe ser algo más que pesas y máquinas. Chuze Fitness es un templo de salud integral diseñado para ser el lugar más limpio, acogedor e inspirador de tu día. Ven a descubrir nuestras instalaciones de primer nivel sin presiones comerciales.
+                </p>
+
+                <!-- Interactive Hero Selector -->
+                <div class="bg-chuze-lightGray/80 border border-neutral-800 p-4 rounded-xl max-w-lg">
+                    <p class="text-xs text-chuze-yellow uppercase tracking-widest font-bold mb-3">¿Qué buscas hoy?</p>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="updateHeroFeature('cardio')" id="btn-hero-cardio" class="py-2.5 px-3 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-yellow text-chuze-dark transition-all duration-300">
+                            Cardio & Fuerza
+                        </button>
+                        <button onclick="updateHeroFeature('classes')" id="btn-hero-classes" class="py-2.5 px-3 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-dark border border-neutral-800 text-gray-300 hover:border-chuze-yellow transition-all duration-300">
+                            Clases
+                        </button>
+                        <button onclick="updateHeroFeature('wellness')" id="btn-hero-wellness" class="py-2.5 px-3 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-dark border border-neutral-800 text-gray-300 hover:border-chuze-yellow transition-all duration-300">
+                            Bienestar
+                        </button>
+                    </div>
+                    <!-- Display Text dynamic container -->
+                    <div class="mt-3 text-xs text-gray-400 font-light border-t border-neutral-800/40 pt-2" id="hero-feature-desc">
+                        Nuestras amplias áreas de entrenamiento cardiovascular y musculación cuentan con equipamiento moderno, ordenado y en perfectas condiciones higiénicas.
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 pt-2 justify-center lg:justify-start">
+                    <a href="#instalaciones" class="w-full sm:w-auto text-center bg-chuze-yellow hover:bg-chuze-yellowHover text-black font-extrabold uppercase tracking-wider text-xs px-8 py-4 rounded-lg transition-all duration-300 shadow-lg shadow-chuze-yellow/20 hover:scale-[1.01] font-display">
+                        Explorar Instalaciones
+                    </a>
+                    <a href="#contacto" class="w-full sm:w-auto text-center bg-transparent hover:bg-chuze-lightGray text-white border border-neutral-700 hover:border-chuze-yellow font-extrabold uppercase tracking-wider text-xs px-8 py-4 rounded-lg transition duration-300 font-display">
+                        Solicitar Más Información
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Interactive Graphic Card -->
+            <div class="w-full lg:w-1/2 flex justify-center" data-aos="fade-left">
+                <div class="relative bg-chuze-lightGray/95 border border-neutral-800 p-8 rounded-2xl shadow-2xl max-w-md w-full backdrop-blur-md overflow-hidden group">
+                    <div class="absolute -top-12 -right-12 w-40 h-40 bg-chuze-yellow/5 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <div class="flex items-center justify-between border-b border-neutral-800/60 pb-4 mb-6">
+                        <span class="text-xs font-bold text-chuze-yellow tracking-widest uppercase">DATOS RÁPIDOS DEL CLUB</span>
+                        <span class="inline-flex items-center gap-1 text-[10px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-full font-bold uppercase">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            ABIERTO HOY
+                        </span>
+                    </div>
+
+                    <!-- Club facts list -->
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 rounded bg-chuze-yellow/10 text-chuze-yellow shrink-0">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white uppercase">Ambiente Libre de Juicios</h3>
+                                <p class="text-xs text-gray-400">Diseñado para la comodidad y el progreso de personas de todos los niveles.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 rounded bg-chuze-yellow/10 text-chuze-yellow shrink-0">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white uppercase">Estricta Política de Limpieza</h3>
+                                <p class="text-xs text-gray-400">Sistemas de ventilación avanzados y desinfección continua en cada rincón.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 rounded bg-chuze-yellow/10 text-chuze-yellow shrink-0">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white uppercase">Zona Completa de Recuperación</h3>
+                                <p class="text-xs text-gray-400">Sillones de hidromasaje, saunas y cabinas de bienestar para después de entrenar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-neutral-800/60">
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div class="bg-chuze-dark p-3 rounded-lg border border-neutral-800/40">
+                                <span class="block text-2xl font-black text-chuze-yellow font-display">4,000+ m²</span>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-widest">Espacio Total</span>
+                            </div>
+                            <div class="bg-chuze-dark p-3 rounded-lg border border-neutral-800/40">
+                                <span class="block text-2xl font-black text-white font-display">120+</span>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-widest">Máquinas de Cardio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY / THE CHUZE MINDSET -->
+    <section id="filosofia" class="py-24 bg-chuze-dark border-t border-chuze-lightGray relative">
+        <div class="absolute top-1/3 left-10 w-72 h-72 bg-chuze-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-xs font-bold tracking-widest text-chuze-yellow uppercase px-3 py-1 bg-chuze-yellow/10 rounded-full border border-chuze-yellow/20">NUESTRA FILOSOFÍA</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                    MÁS QUE UN GIMNASIO, UNA COMUNIDAD
+                </h2>
+                <div class="h-1 w-16 bg-chuze-yellow mx-auto mt-4 rounded"></div>
+                <p class="text-gray-400 mt-4 text-sm font-normal">
+                    Nos esforzamos por redefinir lo que significa ir al gimnasio. Quitamos los egos, la intimidación y las distracciones para enfocarnos en lo verdaderamente importante: tu bienestar integral.
+                </p>
+            </div>
+
+            <!-- Pillars Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Pillar 1 -->
+                <div class="bg-chuze-lightGray/40 border border-neutral-800/60 p-8 rounded-xl hover:border-chuze-yellow/40 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="inline-flex p-3 rounded-lg bg-neutral-900 text-chuze-yellow mb-6 group-hover:bg-chuze-yellow group-hover:text-black transition-all duration-300">
+                        <i data-lucide="smile" class="w-6 h-6 stroke-[2]"></i>
+                    </div>
+                    <h3 class="text-lg font-bold font-display uppercase tracking-wider text-white mb-3">La Amabilidad por Delante</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Chuze Fitness es conocido como uno de los gimnasios más amigables del mundo. Nuestro equipo te recibirá con una sonrisa y estará siempre listo para guiarte, resolver dudas y brindarte apoyo.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-chuze-lightGray/40 border border-neutral-800/60 p-8 rounded-xl hover:border-chuze-yellow/40 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="inline-flex p-3 rounded-lg bg-neutral-900 text-chuze-yellow mb-6 group-hover:bg-chuze-yellow group-hover:text-black transition-all duration-300">
+                        <i data-lucide="droplet" class="w-6 h-6 stroke-[2]"></i>
+                    </div>
+                    <h3 class="text-lg font-bold font-display uppercase tracking-wider text-white mb-3">Limpieza de Nivel Hospitalario</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Entendemos la importancia de entrenar en un ambiente sano. Todo el club es desinfectado de manera minuciosa a lo largo del día. Te garantizamos que notarás la diferencia desde tu primer paso.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-chuze-lightGray/40 border border-neutral-800/60 p-8 rounded-xl hover:border-chuze-yellow/40 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="inline-flex p-3 rounded-lg bg-neutral-900 text-chuze-yellow mb-6 group-hover:bg-chuze-yellow group-hover:text-black transition-all duration-300">
+                        <i data-lucide="heart-handshake" class="w-6 h-6 stroke-[2]"></i>
+                    </div>
+                    <h3 class="text-lg font-bold font-display uppercase tracking-wider text-white mb-3">Accesibilidad y Diversidad</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Aquí conviven personas que pisan un gimnasio por primera vez, jóvenes atletas y adultos mayores. No hay lugar para egos ni actitudes intimidantes; cada quien avanza a su propio ritmo.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE CLUB AMENITIES & AREAS -->
+    <section id="instalaciones" class="py-24 bg-chuze-dark border-t border-chuze-lightGray relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-xs font-bold tracking-widest text-chuze-yellow uppercase px-3 py-1 bg-chuze-yellow/10 rounded-full border border-chuze-yellow/20">ÁREAS EXCLUSIVAS</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                    NUESTRAS ZONAS DETALLADAS
+                </h2>
+                <div class="h-1 w-16 bg-chuze-yellow mx-auto mt-4 rounded"></div>
+                <p class="text-gray-400 mt-4 text-sm font-normal">
+                    Explora de manera interactiva cada sector de nuestro club. Equipamiento de primera, áreas especializadas y la comodidad que necesitas para tu entrenamiento.
+                </p>
+            </div>
+
+            <!-- Tab Selector and Container -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                <!-- Tabs (Left Side) -->
+                <div class="lg:col-span-4 space-y-3" data-aos="fade-right">
+                    <button onclick="switchTab('zona-fuerza')" id="tab-zona-fuerza" class="w-full text-left bg-chuze-yellow border-l-4 border-chuze-yellow p-5 rounded-r-xl tab-transition flex items-center justify-between group">
+                        <div>
+                            <h4 class="text-xs font-bold text-black uppercase tracking-wider">ZONA DE FUERZA</h4>
+                            <p class="text-[11px] text-neutral-800 font-medium mt-1">Pesas libres y máquinas guiadas de última tecnología</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-black shrink-0 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </button>
+
+                    <button onclick="switchTab('zona-cardio')" id="tab-zona-cardio" class="w-full text-left bg-chuze-lightGray/60 hover:bg-chuze-lightGray border-l-4 border-transparent p-5 rounded-r-xl tab-transition flex items-center justify-between group">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">CARDIO DE VANGUARDIA</h4>
+                            <p class="text-[11px] text-gray-500 mt-1">Más de 100 máquinas con conectividad avanzada</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </button>
+
+                    <button onclick="switchTab('zona-funcional')" id="tab-zona-funcional" class="w-full text-left bg-chuze-lightGray/60 hover:bg-chuze-lightGray border-l-4 border-transparent p-5 rounded-r-xl tab-transition flex items-center justify-between group">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">ZONA CHUZE TURF</h4>
+                            <p class="text-[11px] text-gray-500 mt-1">Césped sintético para entrenamiento funcional y libre</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </button>
+
+                    <button onclick="switchTab('zona-piscina')" id="tab-zona-piscina" class="w-full text-left bg-chuze-lightGray/60 hover:bg-chuze-lightGray border-l-4 border-transparent p-5 rounded-r-xl tab-transition flex items-center justify-between group">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">ZONA ACUÁTICA</h4>
+                            <p class="text-[11px] text-gray-500 mt-1">Piscina climatizada de natación y jacuzzi premium</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+
+                <!-- Dynamic Content Display (Right Side) -->
+                <div class="lg:col-span-8 bg-chuze-lightGray/80 border border-neutral-800 p-6 rounded-2xl shadow-xl min-h-[400px] flex flex-col justify-between" data-aos="fade-left">
+
+                    <div id="tab-content" class="space-y-6">
+                        <!-- Initial Content: Zona Fuerza -->
+                        <div class="relative h-64 sm:h-80 w-full rounded-xl overflow-hidden bg-black shadow-inner">
+                            <img id="tab-image" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80" alt="Zona de Fuerza" class="w-full h-full object-cover opacity-80 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-chuze-yellow text-black px-2.5 py-1 rounded">Equipamiento Premium</span>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 id="tab-title" class="text-xl font-bold font-display text-white uppercase tracking-wider">ZONA DE ENTRENAMIENTO DE FUERZA</h3>
+                            <p id="tab-desc" class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                                Un espacio sumamente amplio equipado con mancuernas de alta calidad, soportes ajustables, bancos olímpicos y máquinas articuladas de última generación. La distribución está pensada para evitar aglomeraciones y garantizar un flujo fluido durante tus rutinas.
+                            </p>
+                        </div>
+
+                        <!-- Amenities List inside content -->
+                        <div class="border-t border-neutral-800/60 pt-4">
+                            <h4 class="text-[11px] font-bold text-chuze-yellow uppercase tracking-widest mb-3">CARACTERÍSTICAS INCLUIDAS</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="tab-features">
+                                <div class="flex items-center gap-2 text-xs text-gray-300">
+                                    <i data-lucide="check" class="w-4 h-4 text-chuze-yellow"></i>
+                                    <span>Racks de sentadillas y plataformas amortiguadas</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-gray-300">
+                                    <i data-lucide="check" class="w-4 h-4 text-chuze-yellow"></i>
+                                    <span>Mancuernas de hasta 50 kg con agarre ergonómico</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-gray-300">
+                                    <i data-lucide="check" class="w-4 h-4 text-chuze-yellow"></i>
+                                    <span>Sistemas de poleas guiadas de alto rendimiento</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-gray-300">
+                                    <i data-lucide="check" class="w-4 h-4 text-chuze-yellow"></i>
+                                    <span>Área exclusiva para estiramientos musculares</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GROUP CLASSES SECTION -->
+    <section id="clases" class="py-24 bg-chuze-dark border-t border-chuze-lightGray relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-xs font-bold tracking-widest text-chuze-yellow uppercase px-3 py-1 bg-chuze-yellow/10 rounded-full border border-chuze-yellow/20">APRENDIZAJE Y COMUNIDAD</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                    CLASES GRUPALES DISPONIBLES
+                </h2>
+                <div class="h-1 w-16 bg-chuze-yellow mx-auto mt-4 rounded"></div>
+                <p class="text-gray-400 mt-4 text-sm font-normal">
+                    Sea cual sea tu nivel de condición física, nuestras clases grupales te mantendrán motivado en un ambiente lleno de buena energía con instructores calificados que guían tu progreso.
+                </p>
+            </div>
+
+            <!-- Classes Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Class 1 -->
+                <div class="bg-chuze-lightGray/50 border border-neutral-800 rounded-xl overflow-hidden hover:border-chuze-yellow/30 transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="relative h-48 bg-black overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Zumba & Dance" class="w-full h-full object-cover opacity-75 hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-chuze-yellow text-black px-2.5 py-1 rounded">DIVERSIÓN & CARDIO</span>
+                        </div>
+                        <div class="p-6 space-y-2">
+                            <h3 class="text-lg font-bold font-display text-white uppercase tracking-wider">Chuze Zumba</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Diviértete y quema calorías al ritmo de la mejor música latina e internacional. Una combinación perfecta de ejercicio aeróbico, pasos de baile coordinados y risas garantizadas para todos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 border-t border-neutral-900 mt-4 flex justify-between items-center text-xs text-gray-500">
+                        <span>Duración: 55 min</span>
+                        <span class="text-chuze-yellow font-semibold">Todos los niveles</span>
+                    </div>
+                </div>
+
+                <!-- Class 2 -->
+                <div class="bg-chuze-lightGray/50 border border-neutral-800 rounded-xl overflow-hidden hover:border-chuze-yellow/30 transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="relative h-48 bg-black overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=600&q=80" alt="Bodypump & Strength" class="w-full h-full object-cover opacity-75 hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-chuze-yellow text-black px-2.5 py-1 rounded">FUERZA GRUPAL</span>
+                        </div>
+                        <div class="p-6 space-y-2">
+                            <h3 class="text-lg font-bold font-display text-white uppercase tracking-wider">Power Sculpt</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Fortalece todo tu cuerpo utilizando barras con discos ajustables de peso moderado y repeticiones elevadas. Quema calorías mientras defines tu masa muscular con música de gran energía.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 border-t border-neutral-900 mt-4 flex justify-between items-center text-xs text-gray-500">
+                        <span>Duración: 50 min</span>
+                        <span class="text-chuze-yellow font-semibold">Media-Alta intensidad</span>
+                    </div>
+                </div>
+
+                <!-- Class 3 -->
+                <div class="bg-chuze-lightGray/50 border border-neutral-800 rounded-xl overflow-hidden hover:border-chuze-yellow/30 transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="relative h-48 bg-black overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Yoga & Balance" class="w-full h-full object-cover opacity-75 hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-chuze-yellow text-black px-2.5 py-1 rounded">MENTE & CUERPO</span>
+                        </div>
+                        <div class="p-6 space-y-2">
+                            <h3 class="text-lg font-bold font-display text-white uppercase tracking-wider">Chuze Yoga</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Relaja tu sistema nervioso, estira la musculatura tensa y mejora tu flexibilidad integral mediante posturas de asanas fluidas coordinadas con ejercicios de respiración consciente.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 border-t border-neutral-900 mt-4 flex justify-between items-center text-xs text-gray-500">
+                        <span>Duración: 60 min</span>
+                        <span class="text-chuze-yellow font-semibold">Todos los niveles</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Classes Schedule Simulator -->
+            <div class="bg-chuze-lightGray/80 border border-neutral-800 p-8 rounded-2xl shadow-xl" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-neutral-800/60 pb-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-bold font-display text-white uppercase tracking-wider">Visualizador de Horarios de Clases</h3>
+                        <p class="text-xs text-gray-400 mt-1">Selecciona un día de la semana para conocer las clases que se imparten en el club.</p>
+                    </div>
+
+                    <!-- Day tabs -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="switchScheduleDay('lunes')" id="btn-sch-lunes" class="px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-yellow text-chuze-dark transition-all">
+                            Lunes
+                        </button>
+                        <button onclick="switchScheduleDay('martes')" id="btn-sch-martes" class="px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-dark border border-neutral-800 text-gray-300 hover:border-chuze-yellow transition-all">
+                            Martes
+                        </button>
+                        <button onclick="switchScheduleDay('miercoles')" id="btn-sch-miercoles" class="px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-dark border border-neutral-800 text-gray-300 hover:border-chuze-yellow transition-all">
+                            Miércoles
+                        </button>
+                        <button onclick="switchScheduleDay('jueves')" id="btn-sch-jueves" class="px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-dark border border-neutral-800 text-gray-300 hover:border-chuze-yellow transition-all">
+                            Jueves
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Schedule Rows Container -->
+                <div class="divide-y divide-neutral-800/40" id="schedule-rows">
+                    <!-- Dynamic rows will be rendered here by script -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WELLNESS, RECOVERY & CHUZE REWIND -->
+    <section id="recuperacion" class="py-24 bg-chuze-dark border-t border-chuze-lightGray relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-chuze-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Left Column text & info -->
+                <div class="space-y-6" data-aos="fade-right">
+                    <span class="text-xs font-bold tracking-widest text-chuze-yellow uppercase px-3 py-1 bg-chuze-yellow/10 rounded-full border border-chuze-yellow/20">ZONA DE RECUPERACIÓN</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                        ZONA CHUZE REWIND: <br>TU RECOMPENSA POST-ENTRENO
+                    </h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        En Chuze, sabemos que lo que haces después de tu entrenamiento es tan importante como el entrenamiento mismo. Por eso, hemos diseñado una espectacular zona de recuperación de primer nivel donde puedes descansar y sanar tu cuerpo.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-start gap-3 bg-chuze-lightGray/50 p-4 rounded-xl border border-neutral-800/60">
+                            <span class="p-2 rounded bg-chuze-yellow/10 text-chuze-yellow shrink-0">
+                                <i data-lucide="waves" class="w-5 h-5"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">Camas de Hidromasaje</h4>
+                                <p class="text-[10px] text-gray-500 mt-1">Masaje relajante con chorros de agua caliente a presión.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 bg-chuze-lightGray/50 p-4 rounded-xl border border-neutral-800/60">
+                            <span class="p-2 rounded bg-chuze-yellow/10 text-chuze-yellow shrink-0">
+                                <i data-lucide="thermometer" class="w-5 h-5"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">Saunas Infrarrojos</h4>
+                                <p class="text-[10px] text-gray-500 mt-1">Calor seco para eliminar toxinas y relajar articulaciones.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 bg-chuze-lightGray/50 p-4 rounded-xl border border-neutral-800/60">
+                            <span class="p-2 rounded bg-chuze-yellow/10 text-chuze-yellow shrink-0">
+                                <i data-lucide="activity" class="w-5 h-5"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">Sillones de Masaje Gravitacional</h4>
+                                <p class="text-[10px] text-gray-500 mt-1">Alivio inmediato de la presión muscular acumulada en la espalda.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 bg-chuze-lightGray/50 p-4 rounded-xl border border-neutral-800/60">
+                            <span class="p-2 rounded bg-chuze-yellow/10 text-chuze-yellow shrink-0">
+                                <i data-lucide="wind" class="w-5 h-5"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">Cabinas de Terapia de Luz</h4>
+                                <p class="text-[10px] text-gray-500 mt-1">Luz roja estimulante para mejorar la regeneración cutánea.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column visually premium visual panel -->
+                <div class="relative flex justify-center" data-aos="fade-left">
+                    <div class="relative rounded-2xl overflow-hidden aspect-[4/3] w-full max-w-lg shadow-2xl bg-black group border border-neutral-800">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80" alt="Chuze Relax Zone" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-chuze-dark via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-chuze-yellow text-black text-[10px] font-bold uppercase rounded mb-3">
+                                <i data-lucide="heart" class="w-3.5 h-3.5"></i> BIENESTAR TOTAL
+                            </div>
+                            <h3 class="text-lg font-bold font-display text-white uppercase">El equilibrio perfecto entre esfuerzo y descanso</h3>
+                            <p class="text-xs text-gray-300 mt-1 font-light">
+                                Creemos que cuidar tu cuerpo también significa darle el reposo que necesita para reconstruir fibras musculares y relajar la mente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SCHEDULE, LOCATION & MAP SECTION -->
+    <section id="ubicacion" class="py-24 bg-chuze-dark border-t border-chuze-lightGray relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+                <!-- Left Column with Schedules and Direct Info -->
+                <div class="lg:col-span-5 space-y-8" data-aos="fade-right">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-chuze-yellow uppercase px-3 py-1 bg-chuze-yellow/10 rounded-full border border-chuze-yellow/20">ESTAMOS AQUÍ</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                            ENCUENTRA TU CLUB CHUZE
+                        </h2>
+                        <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                            Nuestra sede insignia en la ciudad cuenta con un amplio aparcamiento privado vigilado 24 horas y accesos cómodos adaptados para todo el público. Ven a conocernos.
+                        </p>
+                    </div>
+
+                    <!-- Direct blocks -->
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="p-3 rounded-lg bg-chuze-lightGray text-chuze-yellow border border-neutral-800 shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">DIRECCIÓN</h4>
+                                <p class="text-sm font-bold text-white mt-1">Avenida de la Armonía 77, Zona Comercial Plaza Wellness</p>
+                                <p class="text-xs text-gray-500">Con estacionamiento techado de cortesía para visitantes (2 horas).</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <span class="p-3 rounded-lg bg-chuze-lightGray text-chuze-yellow border border-neutral-800 shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">TELÉFONO DE INFORMACIÓN</h4>
+                                <p class="text-sm font-bold text-white mt-1">+34 900 112 233</p>
+                                <p class="text-xs text-gray-500">Atención telefónica de lunes a domingo de 08:00 a 22:00.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <span class="p-3 rounded-lg bg-chuze-lightGray text-chuze-yellow border border-neutral-800 shrink-0">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">HORARIOS DE APERTURA</h4>
+                                <p class="text-sm font-bold text-white mt-1">Lunes a Jueves: 24 Horas Abierto</p>
+                                <p class="text-xs text-gray-500">Viernes: Cierre a las 22:00 | Sábado y Domingo: 06:00 a 20:00.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column Custom Map Mockup -->
+                <div class="lg:col-span-7" data-aos="fade-left">
+                    <div class="bg-chuze-lightGray rounded-2xl p-4 border border-neutral-800 shadow-xl space-y-4">
+                        <!-- Simulated browser bar -->
+                        <div class="flex items-center justify-between px-2 pb-2 border-b border-neutral-800/40">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                            </div>
+                            <span class="text-[10px] text-gray-500 font-mono tracking-wider lowercase">mapas.chuze.es</span>
+                            <div class="w-4"></div>
+                        </div>
+
+                        <!-- Map Simulated visual grid -->
+                        <div class="relative aspect-video w-full rounded-xl overflow-hidden bg-chuze-dark border border-neutral-800">
+                            <!-- High contrast map background overlay pattern -->
+                            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#52525b_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+                            <!-- Road lines simulation -->
+                            <div class="absolute inset-0 flex flex-col justify-between p-12 pointer-events-none opacity-40">
+                                <div class="w-full h-px bg-neutral-700 rotate-[3deg] origin-left"></div>
+                                <div class="w-full h-px bg-neutral-700 -rotate-[6deg] origin-right"></div>
+                            </div>
+                            <div class="absolute inset-y-0 left-1/2 w-px bg-neutral-700 rotate-[30deg] origin-top pointer-events-none opacity-40"></div>
+
+                            <!-- Map Pins -->
+                            <div class="absolute top-1/3 left-12 flex items-center gap-1.5 bg-neutral-900/90 border border-neutral-800 rounded-lg p-2 shadow">
+                                <span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                                <span class="text-[9px] text-gray-500 uppercase font-bold tracking-widest">Estación de Metro</span>
+                            </div>
+
+                            <div class="absolute bottom-1/3 right-12 flex items-center gap-1.5 bg-neutral-900/90 border border-neutral-800 rounded-lg p-2 shadow">
+                                <span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                                <span class="text-[9px] text-gray-500 uppercase font-bold tracking-widest">Salida Autopista 14</span>
+                            </div>
+
+                            <!-- DYNAMIC GLOWING CHUZE LOGO PIN -->
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                                <div class="absolute w-12 h-12 bg-chuze-yellow/20 rounded-full animate-ping"></div>
+                                <div class="absolute w-24 h-24 bg-chuze-yellow/5 rounded-full"></div>
+
+                                <div class="relative bg-chuze-yellow text-black p-3 rounded-full border-4 border-chuze-dark shadow-2xl z-10">
+                                    <i data-lucide="map-pin" class="w-6 h-6 stroke-[2.5]"></i>
+                                </div>
+                                <span class="relative mt-2 bg-chuze-lightGray text-white border border-chuze-yellow/50 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-xl z-10 whitespace-nowrap">
+                                    CHUZE FITNESS (Plaza Wellness)
+                                </span>
+                            </div>
+
+                            <!-- Zoom controls -->
+                            <div class="absolute bottom-4 left-4 flex flex-col gap-1 z-10">
+                                <button class="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 text-gray-400 font-bold flex items-center justify-center hover:bg-neutral-800 hover:text-white transition">+</button>
+                                <button class="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 text-gray-400 font-bold flex items-center justify-center hover:bg-neutral-800 hover:text-white transition">-</button>
+                            </div>
+                        </div>
+
+                        <!-- Google maps link -->
+                        <div class="flex items-center justify-between text-xs pt-1">
+                            <span class="text-gray-500">Coordenadas GPS: 40.450321, -3.689432</span>
+                            <a href="https://maps.google.com" target="_blank" class="text-chuze-yellow hover:text-chuze-yellowHover font-bold uppercase tracking-widest flex items-center gap-1 transition">
+                                Abrir en Google Maps <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ACCORDION FAQS SECTION -->
+    <section id="preguntas" class="py-24 bg-chuze-dark border-t border-chuze-lightGray relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-xs font-bold tracking-widest text-chuze-yellow uppercase px-3 py-1 bg-chuze-yellow/10 rounded-full border border-chuze-yellow/20">RESOLVEMOS TUS DUDAS</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mt-4 uppercase tracking-tight">
+                    PREGUNTAS FRECUENTES
+                </h2>
+                <div class="h-1 w-16 bg-chuze-yellow mx-auto mt-4 rounded"></div>
+                <p class="text-gray-400 mt-4 text-sm font-normal">
+                    ¿Quieres saber más sobre cómo operamos en Chuze Fitness? Aquí encontrarás respuestas honestas a las preguntas más comunes acerca de nuestros accesos, comodidades y servicios.
+                </p>
+            </div>
+
+            <!-- Accordion items -->
+            <div class="space-y-4" data-aos="fade-up">
+
+                <!-- FAQ 1 -->
+                <div class="bg-chuze-lightGray/60 border border-neutral-800/80 rounded-xl overflow-hidden">
+                    <button onclick="toggleAccordion('faq-1')" class="w-full flex items-center justify-between p-6 text-left focus:outline-none group">
+                        <span class="text-sm font-bold text-white uppercase tracking-wider group-hover:text-chuze-yellow transition">¿Puedo visitar el gimnasio de manera informativa antes de decidirme?</span>
+                        <span id="faq-1-icon" class="p-1 rounded bg-neutral-900 text-gray-400 transition-transform duration-300">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                        </span>
+                    </button>
+                    <div id="faq-1-content" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="p-6 pt-0 border-t border-neutral-900/40 text-xs sm:text-sm text-gray-400 leading-relaxed">
+                            ¡Por supuesto! De hecho, lo fomentamos activamente. Puedes solicitar una visita informativa a través de nuestro formulario en esta página o simplemente pasarte por recepción durante el horario de atención para que uno de nuestros coordinadores te guíe en un recorrido completo por el club, sin compromisos.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-chuze-lightGray/60 border border-neutral-800/80 rounded-xl overflow-hidden">
+                    <button onclick="toggleAccordion('faq-2')" class="w-full flex items-center justify-between p-6 text-left focus:outline-none group">
+                        <span class="text-sm font-bold text-white uppercase tracking-wider group-hover:text-chuze-yellow transition">¿Cómo se garantiza la limpieza en el club?</span>
+                        <span id="faq-2-icon" class="p-1 rounded bg-neutral-900 text-gray-400 transition-transform duration-300">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                        </span>
+                    </button>
+                    <div id="faq-2-content" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="p-6 pt-0 border-t border-neutral-900/40 text-xs sm:text-sm text-gray-400 leading-relaxed">
+                            La limpieza impecable es uno de nuestros pilares más importantes. Nuestro equipo realiza rondas continuas de desinfección en todas las máquinas, duchas y áreas comunes utilizando productos ecológicos y antivirales. Además, disponemos de numerosas estaciones sanitizantes para que los usuarios limpien el equipo antes y después de su uso.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-chuze-lightGray/60 border border-neutral-800/80 rounded-xl overflow-hidden">
+                    <button onclick="toggleAccordion('faq-3')" class="w-full flex items-center justify-between p-6 text-left focus:outline-none group">
+                        <span class="text-sm font-bold text-white uppercase tracking-wider group-hover:text-chuze-yellow transition">¿Las clases grupales están incluidas en los accesos del club?</span>
+                        <span id="faq-3-icon" class="p-1 rounded bg-neutral-900 text-gray-400 transition-transform duration-300">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                        </span>
+                    </button>
+                    <div id="faq-3-content" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="p-6 pt-0 border-t border-neutral-900/40 text-xs sm:text-sm text-gray-400 leading-relaxed">
+                            Sí. Todas las clases grupales listadas en nuestros horarios habituales están diseñadas para integrarse en la experiencia del club. Fomentamos que asistas de manera libre para disfrutar del entrenamiento guiado por instructores sin tener que pagar costes individuales adicionales por sesión.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-chuze-lightGray/60 border border-neutral-800/80 rounded-xl overflow-hidden">
+                    <button onclick="toggleAccordion('faq-4')" class="w-full flex items-center justify-between p-6 text-left focus:outline-none group">
+                        <span class="text-sm font-bold text-white uppercase tracking-wider group-hover:text-chuze-yellow transition">¿Ofrecen asesoramiento para principiantes?</span>
+                        <span id="faq-4-icon" class="p-1 rounded bg-neutral-900 text-gray-400 transition-transform duration-300">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                        </span>
+                    </button>
+                    <div id="faq-4-content" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="p-6 pt-0 border-t border-neutral-900/40 text-xs sm:text-sm text-gray-400 leading-relaxed">
+                            Por supuesto. Nuestro club se enorgullece de ser una zona libre de juicios, ideal para principiantes. Nuestro equipo técnico en el club te guiará para enseñarte el funcionamiento correcto de las máquinas cardiovasculares y guiadas de musculación para que entrenes con absoluta seguridad.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INFORMATION REQUEST FORM SECTION (Plausible pure UI, mock interaction) -->
+    <section id="contacto" class="py-24 bg-chuze-dark border-t border-chuze-lightGray relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-chuze-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-chuze-lightGray border border-neutral-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+
+                <div class="text-center space-y-4 mb-8">
+                    <span class="text-xs font-bold tracking-widest text-chuze-yellow uppercase px-3 py-1 bg-chuze-yellow/10 rounded-full border border-chuze-yellow/20">AGENDA TU VISITA</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-display text-white uppercase">SOLICITAR TOUR INFORMATIVO GRATUITO</h2>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto">
+                        Completa tus datos para recibir una invitación especial para un recorrido presencial guiado. Descubre la limpieza, conoce el equipo y siente la atmósfera de Chuze.
+                    </p>
+                </div>
+
+                <!-- Actual Interactive Mock Form -->
+                <form id="info-form" onsubmit="submitInfoForm(event)" class="space-y-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5" for="form-name">Nombre Completo</label>
+                            <input required type="text" id="form-name" class="w-full bg-chuze-dark border border-neutral-800 rounded-lg px-4 py-3 text-xs text-white focus:outline-none focus:border-chuze-yellow transition duration-200" placeholder="Ej. Juan Pérez">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5" for="form-email">Correo Electrónico</label>
+                            <input required type="email" id="form-email" class="w-full bg-chuze-dark border border-neutral-800 rounded-lg px-4 py-3 text-xs text-white focus:outline-none focus:border-chuze-yellow transition duration-200" placeholder="Ej. juan@correo.com">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5" for="form-phone">Teléfono de Contacto</label>
+                            <input required type="tel" id="form-phone" class="w-full bg-chuze-dark border border-neutral-800 rounded-lg px-4 py-3 text-xs text-white focus:outline-none focus:border-chuze-yellow transition duration-200" placeholder="Ej. +34 600 000 000">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5" for="form-interest">Zona de Mayor Interés</label>
+                            <select id="form-interest" class="w-full bg-chuze-dark border border-neutral-800 rounded-lg px-4 py-3 text-xs text-gray-300 focus:outline-none focus:border-chuze-yellow transition duration-200">
+                                <option value="cardio">Cardio & Fuerza General</option>
+                                <option value="clases">Clases Grupales de Baile y Yoga</option>
+                                <option value="recuperacion">Saunas e Hidromasaje (Relax)</option>
+                                <option value="general">Conocer todo el club de manera general</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5" for="form-notes">Mensaje o Pregunta Adicional (Opcional)</label>
+                        <textarea id="form-notes" rows="3" class="w-full bg-chuze-dark border border-neutral-800 rounded-lg px-4 py-3 text-xs text-white focus:outline-none focus:border-chuze-yellow transition duration-200 placeholder-neutral-700" placeholder="Escribe aquí cualquier consulta o inquietud..."></textarea>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-chuze-yellow hover:bg-chuze-yellowHover text-black font-extrabold uppercase tracking-widest text-xs py-4 rounded-xl transition duration-300 font-display shadow-lg shadow-chuze-yellow/10">
+                            Enviar Solicitud de Información
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Animated Success Message inside card (Hidden initially) -->
+                <div id="form-success-alert" class="hidden transition duration-500 bg-emerald-500/10 border border-emerald-500/30 p-8 rounded-2xl text-center space-y-4">
+                    <span class="inline-flex p-3 rounded-full bg-emerald-500 text-black">
+                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+                    </span>
+                    <h3 class="text-lg font-bold font-display text-white uppercase tracking-wide">¡SOLICITUD ENVIADA CON ÉXITO!</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed max-w-md mx-auto">
+                        Gracias por tu interés en Chuze Fitness, <span id="success-user-name" class="text-chuze-yellow font-semibold">visitante</span>. Hemos registrado tu solicitud para un tour informativo guiado gratuito. Nos pondremos en contacto contigo en las próximas 24 horas laborables para coordinar tu horario de preferencia.
+                    </p>
+                    <button onclick="resetFormState()" class="text-[10px] font-bold text-gray-500 hover:text-white uppercase tracking-widest underline transition">
+                        Enviar Otra Consulta
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-chuze-dark border-t border-chuze-lightGray py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-neutral-900 pb-8 mb-8">
+
+                <!-- Logo in Footer -->
+                <a href="#inicio" class="flex items-center gap-3 transition duration-300">
+                    <img src="assets/img/Chuze-RECT-rgb.jpg" alt="Chuze Fitness Footer Logo" class="h-8 w-auto object-contain" onerror="this.src='https://chuze-marketing-assets.s3.amazonaws.com/Chuze-RECT-rgb.jpg';">
+                </a>
+
+                <!-- Quick links -->
+                <div class="flex flex-wrap justify-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                    <a href="#inicio" class="hover:text-white transition">Inicio</a>
+                    <a href="#filosofia" class="hover:text-white transition">Filosofía</a>
+                    <a href="#instalaciones" class="hover:text-white transition">Instalaciones</a>
+                    <a href="#clases" class="hover:text-white transition">Clases Grupales</a>
+                    <a href="#recuperacion" class="hover:text-white transition">Recuperación</a>
+                    <a href="#ubicacion" class="hover:text-white transition">Ubicación</a>
+                    <a href="#preguntas" class="hover:text-white transition">Preguntas</a>
+                </div>
+
+                <!-- Social links -->
+                <div class="flex items-center gap-4 text-gray-500">
+                    <a href="https://instagram.com" target="_blank" class="hover:text-white transition p-2 rounded-md hover:bg-chuze-lightGray">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="hover:text-white transition p-2 rounded-md hover:bg-chuze-lightGray">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="hover:text-white transition p-2 rounded-md hover:bg-chuze-lightGray">
+                        <i data-lucide="youtube" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+                <p>&copy; <span id="current-year"></span> Chuze Fitness. Información de club, instalaciones y bienestar general. Todos los derechos reservados.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:underline">Aviso de Privacidad</a>
+                    <a href="#" class="hover:underline">Términos de Uso</a>
+                    <a href="#" class="hover:underline">Política de Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('current-year').innerText = new Date().getFullYear();
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize Animate On Scroll (AOS)
+        AOS.init({
+            duration: 850,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Sticky Header color styling on scroll
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 45) {
+                header.classList.add('bg-chuze-dark/95', 'border-neutral-900', 'shadow-lg');
+                header.classList.remove('bg-chuze-dark/85', 'border-transparent');
+            } else {
+                header.classList.remove('bg-chuze-dark/95', 'border-neutral-900', 'shadow-lg');
+                header.classList.add('bg-chuze-dark/85', 'border-transparent');
+            }
+        });
+
+        // Mobile Nav Drawer Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            }
+        });
+
+        // Close mobile drawer on navigation link click
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+
+        // Interactive Hero Selector Functionality
+        const heroFeatureDesc = document.getElementById('hero-feature-desc');
+        const btnHeroCardio = document.getElementById('btn-hero-cardio');
+        const btnHeroClasses = document.getElementById('btn-hero-classes');
+        const btnHeroWellness = document.getElementById('btn-hero-wellness');
+
+        function updateHeroFeature(feature) {
+            // Reset styles for all buttons
+            [btnHeroCardio, btnHeroClasses, btnHeroWellness].forEach(btn => {
+                btn.className = "py-2.5 px-3 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-dark border border-neutral-800 text-gray-300 hover:border-chuze-yellow transition-all duration-300";
+            });
+
+            if (feature === 'cardio') {
+                btnHeroCardio.className = "py-2.5 px-3 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-yellow text-chuze-dark transition-all duration-300";
+                heroFeatureDesc.innerText = "Nuestras amplias áreas de entrenamiento cardiovascular y musculación cuentan con equipamiento moderno, ordenado y en perfectas condiciones higiénicas.";
+            } else if (feature === 'classes') {
+                btnHeroClasses.className = "py-2.5 px-3 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-yellow text-chuze-dark transition-all duration-300";
+                heroFeatureDesc.innerText = "Disfruta de más de 30 clases semanales de Zumba, Power Sculpt, Yoga y Pilates. Espacios climatizados diseñados para tu máximo confort y diversión.";
+            } else if (feature === 'wellness') {
+                btnHeroWellness.className = "py-2.5 px-3 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-yellow text-chuze-dark transition-all duration-300";
+                heroFeatureDesc.innerText = "Un santuario exclusivo de relajación: cabinas de hidromasaje guiadas, saunas infrarrojos calificados y zonas de descanso zen post-entrenamiento.";
+            }
+        }
+
+        // Interactive Amenities Tabs Switcher
+        const tabTitle = document.getElementById('tab-title');
+        const tabDesc = document.getElementById('tab-desc');
+        const tabImage = document.getElementById('tab-image');
+        const tabFeatures = document.getElementById('tab-features');
+
+        const tabsData = {
+            'zona-fuerza': {
+                title: 'ZONA DE ENTRENAMIENTO DE FUERZA',
+                desc: 'Un espacio sumamente amplio equipado con mancuernas de alta calidad, soportes ajustables, bancos olímpicos y máquinas articuladas de última generación. La distribución está pensada para evitar aglomeraciones y garantizar un flujo fluido durante tus rutinas.',
+                image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80',
+                features: [
+                    'Racks de sentadillas y plataformas amortiguadas',
+                    'Mancuernas de hasta 50 kg con agarre ergonómico',
+                    'Sistemas de poleas guiadas de alto rendimiento',
+                    'Área exclusiva para estiramientos musculares'
+                ]
+            },
+            'zona-cardio': {
+                title: 'ZONA CARDIO DE VANGUARDIA',
+                desc: 'Más de 120 máquinas de cardio premium incluyendo cintas de correr, elípticas, bicicletas fijas y escaladoras de alto rendimiento. Todas ellas cuentan con pantallas digitales integradas de conectividad rápida y ventiladores personales.',
+                image: 'https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?auto=format&fit=crop&w=1200&q=80',
+                features: [
+                    'Cintas para correr con absorción de impacto',
+                    'Bicicletas estáticas de resistencia magnética',
+                    'Sistemas de simulación de terreno virtual',
+                    'Disposición ordenada con distanciamiento ideal'
+                ]
+            },
+            'zona-funcional': {
+                title: 'ZONA CHUZE TURF (FUNCIONAL)',
+                desc: 'Una zona especializada con césped sintético perfecta para realizar empuje de trineos pesados, pliometría, entrenamientos con balones medicinales, cuerdas de batalla e intervalos de alta intensidad. Un espacio ideal para diseñar tu propio entrenamiento libre.',
+                image: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=1200&q=80',
+                features: [
+                    'Césped de arrastre sintético de alta resistencia',
+                    'Trineos metálicos ajustables, pesas rusas',
+                    'Cuerdas de combate de cáñamo premium',
+                    'Cajones pliométricos acolchados de varias alturas'
+                ]
+            },
+            'zona-piscina': {
+                title: 'ZONA ACUÁTICA Y BIENESTAR',
+                desc: 'Piscina climatizada de natación libre con carriles señalizados y un enorme jacuzzi adyacente para relajar el tono muscular tras tus sesiones cardiovasculares o de fuerza. Un ambiente limpio, seguro e iluminado de manera muy relajante.',
+                image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=80',
+                features: [
+                    'Piscina climatizada a temperatura terapéutica',
+                    'Carriles de nado con boyas divisorias',
+                    'Jacuzzi de chorros calientes de alta presión',
+                    'Duchas higiénicas de paso previo obligatorio'
+                ]
+            }
+        };
+
+        function switchTab(tabId) {
+            // Reset styles for all tabs
+            const allTabIds = ['zona-fuerza', 'zona-cardio', 'zona-funcional', 'zona-piscina'];
+            allTabIds.forEach(id => {
+                const tabElement = document.getElementById(`tab-${id}`);
+                tabElement.className = "w-full text-left bg-chuze-lightGray/60 hover:bg-chuze-lightGray border-l-4 border-transparent p-5 rounded-r-xl tab-transition flex items-center justify-between group";
+
+                // Reset internal text elements colors
+                const titleEl = tabElement.querySelector('h4');
+                const descEl = tabElement.querySelector('p');
+                const iconEl = tabElement.querySelector('i');
+
+                titleEl.className = "text-xs font-bold text-gray-300 group-hover:text-white uppercase tracking-wider";
+                descEl.className = "text-[11px] text-gray-500 mt-1";
+                iconEl.className = "w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 group-hover:translate-x-1";
+            });
+
+            // Set active styles on selected tab
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            activeTab.className = "w-full text-left bg-chuze-yellow border-l-4 border-chuze-yellow p-5 rounded-r-xl tab-transition flex items-center justify-between group";
+
+            const activeTitleEl = activeTab.querySelector('h4');
+            const activeDescEl = activeTab.querySelector('p');
+            const activeIconEl = activeTab.querySelector('i');
+
+            activeTitleEl.className = "text-xs font-bold text-black uppercase tracking-wider";
+            activeDescEl.className = "text-[11px] text-neutral-800 font-medium mt-1";
+            activeIconEl.className = "w-5 h-5 text-black shrink-0 transition-transform duration-300 group-hover:translate-x-1";
+
+            // Update Dynamic Content with fade out/in effect
+            const contentContainer = document.getElementById('tab-content');
+            contentContainer.style.opacity = 0;
+            contentContainer.style.transform = 'translateY(10px)';
+            contentContainer.style.transition = 'opacity 0.25s, transform 0.25s';
+
+            setTimeout(() => {
+                const data = tabsData[tabId];
+                tabTitle.innerText = data.title;
+                tabDesc.innerText = data.desc;
+                tabImage.src = data.image;
+
+                // Render Features list
+                tabFeatures.innerHTML = data.features.map(feat => `
+                    <div class="flex items-center gap-2 text-xs text-gray-300">
+                        <i data-lucide="check" class="w-4 h-4 text-chuze-yellow"></i>
+                        <span>${feat}</span>
+                    </div>
+                `).join('');
+
+                // Reinitialize lucide icons inside innerHTML
+                lucide.createIcons();
+
+                contentContainer.style.opacity = 1;
+                contentContainer.style.transform = 'translateY(0)';
+            }, 250);
+        }
+
+        // Classes Schedule Simulator Data
+        const scheduleData = {
+            'lunes': [
+                { time: '08:00 - 09:00', name: 'Chuze Zumba', instructor: 'Sofía Martínez', room: 'Estudio Principal 1' },
+                { time: '10:00 - 11:00', name: 'Chuze Yoga', instructor: 'Elena G.', room: 'Estudio Zen' },
+                { time: '18:00 - 19:00', name: 'Power Sculpt', instructor: 'Carlos Vega', room: 'Estudio Principal 1' },
+                { time: '19:30 - 20:30', name: 'Chuze Zumba', instructor: 'Marta R.', room: 'Estudio Principal 2' }
+            ],
+            'martes': [
+                { time: '09:00 - 10:00', name: 'Power Sculpt', instructor: 'Carlos Vega', room: 'Estudio Principal 1' },
+                { time: '11:00 - 12:00', name: 'Pilates Flow', instructor: 'Elena G.', room: 'Estudio Zen' },
+                { time: '17:30 - 18:30', name: 'Chuze Yoga', instructor: 'Laura Sánchez', room: 'Estudio Zen' },
+                { time: '19:00 - 20:00', name: 'Zumba Beats', instructor: 'Sofía Martínez', room: 'Estudio Principal 1' }
+            ],
+            'miercoles': [
+                { time: '08:00 - 09:00', name: 'Chuze Yoga', instructor: 'Laura Sánchez', room: 'Estudio Zen' },
+                { time: '10:00 - 11:00', name: 'Chuze Zumba', instructor: 'Marta R.', room: 'Estudio Principal 1' },
+                { time: '18:00 - 19:00', name: 'Power Sculpt', instructor: 'Carlos Vega', room: 'Estudio Principal 1' },
+                { time: '19:30 - 20:30', name: 'Pilates Flow', instructor: 'Elena G.', room: 'Estudio Zen' }
+            ],
+            'jueves': [
+                { time: '09:00 - 10:00', name: 'Zumba Beats', instructor: 'Sofía Martínez', room: 'Estudio Principal 2' },
+                { time: '11:00 - 12:00', name: 'Chuze Yoga', instructor: 'Laura Sánchez', room: 'Estudio Zen' },
+                { time: '17:30 - 18:30', name: 'Power Sculpt', instructor: 'Carlos Vega', room: 'Estudio Principal 1' },
+                { time: '19:00 - 20:00', name: 'Cardio Dance', instructor: 'Marta R.', room: 'Estudio Principal 1' }
+            ]
+        };
+
+        function switchScheduleDay(dayId) {
+            // Reset active style on schedule tabs
+            const allDays = ['lunes', 'martes', 'miercoles', 'jueves'];
+            allDays.forEach(day => {
+                const btn = document.getElementById(`btn-sch-${day}`);
+                btn.className = "px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-dark border border-neutral-800 text-gray-300 hover:border-chuze-yellow transition-all";
+            });
+
+            // Set active style for selected day
+            const activeBtn = document.getElementById(`btn-sch-${dayId}`);
+            activeBtn.className = "px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase bg-chuze-yellow text-chuze-dark transition-all";
+
+            // Render classes for selected day
+            const rowsContainer = document.getElementById('schedule-rows');
+            rowsContainer.innerHTML = '';
+
+            const list = scheduleData[dayId];
+            list.forEach(item => {
+                const row = document.createElement('div');
+                row.className = "py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs hover:bg-chuze-lightGray/30 px-4 rounded-xl transition duration-150";
+                row.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="p-2 bg-neutral-900 rounded font-bold text-chuze-yellow tracking-widest uppercase font-mono">${item.time}</span>
+                        <div>
+                            <p class="font-bold text-white uppercase tracking-wider">${item.name}</p>
+                            <p class="text-[10px] text-gray-500 mt-0.5">${item.room}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 text-[11px] text-gray-400">
+                        <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5 text-chuze-yellow"></i> Prof. ${item.instructor}</span>
+                        <span class="inline-flex items-center gap-1 bg-chuze-yellow/10 text-chuze-yellow font-extrabold text-[9px] uppercase px-2.5 py-1 rounded">Activa</span>
+                    </div>
+                `;
+                rowsContainer.appendChild(row);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Auto-initialize first schedule day Lunes
+        switchScheduleDay('lunes');
+
+        // Collapsible Accordion Frequently Asked Questions (FAQ)
+        function toggleAccordion(faqId) {
+            const content = document.getElementById(`${faqId}-content`);
+            const icon = document.getElementById(`${faqId}-icon`);
+
+            if (content.style.maxHeight === '0px' || !content.style.maxHeight) {
+                // Open and set max height based on scrollHeight
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(45deg)';
+                icon.className = "p-1 rounded bg-chuze-yellow text-black transition-all duration-300";
+            } else {
+                // Close
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+                icon.className = "p-1 rounded bg-neutral-900 text-gray-400 transition-all duration-300";
+            }
+        }
+
+        // Form Submission simulator (with lovely clean state feedback)
+        const infoForm = document.getElementById('info-form');
+        const successAlert = document.getElementById('form-success-alert');
+        const successUserName = document.getElementById('success-user-name');
+
+        function submitInfoForm(event) {
+            event.preventDefault();
+
+            // Fetch name for personalization
+            const userNameVal = document.getElementById('form-name').value;
+            successUserName.innerText = userNameVal;
+
+            // Animate transition
+            infoForm.style.opacity = 0;
+            setTimeout(() => {
+                infoForm.classList.add('hidden');
+                successAlert.classList.remove('hidden');
+                successAlert.style.opacity = 1;
+                successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 300);
+        }
+
+        function resetFormState() {
+            infoForm.reset();
+            successAlert.classList.add('hidden');
+            infoForm.classList.remove('hidden');
+            infoForm.style.opacity = 1;
+        }
+    </script>
+</body>
+
+</html>
