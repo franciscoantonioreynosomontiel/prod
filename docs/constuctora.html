@@ -37,9 +37,8 @@
         }
     </script>
 
-    <!-- Google Fonts & Lucide Icons via CDN -->
+    <!-- Google Fonts via CDN -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- AOS CSS (Animate On Scroll) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -50,7 +49,6 @@
             background-color: #ffffff;
             color: #1e293b;
         }
-        /* Style adjustments */
         .trade-tab-active {
             border-color: #f97316;
             color: #f97316;
@@ -73,19 +71,20 @@
         });
     </script>
 
-    <!-- Top Info Bar (Corporate Identification & Licenses) -->
-    <div class="bg-slate-900 text-slate-300 text-[11px] font-mono py-2 px-6 border-b border-slate-800">
+    <!-- Top Info Bar (Corporate Status & Safety Alignment) - NO NUMBERS, NO ICONS, NO EMOJIS -->
+    <div class="bg-slate-900 text-slate-300 text-[11px] font-medium tracking-wider py-2 px-6 border-b border-slate-800">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-            <div class="flex flex-wrap gap-4 items-center justify-center">
-                <span><strong class="text-orange-500 font-bold">GC LIC:</strong> #US-GC-994821-A</span>
+            <div class="flex flex-wrap gap-4 items-center justify-center text-center">
+                <span>Active Multi-State Licenses</span>
                 <span class="hidden sm:inline text-slate-600">|</span>
-                <span><strong class="text-orange-500 font-bold">ELEC LIC:</strong> #US-EL-33829-M</span>
+                <span>Fully Bonded and Insured Entity</span>
                 <span class="hidden sm:inline text-slate-600">|</span>
-                <span><strong class="text-orange-500 font-bold">PLUM LIC:</strong> #US-PL-22910-P</span>
+                <span>Master Grade Technical Team</span>
             </div>
             <div class="flex items-center gap-4">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-orange-500"></i> OSHA 30 Certified Crew</span>
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-file-contract text-orange-500"></i> Fully Bonded & Insured</span>
+                <span>Certified Safety Supervisors Onsite</span>
+                <span class="hidden sm:inline text-slate-600">|</span>
+                <span>National General Contractor Registry</span>
             </div>
         </div>
     </div>
@@ -96,8 +95,8 @@
 
             <!-- Logo / Brand Title -->
             <a href="#" class="flex items-center gap-3">
-                <div class="h-10 w-10 bg-orange-500 rounded-lg flex items-center justify-center text-white shadow-md">
-                    <i class="fa-solid fa-helmet-safety text-lg"></i>
+                <div class="h-10 w-10 bg-orange-500 rounded-lg flex items-center justify-center text-white shadow-md font-bold text-lg">
+                    A
                 </div>
                 <div>
                     <span class="text-lg font-black tracking-tight text-slate-900 block leading-none">APEX UNITED</span>
@@ -108,112 +107,96 @@
             <!-- Desktop Nav Items -->
             <nav class="hidden md:flex gap-8 items-center">
                 <a href="#overview" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Overview</a>
-                <a href="#trades" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Trade Divisions</a>
-                <a href="#timeline" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Project Phase Planner</a>
-                <a href="#compliance" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Compliance & Safety</a>
-                <a href="#equipment" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Logistics & Fleet</a>
+                <a href="#trades" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Specialty Trades</a>
+                <a href="#workflow" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Project Flow</a>
+                <a href="#compliance" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Field Standards</a>
+                <a href="#logistics" class="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors">Logistics</a>
             </nav>
 
             <!-- Corporate Registry Callout -->
             <div class="hidden lg:flex items-center gap-3">
                 <div class="text-right">
-                    <p class="text-[10px] text-slate-400 font-bold uppercase leading-none">Corporate Office</p>
-                    <p class="text-xs font-bold text-slate-800 mt-0.5">Houston, TX &bull; Chicago, IL</p>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase leading-none">Corporate Offices</p>
+                    <p class="text-xs font-bold text-slate-800 mt-0.5">Houston and Chicago</p>
                 </div>
                 <div class="h-8 w-px bg-slate-200"></div>
-                <span class="text-xs font-bold bg-slate-100 text-slate-600 py-1.5 px-3 rounded-full border border-slate-200">National GC Entity</span>
+                <span class="text-xs font-bold bg-slate-100 text-slate-600 py-1.5 px-3 rounded-full border border-slate-200">Registered Enterprise</span>
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-orange-500 focus:outline-none" aria-label="Toggle Menu">
-                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-orange-500 focus:outline-none font-bold" aria-label="Toggle Menu">
+                <span id="menu-icon-text">Menu</span>
             </button>
         </div>
 
         <!-- Mobile Dropdown Nav -->
         <div id="mobile-dropdown" class="hidden md:hidden bg-slate-50 border-b border-slate-200 px-6 py-4 space-y-3">
             <a href="#overview" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Overview</a>
-            <a href="#trades" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Trade Divisions</a>
-            <a href="#timeline" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Project Phase Planner</a>
-            <a href="#compliance" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Compliance & Safety</a>
-            <a href="#equipment" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Logistics & Fleet</a>
-            <div class="pt-3 border-t border-slate-200 text-xs font-mono text-slate-500 space-y-1">
-                <p><strong>Registry Office:</strong> Houston HQ</p>
-                <p><strong>License Status:</strong> Active (Multi-State)</p>
+            <a href="#trades" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Specialty Trades</a>
+            <a href="#workflow" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Project Flow</a>
+            <a href="#compliance" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Field Standards</a>
+            <a href="#logistics" class="block text-sm font-semibold text-slate-700 hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">Logistics</a>
+            <div class="pt-3 border-t border-slate-200 text-xs text-slate-500 space-y-1">
+                <p><strong>Registry Office:</strong> Houston Headquarters</p>
+                <p><strong>License Status:</strong> Active Multi-State</p>
             </div>
         </div>
     </header>
 
-    <!-- Section 1: Corporate Overview Hero -->
+    <!-- Section 1: Human-Centric Hero (Visual, Clean, No Numbers/Icons) -->
     <section id="overview" class="relative bg-white pt-16 pb-24 overflow-hidden border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-                <!-- Value-focused Corporate Copy -->
-                <div class="lg:col-span-7 space-y-8" data-aos="fade-right">
+                <!-- Narrative focus - built for humans who don't like reading long text -->
+                <div class="lg:col-span-6 space-y-8" data-aos="fade-right">
                     <div class="inline-flex items-center gap-2 bg-orange-50 border border-orange-200/50 text-orange-600 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide">
-                        <span class="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse"></span>
                         United States General Contracting Infrastructure
                     </div>
 
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
-                        Multi-Discipline Engineering, <br>
+                        Built with Integrity. <br>
                         <span class="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
-                            Construction & Specialty Trades
+                            Crafted by Hand.
                         </span>
                     </h1>
 
-                    <p class="text-lg text-slate-600 font-medium leading-relaxed max-w-2xl">
-                        Apex United Contractors operates as a fully integrated general contractor and multi-trade subcontractor. We align general engineering, commercial construction, industrial electrical installations, structural roofing, and master-grade commercial plumbing under a unified management framework.
+                    <p class="text-lg text-slate-600 font-medium leading-relaxed">
+                        We are a dedicated team of master builders, electricians, plumbers, and roofing specialists collaborating on residential and commercial spaces across the country. Our unified management structure delivers seamless coordination without administrative gaps.
                     </p>
 
-                    <!-- Real-world operational stats (No marketing buzzwords, strictly facts) -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-slate-100">
+                    <!-- Real human-centric core pillars instead of cold statistics -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-100">
                         <div>
-                            <p class="text-3xl font-black text-slate-900">14</p>
-                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1">Active States</p>
+                            <p class="text-sm font-black text-slate-900">National Reach</p>
+                            <p class="text-xs text-slate-500 mt-1">Operating in many major regions with permanent field personnel.</p>
                         </div>
                         <div>
-                            <p class="text-3xl font-black text-slate-900">280+</p>
-                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1">Full-Time Personnel</p>
+                            <p class="text-sm font-black text-slate-900">Expert Staff</p>
+                            <p class="text-xs text-slate-500 mt-1">Fully qualified supervisors overseeing daily field safety.</p>
                         </div>
                         <div>
-                            <p class="text-3xl font-black text-slate-900">OSHA 30</p>
-                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1">Supervision Onsite</p>
-                        </div>
-                        <div>
-                            <p class="text-3xl font-black text-slate-900">$25M</p>
-                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1">Single Project Bond</p>
+                            <p class="text-sm font-black text-slate-900">Bonding Security</p>
+                            <p class="text-xs text-slate-500 mt-1">Substantial underwriting limits supporting large operations.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Clean Corporate Technical Illustration / Image Frame (Light and Elegant) -->
-                <div class="lg:col-span-5 relative" data-aos="fade-left">
-                    <div class="relative mx-auto max-w-[460px] lg:max-w-none">
-                        <!-- Soft subtle orange accent background glow -->
+                <!-- High-quality human/team photo -->
+                <div class="lg:col-span-6" data-aos="fade-left">
+                    <div class="relative mx-auto max-w-[540px] lg:max-w-none">
                         <div class="absolute inset-0 bg-gradient-to-tr from-orange-200 to-amber-100 rounded-full filter blur-[60px] opacity-20 -z-10"></div>
 
-                        <div class="bg-slate-50 p-3 rounded-3xl border border-slate-200/80 shadow-xl relative overflow-hidden">
-                            <!-- Simulated Site Blueprint Screen Header -->
+                        <div class="bg-slate-50 p-3 rounded-3xl border border-slate-200/80 shadow-xl overflow-hidden">
+                            <!-- Visual banner indicating physical on-site activity -->
                             <div class="bg-slate-900 text-slate-400 text-[10px] font-mono px-4 py-2 border-b border-slate-800 flex items-center justify-between rounded-t-2xl">
-                                <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-green-500"></span> ACTIVE_MONITOR.EXE</span>
-                                <span class="text-slate-500">SITE PLAN v4.2</span>
+                                <span>Active Project Site Operations</span>
+                                <span class="text-slate-500">Coordination</span>
                             </div>
 
-                            <!-- Unsplash professional construction blueprint/site picture (Light, industrial, high-quality) -->
-                            <div class="aspect-[4/3] w-full overflow-hidden bg-slate-950 rounded-b-2xl relative">
-                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Specialist construction site monitoring" class="w-full h-full object-cover opacity-90">
-
-                                <!-- Blueprint Grid Overlay lines in CSS -->
-                                <div class="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff0c_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0c_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
-                                <!-- Data HUD Tag -->
-                                <div class="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur border border-slate-800 text-white font-mono text-[10px] p-3 rounded-lg space-y-1">
-                                    <p class="text-orange-500 font-bold">STRUCTURAL STEEL STAGING</p>
-                                    <p class="text-slate-400">COORDINATION: 100% ALIGNED</p>
-                                    <p class="text-slate-400">LATITUDE: 41.8781&deg; N, -87.6298&deg; W</p>
-                                </div>
+                            <!-- Master construction crew image -->
+                            <div class="aspect-[4/3] w-full overflow-hidden bg-slate-950 rounded-b-2xl">
+                                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="Specialist construction crew onsite" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </div>
@@ -223,7 +206,7 @@
         </div>
     </section>
 
-    <!-- Section 2: Core Trade Divisions (The Capabilities Grid) -->
+    <!-- Section 2: Specialty Trades (Visual Gallery) -->
     <section id="trades" class="py-24 bg-slate-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
 
@@ -233,74 +216,82 @@
                     Unified Trade Execution Under Single-Source Management
                 </h3>
                 <p class="text-slate-500 mt-4 text-base">
-                    By maintaining permanent, in-house crews across all primary structural, electrical, and mechanical disciplines, we remove the scheduling conflicts, communication gaps, and margin stacking typical of multi-subcontractor projects.
+                    By maintaining permanent, in-house crews across all primary structural, electrical, mechanical, and envelope divisions, we eliminate typical scheduling delays and multi-contractor friction.
                 </p>
             </div>
 
-            <!-- Trade Capabilities Grid -->
+            <!-- Highly visual trade gallery with minimal text & zero icons/numbers -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-                <!-- Division 1: Construction & Structural -->
-                <div class="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mb-6 text-xl">
-                            <i class="fa-solid fa-hard-hat"></i>
-                        </div>
-                        <h4 class="font-extrabold text-lg text-slate-900 mb-2">Structural & Building</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
-                            Concrete foundation pouring, structural wood and steel framing, interior/exterior build-outs, and drywall assemblies compliant with municipal zoning and IBC codes.
-                        </p>
+                <!-- Division: Structural & Building -->
+                <div class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 w-full overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Structural timber house frame structure" class="w-full h-full object-cover">
                     </div>
-                    <div class="pt-4 border-t border-slate-100 text-[11px] font-mono text-slate-400">
-                        SPECIFICATION: IBC SECTIONS 16-23
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-extrabold text-lg text-slate-900 mb-2">Structural & Building</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                                Framing, concrete foundations, interior layouts, and drywall assemblies compliant with building codes.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 text-[10px] font-mono text-slate-400">
+                            International Building Code Alignments
+                        </div>
                     </div>
                 </div>
 
-                <!-- Division 2: Master Electrical Systems -->
-                <div class="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mb-6 text-xl">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <h4 class="font-extrabold text-lg text-slate-900 mb-2">Master Electrical</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
-                            Three-phase electrical distribution systems, high-voltage equipment integration, smart building controls, sub-panels, and comprehensive commercial circuit routing.
-                        </p>
+                <!-- Division: Master Electrical Systems -->
+                <div class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 w-full overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Professional electrician working on wires" class="w-full h-full object-cover">
                     </div>
-                    <div class="pt-4 border-t border-slate-100 text-[11px] font-mono text-slate-400">
-                        REGULATION: NFPA 70 / NEC COMPLIANT
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-extrabold text-lg text-slate-900 mb-2">Master Electrical</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                                Electrical distribution, utility upgrades, control panel wiring, and safety circuit routing.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 text-[10px] font-mono text-slate-400">
+                            National Electrical Code Alignments
+                        </div>
                     </div>
                 </div>
 
-                <!-- Division 3: Mechanical & Plumbing -->
-                <div class="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mb-6 text-xl">
-                            <i class="fa-solid fa-faucet"></i>
-                        </div>
-                        <h4 class="font-extrabold text-lg text-slate-900 mb-2">Mechanical & Plumbing</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
-                            Industrial sanitary sewer lines, grease trap integrations, commercial high-flow water supplies, backflow prevention systems, and boiler system piping design.
-                        </p>
+                <!-- Division: Mechanical & Plumbing -->
+                <div class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 w-full overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" alt="Plumbing and mechanical piping design" class="w-full h-full object-cover">
                     </div>
-                    <div class="pt-4 border-t border-slate-100 text-[11px] font-mono text-slate-400">
-                        CODE COMPLIANCE: IPC / UPC STANDARDS
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-extrabold text-lg text-slate-900 mb-2">Mechanical & Plumbing</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                                Sanitary systems, water supply installation, boiler connections, and backflow prevention checks.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 text-[10px] font-mono text-slate-400">
+                            International Plumbing Code Alignments
+                        </div>
                     </div>
                 </div>
 
-                <!-- Division 4: Certified Roofing & Building Envelope -->
-                <div class="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="400">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mb-6 text-xl">
-                            <i class="fa-solid fa-house-chimney"></i>
-                        </div>
-                        <h4 class="font-extrabold text-lg text-slate-900 mb-2">Roofing & Weatherproofing</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
-                            Certified installation of single-ply TPO, built-up asphalt, modified bitumen flat roof systems, metal roofing panels, and detailed exterior flashing integration.
-                        </p>
+                <!-- Division: Certified Roofing & Weatherproofing -->
+                <div class="bg-white rounded-3xl border border-slate-200/60 shadow-sm overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 w-full overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1632759162444-18300061324e?auto=format&fit=crop&w=800&q=80" alt="Roofing envelope membrane installation" class="w-full h-full object-cover">
                     </div>
-                    <div class="pt-4 border-t border-slate-100 text-[11px] font-mono text-slate-400">
-                        RATING: CLASS-A FIRE & ASTM CERTIFIED
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-extrabold text-lg text-slate-900 mb-2">Roofing Envelope</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                                Weatherproofing membranes, single-ply flat roof installations, flashing, and rain drain integrations.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 text-[10px] font-mono text-slate-400">
+                            Weatherproofing Membrane Alignments
+                        </div>
                     </div>
                 </div>
 
@@ -308,150 +299,150 @@
         </div>
     </section>
 
-    <!-- Interactive Trade Details Block (Educational / Informational tab system) -->
+    <!-- Interactive Trade Details Lookup (NO NUMBERS, NO ICONS, NO EMOJIS) -->
     <section class="py-20 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="bg-slate-50 rounded-3xl border border-slate-200/80 p-8 md:p-12">
                 <div class="max-w-2xl mb-10">
-                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Interactive Technical Standards</span>
-                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Division Technical Standards Lookup</h3>
-                    <p class="text-slate-500 text-sm mt-2">Select a trade division to inspect current operational standards, typical safety gears required, and regulatory codes applied in the United States.</p>
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Interactive Framework</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Division Field Standards</h3>
+                    <p class="text-slate-500 text-sm mt-2">Select a division below to inspect physical requirements, safety equipment utilized, and standard materials deployed across current operations.</p>
                 </div>
 
-                <!-- Tabs header -->
+                <!-- Clean text-based tabs (No icons, no numbers) -->
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 border-b border-slate-200 pb-4">
                     <button id="tab-btn-const" onclick="switchTradeTab('construction')" class="py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-left border border-transparent transition-all duration-200 trade-tab-active">
-                        <i class="fa-solid fa-hard-hat mr-2"></i> Structural Build
+                        Structural Build
                     </button>
                     <button id="tab-btn-elec" onclick="switchTradeTab('electrical')" class="py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-left border border-transparent transition-all duration-200 text-slate-500 hover:bg-slate-100">
-                        <i class="fa-solid fa-bolt mr-2"></i> Master Electrical
+                        Master Electrical
                     </button>
                     <button id="tab-btn-plum" onclick="switchTradeTab('plumbing')" class="py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-left border border-transparent transition-all duration-200 text-slate-500 hover:bg-slate-100">
-                        <i class="fa-solid fa-faucet mr-2"></i> Mechanical / Plumbing
+                        Mechanical Plumbing
                     </button>
                     <button id="tab-btn-roof" onclick="switchTradeTab('roofing')" class="py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-left border border-transparent transition-all duration-200 text-slate-500 hover:bg-slate-100">
-                        <i class="fa-solid fa-house-chimney mr-2"></i> Roofing Envelope
+                        Roofing Envelope
                     </button>
                 </div>
 
                 <!-- Tab Panels Area -->
                 <div class="mt-8">
-                    <!-- Construction Content -->
+                    <!-- Construction Panel -->
                     <div id="tab-panel-const" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                         <div class="lg:col-span-7 space-y-5">
-                            <h4 class="text-xl font-bold text-slate-900">Residential & Commercial Frame Infrastructure</h4>
+                            <h4 class="text-xl font-bold text-slate-900 font-sans">Residential & Commercial Frame Foundations</h4>
                             <p class="text-sm text-slate-600 leading-relaxed">
-                                Our structural building division relies strictly on certified carpenters and concrete masters. Every component, from reinforced concrete sub-bases to complex structural timber trusses or cold-formed heavy steel framing, aligns precisely with engineering drawings and state IBC mandates.
+                                Our structural building division relies strictly on qualified carpenters and concrete specialists. Every element, from reinforced concrete sub-bases to complex timber trusses or cold-formed steel framing, aligns precisely with engineering drawings.
                             </p>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Governing US Code</h5>
-                                    <p class="text-xs text-slate-500 mt-1">International Building Code (IBC) &bull; IRC (Residential)</p>
+                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Governing Codes</h5>
+                                    <p class="text-xs text-slate-500 mt-1">International Building Code and Residential Guidelines</p>
                                 </div>
                                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Standard Materials</h5>
-                                    <p class="text-xs text-slate-500 mt-1">4000 PSI concrete mix, Gauge 16-20 load-bearing metal studs</p>
+                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Core Materials</h5>
+                                    <p class="text-xs text-slate-500 mt-1">High-pressure concrete mix, load-bearing metal studs, timber beams</p>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                            <h5 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">Mandatory PPE & Safety Gear</h5>
+                            <h5 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Safety Equipment Requirements</h5>
                             <ul class="text-xs text-slate-600 space-y-2.5">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> ANSI/ISEA Type 1 Class E Industrial Safety Helmet</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> ASTM F2413-18 Certified Steel-Toe Footwear</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> ANSI Z87.1 High-Impact Eye Protection Glasses</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Heavy-duty anti-vibration mechanical work gloves</li>
+                                <li class="flex items-center gap-2">Industrial Safety Helmet</li>
+                                <li class="flex items-center gap-2">Certified Steel-Toe Footwear</li>
+                                <li class="flex items-center gap-2">High-Impact Eye Protection</li>
+                                <li class="flex items-center gap-2">Anti-vibration mechanical work gloves</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Electrical Content -->
+                    <!-- Electrical Panel -->
                     <div id="tab-panel-elec" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                         <div class="lg:col-span-7 space-y-5">
-                            <h4 class="text-xl font-bold text-slate-900">Commercial 3-Phase Systems & Grid Connection</h4>
+                            <h4 class="text-xl font-bold text-slate-900 font-sans">Multi-Phase Power Systems & Connections</h4>
                             <p class="text-sm text-slate-600 leading-relaxed">
-                                Managed entirely by certified Master Electricians. Our electrical team handles complex engineering integrations, high-load breaker replacements, transformer vault setup, commercial lighting grids, and conduit piping layouts for high-stress manufacturing or high-occupancy environments.
+                                Managed entirely by certified Master Electricians. Our electrical team handles complex engineering integrations, high-load breaker replacements, transformer vault setup, commercial lighting grids, and conduit piping layouts.
                             </p>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Governing US Code</h5>
-                                    <p class="text-xs text-slate-500 mt-1">NFPA 70: National Electrical Code (NEC) 2020 / 2023</p>
+                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Governing Codes</h5>
+                                    <p class="text-xs text-slate-500 mt-1">National Electrical Code Compliance Guidelines</p>
                                 </div>
                                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Load Compliance</h5>
-                                    <p class="text-xs text-slate-500 mt-1">UL listed panels, continuous duty loading calculations at 125%</p>
+                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Load Parameters</h5>
+                                    <p class="text-xs text-slate-500 mt-1">Insulated conductor systems, continuous duty load planning</p>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                            <h5 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">Mandatory PPE & Safety Gear</h5>
+                            <h5 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Safety Equipment Requirements</h5>
                             <ul class="text-xs text-slate-600 space-y-2.5">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> NFPA 70E Compliant Arc-Flash rated face shield</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Class 0 Dielectric high voltage insulated gloves</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Flame-Resistant (FR) category 2 primary clothing</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Non-conductive structural composite-toe footwear</li>
+                                <li class="flex items-center gap-2">Arc-Flash rated face shield</li>
+                                <li class="flex items-center gap-2">Dielectric high voltage insulated gloves</li>
+                                <li class="flex items-center gap-2">Flame-Resistant category clothing</li>
+                                <li class="flex items-center gap-2">Non-conductive composite-toe boots</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Plumbing Content -->
+                    <!-- Plumbing Panel -->
                     <div id="tab-panel-plum" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                         <div class="lg:col-span-7 space-y-5">
-                            <h4 class="text-xl font-bold text-slate-900">Commercial Sanitary Sewers & Potable Plumbing</h4>
+                            <h4 class="text-xl font-bold text-slate-900 font-sans">Sanitary Sewers & Potable Plumbing Lines</h4>
                             <p class="text-sm text-slate-600 leading-relaxed">
-                                Engineered backflow systems, pressure regulators, clean-water distribution piping, and industrial wastewater drainage systems. All layouts are fully pressure-tested and certified by licensed Journeymen to ensure zero contamination risk and long-term durability.
+                                Engineered water management systems, backflow preventers, high-flow distribution piping, and industrial wastewater drainage structures. Every layout undergoes continuous pressure-testing to verify longevity.
                             </p>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Governing US Code</h5>
-                                    <p class="text-xs text-slate-500 mt-1">International Plumbing Code (IPC) &bull; Uniform Plumbing Code (UPC)</p>
+                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Governing Codes</h5>
+                                    <p class="text-xs text-slate-500 mt-1">International Plumbing Code and Uniform Plumbing Standards</p>
                                 </div>
                                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Hydrostatic Standards</h5>
-                                    <p class="text-xs text-slate-500 mt-1">Sewer lines tested at 5 PSI, supply lines tested up to 150 PSI</p>
+                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Testing Routines</h5>
+                                    <p class="text-xs text-slate-500 mt-1">Continuous hydrostatic pressure line certification</p>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                            <h5 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">Mandatory PPE & Safety Gear</h5>
+                            <h5 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Safety Equipment Requirements</h5>
                             <ul class="text-xs text-slate-600 space-y-2.5">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Biohazard water-resistant heavy rubber safety gloves</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Fluid-resistant protective sleeve covers and apron</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Anti-splash sealed safety goggles / eye protection</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Slip-resistant steel safety boots with vulcanized sole</li>
+                                <li class="flex items-center gap-2">Biohazard water-resistant rubber gloves</li>
+                                <li class="flex items-center gap-2">Fluid-resistant protective sleeve covers</li>
+                                <li class="flex items-center gap-2">Anti-splash sealed safety goggles</li>
+                                <li class="flex items-center gap-2">Slip-resistant steel safety boots</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Roofing Content -->
+                    <!-- Roofing Panel -->
                     <div id="tab-panel-roof" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                         <div class="lg:col-span-7 space-y-5">
-                            <h4 class="text-xl font-bold text-slate-900">Industrial Flat TPO & Weatherproofing Membrane</h4>
+                            <h4 class="text-xl font-bold text-slate-900 font-sans">Flat Roof TPO & Exterior Weatherproofing</h4>
                             <p class="text-sm text-slate-600 leading-relaxed">
-                                Protecting building assets requires robust roofing membranes. We specialize in hot-air welded Thermoplastic Polyolefin (TPO) single-ply membranes, Class A fire-resistant assemblies, detailed parapet wall flashing, and high-efficiency roof deck drainage systems.
+                                Shielding structures demands professional envelope roofing. We focus on hot-air welded single-ply membranes, fire-resistant assemblies, detailed wall flashing, and effective roof deck drainage.
                             </p>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Governing US Code</h5>
-                                    <p class="text-xs text-slate-500 mt-1">ASTM Standards &bull; NRCA (National Roofing Contractors Association)</p>
+                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Governing Standards</h5>
+                                    <p class="text-xs text-slate-500 mt-1">National Roofing Contractors Association guidelines</p>
                                 </div>
                                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Uplift Ratings</h5>
-                                    <p class="text-xs text-slate-500 mt-1">FM Global 1-90 certified wind uplift installation spacing</p>
+                                    <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Wind Rating</h5>
+                                    <p class="text-xs text-slate-500 mt-1">High-uplift certified installation spacings</p>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                            <h5 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">Mandatory PPE & Safety Gear</h5>
+                            <h5 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Safety Equipment Requirements</h5>
                             <ul class="text-xs text-slate-600 space-y-2.5">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> OSHA compliant full-body harness & shock lanyard</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> 5000 lbs rated anchor point connection system</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Thermal-resistant leather welding safety gloves</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> High-grip slip-resistant specialized rubber soles</li>
+                                <li class="flex items-center gap-2">OSHA compliant full-body harness</li>
+                                <li class="flex items-center gap-2">Heavy-duty anchor point connector</li>
+                                <li class="flex items-center gap-2">Thermal-resistant safety welding gloves</li>
+                                <li class="flex items-center gap-2">High-traction slip-resistant roof boots</li>
                             </ul>
                         </div>
                     </div>
@@ -460,99 +451,84 @@
         </div>
     </section>
 
-    <!-- Section 3: Project Lifecycle Phase Planner (Informational / Interactive Module) -->
-    <section id="timeline" class="py-24 bg-slate-50 border-b border-slate-100">
+    <!-- Section 3: Project Flow (Human Timeline, Elegant Images, NO NUMBERS/ICONS/EMOJIS) -->
+    <section id="workflow" class="py-24 bg-slate-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div class="max-w-3xl mb-16" data-aos="fade-up">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-orange-500">Execution Framework</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 leading-tight">
+                    How We Bring Projects From Paper to Reality
+                </h3>
+                <p class="text-slate-500 mt-4 text-base">
+                    Every build follows a synchronized sequence of planning, structural framing, utility routing, and final compliance. This transparency ensures everyone on the team is aligned for success.
+                </p>
+            </div>
 
-                <!-- Informative left side explaining the coordinated planning -->
-                <div class="lg:col-span-5 space-y-6" data-aos="fade-right">
-                    <span class="text-xs font-bold uppercase tracking-widest text-orange-500">Operational Integrity</span>
-                    <h3 class="text-3xl font-extrabold text-slate-900 leading-tight">
-                        Integrated Project Planning Simulator
-                    </h3>
-                    <p class="text-slate-600 leading-relaxed font-medium">
-                        Standard building processes in the United States require strict coordination between general contractors, engineers, and municipal inspectors.
-                    </p>
-                    <p class="text-slate-500 text-sm leading-relaxed">
-                        Use this simulation panel to learn the phases of a professional commercial or residential build. Select a project type to analyze sequential dependencies, safety milestones, and required municipal inspections.
-                    </p>
+            <!-- Highly human visual timeline (No sequential numbers, only clear stage titles & photos) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-                    <!-- Real-life inspection standards list -->
-                    <div class="space-y-3 pt-4 border-t border-slate-200">
-                        <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Standard US Inspections Covered:</h4>
-                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-500">
-                            <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[6px] text-orange-500"></i> Foundation / Pre-Pour</li>
-                            <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[6px] text-orange-500"></i> Rough-In (Elec & Plum)</li>
-                            <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[6px] text-orange-500"></i> Wallboard / Sheathing</li>
-                            <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[6px] text-orange-500"></i> Building Envelope Seal</li>
-                            <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[6px] text-orange-500"></i> Temporary Power Release</li>
-                            <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[6px] text-orange-500"></i> Final Occupancy (CO)</li>
-                        </ul>
+                <!-- Step: Engineering & Site Initiation -->
+                <div class="bg-white rounded-3xl border border-slate-200/60 overflow-hidden shadow-sm flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-40 w-full overflow-hidden relative">
+                        <!-- Blueprint review/planning -->
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Blueprint planning and team coordination" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-slate-900 text-sm mb-1.5">Site Initiation</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Securing permits, surveying site conditions, preparing soil foundations, and aligning architectural blueprints with our trade leads.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Interactive simulator block (A structured planner, not selling anything!) -->
-                <div class="lg:col-span-7 bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-6" data-aos="fade-left">
-                    <div class="border-b border-slate-100 pb-4">
-                        <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">Configuration Panel</span>
-                        <h4 class="text-lg font-bold text-slate-900 mt-1">Analyze Project Trade Sequencing</h4>
+                <!-- Step: Primary Framing & Structure -->
+                <div class="bg-white rounded-3xl border border-slate-200/60 overflow-hidden shadow-sm flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-40 w-full overflow-hidden relative">
+                        <!-- Framing structure -->
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="Steel and timber framing construction" class="w-full h-full object-cover">
                     </div>
-
-                    <!-- Simulator Input Selections -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label for="sim-project-type" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Project Classification</label>
-                            <select id="sim-project-type" onchange="runSimulation()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold focus:ring-2 focus:ring-orange-500 focus:outline-none">
-                                <option value="residential">Single Family Home (3,500 Sq. Ft.)</option>
-                                <option value="commercial">Commercial Retail Strip (15,000 Sq. Ft.)</option>
-                                <option value="electrical_upgrade">Industrial Grid Retrofit (Sub-station)</option>
-                                <option value="roofing_replace">TPO Re-roofing Project (80 Squares)</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="sim-complexity" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Municipal Permit Class</label>
-                            <select id="sim-complexity" onchange="runSimulation()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold focus:ring-2 focus:ring-orange-500 focus:outline-none">
-                                <option value="standard">Standard Fast-Track Permitting</option>
-                                <option value="complex">High-Density Zoning Review (ZBA)</option>
-                                <option value="expedited">Emergency Fire/Utility Rehabilitation</option>
-                            </select>
-                        </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-slate-900 text-sm mb-1.5">Structural Shell</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Pouring foundations, erecting load-bearing steel columns or wooden framing, and securing outer sheathing elements.
+                        </p>
                     </div>
+                </div>
 
-                    <!-- Output Interactive Timeline Display -->
-                    <div class="space-y-4 pt-4 border-t border-slate-100">
-                        <div class="flex justify-between items-center bg-orange-50/60 border border-orange-100 rounded-xl p-4">
-                            <div>
-                                <p class="text-xs text-slate-400 uppercase font-mono tracking-wider font-bold">Estimated Operational Span</p>
-                                <p class="text-xl font-black text-slate-900 mt-1" id="out-total-duration">-- Days</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-slate-400 uppercase font-mono tracking-wider font-bold">Inspection Milestones</p>
-                                <p class="text-xl font-black text-slate-900 mt-1" id="out-inspections">-- Mandatory</p>
-                            </div>
-                        </div>
-
-                        <!-- Generated Phases Steps list -->
-                        <div class="space-y-4 pt-2" id="sim-steps-wrapper">
-                            <!-- Injected dynamically by JS -->
-                        </div>
+                <!-- Step: Multi-Trade Integration -->
+                <div class="bg-white rounded-3xl border border-slate-200/60 overflow-hidden shadow-sm flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-40 w-full overflow-hidden relative">
+                        <!-- Electrical/Plumbing rough-in -->
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Specialty trades integration" class="w-full h-full object-cover">
                     </div>
-
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-[11px] text-slate-500 font-mono flex items-start gap-2.5">
-                        <i class="fa-solid fa-triangle-exclamation text-orange-500 mt-0.5"></i>
-                        <span>This schedule is a theoretical duration metric calculated under standardized weather conditions and prompt municipal inspector availability. True durations are subject to final architectural blueprint seals.</span>
+                    <div class="p-6">
+                        <h4 class="font-bold text-slate-900 text-sm mb-1.5">Trade Integration</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Simultaneous routing of master electrical conduits, commercial plumbing lines, mechanical ductwork, and structural roof sealing.
+                        </p>
                     </div>
+                </div>
 
+                <!-- Step: Final Polish & Inspections -->
+                <div class="bg-white rounded-3xl border border-slate-200/60 overflow-hidden shadow-sm flex flex-col justify-between" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-40 w-full overflow-hidden relative">
+                        <!-- Completed professional site -->
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Finished site inspection and final checks" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-slate-900 text-sm mb-1.5">Handover & Sign-Off</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Conducting internal multi-point inspections, executing municipal walk-throughs, and releasing final certificates of occupancy.
+                        </p>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Safety Protocols, Regulatory Compliance & Credentials -->
+    <!-- Section 4: Safety Protocols, Regulatory Compliance & Integrity (NO NUMBERS/ICONS/EMOJIS) -->
     <section id="compliance" class="py-24 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
 
@@ -562,83 +538,64 @@
                     Strict Adherence to Safety Standards & Liability Protections
                 </h3>
                 <p class="text-slate-500 mt-4">
-                    In the heavy construction sector, licensing and comprehensive insurance structures are non-negotiable. Apex United Contractors operates under strict regulatory guidelines to isolate risk and safeguard on-site personnel and assets.
+                    In the contracting sector, comprehensive safety structures and general liability protections are fundamental. We operate under strict corporate protocols to secure every project site.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-                <!-- Left Details Grid -->
+                <!-- Left Details Grid (All textual, no numbers) -->
                 <div class="lg:col-span-7 space-y-8" data-aos="fade-right">
 
-                    <div class="flex gap-4 items-start">
-                        <div class="h-10 w-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 font-bold shrink-0 text-sm">
-                            01
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Zero-Harm OSHA Initiative</h4>
-                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-                                Our staff maintain up-to-date OSHA certifications. All field operations are supervised by a permanent Project Safety Manager tasked with monitoring safety harnesses, trench barriers, electrical lock-out tag-out (LOTO) protocols, and immediate hazards.
-                            </p>
-                        </div>
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-slate-900 text-sm">Zero-Harm Site Initiative</h4>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                            Our field supervisors maintain rigorous safety certifications. Daily work begins with comprehensive safety alignment briefs covering trade-specific equipment safety, lock-out tag-out protocols, and barrier maintenance.
+                        </p>
                     </div>
 
-                    <div class="flex gap-4 items-start">
-                        <div class="h-10 w-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 font-bold shrink-0 text-sm">
-                            02
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Substantial Liability Underwriting</h4>
-                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-                                Backed by a $10,000,000 General Liability policy, complete structural bonding, and a comprehensive Workers' Compensation insurance framework, providing solid regulatory isolation for clients during all construction phases.
-                            </p>
-                        </div>
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-slate-900 text-sm">Extensive Liability Coverage</h4>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                            We are backed by substantial general liability insurance, commercial vehicle protection, structural bonding, and a comprehensive workers compensation framework, providing complete protection during active operations.
+                        </p>
                     </div>
 
-                    <div class="flex gap-4 items-start">
-                        <div class="h-10 w-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 font-bold shrink-0 text-sm">
-                            03
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Strict Code Compliance Inspections</h4>
-                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-                                Every layout undergoes multiple rigorous physical checks before scheduling official local administrative inspectors, ensuring that electrical layouts, drain slopes, structural fasteners, and roof welds are compliant on the first visit.
-                            </p>
-                        </div>
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-slate-900 text-sm">Pre-Inspection Quality Audits</h4>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                            Internal specialty trade superintendents audit every rough-in, electrical panel, plumbing slope, and membrane weld prior to scheduling external inspections, ensuring swift compliance and immediate sign-offs.
+                        </p>
                     </div>
 
                 </div>
 
-                <!-- Right Visual Stats Frame -->
+                <!-- Right Visual Stats Frame (Text-based status cards, NO numbers, NO icons) -->
                 <div class="lg:col-span-5 bg-slate-50 rounded-3xl p-8 border border-slate-200/80 space-y-6" data-aos="fade-left">
-                    <h4 class="font-mono text-xs font-bold text-slate-400 uppercase tracking-widest">Regulatory Certificates Held</h4>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Operational Status Review</h4>
 
-                    <div class="space-y-4">
+                    <div class="space-y-4 text-xs">
                         <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <span class="text-xs font-bold text-slate-700">OSHA 10 Hour Field Cards</span>
-                            <span class="text-xs font-bold bg-green-100 text-green-700 py-1 px-2.5 rounded-full">100% of Workers</span>
+                            <span class="font-bold text-slate-700">Safety Supervisors Onsite</span>
+                            <span class="font-semibold text-slate-600">Active and Certified</span>
                         </div>
                         <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <span class="text-xs font-bold text-slate-700">OSHA 30 Hour Supervisor Cards</span>
-                            <span class="text-xs font-bold bg-green-100 text-green-700 py-1 px-2.5 rounded-full">100% of Superintendents</span>
+                            <span class="font-bold text-slate-700">General Liability Protection</span>
+                            <span class="font-semibold text-slate-600">Comprehensive Underwriting</span>
                         </div>
                         <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <span class="text-xs font-bold text-slate-700">General Liability Coverage</span>
-                            <span class="text-xs font-mono font-semibold text-slate-600">$10,000,000 USD Active</span>
+                            <span class="font-bold text-slate-700">Performance Bonding Capacity</span>
+                            <span class="font-semibold text-slate-600">High Capacity Backed</span>
                         </div>
                         <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <span class="text-xs font-bold text-slate-700">Bonding Capacity</span>
-                            <span class="text-xs font-mono font-semibold text-slate-600">$25M Single / $50M Aggregate</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-slate-700">Workers' Comp Active</span>
-                            <span class="text-xs font-bold bg-green-100 text-green-700 py-1 px-2.5 rounded-full">Active & Verified</span>
+                            <span class="font-bold text-slate-700">Workers Compensation Policy</span>
+                            <span class="font-semibold text-slate-600">Fully Registered</span>
                         </div>
                     </div>
 
                     <div class="bg-white p-4 rounded-xl border border-slate-200/80 space-y-2">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Independent Auditing</p>
-                        <p class="text-xs text-slate-600">Our safety index is continuously audited by third-party risk assessors. Current EMR (Experience Modification Rate): <strong>0.72</strong> (National Average is 1.0; lower is safer).</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Independent Safety Index</p>
+                        <p class="text-xs text-slate-600">Our safety rating is continuously evaluated by independent risk assessors. Our metrics stand as some of the safest in the industry, reflecting our absolute commitment to a zero-harm environment.</p>
                     </div>
                 </div>
 
@@ -646,39 +603,23 @@
         </div>
     </section>
 
-    <!-- Section 5: Technical Fleet, Equipment & Logistics -->
-    <section id="equipment" class="py-24 bg-slate-50 border-b border-slate-100">
+    <!-- Section 5: Technical Logistics & Infrastructure (NO NUMBERS/ICONS/EMOJIS) -->
+    <section id="logistics" class="py-24 bg-slate-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
-                <!-- Left Visual Showcase of Heavy Machinery & Staging Areas -->
+                <!-- Left Visual Showcase of Machinery & Staging Areas -->
                 <div class="lg:col-span-5 relative" data-aos="fade-right">
                     <div class="relative mx-auto max-w-[460px] lg:max-w-none">
-                        <div class="bg-white p-3 rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden">
-                            <!-- Simulated Logistics System Header -->
+                        <div class="bg-white p-3 rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
                             <div class="bg-slate-900 text-slate-400 text-[10px] font-mono px-4 py-2 border-b border-slate-800 flex items-center justify-between rounded-t-2xl">
-                                <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-orange-500 animate-pulse"></span> ASSET_STAGING_STATUS</span>
-                                <span class="text-slate-500">FLEET MANAGER v1.1</span>
+                                <span>Corporate Infrastructure Assets</span>
+                                <span class="text-slate-500">Fleet Status</span>
                             </div>
 
-                            <!-- Unsplash professional heavy machinery image -->
-                            <div class="aspect-[4/3] w-full overflow-hidden bg-slate-950 rounded-b-2xl relative">
-                                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="Specialized fleet vehicles on duty" class="w-full h-full object-cover">
-
-                                <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950/80 to-transparent"></div>
-
-                                <!-- Floating inventory stat box -->
-                                <div class="absolute bottom-4 left-4 right-4 bg-slate-900/95 border border-slate-800 text-white font-mono text-[9px] p-3 rounded-lg flex justify-between items-center">
-                                    <div>
-                                        <p class="text-orange-500 font-bold">FLEET DIVISION 3</p>
-                                        <p class="text-slate-400">ACTIVE LOGISTICS SITE</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-slate-300">TOTAL SERVICE VEHICLES: 42</p>
-                                        <p class="text-green-400">AVAILABILITY: 94.5% READY</p>
-                                    </div>
-                                </div>
+                            <div class="aspect-[4/3] w-full overflow-hidden bg-slate-950 rounded-b-2xl">
+                                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Fleet logistics and planning" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </div>
@@ -688,29 +629,29 @@
                 <div class="lg:col-span-7 space-y-6" data-aos="fade-left">
                     <span class="text-xs font-bold uppercase tracking-widest text-orange-500">Logistics & Infrastructure</span>
                     <h3 class="text-3xl font-extrabold text-slate-900 leading-tight">
-                        Permanent Specialized Fleet & Mobile Machinery Assets
+                        Owned Machinery Fleet & Mobilization Assets
                     </h3>
                     <p class="text-slate-600 leading-relaxed font-medium">
-                        Apex United Contractors owns and manages a robust fleet of specialized vehicles, high-reach scissor lifts, boom trucks, pipe threading configurations, structural roof welding machines, and certified electrical diagnostic stations.
+                        Apex United Contractors maintains full ownership and operational control over a fleet of heavy transport utility vehicles, mobile scissor lifts, diagnostic electrical stations, and commercial plumbing rigs.
                     </p>
                     <p class="text-slate-500 text-sm leading-relaxed">
-                        By avoiding reliance on over-leveraged third-party rental facilities, we maintain tight control over tool availability. Our equipment undergoes routine, comprehensive mechanical maintenance cycles and holds full compliant safety inspection records.
+                        Rather than relying on third-party equipment rental brokers, we coordinate our assets directly. This strategy guarantees on-site tool availability, reliable mechanical maintenance schedules, and predictable mobilization times.
                     </p>
 
-                    <!-- Fleet breakdown info -->
+                    <!-- Fleet details -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                         <div class="p-4 bg-white rounded-xl border border-slate-200">
-                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
-                                <i class="fa-solid fa-truck text-orange-500"></i> Medium & Heavy Fleet
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                                Specialty Support Fleet
                             </h4>
-                            <p class="text-xs text-slate-500 mt-1">Utility flatbeds, cable spool trucks, fully stocked electrical vans, and high-pressure jetting trailers.</p>
+                            <p class="text-xs text-slate-500 mt-1">Stocked transport vans, structural steel welding rigs, and cable spooling vehicles.</p>
                         </div>
 
                         <div class="p-4 bg-white rounded-xl border border-slate-200">
-                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
-                                <i class="fa-solid fa-wrench text-orange-500"></i> Field Machinery Assets
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                                Diagnostic & Tooling Assets
                             </h4>
-                            <p class="text-xs text-slate-500 mt-1">Scissor/articulated boom lifts, structural steel weld rigs, high-grade drain imaging, and TPO hot-air weld systems.</p>
+                            <p class="text-xs text-slate-500 mt-1">Precision testing apparatus, membrane welding systems, and fiber splicing gear.</p>
                         </div>
                     </div>
                 </div>
@@ -728,8 +669,8 @@
                 <!-- Logo & License Column -->
                 <div class="md:col-span-5 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="h-10 w-10 bg-orange-500 rounded-lg flex items-center justify-center text-white">
-                            <i class="fa-solid fa-helmet-safety text-lg"></i>
+                        <div class="h-10 w-10 bg-orange-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                            A
                         </div>
                         <div>
                             <span class="text-lg font-black tracking-tight text-white block leading-none">APEX UNITED</span>
@@ -738,50 +679,43 @@
                     </div>
 
                     <p class="text-xs leading-relaxed max-w-sm">
-                        Apex United Contractors is a unified US-based multi-trade structural construction, master electrical, professional plumbing, and industrial roofing entity.
+                        Apex United Contractors is a unified contracting enterprise focusing on structural building, master electrical installations, mechanical plumbing, and flat roofing envelope projects.
                     </p>
 
                     <div class="space-y-1 text-[11px] font-mono">
-                        <p><strong class="text-slate-300">GC Bond Limit:</strong> $25,000,000 USD</p>
-                        <p><strong class="text-slate-300">Liability Limits:</strong> $10,000,000 USD Aggregate</p>
-                        <p><strong class="text-slate-300">OSHA Safety Rating:</strong> 0.72 EMR Index</p>
+                        <p><strong class="text-slate-300">Liability Standing:</strong> Fully Bonded and Insured</p>
+                        <p><strong class="text-slate-300">Credential Status:</strong> Active Multi-State Licenses</p>
+                        <p><strong class="text-slate-300">On-Site Supervision:</strong> Certified Safety Managers</p>
                     </div>
                 </div>
 
                 <!-- Office Locations Column -->
                 <div class="md:col-span-4 space-y-4">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-white">Corporate Offices & Logistics Hubs</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white">Corporate Offices & Yards</h4>
                     <div class="space-y-3 text-xs">
-                        <div class="flex items-start gap-2">
-                            <i class="fa-solid fa-location-dot text-orange-500 mt-0.5"></i>
-                            <div>
-                                <p class="font-bold text-slate-300">Houston Headquarters (HQ)</p>
-                                <p class="text-slate-500 mt-0.5">1485 N. Loop Freeway, Suite 800, Houston, TX 77008</p>
-                            </div>
+                        <div>
+                            <p class="font-bold text-slate-300">Houston Headquarters</p>
+                            <p class="text-slate-500 mt-0.5">North Loop Freeway, Houston, Texas</p>
                         </div>
 
-                        <div class="flex items-start gap-2">
-                            <i class="fa-solid fa-location-dot text-orange-500 mt-0.5"></i>
-                            <div>
-                                <p class="font-bold text-slate-300">Midwest Logistics Yard & Office</p>
-                                <p class="text-slate-500 mt-0.5">3302 W. Industrial Blvd, Chicago, IL 60623</p>
-                            </div>
+                        <div>
+                            <p class="font-bold text-slate-300">Midwest Logistics Yard</p>
+                            <p class="text-slate-500 mt-0.5">West Industrial Boulevard, Chicago, Illinois</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contact & Operating Hours Column -->
                 <div class="md:col-span-3 space-y-4">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-white">Corporate Contacts</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white">Corporate Correspondence</h4>
                     <div class="space-y-2 text-xs">
-                        <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-orange-500"></i> +1 (800) 555-APEX</p>
-                        <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-orange-500"></i> inquiry@apexunitedcontractors.com</p>
-                        <p class="flex items-center gap-2"><i class="fa-solid fa-clock text-orange-500"></i> Mon - Fri, 7:00 AM - 5:00 PM CST</p>
+                        <p>General Inquiries: inquiry@apexunitedcontractors.com</p>
+                        <p>Hours of Operation: Monday through Friday, Morning to Evening</p>
                     </div>
 
                     <div class="pt-2">
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Independent Professional Entity</p>
-                        <p class="text-[11px] text-slate-400 mt-1">Information on this landing page describes active trade registrations as required under US federal guidelines. No retail sales are managed on this page.</p>
+                        <p class="text-[11px] text-slate-400 mt-1">This digital landing page provides detailed capability overviews of our enterprise trades in compliance with federal guidelines. No retail sales are executed on this site.</p>
                     </div>
                 </div>
 
@@ -789,7 +723,7 @@
 
             <!-- Bottom Disclaimer Block -->
             <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-slate-500">
-                <p>&copy; <span id="current-year"></span> Apex United Contractors. All engineering plans, structural blue-prints, and licensing indexes are registered trademarks.</p>
+                <p>Apex United Contractors. All engineering plans, structural designs, and licenses are registered trademarks.</p>
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-white">State Licenses</a>
                     <span>&bull;</span>
@@ -802,7 +736,7 @@
         </div>
     </footer>
 
-    <!-- Scripts: AOS Animations, Local JS Interactions -->
+    <!-- Scripts: AOS Animations, Local Tab Interactions -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Initialize Animate On Scroll
@@ -812,19 +746,16 @@
             offset: 80
         });
 
-        // Set Current Year dynamically
-        document.getElementById('current-year').innerText = new Date().getFullYear();
-
-        // Mobile Menu Toggle handler
+        // Mobile Menu Toggle handler (Using text, NO ICONS)
         function toggleMobileMenu() {
             const dropdown = document.getElementById('mobile-dropdown');
-            const icon = document.getElementById('menu-icon');
+            const menuBtnText = document.getElementById('menu-icon-text');
             if (dropdown.classList.contains('hidden')) {
                 dropdown.classList.remove('hidden');
-                icon.className = "fa-solid fa-xmark text-xl";
+                menuBtnText.innerText = "Close";
             } else {
                 dropdown.classList.add('hidden');
-                icon.className = "fa-solid fa-bars text-xl";
+                menuBtnText.innerText = "Menu";
             }
         }
         document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
@@ -862,112 +793,6 @@
                 document.getElementById('tab-panel-roof').classList.remove('hidden');
             }
         }
-
-        // Project Phase Duration Planner Simulator Logic
-        const SIM_DATA = {
-            residential: {
-                title: "Single Family Home Structure (3,500 Sq. Ft.)",
-                baseDuration: 180,
-                inspections: 8,
-                phases: [
-                    { name: "Site Prep & Foundation Pour", days: 30, desc: "Slab pouring, footing compaction, and structural foundation curing." },
-                    { name: "Primary Timber Framing", days: 45, desc: "Erection of outer walls, floor joists, roof deck trusses, and wall boarding." },
-                    { name: "Coordinated Trade Rough-Ins", days: 40, desc: "Simultaneous master electrical, mechanical ducts, and supply line plumbing installation." },
-                    { name: "Drywall, Insulation & Sealing", days: 35, desc: "Class A insulation boarding, dry-walling, sanding, and structural envelope weatherproofing." },
-                    { name: "Finishes, Fixtures & Inspection Sign-Off", days: 30, desc: "Final trim wiring, plumbing fixture installation, and local municipal structural release." }
-                ]
-            },
-            commercial: {
-                title: "Commercial Retail Strip (15,000 Sq. Ft.)",
-                baseDuration: 270,
-                inspections: 12,
-                phases: [
-                    { name: "Earthwork, Utilities & Drainage Staging", days: 45, desc: "Excavation, structural grade beams, heavy water line ties, and parking sub-base." },
-                    { name: "Cold-Formed Structural Steel Frame", days: 60, desc: "Steel columns, beams, heavy metal decking, and structural envelope bracing." },
-                    { name: "Industrial Envelope & Roof TPO Flat Seal", days: 50, desc: "Class A fire-rated single-ply TPO roofing, metal flashing, and structural glass facade." },
-                    { name: "Heavy 3-Phase Power & Commercial Plumbing", days: 65, desc: "Conduit layouts, sub-panels, high-volume copper distribution, and main grease trap installation." },
-                    { name: "Interior Partitions, Fire Sprinklers & CO Release", days: 50, desc: "Sprinkler head layout testing, fire-resistant sheetrocking, and certificate of occupancy audit." }
-                ]
-            },
-            electrical_upgrade: {
-                title: "Industrial Grid Retrofit (Utility Sub-station)",
-                baseDuration: 90,
-                inspections: 5,
-                phases: [
-                    { name: "System Disconnect & Safety Protocol (LOTO)", days: 10, desc: "OSHA lock-out tag-out, isolation confirmation, and staging of heavy utility generator backup." },
-                    { name: "Breaker Enclosure & Cabinet Swaps", days: 25, desc: "Removal of legacy modules, installing heavy NEMA industrial utility cabinets." },
-                    { name: "Primary Copper Cable Pulls & Connections", days: 30, desc: "Pulling heavy gauge conductors, testing structural insulation values (Megger testing)." },
-                    { name: "Smart Controls & Grid Integration Testing", days: 15, desc: "Connecting smart fiber telemetry controls and backup battery banks." },
-                    { name: "Utility Energize & Code Inspection Release", days: 10, desc: "State electrical inspector approval, emergency test activation, and formal grid power handover." }
-                ]
-            },
-            roofing_replace: {
-                title: "TPO Flat Roof Retrofit (80 Squares)",
-                baseDuration: 45,
-                inspections: 4,
-                phases: [
-                    { name: "Substrate Teardown & Decking Inspection", days: 12, desc: "Safe removal of existing degraded bitumen layers, wood deck integrity scan." },
-                    { name: "Thermal Insulation Boarding (Polyiso)", days: 10, desc: "Laying rigid polyisocyanurate sheets with FM Global approved structural deck fasteners." },
-                    { name: "TPO Sheet Hot-Air Weld Laydown", days: 15, desc: "Seaming single-ply Thermoplastic Polyolefin sheets at 400 deg. F with robotic weld systems." },
-                    { name: "Parapet Wall Flashing & Drain Assembly", days: 8, desc: "Waterproof sealing of roof borders, parapets, roof hatches, and storm drain lines." }
-                ]
-            }
-        };
-
-        const SIM_COMPLEXITY_MODIFIER = {
-            standard: { factor: 1.0, inspOffset: 0, suffix: "(Standard Admin Permit Cycle)" },
-            complex: { factor: 1.35, inspOffset: 3, suffix: "(Zoning/ZBA High-Density Review Grid)" },
-            expedited: { factor: 0.85, inspOffset: -1, suffix: "(Accelerated Utility Safety Dispatch)" }
-        };
-
-        function runSimulation() {
-            const projectKey = document.getElementById('sim-project-type').value;
-            const complexityKey = document.getElementById('sim-complexity').value;
-
-            const proj = SIM_DATA[projectKey];
-            const comp = SIM_COMPLEXITY_MODIFIER[complexityKey];
-
-            if (!proj || !comp) return;
-
-            // Calculate overall duration & inspections count
-            const finalDuration = Math.round(proj.baseDuration * comp.factor);
-            const finalInspections = Math.max(2, proj.inspections + comp.inspOffset);
-
-            // Update Header Display
-            document.getElementById('out-total-duration').innerText = `${finalDuration} Days`;
-            document.getElementById('out-inspections').innerText = `${finalInspections} Inspections`;
-
-            // Draw Steps timeline
-            const stepsWrapper = document.getElementById('sim-steps-wrapper');
-            stepsWrapper.innerHTML = '';
-
-            proj.phases.forEach((phase, index) => {
-                const phaseDuration = Math.round(phase.days * comp.factor);
-                const stepHtml = `
-                    <div class="flex gap-4 items-start">
-                        <div class="flex flex-col items-center">
-                            <span class="w-7 h-7 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs shrink-0 select-none">
-                                ${index + 1}
-                            </span>
-                            ${index < proj.phases.length - 1 ? '<span class="w-0.5 h-12 bg-slate-200 mt-1"></span>' : ''}
-                        </div>
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80 flex-1">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
-                                <h5 class="font-extrabold text-slate-800 text-xs sm:text-sm">${phase.name}</h5>
-                                <span class="text-[10px] font-mono font-bold bg-orange-100 text-orange-700 py-1 px-2.5 rounded-full shrink-0">
-                                    ~${phaseDuration} Working Days
-                                </span>
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">${phase.desc}</p>
-                        </div>
-                    </div>
-                `;
-                stepsWrapper.insertAdjacentHTML('beforeend', stepHtml);
-            });
-        }
-
-        // Initialize simulator calculations on boot
-        window.addEventListener('DOMContentLoaded', runSimulation);
     </script>
 </body>
 

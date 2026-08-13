@@ -33,18 +33,6 @@ async def run_verification():
         await page.screenshot(path="/home/jules/verification/constuctora_roofing_tab.png", full_page=False)
         print("Captured roofing tab active state screenshot.")
 
-        # Interactive check: change project classification selection in simulator
-        await page.select_option("id=sim-project-type", "electrical_upgrade")
-        await page.wait_for_timeout(300)
-        await page.screenshot(path="/home/jules/verification/constuctora_simulator_electrical_upgrade.png", full_page=False)
-        print("Captured simulator electrical upgrade select state screenshot.")
-
-        # Interactive check: change permit complexity modifier selection in simulator
-        await page.select_option("id=sim-complexity", "complex")
-        await page.wait_for_timeout(300)
-        await page.screenshot(path="/home/jules/verification/constuctora_simulator_complex_permits.png", full_page=False)
-        print("Captured simulator complex zoning state screenshot.")
-
         # Change Viewport to Mobile to check responsiveness
         await page.set_viewport_size({"width": 375, "height": 812})
         await page.wait_for_timeout(500)
