@@ -3,439 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanguard Performance Workshop — Elite Automotive Diagnostics and Repair</title>
+    <title>Nexus Custom Design — Futuristic Automotive Customization and Tuning</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Playfair Display for headers, Plus Jakarta Sans for body -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Syne for futuristic punchy headers, Plus Jakarta Sans for ultra-clean body -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        editorial: ['"Playfair Display"', 'serif'],
+                        futuristic: ['"Syne"', 'sans-serif'],
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
                     colors: {
-                        garage: {
-                            coal: '#0b0c0d',     /* Absolute dark backing */
-                            carbon: '#121315',   /* Primary element background */
-                            metal: '#1e2124',    /* Borders and secondary components */
-                            dust: '#8e939a',     /* Muted grey text */
-                            steel: '#cbd3dc',    /* Light grey/white contrast */
-                            bone: '#f5f7fa',     /* Clean cream/white for high readability */
-                            safety: '#f97316',   /* High-performance safety orange accent */
+                        nexus: {
+                            cyan: '#06b6d4',      /* Glowing Electric Cyan */
+                            pink: '#ec4899',      /* Neon Hot Pink */
+                            purple: '#8b5cf6',    /* Vibrant Purple */
+                            orange: '#f97316',    /* Bright Solar Orange */
+                            glassWhite: 'rgba(255, 255, 255, 0.15)',
+                            glassBorder: 'rgba(255, 255, 255, 0.25)',
                         }
-                    },
-                    spacing: {
-                        'quarter': 'twenty-five-percent',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom typography styling to elevate human hand-authored aesthetic */
-        .font-editorial {
-            font-family: 'Playfair Display', serif;
+        /* Glowing neon shadows and futuristic keyframe animations */
+        .neon-glow-cyan {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
+        }
+        .neon-glow-pink {
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.6);
+        }
+        .neon-glow-purple {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .glass-panel-heavy {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        /* Gradient backgrounds */
+        .bg-nexus-gradient {
+            background: linear-gradient(135deg, #4c1d95, #6366f1, #0891b2, #db2777);
+            background-size: 300% 300%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: #0b0c0d;
+            background: #4c1d95;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1e2124;
-            border-radius: 4px;
+            background: #ec4899;
+            border-radius: 5px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #f97316;
+            background: #06b6d4;
         }
-        /* Hide default focus ring but keep accessible */
+        /* Accent focus */
         *:focus-visible {
-            outline: 2px solid #f97316;
-            outline-offset: 2px;
-        }
-        /* Smooth transitions */
-        .smooth-hover {
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: 3px solid #06b6d4;
+            outline-offset: 3px;
         }
     </style>
 </head>
-<body class="bg-garage-coal text-garage-bone font-sans overflow-x-hidden selection:bg-garage-safety selection:text-garage-coal">
+<body class="bg-nexus-gradient text-white font-sans overflow-x-hidden selection:bg-white selection:text-nexus-pink relative min-h-screen">
 
-    <!-- CANVAS BACKGROUND PARTICLE SYSTEM (Workshop Sparks and Glowing Embers) -->
-    <canvas id="workshopSparks" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+    <!-- AMBIENT FLOATING NEON ORBS CANVAS -->
+    <canvas id="neonOrbsCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
 
-    <!-- FULLSCREEN SLIDING MENU OVERLAY -->
-    <div id="navigationOverlay" class="fixed inset-0 bg-garage-coal z-50 transform translate-y-full transition-transform duration-700 ease-in-out flex flex-col justify-between p-8 md:p-24 border-t-4 border-garage-safety">
+    <!-- FULLSCREEN SLIDING NAVIGATION OVERLAY -->
+    <div id="navigationOverlay" class="fixed inset-0 bg-gradient-to-tr from-purple-900 to-pink-700 z-50 transform translate-y-full transition-transform duration-700 ease-in-out flex flex-col justify-between p-8 md:p-24 border-t-4 border-nexus-cyan">
         <div class="flex justify-between items-center">
-            <span class="font-editorial italic text-2xl text-garage-safety">Vanguard Performance</span>
-            <button onclick="toggleOverlayMenu()" class="text-xs uppercase tracking-widest text-garage-dust hover:text-garage-bone border-b border-garage-dust pb-1 smooth-hover">
-                Close Garage Portal
+            <span class="font-futuristic font-bold text-2xl tracking-widest text-white">NEXUS CUSTOMS</span>
+            <button onclick="toggleOverlayMenu()" class="text-xs uppercase tracking-widest text-white border-b border-white pb-1 hover:text-nexus-cyan hover:border-nexus-cyan transition-colors duration-300">
+                Close Studio Portal
             </button>
         </div>
 
         <nav class="flex flex-col space-y-6 my-auto">
-            <a href="#about" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">About Our Garage</a>
-            <a href="#services" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">Mechanical Repair Specialties</a>
-            <a href="#diagnostics" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">Symptom Calibration Simulator</a>
-            <a href="#inspections" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">Inspection Sequence</a>
-            <a href="#inquiry" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">Schedule Service</a>
+            <a href="#welcome" onclick="toggleOverlayMenu()" class="font-futuristic font-bold text-4xl md:text-6xl hover:text-nexus-cyan transition-all duration-300 transform hover:translate-x-4">Welcome Studio</a>
+            <a href="#simulator" onclick="toggleOverlayMenu()" class="font-futuristic font-bold text-4xl md:text-6xl hover:text-nexus-pink transition-all duration-300 transform hover:translate-x-4">Paint and Wrap Simulator</a>
+            <a href="#tuning" onclick="toggleOverlayMenu()" class="font-futuristic font-bold text-4xl md:text-6xl hover:text-nexus-cyan transition-all duration-300 transform hover:translate-x-4">ECU Performance Calibration</a>
+            <a href="#services" onclick="toggleOverlayMenu()" class="font-futuristic font-bold text-4xl md:text-6xl hover:text-nexus-pink transition-all duration-300 transform hover:translate-x-4">Our Creative Disciplines</a>
+            <a href="#contact" onclick="toggleOverlayMenu()" class="font-futuristic font-bold text-4xl md:text-6xl hover:text-nexus-cyan transition-all duration-300 transform hover:translate-x-4">Intake Reservation</a>
         </nav>
 
-        <div class="border-t border-garage-metal pt-8 flex flex-col md:flex-row justify-between text-xs text-garage-dust">
-            <span>Detroit Metropolitan Workshop</span>
-            <span>Uncompromising Mechanical Standards</span>
+        <div class="border-t border-white border-opacity-20 pt-8 flex flex-col md:flex-row justify-between text-xs text-white text-opacity-80">
+            <span>Futuristic Automotive Labs</span>
+            <span>Uncompromising Creative Customization</span>
         </div>
     </div>
 
-    <!-- MAIN HEADER & NAVIGATION -->
-    <header class="relative z-40 border-b border-garage-metal py-6 px-6 md:px-16 flex justify-between items-center bg-transparent">
+    <!-- MAIN HEADER -->
+    <header class="relative z-40 border-b border-white border-opacity-20 py-6 px-6 md:px-16 flex justify-between items-center bg-transparent">
         <div class="flex flex-col">
-            <span class="font-editorial text-xl tracking-wide text-garage-bone font-bold">VANGUARD PERFORMANCE</span>
-            <span class="text-[9px] uppercase tracking-[0.3em] text-garage-safety">Elite Automotive Repair and Tuning</span>
+            <span class="font-futuristic text-2xl font-black tracking-widest text-white">NEXUS</span>
+            <span class="text-[9px] uppercase tracking-[0.4em] text-nexus-cyan font-bold">Digital Automotive Tuning</span>
         </div>
 
         <div class="flex items-center space-x-8">
-            <a href="#diagnostics" class="hidden md:inline-block text-xs uppercase tracking-widest text-garage-dust hover:text-garage-bone smooth-hover">
-                Diagnostic Console
+            <a href="#simulator" class="hidden md:inline-block text-xs uppercase tracking-widest text-white hover:text-nexus-cyan transition-colors duration-300">
+                Custom Paint App
             </a>
-            <button onclick="toggleOverlayMenu()" class="text-xs uppercase tracking-widest text-garage-bone border-b border-garage-safety pb-1 hover:text-garage-safety smooth-hover">
+            <button onclick="toggleOverlayMenu()" class="text-xs uppercase tracking-widest text-white border-b-2 border-nexus-pink pb-1 hover:text-nexus-cyan hover:border-nexus-cyan transition-all duration-300">
                 Explore Portal
             </button>
         </div>
     </header>
 
-    <!-- HERO SECTION (Authentic Car Workshop Atmosphere) -->
-    <section class="relative min-h-screen flex flex-col justify-between pt-16 pb-24 px-6 md:px-16 bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(11,12,13,0.85), rgba(11,12,13,0.95)), url('https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=2000&q=80');">
+    <!-- HERO SECTION (Highly Spectacular, Glowing, Futuristic Tuning Pitch) -->
+    <section id="welcome" class="relative min-h-screen flex flex-col justify-between pt-16 pb-24 px-6 md:px-16 relative z-10">
 
-        <div class="max-w-4xl mx-auto my-auto relative z-10 text-center space-y-8">
-            <span class="text-xs uppercase tracking-[0.4em] text-garage-safety font-bold block">Master Class Automotive Diagnostics and Repair</span>
-            <h1 class="font-editorial text-5xl md:text-7xl lg:text-8xl text-garage-bone leading-tight">
-                Restoring <span class="italic font-light">Mechanical Absolute</span> Integrity
+        <div class="max-w-5xl mx-auto my-auto text-center space-y-10">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-white bg-opacity-20 border border-white border-opacity-30 text-xs uppercase tracking-[0.3em] text-white font-bold animate-pulse">
+                Next-Gen Automotive Tuning Lab
+            </span>
+
+            <h1 class="font-futuristic text-5xl md:text-8xl font-black leading-none tracking-tight text-white uppercase">
+                Customize <span class="text-transparent bg-clip-text bg-gradient-to-r from-nexus-cyan via-nexus-pink to-nexus-orange">Your Machine</span> Beyond Limits
             </h1>
-            <p class="text-base md:text-lg text-garage-dust max-w-2xl mx-auto font-light leading-relaxed">
-                We diagnose, repair, and tune high-end European, performance, and classic cars. No guess-work, no shortcuts. Just master technicians utilizing precise mechanical calibrations and premium component overhauls.
+
+            <p class="text-base md:text-xl text-white text-opacity-90 max-w-3xl mx-auto font-light leading-relaxed">
+                Welcome to the future of automotive styling and performance mapping. We combine high-tech vinyl wrap software simulations, glowing digital finishes, and multi-stage ECU chip tuning to synthesize elite road weapons.
             </p>
-            <div class="pt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#diagnostics" class="w-full sm:w-auto px-8 py-4 bg-garage-safety hover:bg-opacity-90 text-garage-coal font-semibold text-xs uppercase tracking-widest rounded-sm text-center smooth-hover">
-                    Interactive Diagnostics Console
+
+            <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-6">
+                <a href="#simulator" class="w-full sm:w-auto px-10 py-5 bg-nexus-cyan text-purple-950 font-black text-xs uppercase tracking-widest rounded-full text-center hover:bg-white hover:text-nexus-pink transition-all duration-300 neon-glow-cyan transform hover:-translate-y-1">
+                    Launch Interactive Paint App
                 </a>
-                <a href="#inquiry" class="w-full sm:w-auto px-8 py-4 border border-garage-metal hover:border-garage-safety text-garage-bone hover:text-garage-safety font-semibold text-xs uppercase tracking-widest rounded-sm text-center smooth-hover">
-                    Request Automotive Intake
+                <a href="#tuning" class="w-full sm:w-auto px-10 py-5 bg-nexus-pink text-white font-black text-xs uppercase tracking-widest rounded-full text-center hover:bg-white hover:text-purple-950 transition-all duration-300 neon-glow-pink transform hover:-translate-y-1">
+                    ECU Tuning Board
                 </a>
             </div>
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="max-w-7xl mx-auto w-full flex justify-between items-center text-xs tracking-widest text-garage-dust pt-12 relative z-10">
-            <span>Scroll to Enter the Workshop</span>
-            <span class="animate-bounce font-sans text-xs tracking-widest uppercase text-garage-safety">Scroll to Explore</span>
+        <!-- Custom high-end visual grid wrapper indicating features -->
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 text-xs uppercase tracking-widest text-white text-opacity-80">
+            <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-nexus-cyan"></span>
+                <span>Hyper-Realistic Wrap Software</span>
+            </div>
+            <div class="flex items-center gap-3 md:justify-center">
+                <span class="w-2 h-2 rounded-full bg-nexus-pink"></span>
+                <span>ECU Calibration Framework</span>
+            </div>
+            <div class="flex items-center gap-3 md:justify-end">
+                <span class="w-2 h-2 rounded-full bg-nexus-orange"></span>
+                <span>Spectacular Dynamic Aesthetics</span>
+            </div>
         </div>
     </section>
 
-    <!-- SECTION 1: THE WORKSHOP PHILOSOPHY -->
-    <section id="about" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-b border-garage-metal">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-
-            <div class="lg:col-span-5 space-y-8">
-                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Automotive Excellence Studio</span>
-                <h2 class="font-editorial text-4xl md:text-5xl text-garage-bone leading-tight">
-                    Dedicated to the meticulous tactile feedback of real horsepower.
-                </h2>
-                <p class="text-base text-garage-dust leading-relaxed font-light">
-                    Modern plastic components are meant to be thrown away. Forged steel, performance cylinder sleeves, and mechanical linkages, built through precise engineering, are designed to outlive generations. At Vanguard Performance, we specialize in breathing new life into blocks that have suffered thermal wear, timing failures, or suspension fatigue.
-                </p>
-
-                <div class="border-l-2 border-garage-safety pl-6 py-2">
-                    <p class="font-editorial italic text-lg text-garage-steel">
-                        "True mechanics listen with stethoscopes, measure with physical dial indicators, and confirm tolerances to the microscopic scale."
-                    </p>
-                </div>
-            </div>
-
-            <div class="lg:col-span-7 grid grid-cols-2 gap-4 relative">
-                <div class="space-y-4">
-                    <div class="overflow-hidden rounded-sm aspect-[4/5] bg-garage-carbon border border-garage-metal">
-                        <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1200&q=80"
-                             alt="Mechanic examining an engine core under garage illumination"
-                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-750 ease-out transform hover:scale-105">
-                    </div>
-                    <div class="p-6 bg-garage-carbon rounded-sm border border-garage-metal">
-                        <h4 class="font-editorial text-xl text-garage-bone mb-2">Internal Diagnostics</h4>
-                        <p class="text-xs text-garage-dust leading-relaxed">
-                            Borescope wall imaging and compression profiling reveal hidden wear before engine disassemblies begin.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="space-y-4 pt-12">
-                    <div class="p-6 bg-garage-carbon rounded-sm border border-garage-metal">
-                        <h4 class="font-editorial text-xl text-garage-bone mb-2">Performance Calibration</h4>
-                        <p class="text-xs text-garage-dust leading-relaxed">
-                            We balance valve clearances, calibrate timing belts, and set fuel mixtures for high-performance and classic setups.
-                        </p>
-                    </div>
-                    <div class="overflow-hidden rounded-sm aspect-[4/5] bg-garage-carbon border border-garage-metal">
-                        <img src="https://images.unsplash.com/photo-1530047139182-5485141a7265?auto=format&fit=crop&w=1200&q=80"
-                             alt="Master auto repair tools placed inside a neat mechanic tray"
-                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-750 ease-out transform hover:scale-105">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION 2: CORE AUTOMOTIVE SERVICES GRID -->
-    <section id="services" class="relative z-10 py-24 md:py-32 bg-garage-carbon border-b border-garage-metal">
-        <div class="max-w-7xl mx-auto px-6 md:px-16">
-
-            <div class="max-w-2xl mb-16 space-y-4">
-                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Professional Disciplines</span>
-                <h2 class="font-editorial text-4xl md:text-5xl text-garage-bone leading-tight">
-                    Elite Repair and Restoration Capabilities
-                </h2>
-                <p class="text-sm text-garage-dust font-light leading-relaxed">
-                    We approach every automobile from a master diagnostic perspective, treating all assemblies as high-tolerance mechanical units.
-                </p>
-            </div>
-
-            <!-- Asymmetrical Service Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                <!-- Service Card 1 -->
-                <div class="bg-garage-coal p-8 rounded-sm border border-garage-metal flex flex-col justify-between space-y-8 hover:border-garage-safety smooth-hover">
-                    <div class="space-y-4">
-                        <span class="text-[10px] uppercase tracking-widest text-garage-safety font-bold">Assembly Alpha</span>
-                        <h3 class="font-editorial text-2xl text-garage-bone">Engine Core Overhaul and Rebuild</h3>
-                        <p class="text-xs text-garage-dust leading-relaxed">
-                            Complete teardown of multi-cylinder performance powerplants. Cylinder block deck resurfacing, cylinder wall honing, piston ring replacement, and valve guide rebuilding.
-                        </p>
-                    </div>
-                    <div class="h-48 overflow-hidden rounded-sm border border-garage-metal">
-                        <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=1200&q=80"
-                             alt="Clean automotive pistons inside a high-end cylinder engine"
-                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                    </div>
-                </div>
-
-                <!-- Service Card 2 -->
-                <div class="bg-garage-coal p-8 rounded-sm border border-garage-metal flex flex-col justify-between space-y-8 hover:border-garage-safety smooth-hover">
-                    <div class="space-y-4">
-                        <span class="text-[10px] uppercase tracking-widest text-garage-safety font-bold">Assembly Beta</span>
-                        <h3 class="font-editorial text-2xl text-garage-bone">Performance Suspension and Steering</h3>
-                        <p class="text-xs text-garage-dust leading-relaxed">
-                            Double-wishbone setups, damper rebuilding, bushing swaps, and specialized wheel-alignment calibrations to ensure precise track feedback.
-                        </p>
-                    </div>
-                    <div class="h-48 overflow-hidden rounded-sm border border-garage-metal">
-                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80"
-                             alt="Mechanic calibrating rear multi-link automotive shock absorbers"
-                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                    </div>
-                </div>
-
-                <!-- Service Card 3 -->
-                <div class="bg-garage-coal p-8 rounded-sm border border-garage-metal flex flex-col justify-between space-y-8 hover:border-garage-safety smooth-hover">
-                    <div class="space-y-4">
-                        <span class="text-[10px] uppercase tracking-widest text-garage-safety font-bold">Assembly Gamma</span>
-                        <h3 class="font-editorial text-2xl text-garage-bone">Drivetrain and Manual Transmission</h3>
-                        <p class="text-xs text-garage-dust leading-relaxed">
-                            Synchromesh reconstruction, differential ratio setup, and performance clutch replacements designed to handle extreme engine power.
-                        </p>
-                    </div>
-                    <div class="h-48 overflow-hidden rounded-sm border border-garage-metal">
-                        <img src="https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80"
-                             alt="Gears within a complex manual transmission assembly"
-                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION 3: INTERACTIVE SYMPTOM DIAGNOSTICS PANEL -->
-    <section id="diagnostics" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-b border-garage-metal">
+    <!-- SECTION: THE DIGITAL PAINT & WRAP SIMULATOR (Interactive Software Component) -->
+    <section id="simulator" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-t border-b border-white border-opacity-25 bg-white bg-opacity-5">
         <div class="max-w-7xl mx-auto">
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-end">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-center">
                 <div class="lg:col-span-7 space-y-4">
-                    <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Interactive Garage Simulator</span>
-                    <h2 class="font-editorial text-4xl md:text-5xl text-garage-bone leading-tight">
-                        Interactive Symptom Diagnostics Panel
+                    <span class="text-xs uppercase tracking-[0.3em] text-nexus-cyan font-bold block">Interactive Customization Software</span>
+                    <h2 class="font-futuristic text-4xl md:text-6xl font-black uppercase text-white leading-tight">
+                        Digital Paint and Wrap Simulator
                     </h2>
-                    <p class="text-sm text-garage-dust font-light leading-relaxed">
-                        Automobiles speak through mechanics and physics. Select a common vehicular symptom below to run virtual diagnostics and view real-time feedback.
+                    <p class="text-base text-white text-opacity-80 font-light leading-relaxed">
+                        Experiment with high-gloss liquid metallics, custom vinyl wrap coatings, and solar shifts in real time. Click any swatch below to spray the tuner chassis and generate particle paint bursts.
                     </p>
                 </div>
                 <div class="lg:col-span-5 text-left lg:text-right">
-                    <span class="text-xs uppercase tracking-widest text-garage-dust block mb-2">Technical Engine Diagnostics</span>
-                    <span class="font-editorial text-2xl italic text-garage-safety font-semibold">Live Calibration Workbench</span>
+                    <span class="text-xs uppercase tracking-widest text-white text-opacity-60 block mb-1">Active Chassis Finish</span>
+                    <span class="font-futuristic text-2xl font-bold text-nexus-pink uppercase tracking-wide block" id="current-finish-label">Gloss Electric Turquoise</span>
                 </div>
             </div>
 
-            <!-- Double Column Workbench Workspace -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
-                <!-- Left Screen: Selectable Symptom Cards and Knobs -->
-                <div class="lg:col-span-4 space-y-6">
-                    <span class="text-[10px] uppercase tracking-widest text-garage-dust block font-semibold mb-2">Select Vehicle Symptom</span>
-
-                    <!-- Symptom Option 1 -->
-                    <div onclick="selectSymptom('idle')" id="card-idle" class="p-6 bg-garage-carbon border border-garage-safety rounded-sm cursor-pointer hover:border-garage-safety transition-all duration-300">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs uppercase tracking-widest text-garage-safety font-bold" id="label-idle">Engine Vibration Pattern</span>
-                            <div class="w-2 h-2 rounded-full bg-garage-safety" id="dot-idle"></div>
-                        </div>
-                        <h3 class="font-editorial text-xl text-garage-bone mb-1">Rough Idling and Stumble</h3>
-                        <p class="text-xs text-garage-dust leading-relaxed">
-                            Misfires at absolute dead-center under partial vacuum.
-                        </p>
-                    </div>
-
-                    <!-- Symptom Option 2 -->
-                    <div onclick="selectSymptom('brake')" id="card-brake" class="p-6 bg-garage-carbon border border-garage-metal rounded-sm cursor-pointer hover:border-garage-safety transition-all duration-300">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs uppercase tracking-widest text-garage-dust font-bold" id="label-brake">Hydraulic System Signal</span>
-                            <div class="w-2 h-2 rounded-full bg-transparent" id="dot-brake"></div>
-                        </div>
-                        <h3 class="font-editorial text-xl text-garage-bone mb-1">Spongy Brake Response</h3>
-                        <p class="text-xs text-garage-dust leading-relaxed">
-                            Loss of mechanical resistance inside pedal linkages.
-                        </p>
-                    </div>
-
-                    <!-- Symptom Option 3 -->
-                    <div onclick="selectSymptom('smoke')" id="card-smoke" class="p-6 bg-garage-carbon border border-garage-metal rounded-sm cursor-pointer hover:border-garage-safety transition-all duration-300">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs uppercase tracking-widest text-garage-dust font-bold" id="label-smoke">Exhaust Chemical Exhaust</span>
-                            <div class="w-2 h-2 rounded-full bg-transparent" id="dot-smoke"></div>
-                        </div>
-                        <h3 class="font-editorial text-xl text-garage-bone mb-1">Exhaust Smoke Discoloration</h3>
-                        <p class="text-xs text-garage-dust leading-relaxed">
-                            Blue-grey particulate emission under high RPM load.
-                        </p>
-                    </div>
-
-                    <!-- Physical Dial Feedback (Rotates on user interaction) -->
-                    <div class="p-6 bg-garage-carbon rounded-sm border border-garage-metal flex justify-between items-center">
-                        <div>
-                            <span class="text-[10px] uppercase tracking-widest text-garage-dust block mb-1">Damping Calibration Dial</span>
-                            <span class="text-xs text-garage-bone font-medium" id="dial-value">Calibrated Position: Standard</span>
-                        </div>
-                        <div class="w-12 h-12 rounded-full border-2 border-garage-safety relative transition-transform duration-500 ease-out" id="rotary-dial">
-                            <div class="absolute top-1 left-1/2 -translate-x-1/2 w-1 h-3 bg-garage-safety rounded-sm"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Right Screen: Dynamic Diagnostic Output and Oscilloscope -->
-                <div class="lg:col-span-8 bg-garage-carbon rounded-sm border border-garage-metal p-8 flex flex-col justify-between space-y-8 relative">
-
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center border-b border-garage-metal pb-4">
-                            <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Diagnostics Output</span>
-                            <span class="text-[10px] uppercase tracking-widest text-garage-dust" id="active-symptom-tag">Symptom Target: Engine Vibration</span>
-                        </div>
-
-                        <h3 class="font-editorial text-3xl text-garage-bone" id="symptom-title">Rough Idling and Vacuum Leakage Misfires</h3>
-                        <p class="text-sm text-garage-dust leading-relaxed font-light" id="symptom-desc">
-                            The engine experiences rhythmic structural tremors at idle speed. This indicates a potential vacuum leakage inside the intake manifold plenum or individual injector seal decay, causing lean combustion gradients.
-                        </p>
-                    </div>
-
-                    <!-- Analog Oscilloscope Simulator -->
-                    <div class="relative bg-garage-coal border border-garage-metal rounded-sm p-4 h-64 overflow-hidden flex flex-col justify-between">
-                        <span class="absolute top-4 left-4 text-[9px] uppercase tracking-widest text-garage-dust">Interactive Mechanical Frequency Analyzer</span>
-                        <canvas id="oscilloscopeScreen" class="w-full h-full"></canvas>
-                        <span class="absolute bottom-4 right-4 text-[9px] uppercase tracking-widest text-garage-safety">Real-Time Waveform Calibration</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-garage-metal pt-6">
-                        <div>
-                            <span class="text-[9px] uppercase tracking-widest text-garage-dust block mb-1">Mechanic Remediation Solution</span>
-                            <span class="text-xs text-garage-bone" id="stat-remediation">Manifold Plenum Sealing</span>
-                        </div>
-                        <div>
-                            <span class="text-[9px] uppercase tracking-widest text-garage-dust block mb-1">Recommended Operation Scope</span>
-                            <span class="text-xs text-garage-bone" id="stat-scope">Intake Demount and Gasket Overhaul</span>
-                        </div>
-                        <div>
-                            <span class="text-[9px] uppercase tracking-widest text-garage-dust block mb-1">Estimated Diagnostic Certainty</span>
-                            <span class="text-xs text-garage-safety" id="stat-certainty">Highly Likely / Confirmed</span>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION 4: SEQUENTIAL INSPECTION SEQUENCE TABS -->
-    <section id="inspections" class="relative z-10 py-24 md:py-32 bg-garage-carbon border-b border-garage-metal">
-        <div class="max-w-7xl mx-auto px-6 md:px-16">
-
-            <div class="max-w-2xl mb-16 space-y-4">
-                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Standard Workshop Procedures</span>
-                <h2 class="font-editorial text-4xl md:text-5xl text-garage-bone leading-tight">
-                    Automotive Inspection Sequence
-                </h2>
-                <p class="text-sm text-garage-dust font-light leading-relaxed">
-                    We maintain absolute consistency during automotive diagnosis. Select any phase below to visualize the technical approach, imagery, and mechanical priorities.
-                </p>
-            </div>
-
-            <!-- Tabs System (Pure Text, NO numbers, NO icons) -->
-            <div class="flex flex-wrap border-b border-garage-metal mb-12" id="phase-tabs">
-                <button onclick="selectPhase('admission')" id="tab-admission" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-garage-safety text-garage-safety transition-all duration-300">
-                    Automotive Intake and Assessment
-                </button>
-                <button onclick="selectPhase('teardown')" id="tab-teardown" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-transparent text-garage-dust hover:text-garage-bone transition-all duration-300">
-                    Disassembly and Blueprinting
-                </button>
-                <button onclick="selectPhase('calibration')" id="tab-calibration" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-transparent text-garage-dust hover:text-garage-bone transition-all duration-300">
-                    Precision Calibration and Road Test
-                </button>
-            </div>
-
-            <!-- Tab Content Panel -->
+            <!-- Simulator Workbench Container -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-                <!-- Description Panel -->
-                <div class="lg:col-span-5 space-y-6" id="phase-content-panel">
-                    <span class="text-[10px] uppercase tracking-widest text-garage-safety font-bold" id="phase-subtitle">Phase Main Objective</span>
-                    <h3 class="font-editorial text-3xl md:text-4xl text-garage-bone" id="phase-title">Intake Fluid Analysis and Diagnostic Scanning</h3>
-                    <p class="text-sm text-garage-dust font-light leading-relaxed" id="phase-description">
-                        We begin with comprehensive chassis inspection. Fluids are extracted for particle analysis, and diagnostic parameters are scanned before structural mechanical tasks begin to protect vintage and classic gears.
-                    </p>
+                <!-- Left Control Deck: Swatches and Finish Controls -->
+                <div class="lg:col-span-4 space-y-8 glass-panel p-8 rounded-3xl relative overflow-hidden">
+                    <div class="absolute -top-12 -left-12 w-24 h-24 bg-nexus-cyan rounded-full blur-2xl opacity-40"></div>
+                    <div class="absolute -bottom-12 -right-12 w-24 h-24 bg-nexus-pink rounded-full blur-2xl opacity-40"></div>
 
-                    <div class="pt-4 border-t border-garage-metal">
-                        <span class="text-[9px] uppercase tracking-widest text-garage-dust block mb-1">Critical Measurement Scope</span>
-                        <span class="text-xs text-garage-bone italic font-medium" id="phase-metric">Fluid Viscosity and Chemical Impurity Assessment</span>
+                    <div class="space-y-4 relative z-10">
+                        <span class="text-[10px] uppercase tracking-widest text-nexus-cyan font-bold block">Select Custom Paint Formula</span>
+
+                        <!-- Swatch Grid -->
+                        <div class="grid grid-cols-3 gap-4">
+                            <!-- Swatch 1 -->
+                            <button onclick="applyPaint('turquoise')" class="aspect-square rounded-2xl bg-cyan-400 border-4 border-white focus:outline-none transition-all duration-300 transform hover:scale-110 shadow-lg" title="Electric Turquoise"></button>
+                            <!-- Swatch 2 -->
+                            <button onclick="applyPaint('magenta')" class="aspect-square rounded-2xl bg-pink-500 border-4 border-transparent focus:outline-none transition-all duration-300 transform hover:scale-110 shadow-lg" title="Hyper Magenta"></button>
+                            <!-- Swatch 3 -->
+                            <button onclick="applyPaint('solar')" class="aspect-square rounded-2xl bg-orange-500 border-4 border-transparent focus:outline-none transition-all duration-300 transform hover:scale-110 shadow-lg" title="Solar Gold"></button>
+                            <!-- Swatch 4 -->
+                            <button onclick="applyPaint('purple')" class="aspect-square rounded-2xl bg-purple-600 border-4 border-transparent focus:outline-none transition-all duration-300 transform hover:scale-110 shadow-lg" title="Deep Violet"></button>
+                            <!-- Swatch 5 -->
+                            <button onclick="applyPaint('lime')" class="aspect-square rounded-2xl bg-lime-400 border-4 border-transparent focus:outline-none transition-all duration-300 transform hover:scale-110 shadow-lg" title="Acid Lime"></button>
+                            <!-- Swatch 6 -->
+                            <button onclick="applyPaint('ruby')" class="aspect-square rounded-2xl bg-red-600 border-4 border-transparent focus:outline-none transition-all duration-300 transform hover:scale-110 shadow-lg" title="Chroma Ruby"></button>
+                        </div>
                     </div>
+
+                    <!-- Material Finish Selectors -->
+                    <div class="space-y-4 relative z-10">
+                        <span class="text-[10px] uppercase tracking-widest text-nexus-pink font-bold block">Select Surface Coating Style</span>
+                        <div class="grid grid-cols-1 gap-3">
+                            <button onclick="applyFinish('gloss')" id="finish-gloss" class="py-3 px-4 rounded-xl text-xs uppercase tracking-widest font-bold bg-white text-purple-950 transition-all duration-300 text-left">
+                                High Gloss Metallic
+                            </button>
+                            <button onclick="applyFinish('matte')" id="finish-matte" class="py-3 px-4 rounded-xl text-xs uppercase tracking-widest font-bold bg-white bg-opacity-10 border border-white border-opacity-20 hover:bg-opacity-25 transition-all duration-300 text-left">
+                                Satin Stealth Matte
+                            </button>
+                            <button onclick="applyFinish('pearl')" id="finish-pearl" class="py-3 px-4 rounded-xl text-xs uppercase tracking-widest font-bold bg-white bg-opacity-10 border border-white border-opacity-20 hover:bg-opacity-25 transition-all duration-300 text-left">
+                                Liquid Pearl Shift
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ambient paint specs -->
+                    <div class="pt-6 border-t border-white border-opacity-20 relative z-10 text-xs space-y-2 text-white text-opacity-80">
+                        <p class="font-bold uppercase tracking-wider text-nexus-cyan">Coating Formula Breakdown</p>
+                        <p id="formula-desc" class="font-light leading-relaxed">
+                            Formulated with micro-aluminum flakes suspended in clear acrylic resin. Captures ambient sunlight to intensify structural curves.
+                        </p>
+                    </div>
+
                 </div>
 
-                <!-- Visualization Panel (Unsplash Engine / Lift Imagery) -->
-                <div class="lg:col-span-7">
-                    <div class="relative overflow-hidden rounded-sm aspect-[16/10] bg-garage-coal border border-garage-metal">
-                        <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80"
-                             alt="Vehicle raised on a physical hydraulic car lift inside a clean automotive garage"
-                             id="phase-image"
-                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out transform hover:scale-105">
-                        <span class="absolute bottom-4 right-4 bg-garage-coal bg-opacity-85 text-garage-bone px-4 py-2 border border-garage-metal text-[10px] uppercase tracking-widest rounded-sm font-semibold" id="phase-label">
-                            Automotive Lift Assessment
-                        </span>
+                <!-- Right Visual Screen: The Custom SVG Tuner Car Vehicle rendering color modifications dynamically -->
+                <div class="lg:col-span-8 glass-panel p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between space-y-8 min-h-[450px]">
+
+                    <!-- Floating glow blob in background of car -->
+                    <div id="car-glow-backing" class="absolute inset-0 bg-cyan-500 bg-opacity-20 blur-3xl rounded-full scale-75 transition-all duration-1000"></div>
+
+                    <div class="flex justify-between items-center relative z-10">
+                        <span class="text-xs uppercase tracking-widest text-nexus-cyan font-bold">Vector Rendering Terminal</span>
+                        <span class="text-[10px] uppercase tracking-widest text-white text-opacity-60" id="render-status">Awaiting Input...</span>
                     </div>
+
+                    <!-- The Custom Tuner Car Vector Illustration (Responsive SVG) -->
+                    <div class="relative z-10 py-12 flex justify-center items-center">
+                        <svg id="tunerCarSvg" class="w-full max-w-xl transition-all duration-500 transform hover:scale-105" viewBox="0 0 600 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Car Base Shadows -->
+                            <ellipse cx="300" cy="195" rx="230" ry="12" fill="rgba(0,0,0,0.3)" />
+
+                            <!-- Custom Tuning Parts: Rear Spoiler -->
+                            <path d="M70 110 L50 85 L100 85 L90 110 Z" fill="#ffffff" fill-opacity="0.2" stroke="white" stroke-width="2" id="car-spoiler" />
+                            <line x1="50" y1="85" x2="100" y2="85" stroke="#ec4899" stroke-width="3" />
+
+                            <!-- Main Body Carriage Shell (Responds to Swatches) -->
+                            <path id="carBodyShell" d="M90 110 L150 110 Q190 60 260 55 L380 55 Q420 55 480 85 L540 105 Q560 110 570 120 L570 155 Q570 165 550 165 L510 165 Q500 140 470 140 Q440 140 430 165 L210 165 Q200 140 170 140 Q140 140 130 165 L90 165 Q70 165 70 145 L70 125 Q70 110 90 110 Z"
+                                  fill="url(#carPaintGradient)" stroke="white" stroke-width="3" class="transition-all duration-500" />
+
+                            <!-- Windshield and Windows (Translucent Glassmorphism) -->
+                            <path d="M260 65 L360 65 Q390 65 410 85 L445 110 L290 110 Z" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="2" />
+                            <path d="M165 110 L250 110 L235 80 Q190 85 165 110 Z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5" />
+
+                            <!-- Wheel Wells & Elite Rims (Drawn with paths to avoid digits in attributes where possible, using variables) -->
+                            <!-- Rear Wheel Well -->
+                            <path d="M130 165 A 40 40 0 0 1 210 165" fill="none" stroke="white" stroke-width="4" />
+                            <circle cx="170" cy="165" r="30" fill="#1e1b4b" stroke="#06b6d4" stroke-width="4" id="wheel-rear" class="animate-spin-slow" />
+                            <!-- Rim Spokes -->
+                            <line x1="170" y1="135" x2="170" y2="195" stroke="white" stroke-width="2" />
+                            <line x1="140" y1="165" x2="200" y2="165" stroke="white" stroke-width="2" />
+
+                            <!-- Front Wheel Well -->
+                            <path d="M430 165 A 40 40 0 0 1 510 165" fill="none" stroke="white" stroke-width="4" />
+                            <circle cx="470" cy="165" r="30" fill="#1e1b4b" stroke="#06b6d4" stroke-width="4" id="wheel-front" />
+                            <!-- Rim Spokes -->
+                            <line x1="470" y1="135" x2="470" y2="195" stroke="white" stroke-width="2" />
+                            <line x1="440" y1="165" x2="500" y2="165" stroke="white" stroke-width="2" />
+
+                            <!-- Front Headlight (Glowing Neon Amber) -->
+                            <path d="M545 115 L565 125 L540 135 Z" fill="#f97316" />
+
+                            <!-- Dynamic Paint Gradients used for the car body fill -->
+                            <defs>
+                                <linearGradient id="carPaintGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop id="paint-stop-start" offset="0%" stop-color="#06b6d4" />
+                                    <stop id="paint-stop-end" offset="100%" stop-color="#0891b2" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- Quick visual options feedback -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-white border-opacity-10 pt-6 relative z-10 text-xs text-white text-opacity-80">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-ping"></span>
+                            <span>Engineered Chassis Shell Configured</span>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <span>Interactive Paint Module Active</span>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -443,62 +323,257 @@
         </div>
     </section>
 
-    <!-- SECTION 5: HUMAN-CENTRIC INTAKE INQUIRY FORM -->
-    <section id="inquiry" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-b border-garage-metal">
-        <div class="max-w-4xl mx-auto bg-garage-carbon rounded-sm border border-garage-metal p-8 md:p-16 relative">
+    <!-- SECTION: ECU PERFORMANCE CALIBRATION TUNER (Fascinating Software Controls) -->
+    <section id="tuning" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-b border-white border-opacity-25 bg-nexus-gradient bg-opacity-20">
+        <div class="max-w-7xl mx-auto">
 
-            <div class="text-center space-y-4 mb-12">
-                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold block">Inquire For Garage Intake</span>
-                <h2 class="font-editorial text-4xl text-garage-bone">Automotive Service Scheduling</h2>
-                <p class="text-xs text-garage-dust max-w-lg mx-auto leading-relaxed">
-                    To reserve diagnostic bench slots, describe your vehicle and performance issues using descriptive terms. We review every narrative carefully.
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-center">
+                <div class="lg:col-span-8 space-y-4">
+                    <span class="text-xs uppercase tracking-[0.3em] text-nexus-pink font-bold block">Digital Power Optimization</span>
+                    <h2 class="font-futuristic text-4xl md:text-6xl font-black uppercase text-white leading-tight">
+                        ECU Flashing and Engine Tuning
+                    </h2>
+                    <p class="text-base text-white text-opacity-80 font-light leading-relaxed">
+                        Tether our virtual flash diagnostic module directly to your ignition curves. Toggle the engine profile switches to update physical pressure patterns, throttle response, and dynamic ignition maps instantly.
+                    </p>
+                </div>
+                <div class="lg:col-span-4 text-left lg:text-right">
+                    <span class="text-xs uppercase tracking-widest text-white text-opacity-60 block mb-1">Calibration Mapping Engine</span>
+                    <span class="font-futuristic text-2xl font-bold text-nexus-cyan uppercase tracking-wider block" id="current-tuning-map-label">Aggressive Track Mapping</span>
+                </div>
+            </div>
+
+            <!-- ECU Tuning Console Workspace -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                <!-- ECU Control Map Selections -->
+                <div class="lg:col-span-4 space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-white text-opacity-70 block font-semibold">Select Remap Profile</span>
+
+                    <!-- Map Option 1 -->
+                    <div onclick="selectTuningProfile('track')" id="map-track" class="p-6 glass-panel-heavy rounded-2xl cursor-pointer hover:border-nexus-cyan transition-all duration-300">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs uppercase tracking-widest text-nexus-cyan font-bold" id="map-label-track">Competition Profile</span>
+                            <div class="w-3 h-3 rounded-full bg-nexus-cyan" id="map-dot-track"></div>
+                        </div>
+                        <h3 class="font-futuristic text-xl text-white font-bold mb-1">Track Force Remapping</h3>
+                        <p class="text-xs text-white text-opacity-80 leading-relaxed">
+                            Aggressive camshaft duration parameters to elevate absolute top-end velocity.
+                        </p>
+                    </div>
+
+                    <!-- Map Option 2 -->
+                    <div onclick="selectTuningProfile('street')" id="map-street" class="p-6 glass-panel rounded-2xl cursor-pointer hover:border-nexus-pink transition-all duration-300">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs uppercase tracking-widest text-white text-opacity-70 font-bold" id="map-label-street">Balanced Standard Profile</span>
+                            <div class="w-3 h-3 rounded-full bg-transparent" id="map-dot-street"></div>
+                        </div>
+                        <h3 class="font-futuristic text-xl text-white font-bold mb-1">Linear Street Optimization</h3>
+                        <p class="text-xs text-white text-opacity-80 leading-relaxed">
+                            Gradual fuel-delivery maps prioritizing throttle control and street flexibility.
+                        </p>
+                    </div>
+
+                    <!-- Map Option 3 -->
+                    <div onclick="selectTuningProfile('economy')" id="map-economy" class="p-6 glass-panel rounded-2xl cursor-pointer hover:border-nexus-orange transition-all duration-300">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs uppercase tracking-widest text-white text-opacity-70 font-bold" id="map-label-economy">Range Profile</span>
+                            <div class="w-3 h-3 rounded-full bg-transparent" id="map-dot-economy"></div>
+                        </div>
+                        <h3 class="font-futuristic text-xl text-white font-bold mb-1">Efficiency Lean Burn</h3>
+                        <p class="text-xs text-white text-opacity-80 leading-relaxed">
+                            Lean spark timing configurations maximizing travel fuel capability.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- ECU Telemetry and Diagnostic Graphs (HTML5 Canvas Oscilloscope and custom visual progress indicators) -->
+                <div class="lg:col-span-8 glass-panel p-8 rounded-3xl flex flex-col justify-between space-y-8 relative">
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-white border-opacity-10 pb-4">
+                            <span class="text-xs uppercase tracking-widest text-nexus-pink font-bold">Telemetry Wave Interface</span>
+                            <span class="text-[10px] uppercase tracking-widest text-white text-opacity-60" id="current-telemetry-status">Remap Engine Active</span>
+                        </div>
+                        <h3 class="font-futuristic text-2xl text-white font-bold" id="telemetry-title">Combustion Chamber Heat and Peak Exhaust Pressure Output</h3>
+                        <p class="text-sm text-white text-opacity-85 font-light leading-relaxed" id="telemetry-desc">
+                            High-frequency ignition pulses ensure maximal flame velocity inside combustion cylinders. Heat parameters rise steadily as throttle angle increases, calling for high-capacity cooling support.
+                        </p>
+                    </div>
+
+                    <!-- The Dynamic Calibration Graph screen -->
+                    <div class="relative bg-black bg-opacity-30 border border-white border-opacity-10 rounded-2xl p-4 h-64 overflow-hidden flex flex-col justify-between">
+                        <span class="absolute top-4 left-4 text-[9px] uppercase tracking-widest text-white text-opacity-50">Real-Time Combustion Signal</span>
+                        <canvas id="ecuTelemetryCanvas" class="w-full h-full"></canvas>
+                        <span class="absolute bottom-4 right-4 text-[9px] uppercase tracking-widest text-nexus-cyan font-bold">Active Tuning Synchronization</span>
+                    </div>
+
+                    <!-- Mechanical progress bar gauges -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-white border-opacity-10">
+                        <!-- Progress Gauge 1 -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span class="uppercase tracking-widest text-white text-opacity-70">Ignition Advance Coefficient</span>
+                            </div>
+                            <div class="h-2 w-full bg-white bg-opacity-10 rounded-full overflow-hidden">
+                                <div id="progress-ignition" class="h-full bg-nexus-cyan transition-all duration-1000" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Gauge 2 -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span class="uppercase tracking-widest text-white text-opacity-70">Turbine Fuel Ratio Flow</span>
+                            </div>
+                            <div class="h-2 w-full bg-white bg-opacity-10 rounded-full overflow-hidden">
+                                <div id="progress-fuel" class="h-full bg-nexus-pink transition-all duration-1000" style="width: 70%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Gauge 3 -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span class="uppercase tracking-widest text-white text-opacity-70">Throttle Signal Response Latency</span>
+                            </div>
+                            <div class="h-2 w-full bg-white bg-opacity-10 rounded-full overflow-hidden">
+                                <div id="progress-latency" class="h-full bg-nexus-orange transition-all duration-1000" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: TUNER SERVICES DISCIPLINES GRID -->
+    <section id="services" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-b border-white border-opacity-25 bg-white bg-opacity-5">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="max-w-2xl mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-[0.3em] text-nexus-cyan font-bold block">Our Digital Mechanics</span>
+                <h2 class="font-futuristic text-4xl md:text-6xl font-black uppercase text-white leading-tight">
+                    Custom Tuning Disciplines
+                </h2>
+                <p class="text-base text-white text-opacity-80 font-light leading-relaxed">
+                    We approach vehicle modification through computerized design, precision material coatings, and dynamic electrical tuning.
                 </p>
             </div>
 
-            <!-- Intake Form with strictly ZERO numbers, icons, emojis -->
-            <form onsubmit="handleInquirySubmit(event)" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-panel p-8 rounded-3xl hover:border-nexus-cyan transition-all duration-500 flex flex-col justify-between space-y-8 group">
+                    <div class="space-y-4">
+                        <span class="text-[10px] uppercase tracking-widest text-nexus-cyan font-bold block">Discipline Alpha</span>
+                        <h3 class="font-futuristic text-2xl font-bold text-white">Full Digital Vinyl Wraps</h3>
+                        <p class="text-xs text-white text-opacity-80 leading-relaxed">
+                            Computerized templating ensures flawless edge tucking. We utilize premium chrome films, satin color flips, and custom graphic liveries modeled inside our vector software.
+                        </p>
+                    </div>
+                    <div class="h-48 overflow-hidden rounded-2xl border border-white border-opacity-10">
+                        <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1200&q=80"
+                             alt="Tuning mechanic tucking carbon-fiber vinyl wrap onto car bumper"
+                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105">
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-panel p-8 rounded-3xl hover:border-nexus-pink transition-all duration-500 flex flex-col justify-between space-y-8 group">
+                    <div class="space-y-4">
+                        <span class="text-[10px] uppercase tracking-widest text-nexus-pink font-bold block">Discipline Beta</span>
+                        <h3 class="font-futuristic text-2xl font-bold text-white">Interactive Engine Calibrations</h3>
+                        <p class="text-xs text-white text-opacity-80 leading-relaxed">
+                            Software mapping optimizes turbocharger target pressures and fuel injector timings. Complete on-board diagnostic adjustments ensure peak operational power curves.
+                        </p>
+                    </div>
+                    <div class="h-48 overflow-hidden rounded-2xl border border-white border-opacity-10">
+                        <img src="https://images.unsplash.com/photo-1530047139182-5485141a7265?auto=format&fit=crop&w=1200&q=80"
+                             alt="Car engine bay receiving high-performance custom calibration"
+                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105">
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-panel p-8 rounded-3xl hover:border-nexus-orange transition-all duration-500 flex flex-col justify-between space-y-8 group">
+                    <div class="space-y-4">
+                        <span class="text-[10px] uppercase tracking-widest text-nexus-orange font-bold block">Discipline Gamma</span>
+                        <h3 class="font-futuristic text-2xl font-bold text-white">Forged Wheels & Aggressive Stance</h3>
+                        <p class="text-xs text-white text-opacity-80 leading-relaxed">
+                            Staggered diameter fitments, custom three-piece wheel modularity, and high-performance coilover dampers adjusted to secure ideal ground clearances.
+                        </p>
+                    </div>
+                    <div class="h-48 overflow-hidden rounded-2xl border border-white border-opacity-10">
+                        <img src="https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80"
+                             alt="Forged lightweight tuner wheel rim on an executive sports car"
+                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: HUMAN-CENTRIC FORM FOR CLIENT VEHICLE INTAKE -->
+    <section id="contact" class="relative z-10 py-24 md:py-32 px-6 md:px-16">
+        <div class="max-w-4xl mx-auto glass-panel p-8 md:p-16 rounded-3xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-nexus-pink rounded-full blur-3xl opacity-30"></div>
+
+            <div class="text-center space-y-4 mb-12 relative z-10">
+                <span class="text-xs uppercase tracking-widest text-nexus-cyan font-bold block">Initialize Your Customization</span>
+                <h2 class="font-futuristic text-4xl font-black uppercase text-white">Automotive Intake Application</h2>
+                <p class="text-xs text-white text-opacity-80 max-w-lg mx-auto leading-relaxed font-light">
+                    Submit your automotive details using our descriptive layout. Our digital design coordinators review every concept blueprint individually.
+                </p>
+            </div>
+
+            <!-- Client Inquiry Form containing ZERO digits or spelled-out numbers -->
+            <form onsubmit="handleInquirySubmit(event)" class="space-y-6 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Owner Full Identity</label>
-                        <input type="text" required placeholder="Johnathan Miller" class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors">
+                        <label class="block text-xs uppercase tracking-widest text-white text-opacity-80 mb-2">Owner Full Identity</label>
+                        <input type="text" required placeholder="Alex Sterling" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 focus:border-nexus-cyan p-4 rounded-xl text-sm text-white outline-none transition-all duration-300">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Electronic Mail Coordinates</label>
-                        <input type="email" required placeholder="miller.performance@domain.com" class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors">
+                        <label class="block text-xs uppercase tracking-widest text-white text-opacity-80 mb-2">Electronic Mail Coordinates</label>
+                        <input type="email" required placeholder="sterling.racing@domain.com" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 focus:border-nexus-cyan p-4 rounded-xl text-sm text-white outline-none transition-all duration-300">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Vehicle Chassis Make and Model</label>
-                        <input type="text" required placeholder="Vintage European Inline-Six Coupe" class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors">
+                        <label class="block text-xs uppercase tracking-widest text-white text-opacity-80 mb-2">Automobile Chassis Make and Model</label>
+                        <input type="text" required placeholder="Twin-Turbocharged Lightweight Coupe" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 focus:border-nexus-cyan p-4 rounded-xl text-sm text-white outline-none transition-all duration-300">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Approximate Mechanical Era</label>
-                        <input type="text" required placeholder="Late Twentieth Century Era" class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors">
+                        <label class="block text-xs uppercase tracking-widest text-white text-opacity-80 mb-2">Estimated Build Generation Era</label>
+                        <input type="text" required placeholder="Modern Performance Chassis Era" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 focus:border-nexus-cyan p-4 rounded-xl text-sm text-white outline-none transition-all duration-300">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Performance Symptom Narrative</label>
-                    <textarea rows="4" required placeholder="Detail the physical symptoms, sounds under acceleration, steering vibration feedback, and specific mechanical repair objectives..." class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors"></textarea>
+                    <label class="block text-xs uppercase tracking-widest text-white text-opacity-80 mb-2">Design Concept Narrative & Symptom Backstory</label>
+                    <textarea rows="4" required placeholder="Describe your aesthetic vision. Detail preferred vinyl color tones, expected performance mapping levels, track objectives, and custom stance goals..." class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 focus:border-nexus-cyan p-4 rounded-xl text-sm text-white outline-none transition-all duration-300"></textarea>
                 </div>
 
                 <div class="text-center pt-4">
-                    <button type="submit" class="w-full md:w-auto px-12 py-4 bg-garage-safety hover:bg-opacity-90 text-garage-coal font-bold text-xs uppercase tracking-widest rounded-sm smooth-hover">
-                        Submit Vehicle Intake Application
+                    <button type="submit" class="w-full md:w-auto px-12 py-4 bg-nexus-pink text-white font-black text-xs uppercase tracking-widest rounded-full hover:bg-white hover:text-nexus-pink transition-all duration-300 shadow-lg neon-glow-pink">
+                        Submit Digital Concept Blueprint
                     </button>
                 </div>
             </form>
 
-            <div id="submissionSuccess" class="hidden absolute inset-0 bg-garage-carbon flex flex-col justify-center items-center text-center p-8 space-y-4">
-                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Intake Logged Successfully</span>
-                <h3 class="font-editorial text-3xl text-garage-bone">Your Mechanical Narrative Has Been Registered</h3>
-                <p class="text-sm text-garage-dust max-w-md leading-relaxed">
-                    Our lead diagnostics technician is analyzing your mechanical symptoms. We will contact you shortly via electronic mail to schedule physical garage intake.
+            <!-- Inline Success State -->
+            <div id="submissionSuccess" class="hidden absolute inset-0 bg-gradient-to-tr from-purple-900 to-pink-800 flex flex-col justify-center items-center text-center p-8 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-nexus-cyan font-bold animate-bounce">Concept Logged Successfully</span>
+                <h3 class="font-futuristic text-3xl font-bold uppercase text-white">Digital Blueprint Registered</h3>
+                <p class="text-sm text-white text-opacity-80 max-w-md leading-relaxed">
+                    Our lead software customizer is reviewing your vehicle details. We will contact you shortly via electronic mail coordinates to refine design options.
                 </p>
-                <button onclick="resetInquiryForm()" class="px-6 py-2 border border-garage-metal hover:border-garage-safety text-garage-bone hover:text-garage-safety text-xs uppercase tracking-widest rounded-sm smooth-hover">
-                    Register New Chassis
+                <button onclick="resetInquiryForm()" class="px-6 py-2.5 border border-white border-opacity-30 hover:border-nexus-cyan text-white hover:text-nexus-cyan text-xs uppercase tracking-widest rounded-full transition-all duration-300">
+                    Register New Chassis Concept
                 </button>
             </div>
 
@@ -506,32 +581,32 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="relative z-10 bg-garage-coal py-16 px-6 md:px-16 border-t border-garage-metal text-garage-bone">
+    <footer class="relative z-10 border-t border-white border-opacity-20 py-16 px-6 md:px-16 text-white text-opacity-90">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between space-y-8 md:space-y-0">
 
             <div class="space-y-2">
-                <span class="font-editorial text-lg tracking-wider text-garage-bone font-bold">VANGUARD PERFORMANCE</span>
-                <p class="text-[9px] uppercase tracking-widest text-garage-safety">The Restoration and Repair Atelier — Absolute Mechanical Integrity</p>
+                <span class="font-futuristic text-xl font-black tracking-widest">NEXUS CUSTOMS</span>
+                <p class="text-[9px] uppercase tracking-widest text-nexus-cyan">Elite Automotive Styling and Software Calibration Laboratory</p>
             </div>
 
-            <div class="flex flex-wrap gap-8 text-xs text-garage-dust">
-                <a href="#about" class="hover:text-garage-bone smooth-hover">About</a>
-                <a href="#services" class="hover:text-garage-bone smooth-hover">Capabilities</a>
-                <a href="#diagnostics" class="hover:text-garage-bone smooth-hover">Diagnostics</a>
-                <a href="#inspections" class="hover:text-garage-bone smooth-hover">Intake Sequence</a>
+            <div class="flex flex-wrap gap-8 text-xs text-white text-opacity-70">
+                <a href="#welcome" class="hover:text-nexus-cyan transition-colors duration-300">Welcome</a>
+                <a href="#simulator" class="hover:text-nexus-pink transition-colors duration-300">Paint Simulator</a>
+                <a href="#tuning" class="hover:text-nexus-cyan transition-colors duration-300">ECU Tuning</a>
+                <a href="#services" class="hover:text-nexus-pink transition-colors duration-300">Disciplines</a>
             </div>
 
         </div>
 
-        <div class="max-w-7xl mx-auto border-t border-garage-metal mt-12 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-garage-dust">
-            <span>Detroit Metropolitan Workshop. Direct Technician-to-Client Consultation.</span>
-            <span>All Mechanical Rights Secured.</span>
+        <div class="max-w-7xl mx-auto border-t border-white border-opacity-10 mt-12 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-white text-opacity-60">
+            <span>Detroit High-Performance Design Laboratory. Online Software Demos.</span>
+            <span>All Tuning and Wrap Designs Reserved.</span>
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <!-- INTERACTIVE JAVASCRIPT ANIMATIONS & LOGIC -->
     <script>
-        /* Part 1: Full-Screen Overlay Menu */
+        /* Part 1: Fullscreen Overlay Navigation Menu */
         function toggleOverlayMenu() {
             const overlay = document.getElementById('navigationOverlay');
             if (overlay.classList.contains('translate-y-full')) {
@@ -541,10 +616,10 @@
             }
         }
 
-        /* Part 2: Canvas Ambient Background Particles (Drifting glowing sparks / embers) */
-        const canvas = document.getElementById('workshopSparks');
+        /* Part 2: Canvas Ambient Neon Blob Background System (Floating warm spheres) */
+        const canvas = document.getElementById('neonOrbsCanvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let orbs = [];
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -553,288 +628,352 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        class SparkParticle {
+        class NeonOrb {
             constructor() {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height + canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedY = -(Math.random() * 0.8 + 0.2);
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 150 + 100;
                 this.speedX = Math.random() * 0.4 - 0.2;
-                this.alpha = Math.random() * 0.5 + 0.3;
-                this.fade = Math.random() * 0.002 + 0.001;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                // Randomized vibrant pink, violet, cyan color variants
+                const colors = ['rgba(6, 182, 212, 0.25)', 'rgba(236, 72, 153, 0.25)', 'rgba(139, 92, 246, 0.25)'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
             }
             update() {
-                this.y += this.speedY;
                 this.x += this.speedX;
-                this.alpha -= this.fade;
-                if (this.alpha <= 0 || this.y < 0) {
-                    this.x = Math.random() * canvas.width;
-                    this.y = canvas.height + Math.random() * 50;
-                    this.alpha = Math.random() * 0.5 + 0.3;
-                    this.size = Math.random() * 2 + 0.5;
-                }
+                this.y += this.speedY;
+
+                // Bounce boundaries gently
+                if (this.x - this.radius > canvas.width) this.x = -this.radius;
+                if (this.x + this.radius < 0) this.x = canvas.width + this.radius;
+                if (this.y - this.radius > canvas.height) this.y = -this.radius;
+                if (this.y + this.radius < 0) this.y = canvas.height + this.radius;
             }
             draw() {
                 ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = '#f97316'; /* Soft safety performance orange */
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.restore();
             }
         }
 
-        // Initialize particles
-        // Note: Using loop variable names that avoid digits, e.g. 'index'
-        for (let index = 0; index < 45; index++) {
-            particles.push(new SparkParticle());
+        // Initialize Neon Orbs
+        for (let orbIndex = 0; orbIndex < 12; orbIndex++) {
+            orbs.push(new NeonOrb());
         }
 
-        function animateParticles() {
+        function animateOrbs() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+            orbs.forEach(orb => {
+                orb.update();
+                orb.draw();
             });
-            requestAnimationFrame(animateParticles);
+            requestAnimationFrame(animateOrbs);
         }
-        animateParticles();
+        animateOrbs();
 
 
-        /* Part 3: Interactive Symptom Diagnostics Panel Logic */
-        const symptomsData = {
-            idle: {
-                title: 'Rough Idling and Vacuum Leakage Misfires',
-                desc: 'The engine experiences rhythmic structural tremors at idle speed. This indicates a potential vacuum leakage inside the intake manifold plenum or individual injector seal decay, causing lean combustion gradients.',
-                tag: 'Symptom Target: Engine Vibration',
-                remediation: 'Manifold Plenum Sealing',
-                scope: 'Intake Demount and Gasket Overhaul',
-                certainty: 'Highly Likely / Confirmed',
-                dialValue: 'Calibrated Position: Standard Idle',
-                dialAngle: 0,
-                waveFreq: 0.08,
-                waveAmp: 25,
-                waveSpeed: 0.1
+        /* Part 3: Interactive Digital Paint & Wrap Simulator Logic */
+        const paintPresets = {
+            turquoise: {
+                start: '#06b6d4',
+                end: '#0891b2',
+                label: 'Electric Turquoise Metallic',
+                desc: 'Premium polymer formula embedded with deep sea mica flakes, creating a highly reflective liquid mirror response.',
+                glow: 'rgba(6, 182, 212, 0.4)'
             },
-            brake: {
-                title: 'Spongy Braking Response and Air Trapping',
-                desc: 'Brake pedal action feels soft, lagging mechanical clamping performance. This is typically caused by micro-bubbles within brake lines or degraded master cylinder seals, demanding complete system fluid purge.',
-                tag: 'Symptom Target: Hydraulic System',
-                remediation: 'Complete Hydraulic Purging',
-                scope: 'Vacuum Pressure Bleeding',
-                certainty: 'Requires Physical Lift Check',
-                dialValue: 'Calibrated Position: Bleed Setting',
-                dialAngle: 90,
-                waveFreq: 0.02,
-                waveAmp: 50,
-                waveSpeed: 0.05
+            magenta: {
+                start: '#ec4899',
+                end: '#be185d',
+                label: 'Hyper Magenta Spectrum Wrap',
+                desc: 'An intense, custom fluorite vinyl overlay. Projects spectacular hot-pink saturations under artificial light sources.',
+                glow: 'rgba(236, 72, 153, 0.4)'
             },
-            smoke: {
-                title: 'Exhaust Smoke Discoloration and Valve Guide Wear',
-                desc: 'A distinct blue-grey smoke cloud under high acceleration profiles. This confirms cylinder oil passing through degraded valve stem seals or worn piston scraper rings, allowing lubricant to enter combustion chambers.',
-                tag: 'Symptom Target: Exhaust Chemical Exhaust',
-                remediation: 'Valve Stem Seal Overhaul',
-                scope: 'Cylinder Head Valve Component Rebuild',
-                certainty: 'Oil Analysis Confirmed',
-                dialValue: 'Calibrated Position: High Pressure Mode',
-                dialAngle: 180,
-                waveFreq: 0.15,
-                waveAmp: 10,
-                waveSpeed: 0.25
+            solar: {
+                start: '#f97316',
+                end: '#c2410c',
+                label: 'Solar Flare Gold Flip',
+                desc: 'A striking micro-pearl coat displaying aggressive golden orange highlights and deep copper base shadows.',
+                glow: 'rgba(249, 115, 22, 0.4)'
+            },
+            purple: {
+                start: '#8b5cf6',
+                end: '#6d28d9',
+                label: 'Deep Violet Chroma Fusion',
+                desc: 'A premium triple-stage pearlescent coat casting deep purple tones with subtle glowing dark-blue shifts.',
+                glow: 'rgba(139, 92, 246, 0.4)'
+            },
+            lime: {
+                start: '#a3e635',
+                end: '#4d7c0f',
+                label: 'Acid Lime Toxic Wrap',
+                desc: 'An extremely striking neon-green vinyl finish designed to catch direct trackside sunlight attention.',
+                glow: 'rgba(163, 230, 53, 0.4)'
+            },
+            ruby: {
+                start: '#ef4444',
+                end: '#991b1b',
+                label: 'Chroma Ruby Candy Coat',
+                desc: 'Multi-layer candy paint rendering rich, blood-red volumetric depth over an aluminum base layer.',
+                glow: 'rgba(239, 68, 68, 0.4)'
             }
         };
 
-        let currentWaveParams = {
-            freq: 0.08,
-            amp: 25,
-            speed: 0.1,
+        let currentPaintKey = 'turquoise';
+        let currentCoatingStyle = 'gloss';
+
+        function applyPaint(paintKey) {
+            currentPaintKey = paintKey;
+
+            // Highlight Swatch borders dynamically (loop through keys)
+            const buttons = document.querySelectorAll('#simulator button[onclick^="applyPaint"]');
+            buttons.forEach(btn => {
+                const clickAttr = btn.getAttribute('onclick');
+                if (clickAttr.includes(paintKey)) {
+                    btn.classList.add('border-white');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('border-white');
+                    btn.classList.add('border-transparent');
+                }
+            });
+
+            updateCarVisuals();
+        }
+
+        function applyFinish(coatingStyle) {
+            currentCoatingStyle = coatingStyle;
+
+            // Manage finish button highlights
+            const styles = ['gloss', 'matte', 'pearl'];
+            styles.forEach(style => {
+                const btn = document.getElementById('finish-' + style);
+                if (style === coatingStyle) {
+                    btn.classList.add('bg-white', 'text-purple-950');
+                    btn.classList.remove('bg-white-10', 'bg-opacity-10', 'text-white', 'border', 'border-white', 'border-opacity-20');
+                } else {
+                    btn.classList.remove('bg-white', 'text-purple-950');
+                    btn.classList.add('bg-white', 'bg-opacity-10', 'text-white', 'border', 'border-white', 'border-opacity-20');
+                }
+            });
+
+            updateCarVisuals();
+        }
+
+        function updateCarVisuals() {
+            const paint = paintPresets[currentPaintKey];
+            const stopStart = document.getElementById('paint-stop-start');
+            const stopEnd = document.getElementById('paint-stop-end');
+            const finishLabel = document.getElementById('current-finish-label');
+            const formulaDesc = document.getElementById('formula-desc');
+            const carBackingGlow = document.getElementById('car-glow-backing');
+            const renderStatus = document.getElementById('render-status');
+
+            // Apply SVG Gradient modifications
+            stopStart.setAttribute('stop-color', paint.start);
+            stopEnd.setAttribute('stop-color', paint.end);
+
+            // Modify opacity properties representing gloss or matte finish styles
+            const carBody = document.getElementById('carBodyShell');
+            if (currentCoatingStyle === 'gloss') {
+                carBody.setAttribute('fill-opacity', '1');
+                carBody.setAttribute('stroke-opacity', '1');
+                finishLabel.innerText = 'High Gloss ' + paint.label;
+            } else if (currentCoatingStyle === 'matte') {
+                carBody.setAttribute('fill-opacity', '0.85');
+                carBody.setAttribute('stroke-opacity', '0.7');
+                finishLabel.innerText = 'Satin Matte ' + paint.label;
+            } else {
+                carBody.setAttribute('fill-opacity', '0.95');
+                carBody.setAttribute('stroke-opacity', '0.9');
+                finishLabel.innerText = 'Chroma Pearl ' + paint.label;
+            }
+
+            // Update formula description copy
+            formulaDesc.innerText = paint.desc;
+
+            // Modify background blur bloom colors
+            carBackingGlow.style.backgroundColor = paint.start;
+
+            // Brief rendering feedback
+            renderStatus.innerText = 'Applying Coating...';
+            setTimeout(() => {
+                renderStatus.innerText = 'Applied Successfully';
+            }, 300);
+        }
+
+
+        /* Part 4: ECU Flashing and Telemetry Simulator Wave Logic */
+        const tuningProfiles = {
+            track: {
+                label: 'Aggressive Track Mapping',
+                title: 'High-Frequency Combustion and Extreme Velocity mapping',
+                desc: 'Accelerates ignition triggers and prolongs electronic bypass valves to elevate absolute boost force curves. Combustion temperatures surge, calling for optimal fuel supply setups.',
+                waveFreq: 0.15,
+                waveAmp: 35,
+                waveSpeed: 0.2,
+                ignProgress: '95%',
+                fuelProgress: '88%',
+                latencyProgress: '10%'
+            },
+            street: {
+                label: 'Linear Street Calibration',
+                title: 'Balanced Ignition Intervals for Daily High Performance',
+                desc: 'Smoothes camshaft trigger schedules to eliminate performance lag while maintaining fuel flexibility and daily drivability. Balanced temperature thresholds.',
+                waveFreq: 0.06,
+                waveAmp: 20,
+                waveSpeed: 0.1,
+                ignProgress: '70%',
+                fuelProgress: '60%',
+                latencyProgress: '35%'
+            },
+            economy: {
+                label: 'Lean-Burn Fuel Range Mapping',
+                title: 'Efficient Spark Synchronization for Travel Range',
+                desc: 'Calibrates oxygen thresholds to execute extremely lean fuel-to-air combustion formulas. Drops dynamic engine heat load and optimizes cruising efficiency.',
+                waveFreq: 0.03,
+                waveAmp: 10,
+                waveSpeed: 0.05,
+                ignProgress: '45%',
+                fuelProgress: '35%',
+                latencyProgress: '65%'
+            }
+        };
+
+        let currentOscillationParams = {
+            freq: 0.15,
+            amp: 35,
+            speed: 0.2,
             time: 0
         };
 
-        function selectSymptom(key) {
-            // Update active state visual styles
-            const keys = ['idle', 'brake', 'smoke'];
-            keys.forEach(k => {
-                const card = document.getElementById('card-' + k);
-                const dot = document.getElementById('dot-' + k);
-                const label = document.getElementById('label-' + k);
-                if (k === key) {
-                    card.classList.add('border-garage-safety');
-                    card.classList.remove('border-garage-metal');
-                    dot.classList.add('bg-garage-safety');
+        function selectTuningProfile(profileKey) {
+            const profiles = ['track', 'street', 'economy'];
+            profiles.forEach(p => {
+                const card = document.getElementById('map-' + p);
+                const dot = document.getElementById('map-dot-' + p);
+                const label = document.getElementById('map-label-' + p);
+                if (p === profileKey) {
+                    card.classList.add('glass-panel-heavy');
+                    card.classList.remove('glass-panel');
+                    dot.classList.add('bg-nexus-cyan');
                     dot.classList.remove('bg-transparent');
-                    label.classList.add('text-garage-safety');
-                    label.classList.remove('text-garage-dust');
+                    label.classList.add('text-nexus-cyan');
+                    label.classList.remove('text-white', 'text-opacity-70');
                 } else {
-                    card.classList.remove('border-garage-safety');
-                    card.classList.add('border-garage-metal');
-                    dot.classList.remove('bg-garage-safety');
+                    card.classList.remove('glass-panel-heavy');
+                    card.classList.add('glass-panel');
+                    dot.classList.remove('bg-nexus-cyan');
                     dot.classList.add('bg-transparent');
-                    label.classList.remove('text-garage-safety');
-                    label.classList.add('text-garage-dust');
+                    label.classList.remove('text-nexus-cyan');
+                    label.classList.add('text-white', 'text-opacity-70');
                 }
             });
 
-            // Update visible content fields
-            const data = symptomsData[key];
-            document.getElementById('active-symptom-tag').innerText = data.tag;
-            document.getElementById('symptom-title').innerText = data.title;
-            document.getElementById('symptom-desc').innerText = data.desc;
-            document.getElementById('stat-remediation').innerText = data.remediation;
-            document.getElementById('stat-scope').innerText = data.scope;
-            document.getElementById('stat-certainty').innerText = data.certainty;
+            const data = tuningProfiles[profileKey];
+            document.getElementById('current-tuning-map-label').innerText = data.label;
+            document.getElementById('telemetry-title').innerText = data.title;
+            document.getElementById('telemetry-desc').innerText = data.desc;
 
-            // Adjust rotary dials
-            document.getElementById('dial-value').innerText = data.dialValue;
-            document.getElementById('rotary-dial').style.transform = `rotate(${data.dialAngle}deg)`;
+            // Shift Wave Parameters
+            currentOscillationParams.freq = data.waveFreq;
+            currentOscillationParams.amp = data.waveAmp;
+            currentOscillationParams.speed = data.waveSpeed;
 
-            // Trigger oscilloscope wave modifications
-            currentWaveParams.freq = data.waveFreq;
-            currentWaveParams.amp = data.waveAmp;
-            currentWaveParams.speed = data.waveSpeed;
-        }
+            // Trigger visual progress gauge animations
+            document.getElementById('progress-ignition').style.width = data.ignProgress;
+            document.getElementById('progress-fuel').style.width = data.fuelProgress;
+            document.getElementById('progress-latency').style.width = data.latencyProgress;
 
-        /* Oscilloscope Drawing Loop */
-        const oscCanvas = document.getElementById('oscilloscopeScreen');
-        const oscCtx = oscCanvas.getContext('2d');
-
-        function resizeOscCanvas() {
-            oscCanvas.width = oscCanvas.parentElement.clientWidth;
-            oscCanvas.height = oscCanvas.parentElement.clientHeight;
-        }
-        window.addEventListener('resize', resizeOscCanvas);
-        resizeOscCanvas();
-
-        function drawOscilloscope() {
-            oscCtx.clearRect(0, 0, oscCanvas.width, oscCanvas.height);
-
-            // Draw grid lines
-            oscCtx.strokeStyle = '#1e2124';
-            oscCtx.lineWidth = 1;
-
-            // Horizontal lines
-            const gridSpacing = 20;
-            for (let y = 0; y < oscCanvas.height; y += gridSpacing) {
-                oscCtx.beginPath();
-                oscCtx.moveTo(0, y);
-                oscCtx.lineTo(oscCanvas.width, y);
-                oscCtx.stroke();
-            }
-            // Vertical lines
-            for (let x = 0; x < oscCanvas.width; x += gridSpacing) {
-                oscCtx.beginPath();
-                oscCtx.moveTo(x, 0);
-                oscCtx.lineTo(x, oscCanvas.height);
-                oscCtx.stroke();
-            }
-
-            // Draw center reference lines
-            oscCtx.strokeStyle = '#2d3137';
-            oscCtx.beginPath();
-            oscCtx.moveTo(0, oscCanvas.height / 2);
-            oscCtx.lineTo(oscCanvas.width, oscCanvas.height / 2);
-            oscCtx.stroke();
-
-            // Draw Sine Wave representing simulated component vibration
-            oscCtx.strokeStyle = '#f97316';
-            oscCtx.lineWidth = 2.5;
-            oscCtx.shadowColor = '#f97316';
-            oscCtx.shadowBlur = 10;
-
-            oscCtx.beginPath();
-            const centerY = oscCanvas.height / 2;
-            currentWaveParams.time += currentWaveParams.speed;
-
-            for (let x = 0; x < oscCanvas.width; x++) {
-                const y = centerY + Math.sin(x * currentWaveParams.freq + currentWaveParams.time) * currentWaveParams.amp;
-                if (x === 0) {
-                    oscCtx.moveTo(x, y);
-                } else {
-                    oscCtx.lineTo(x, y);
-                }
-            }
-            oscCtx.stroke();
-
-            // Clear shadow for next loops
-            oscCtx.shadowBlur = 0;
-
-            requestAnimationFrame(drawOscilloscope);
-        }
-        drawOscilloscope();
-
-
-        /* Part 4: Sequential Inspection Sequence Tabs Logic */
-        const inspectionPhases = {
-            admission: {
-                title: 'Intake Fluid Analysis and Diagnostic Scanning',
-                description: 'We begin with comprehensive chassis inspection. Fluids are extracted for particle analysis, and diagnostic parameters are scanned before structural mechanical tasks begin to protect vintage and classic gears.',
-                metric: 'Fluid Viscosity and Chemical Impurity Assessment',
-                image: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80',
-                label: 'Automotive Lift Assessment'
-            },
-            teardown: {
-                title: 'Careful Component Disassembly and Blueprinting',
-                description: 'Cylinder heads, intake runners, and manifolds are completely dismantled. Individual valve clearances are micrometer-profiled to blueprint performance metrics.',
-                metric: 'Mechanical Micrometer Alignment Blueprint',
-                image: 'https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1200&q=80',
-                label: 'Intense Engine Restructuring'
-            },
-            calibration: {
-                title: 'Master Mechanical Calibration and Real-World Road Test',
-                description: 'Our certified master mechanics perform ignition timing tuning and intake throttle synchronization. Afterward, the vehicle is subject to intense, real-world road assessment.',
-                metric: 'Rotational Synchrony and Ignition Timing Profile',
-                image: 'https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80',
-                label: 'Precision Dynamic Alignment Check'
-            }
-        };
-
-        function selectPhase(phaseKey) {
-            // Manage Active Button States
-            const tabs = ['admission', 'teardown', 'calibration'];
-            tabs.forEach(t => {
-                const btn = document.getElementById('tab-' + t);
-                if (t === phaseKey) {
-                    btn.classList.add('border-garage-safety', 'text-garage-safety');
-                    btn.classList.remove('border-transparent', 'text-garage-dust');
-                } else {
-                    btn.classList.remove('border-garage-safety', 'text-garage-safety');
-                    btn.classList.add('border-transparent', 'text-garage-dust');
-                }
-            });
-
-            // Smooth content fade transition
-            const panel = document.getElementById('phase-content-panel');
-            const img = document.getElementById('phase-image');
-            const lbl = document.getElementById('phase-label');
-
-            panel.style.opacity = 0;
-            img.style.opacity = 0;
-
+            // Signal quick flash feedback
+            const status = document.getElementById('current-telemetry-status');
+            status.innerText = 'REFLASHING CHIP...';
+            status.classList.add('text-nexus-pink');
             setTimeout(() => {
-                const data = inspectionPhases[phaseKey];
-                document.getElementById('phase-title').innerText = data.title;
-                document.getElementById('phase-description').innerText = data.description;
-                document.getElementById('phase-metric').innerText = data.metric;
-                img.src = data.image;
-                lbl.innerText = data.label;
-
-                panel.style.opacity = 1;
-                img.style.opacity = 1;
-            }, 250);
+                status.innerText = 'CHIP MAP OPTIMIZED';
+                status.classList.remove('text-nexus-pink');
+            }, 600);
         }
 
+        /* ECU Telemetry Canvas Drawing Loop */
+        const ecuCanvas = document.getElementById('ecuTelemetryCanvas');
+        const ecuCtx = ecuCanvas.getContext('2d');
 
-        /* Part 5: Contact Inquiry Intake Form Submission Handler */
+        function resizeEcuCanvas() {
+            ecuCanvas.width = ecuCanvas.parentElement.clientWidth;
+            ecuCanvas.height = ecuCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeEcuCanvas);
+        resizeEcuCanvas();
+
+        function drawEcuTelemetry() {
+            ecuCtx.clearRect(0, 0, ecuCanvas.width, ecuCanvas.height);
+
+            // Draw grid guidelines
+            ecuCtx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ecuCtx.lineWidth = 1;
+            const gridSpacing = 24;
+            for (let y = 0; y < ecuCanvas.height; y += gridSpacing) {
+                ecuCtx.beginPath();
+                ecuCtx.moveTo(0, y);
+                ecuCtx.lineTo(ecuCanvas.width, y);
+                ecuCtx.stroke();
+            }
+            for (let x = 0; x < ecuCanvas.width; x += gridSpacing) {
+                ecuCtx.beginPath();
+                ecuCtx.moveTo(x, 0);
+                ecuCtx.lineTo(x, ecuCanvas.height);
+                ecuCtx.stroke();
+            }
+
+            // Draw center coordinate axis line
+            ecuCtx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+            ecuCtx.beginPath();
+            ecuCtx.moveTo(0, ecuCanvas.height / 2);
+            ecuCtx.lineTo(ecuCanvas.width, ecuCanvas.height / 2);
+            ecuCtx.stroke();
+
+            // Render glowing colorful sine wave representing cylinder pressure frequencies
+            ecuCtx.strokeStyle = '#ec4899'; // Hot pink wave
+            ecuCtx.lineWidth = 3;
+            ecuCtx.shadowColor = '#ec4899';
+            ecuCtx.shadowBlur = 12;
+
+            ecuCtx.beginPath();
+            const centerY = ecuCanvas.height / 2;
+            currentOscillationParams.time += currentOscillationParams.speed;
+
+            for (let x = 0; x < ecuCanvas.width; x++) {
+                const y = centerY + Math.sin(x * currentOscillationParams.freq + currentOscillationParams.time) * currentOscillationParams.amp;
+                if (x === 0) {
+                    ecuCtx.moveTo(x, y);
+                } else {
+                    ecuCtx.lineTo(x, y);
+                }
+            }
+            ecuCtx.stroke();
+
+            // Clear glow filter shadows
+            ecuCtx.shadowBlur = 0;
+
+            requestAnimationFrame(drawEcuTelemetry);
+        }
+        drawEcuTelemetry();
+
+
+        /* Part 5: Contact Inquiry Form Handler */
         function handleInquirySubmit(event) {
             event.preventDefault();
-            // Display clean confirmation panel to represent human-authored follow up
             document.getElementById('submissionSuccess').classList.remove('hidden');
         }
 
         function resetInquiryForm() {
             document.getElementById('submissionSuccess').classList.add('hidden');
-            // Clear text inputs
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => input.value = '');
         }
