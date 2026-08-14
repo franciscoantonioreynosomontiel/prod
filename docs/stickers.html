@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PastelStickers — El Universo de los Stickers Digitales</title>
+    <title>Stickers Profesionales — Adhesivos Interactivos para Restaurantes y Negocios</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -39,9 +39,8 @@
     <link rel="stylesheet" href="assets/css/stickers.css">
 
     <style>
-        /* Custom styles for physical sticker interactions */
         body {
-            background-color: #f7fafc;
+            background-color: #FAF8F6;
             user-select: none;
             -webkit-user-select: none;
             overflow-x: hidden;
@@ -70,60 +69,34 @@
             pointer-events: none;
         }
 
-        /* Decorative mockups */
-        .laptop-mockup {
-            border: 12px solid #e2e8f0;
-            border-bottom-width: 24px;
-            border-radius: 20px;
-            position: relative;
-            background: #ffffff;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-        }
-
-        .laptop-base {
-            height: 12px;
-            background: #cbd5e1;
-            border-radius: 0 0 20px 20px;
-            width: calc(100% + 40px);
-            margin-left: -20px;
-            position: relative;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .laptop-base::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 6px;
-            background: #94a3b8;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 0 0 4px 4px;
-        }
-
-        .phone-mockup {
-            border: 10px solid #e2e8f0;
-            border-radius: 32px;
-            background: #ffffff;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        /* Responsive custom mockups */
+        .bag-mockup {
+            background: #E6D2B8; /* Kraft Paper brown */
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+            border: 1px solid #D8C0A4;
             position: relative;
         }
 
-        .phone-notch {
-            width: 80px;
-            height: 16px;
-            background: #e2e8f0;
-            border-radius: 0 0 12px 12px;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+        .table-mockup {
+            background: #EBE0D0; /* Wooden texture color */
+            border-radius: 16px;
+            border: 8px solid #D4C4B0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .glass-mockup {
+            background: rgba(224, 242, 241, 0.3); /* Glassmorphic window teal */
+            border: 6px solid rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            backdrop-filter: blur(4px);
+            position: relative;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen relative overflow-x-hidden">
+<body class="text-slate-800 antialiased min-h-screen relative overflow-x-hidden">
 
     <!-- Ambient glowing backdrops -->
     <div class="ambient-glow top-10 left-10"></div>
@@ -135,20 +108,20 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-full bg-pink-200 border-2 border-white shadow-sm flex items-center justify-center font-bold text-pink-600 text-lg">
-                    ✨
+                    🏷️
                 </div>
-                <span class="font-rounded font-bold text-xl tracking-tight bg-gradient-to-r from-pink-400 to-indigo-500 bg-clip-text text-transparent">PastelStickers</span>
+                <span class="font-rounded font-bold text-xl tracking-tight bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">StickersPro</span>
             </div>
             <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
                 <a href="#welcome" class="hover:text-pink-500 transition-colors">Inicio</a>
-                <a href="#sticker-sheet" class="hover:text-pink-500 transition-colors">Colección</a>
-                <a href="#workspace" class="hover:text-pink-500 transition-colors">Mesa de Trabajo</a>
-                <a href="#creator" class="hover:text-pink-500 transition-colors">Diseñar Sticker</a>
-                <a href="#about" class="hover:text-pink-500 transition-colors">Física y Tecnología</a>
+                <a href="#sticker-sheet" class="hover:text-pink-500 transition-colors">Colección de Marcas</a>
+                <a href="#workspace" class="hover:text-pink-500 transition-colors">Zonas de Pegado</a>
+                <a href="#creator" class="hover:text-pink-500 transition-colors">Creador</a>
+                <a href="#about" class="hover:text-pink-500 transition-colors">Física de Vinilo</a>
             </nav>
             <div class="flex items-center space-x-3">
-                <span class="text-xs bg-indigo-50 text-indigo-600 border border-indigo-100 rounded-full px-3 py-1.5 font-semibold">
-                    Interactive Tech Demo
+                <span class="text-xs bg-orange-50 text-orange-600 border border-orange-100 rounded-full px-3 py-1.5 font-semibold">
+                    Interactive Marketing Pro
                 </span>
             </div>
         </div>
@@ -156,67 +129,77 @@
 
     <!-- Hero / Welcome Section -->
     <section id="welcome" class="max-w-6xl mx-auto px-6 pt-16 pb-12 text-center relative">
-        <span class="inline-block bg-pink-100/60 text-pink-600 border border-pink-200/50 rounded-full px-4 py-1.5 text-sm font-semibold mb-6">
-            🎨 ¡Tócalos, desbélalos y arrástralos por toda la web!
+        <span class="inline-block bg-orange-100/60 text-orange-600 border border-orange-200/50 rounded-full px-4 py-1.5 text-sm font-semibold mb-6">
+            🎯 Despega, Arrastra y Pega Stickers Reales en la Pantalla
         </span>
         <h1 class="text-4xl md:text-6xl font-rounded font-extrabold tracking-tight text-slate-900 leading-tight mb-6">
-            El Arte Digital Hecho <br>
-            <span class="bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">Físicamente Interactivo</span>
+            Stickers de Alta Calidad <br>
+            <span class="bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">Para Restaurantes y Negocios</span>
         </h1>
         <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8">
-            Experimenta el primer sistema de stickers digitales con simulación física de despegado. Siente la tensión del vinilo, la curvatura tridimensional y colócalos donde quieras en nuestra mesa de trabajo.
+            Haz crecer tu marca. Despega cualquiera de nuestros stickers profesionales, creados especialmente para bolsas de comida, mesas con códigos QR, logotipos y números de contacto, y comprueba cómo se verán sobre distintas superficies comerciales.
         </p>
-
-        <!-- Live Counters & Hints -->
-        <div class="flex flex-wrap justify-center gap-6 max-w-lg mx-auto">
-            <div class="bg-white/80 border border-slate-100 rounded-2xl px-6 py-4 shadow-sm flex items-center space-x-4">
-                <span class="text-3xl">📐</span>
-                <div class="text-left">
-                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Física de Flexión</p>
-                    <p class="text-sm font-bold text-slate-700">Cálculo en Tiempo Real</p>
-                </div>
-            </div>
-            <div class="bg-white/80 border border-slate-100 rounded-2xl px-6 py-4 shadow-sm flex items-center space-x-4">
-                <span class="text-3xl">🚀</span>
-                <div class="text-left">
-                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Rendimiento</p>
-                    <p class="text-sm font-bold text-slate-700">60 FPS Ultra-Optimizado</p>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Sticker Sheet Pack Section -->
     <section id="sticker-sheet" class="max-w-6xl mx-auto px-6 py-12 relative">
         <div class="text-center mb-10">
-            <h2 class="text-2xl md:text-3.5xl font-rounded font-extrabold text-slate-900 mb-3">La Colección Pastel</h2>
-            <p class="text-slate-500">Haz clic y mantén presionado sobre la esquina de cualquier sticker para despegarlo. ¡Arrástralo al escritorio!</p>
+            <h2 class="text-2xl md:text-3.5xl font-rounded font-extrabold text-slate-900 mb-3">La Colección de Negocios</h2>
+            <p class="text-slate-500">Mantén presionado sobre la esquina de un sticker para desvelar el efecto de flexión 3D. ¡Suéltalo en el espacio de trabajo!</p>
         </div>
 
         <!-- The Sticker Pack Binder -->
-        <div class="bg-white/90 border border-slate-100/80 rounded-3xl p-8 md:p-12 shadow-md max-w-4xl mx-auto relative min-h-[360px] flex items-center justify-center">
+        <div class="bg-white/95 border border-slate-100/80 rounded-3xl p-8 md:p-12 shadow-md max-w-5xl mx-auto relative min-h-[420px] flex items-center justify-center">
 
-            <!-- Grid of Initial Stickers -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-12 w-full max-w-3xl justify-items-center relative py-8">
+            <!-- Grid of Real Business Stickers from flyers/index.html -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-12 w-full max-w-4xl justify-items-center relative py-6">
 
-                <!-- Sticker 1 Container (Stuck initially) -->
-                <div class="w-32 h-32 relative flex items-center justify-center">
-                    <div class="sticker-wrapper" data-sticker-type="donut" data-sticker-color="#FFD1DC"></div>
+                <!-- Sticker 1: QR & Brand (sticker1) -->
+                <div class="w-36 h-36 relative flex flex-col items-center">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker1.png" data-sticker-color="#FFD1DC"></div>
+                    <span class="text-xs font-semibold text-slate-400 mt-2">QR Bistro Gourmet</span>
                 </div>
 
-                <!-- Sticker 2 Container -->
-                <div class="w-32 h-32 relative flex items-center justify-center">
-                    <div class="sticker-wrapper" data-sticker-type="magic-cat" data-sticker-color="#E1BEE7"></div>
+                <!-- Sticker 2: Food Label (sticke2) -->
+                <div class="w-36 h-36 relative flex flex-col items-center">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticke2.png" data-sticker-color="#E1BEE7"></div>
+                    <span class="text-xs font-semibold text-slate-400 mt-2">Sabor Especial</span>
                 </div>
 
-                <!-- Sticker 3 Container -->
-                <div class="w-32 h-32 relative flex items-center justify-center">
-                    <div class="sticker-wrapper" data-sticker-type="planet" data-sticker-color="#B3E5FC"></div>
+                <!-- Sticker 3: Takeout Seal (sticker3) -->
+                <div class="w-36 h-36 relative flex flex-col items-center">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker3.png" data-sticker-color="#B3E5FC"></div>
+                    <span class="text-xs font-semibold text-slate-400 mt-2">Takeout Seal Premium</span>
                 </div>
 
-                <!-- Sticker 4 Container -->
-                <div class="w-32 h-32 relative flex items-center justify-center">
-                    <div class="sticker-wrapper" data-sticker-type="hello-world" data-sticker-color="#C8E6C9"></div>
+                <!-- Sticker 4: Burger Icon (sticker4) -->
+                <div class="w-36 h-36 relative flex flex-col items-center">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker4.png" data-sticker-color="#C8E6C9"></div>
+                    <span class="text-xs font-semibold text-slate-400 mt-2">Best Burger Stamp</span>
+                </div>
+
+                <!-- Sticker 5: Fresh Pizza Label (sticker5) -->
+                <div class="w-36 h-36 relative flex flex-col items-center">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker5.png" data-sticker-color="#FFE0B2"></div>
+                    <span class="text-xs font-semibold text-slate-400 mt-2">Hot Pizza Delivery</span>
+                </div>
+
+                <!-- Sticker 6: Organic Label (sticker6) -->
+                <div class="w-36 h-36 relative flex flex-col items-center">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker6.png" data-sticker-color="#E0F2F1"></div>
+                    <span class="text-xs font-semibold text-slate-400 mt-2">Eco Friendly Organic</span>
+                </div>
+
+                <!-- Sticker 7: Delicious Bakery (sticker7) -->
+                <div class="w-36 h-36 relative flex flex-col items-center">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker7.png" data-sticker-color="#FFF9C4"></div>
+                    <span class="text-xs font-semibold text-slate-400 mt-2">Sweet Bakery Seal</span>
+                </div>
+
+                <!-- Sticker 8: Coffee Lover (sticker8) -->
+                <div class="w-36 h-36 relative flex flex-col items-center">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker8.png" data-sticker-color="#FFE0B2"></div>
+                    <span class="text-xs font-semibold text-slate-400 mt-2">Espresso Cup Label</span>
                 </div>
 
             </div>
@@ -227,69 +210,66 @@
         </div>
     </section>
 
-    <!-- Virtual Workspace / Laptop, Journal Mockup Area -->
+    <!-- Virtual Workspace with Three Drop Mockups -->
     <section id="workspace" class="max-w-6xl mx-auto px-6 py-16">
         <div class="text-center mb-12">
             <span class="bg-indigo-100/60 text-indigo-600 border border-indigo-200/50 rounded-full px-4 py-1.5 text-sm font-semibold mb-3 inline-block">
-                💻 Espacio de Personalización Colectivo
+                🏢 Entornos de Simulación de Negocio
             </span>
-            <h2 class="text-3xl md:text-4xl font-rounded font-extrabold text-slate-900 mb-4">Decora tu Mesa Virtual</h2>
+            <h2 class="text-3xl md:text-4xl font-rounded font-extrabold text-slate-900 mb-4">Mesa de Pruebas de Pegado</h2>
             <p class="text-slate-500 max-w-xl mx-auto">
-                Suelta tus stickers despegados sobre cualquiera de estos objetos. Los stickers se adaptarán y permanecerán pegados sobre la superficie elegida.
+                Experimenta arrastrando tus stickers y soltándolos sobre cualquiera de estos tres elementos comerciales. Se fijarán exactamente en la superficie de manera realista.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-5xl mx-auto items-stretch">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
 
-            <!-- Laptop Area -->
-            <div class="lg:col-span-2 flex flex-col justify-between">
-                <div class="bg-gradient-to-tr from-sky-50 to-pink-50/60 rounded-3xl p-8 border border-slate-100 flex-grow flex flex-col items-center justify-center relative overflow-hidden group min-h-[380px]">
-                    <div class="absolute top-4 left-4 text-xs font-bold text-slate-400">VISTA EXTERIOR DE LAPTOP</div>
+            <!-- Mockup A: Kraft Delivery Bag -->
+            <div class="bag-mockup p-8 flex flex-col justify-between items-center aspect-[4/5] drop-target relative overflow-hidden" id="kraft-bag">
+                <!-- Handles details -->
+                <div class="w-20 h-8 rounded-t-full border-4 border-[#C8B094] border-b-0 absolute top-2"></div>
+                <div class="w-24 h-1 bg-[#D8C0A4] rounded mt-4 absolute top-10"></div>
 
-                    <!-- Laptop Screen Outer (Using it as drop space) -->
-                    <div class="w-full max-w-[440px] laptop-mockup flex flex-col items-center justify-center aspect-[16/10] bg-slate-900/5 drop-target transition-all duration-300 relative" id="laptop-screen">
-                        <!-- Laptop lid branding -->
-                        <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-slate-400 font-bold text-xl pointer-events-none">
-                            
-                        </div>
-                        <div class="absolute bottom-4 text-center text-xs text-slate-400 pointer-events-none">
-                            Arrastra y suelta tus stickers aquí
-                        </div>
-                    </div>
-                    <div class="w-full max-w-[480px] laptop-base pointer-events-none"></div>
+                <div class="flex-grow flex flex-col justify-center items-center pointer-events-none mt-10">
+                    <span class="font-rounded font-bold text-sm text-[#7D6652] uppercase tracking-widest mb-1">DELIVERY BAG</span>
+                    <span class="text-xs text-[#9E8672] text-center px-4">Bolsa Kraft de Comida</span>
+                </div>
+
+                <div class="text-[10px] text-[#9E8672]/80 font-semibold pointer-events-none mb-1">
+                    Suelta stickers de bolsas aquí
                 </div>
             </div>
 
-            <!-- Phone & Notebook Areas -->
-            <div class="flex flex-col gap-8">
-                <!-- Phone Mockup -->
-                <div class="bg-gradient-to-tr from-purple-50 to-teal-50 rounded-3xl p-8 border border-slate-100 flex-grow flex flex-col items-center justify-center relative overflow-hidden min-h-[260px]">
-                    <div class="absolute top-4 left-4 text-xs font-bold text-slate-400 font-mono">TELÉFONO INTELIGENTE</div>
+            <!-- Mockup B: Restaurant Wooden Table -->
+            <div class="table-mockup p-8 flex flex-col justify-between items-center aspect-[4/5] drop-target relative overflow-hidden" id="wooden-table">
+                <!-- Wooden grains simulated -->
+                <div class="absolute inset-x-0 h-px bg-[#DCD0C0] top-1/4 pointer-events-none"></div>
+                <div class="absolute inset-x-0 h-px bg-[#DCD0C0] top-2/4 pointer-events-none"></div>
+                <div class="absolute inset-x-0 h-px bg-[#DCD0C0] top-3/4 pointer-events-none"></div>
 
-                    <!-- Phone Container -->
-                    <div class="w-[140px] h-[260px] phone-mockup drop-target transition-all duration-300 relative flex items-center justify-center" id="phone-body">
-                        <div class="phone-notch"></div>
-                        <div class="text-center text-[10px] text-slate-300 px-4 pointer-events-none absolute bottom-4">
-                            ¡Pega un sticker en el reverso!
-                        </div>
-                        <div class="w-8 h-8 rounded-full border-4 border-slate-200/40 absolute top-8 pointer-events-none"></div>
-                    </div>
+                <div class="flex-grow flex flex-col justify-center items-center pointer-events-none">
+                    <span class="font-rounded font-extrabold text-sm text-[#8D7B65] uppercase tracking-widest mb-1">MESA RESTAURANTE</span>
+                    <span class="text-xs text-[#AA9983] text-center px-4">Ideal para Table QR</span>
                 </div>
 
-                <!-- Notebook Mockup -->
-                <div class="bg-gradient-to-tr from-amber-50 to-rose-50 rounded-3xl p-8 border border-slate-100 flex-grow flex flex-col items-center justify-center relative overflow-hidden min-h-[260px]">
-                    <div class="absolute top-4 left-4 text-xs font-bold text-slate-400">DIARIO PERSONAL</div>
+                <div class="text-[10px] text-[#AA9983]/80 font-semibold pointer-events-none mb-1">
+                    Suelta códigos QR aquí
+                </div>
+            </div>
 
-                    <!-- Notebook Body -->
-                    <div class="w-[160px] h-[220px] bg-amber-100/80 rounded-r-xl rounded-l shadow-lg border-l-8 border-amber-800/40 drop-target transition-all duration-300 relative flex flex-col justify-between p-4" id="notebook-body">
-                        <div class="w-full h-px bg-amber-800/10 mt-12"></div>
-                        <div class="w-full h-px bg-amber-800/10"></div>
-                        <div class="w-full h-px bg-amber-800/10"></div>
-                        <div class="w-full h-px bg-amber-800/10 mb-8"></div>
-                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <span class="font-rounded font-bold text-xs text-amber-800/30 uppercase tracking-widest">Mis Ideas</span>
-                        </div>
-                    </div>
+            <!-- Mockup C: Storefront Glass Window -->
+            <div class="glass-mockup p-8 flex flex-col justify-between items-center aspect-[4/5] drop-target relative overflow-hidden" id="glass-window">
+                <!-- Glare diagonal lines -->
+                <div class="absolute w-[200%] h-12 bg-white/10 rotate-45 top-0 -left-1/2 pointer-events-none"></div>
+                <div class="absolute w-[200%] h-6 bg-white/5 rotate-45 top-12 -left-1/2 pointer-events-none"></div>
+
+                <div class="flex-grow flex flex-col justify-center items-center pointer-events-none">
+                    <span class="font-rounded font-bold text-sm text-slate-500 uppercase tracking-widest mb-1">VITRINA DE CRISTAL</span>
+                    <span class="text-xs text-slate-400 text-center px-4">Adhesivo exterior de horario</span>
+                </div>
+
+                <div class="text-[10px] text-slate-400/80 font-semibold pointer-events-none mb-1">
+                    Suelta stickers informativos aquí
                 </div>
             </div>
 
@@ -303,21 +283,21 @@
             <!-- Left Side: Controls -->
             <div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-slate-100 flex flex-col justify-between">
                 <div>
-                    <span class="bg-pink-100 text-pink-600 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 inline-block">Estudio de Diseño</span>
-                    <h3 class="text-2xl font-rounded font-extrabold text-slate-900 mb-2">Crea tu Sticker</h3>
-                    <p class="text-slate-500 text-sm mb-8">Personaliza tu propio sticker físico interactivo. Elige un fondo pastel, un ícono y agrégale texto.</p>
+                    <span class="bg-orange-100 text-orange-600 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 inline-block">Estudio Gráfico</span>
+                    <h3 class="text-2xl font-rounded font-extrabold text-slate-900 mb-2">Simulador de Impresión</h3>
+                    <p class="text-slate-500 text-sm mb-8">Crea un sticker digital de negocio personalizado. Introduce el teléfono de tu restaurante y logo.</p>
 
                     <!-- Inputs -->
                     <div class="space-y-6">
-                        <!-- Custom Text Input -->
+                        <!-- Phone Number Label -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Texto del Sticker</label>
-                            <input type="text" id="sticker-text-input" value="SÚPER!" maxlength="15" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 text-slate-700 font-semibold font-rounded">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Teléfono de Soporte/Pedidos</label>
+                            <input type="text" id="sticker-text-input" value="1-800-FOOD" maxlength="15" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 text-slate-700 font-semibold font-rounded">
                         </div>
 
                         <!-- Color selection -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Color de Fondo Pastel</label>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Fondo Pastel del Sticker</label>
                             <div class="flex flex-wrap gap-3" id="color-selectors">
                                 <button class="w-8 h-8 rounded-full bg-[#FFD1DC] border-2 border-slate-800 ring-2 ring-slate-200 transition-all focus:outline-none" data-color="#FFD1DC"></button>
                                 <button class="w-8 h-8 rounded-full bg-[#B3E5FC] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#B3E5FC"></button>
@@ -328,39 +308,46 @@
                             </div>
                         </div>
 
-                        <!-- Icon selection -->
+                        <!-- Brand Logo selection -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ícono Central</label>
-                            <div class="grid grid-cols-5 gap-3" id="icon-selectors">
-                                <button class="py-2.5 px-3 rounded-xl border-2 border-slate-800 font-semibold text-xl flex items-center justify-center transition-all bg-slate-50 focus:outline-none" data-icon="star">⭐</button>
-                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 font-semibold text-xl flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-icon="heart">💖</button>
-                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 font-semibold text-xl flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-icon="smile">😊</button>
-                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 font-semibold text-xl flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-icon="cloud">☁️</button>
-                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 font-semibold text-xl flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-icon="sparkles">✨</button>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Logotipo / QR Central</label>
+                            <div class="grid grid-cols-4 gap-3" id="icon-selectors">
+                                <button class="py-2.5 px-3 rounded-xl border-2 border-slate-800 flex items-center justify-center transition-all bg-slate-50 focus:outline-none" data-img-url="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker1.png">
+                                    <img src="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker1.png" class="w-8 h-8 object-contain">
+                                </button>
+                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-img-url="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker3.png">
+                                    <img src="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker3.png" class="w-8 h-8 object-contain">
+                                </button>
+                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-img-url="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker5.png">
+                                    <img src="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker5.png" class="w-8 h-8 object-contain">
+                                </button>
+                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-img-url="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker8.png">
+                                    <img src="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker8.png" class="w-8 h-8 object-contain">
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <button id="generate-sticker-btn" class="w-full mt-8 bg-slate-900 hover:bg-slate-800 text-white font-rounded font-bold py-4 px-6 rounded-2xl shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0">
-                    Generar y Imprimir Sticker 🖨️
+                    Generar Adhesivo Comercial 🖨️
                 </button>
             </div>
 
             <!-- Right Side: Live preview and Output -->
             <div class="p-8 md:p-12 bg-slate-50 flex flex-col items-center justify-center relative min-h-[300px]">
-                <div class="absolute top-4 left-4 text-xs font-bold text-slate-400">VISTA PREVIA DE PRODUCCIÓN</div>
+                <div class="absolute top-4 left-4 text-xs font-bold text-slate-400 font-mono">VISTA PREVIA REAL</div>
 
                 <!-- Live Preview Space -->
-                <div class="w-44 h-44 flex items-center justify-center relative bg-white/40 border border-dashed border-slate-200 rounded-3xl shadow-inner">
+                <div class="w-48 h-48 flex items-center justify-center relative bg-white border border-dashed border-slate-200 rounded-3xl shadow-inner">
                     <!-- Preview Sticker -->
-                    <div id="preview-sticker-container" class="w-32 h-32 relative flex items-center justify-center">
+                    <div id="preview-sticker-container" class="w-36 h-36 relative flex items-center justify-center">
                         <div id="preview-sticker-wrapper"></div>
                     </div>
                 </div>
 
                 <p class="text-xs text-slate-400 mt-6 text-center">
-                    Modifica los parámetros y mira el resultado en tiempo real. Al hacer clic en el botón, el sticker aparecerá listo para usar.
+                    El sistema integra perfectamente la imagen cargada y el texto sobre la superficie curvada de vinilo durante el despegue físico.
                 </p>
             </div>
 
@@ -370,9 +357,9 @@
     <!-- Technical Specs & Physics details -->
     <section id="about" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-100">
         <div class="text-center max-w-2xl mx-auto mb-16">
-            <h2 class="text-3xl font-rounded font-extrabold text-slate-900 mb-4">¿Cómo Funciona la Física del Despegado?</h2>
+            <h2 class="text-3xl font-rounded font-extrabold text-slate-900 mb-4">La Física Detrás de la Adhesión de Vinilo</h2>
             <p class="text-slate-600">
-                Detrás del renderizado interactivo de los stickers hay un sofisticado modelo matemático de deformación de superficies en 2D que imita la flexión tridimensional.
+                La simulación utiliza ecuaciones matemáticas de flexión de polímeros para calcular las zonas de tensión y reflejar la luz ambiental sobre el revés plateado del sticker.
             </p>
         </div>
 
@@ -380,7 +367,7 @@
 
             <!-- Card 1 -->
             <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm">
-                <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center font-bold text-pink-600 mb-6 text-xl">
+                <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center font-bold text-orange-600 mb-6 text-xl">
                     📐
                 </div>
                 <h4 class="font-rounded font-bold text-lg text-slate-900 mb-2">Mediatriz de Flexión</h4>
@@ -391,7 +378,7 @@
 
             <!-- Card 2 -->
             <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm">
-                <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center font-bold text-indigo-600 mb-6 text-xl">
+                <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center font-bold text-pink-600 mb-6 text-xl">
                     🔄
                 </div>
                 <h4 class="font-rounded font-bold text-lg text-slate-900 mb-2">Reflexión Matricial</h4>
@@ -402,12 +389,12 @@
 
             <!-- Card 3 -->
             <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm">
-                <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center font-bold text-teal-600 mb-6 text-xl">
+                <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center font-bold text-purple-600 mb-6 text-xl">
                     🔆
                 </div>
-                <h4 class="font-rounded font-bold text-lg text-slate-900 mb-2">Gradientes Cilíndricos</h4>
+                <h4 class="font-rounded font-bold text-lg text-slate-900 mb-2">Grosor de Sombra</h4>
                 <p class="text-slate-500 text-sm leading-relaxed">
-                    Para lograr el brillo 3D del vinilo rígido, calculamos un gradiente lineal dinámico perpendicular a la línea de doblado que crea sombras de oclusión y un haz de luz reflejado.
+                    Una sombra de oclusión suave bajo el pliegue aumenta de tamaño de manera logarítmica según la tensión de despegado para dar sensación real de volumen.
                 </p>
             </div>
 
@@ -418,17 +405,17 @@
     <footer class="border-t border-slate-100 bg-white/40 py-12 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-full bg-pink-200 border-2 border-white shadow-sm flex items-center justify-center font-bold text-pink-600 text-sm">
-                    ✨
+                <div class="w-8 h-8 rounded-full bg-orange-200 border-2 border-white shadow-sm flex items-center justify-center font-bold text-orange-600 text-sm">
+                    🏷️
                 </div>
-                <span class="font-rounded font-bold text-lg text-slate-800">PastelStickers</span>
+                <span class="font-rounded font-bold text-lg text-slate-800">StickersPro</span>
             </div>
-            <p class="text-xs text-slate-400">
-                © 2026 PastelStickers. Diseñado con ❤️ para la interactividad de alta fidelidad.
+            <p class="text-xs text-slate-400 font-medium">
+                © 2026 StickersPro. Diseñado para ofrecer la máxima interactividad de marca comercial.
             </p>
             <div class="flex space-x-6 text-sm text-slate-500 font-semibold">
-                <a href="#" class="hover:text-pink-500 transition-colors">Terminos</a>
-                <a href="#" class="hover:text-pink-500 transition-colors">Privacidad</a>
+                <a href="#" class="hover:text-pink-500 transition-colors font-medium">Términos</a>
+                <a href="#" class="hover:text-pink-500 transition-colors font-medium">Privacidad</a>
             </div>
         </div>
     </footer>
