@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valve and Manifold — The Restoration Atelier</title>
+    <title>Vanguard Performance Workshop — Elite Automotive Diagnostics and Repair</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Playfair Display for editorial headers, Plus Jakarta Sans for body -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts: Playfair Display for headers, Plus Jakarta Sans for body -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind Configuration for Custom Palette -->
     <script>
         tailwind.config = {
             theme: {
@@ -21,501 +18,423 @@
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
                     colors: {
-                        atelier: {
-                            coal: '#0D0E10',       /* Ultra deep charcoal */
-                            rust: '#C86A3C',       /* Warm industrial copper */
-                            ochre: '#D4A373',      /* Raw golden ochre */
-                            clay: '#1C1E22',       /* Mid-tone slate clay */
-                            bone: '#F9F8F6',       /* Warm luxurious off-white */
-                            dust: '#A6A29A'        /* Muted concrete gray */
+                        garage: {
+                            coal: '#0b0c0d',     /* Absolute dark backing */
+                            carbon: '#121315',   /* Primary element background */
+                            metal: '#1e2124',    /* Borders and secondary components */
+                            dust: '#8e939a',     /* Muted grey text */
+                            steel: '#cbd3dc',    /* Light grey/white contrast */
+                            bone: '#f5f7fa',     /* Clean cream/white for high readability */
+                            safety: '#f97316',   /* High-performance safety orange accent */
                         }
+                    },
+                    spacing: {
+                        'quarter': 'twenty-five-percent',
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Editorial text sizing and custom styling */
-        .text-huge {
-            font-size: clamp(3rem, 8vw, 8.5rem);
-            line-height: 0.95;
+        /* Custom typography styling to elevate human hand-authored aesthetic */
+        .font-editorial {
+            font-family: 'Playfair Display', serif;
         }
-        /* Custom scrollbar to keep layout premium */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0D0E10;
+            background: #0b0c0d;
         }
         ::-webkit-scrollbar-thumb {
-            background: #C86A3C;
-            border-radius: 3px;
+            background: #1e2124;
+            border-radius: 4px;
         }
-        /* Subtle transition utility */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f97316;
+        }
+        /* Hide default focus ring but keep accessible */
+        *:focus-visible {
+            outline: 2px solid #f97316;
+            outline-offset: 2px;
+        }
+        /* Smooth transitions */
         .smooth-hover {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
 </head>
-<body class="bg-atelier-coal text-atelier-bone font-sans overflow-x-hidden selection:bg-atelier-rust selection:text-atelier-bone">
+<body class="bg-garage-coal text-garage-bone font-sans overflow-x-hidden selection:bg-garage-safety selection:text-garage-coal">
 
-    <!-- Canvas for Floating Ambient Workshop Dust Particles -->
-    <canvas id="ambientDustCanvas" class="fixed inset-0 pointer-events-none z-10 opacity-40"></canvas>
+    <!-- CANVAS BACKGROUND PARTICLE SYSTEM (Workshop Sparks and Glowing Embers) -->
+    <canvas id="workshopSparks" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
 
     <!-- FULLSCREEN SLIDING MENU OVERLAY -->
-    <div id="navigationOverlay" class="fixed inset-0 bg-atelier-coal z-50 transform translate-y-full transition-transform duration-700 ease-in-out flex flex-col justify-between p-8 md:p-24 border-t-4 border-atelier-rust">
+    <div id="navigationOverlay" class="fixed inset-0 bg-garage-coal z-50 transform translate-y-full transition-transform duration-700 ease-in-out flex flex-col justify-between p-8 md:p-24 border-t-4 border-garage-safety">
         <div class="flex justify-between items-center">
-            <span class="font-editorial italic text-2xl text-atelier-rust">Valve and Manifold</span>
-            <button onclick="toggleOverlayMenu()" class="text-xs uppercase tracking-widest text-atelier-dust hover:text-atelier-bone border-b border-atelier-dust pb-1 smooth-hover">
-                Close Atelier Portal
+            <span class="font-editorial italic text-2xl text-garage-safety">Vanguard Performance</span>
+            <button onclick="toggleOverlayMenu()" class="text-xs uppercase tracking-widest text-garage-dust hover:text-garage-bone border-b border-garage-dust pb-1 smooth-hover">
+                Close Garage Portal
             </button>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 my-auto">
-            <div class="space-y-6">
-                <p class="text-xs uppercase tracking-widest text-atelier-rust">Atelier Directory</p>
-                <nav class="flex flex-col space-y-4">
-                    <a href="#philosophy" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:italic hover:text-atelier-ochre smooth-hover">Workshop Philosophy</a>
-                    <a href="#workbench" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:italic hover:text-atelier-ochre smooth-hover">Tuning Dashboard</a>
-                    <a href="#journal" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:italic hover:text-atelier-ochre smooth-hover">Visual Journal</a>
-                    <a href="#phases" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:italic hover:text-atelier-ochre smooth-hover">Restoration Phases</a>
-                    <a href="#contact" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:italic hover:text-atelier-ochre smooth-hover">Get In Touch</a>
-                </nav>
-            </div>
-            <div class="flex flex-col justify-end space-y-6 border-l border-atelier-clay pl-8">
-                <p class="text-xs uppercase tracking-widest text-atelier-rust">Mechanical Manifesto</p>
-                <p class="text-sm text-atelier-dust font-light leading-relaxed max-w-sm">
-                    Operating without templates, compromises, or computer assistance. We restore machines back to their raw, tactile glory through precision calibration, absolute metal blueprinting, and human intuition.
-                </p>
-                <p class="text-xs text-atelier-dust">
-                    Located in the Historic Industrial Docklands.
-                </p>
-            </div>
-        </div>
-        <div class="text-xs text-atelier-dust flex justify-between">
-            <span>Valve and Manifold Mechanical Laboratories</span>
-            <span>All Manual Craftsmanship</span>
+
+        <nav class="flex flex-col space-y-6 my-auto">
+            <a href="#about" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">About Our Garage</a>
+            <a href="#services" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">Mechanical Repair Specialties</a>
+            <a href="#diagnostics" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">Symptom Calibration Simulator</a>
+            <a href="#inspections" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">Inspection Sequence</a>
+            <a href="#inquiry" onclick="toggleOverlayMenu()" class="font-editorial text-4xl md:text-6xl hover:text-garage-safety transition-colors duration-300">Schedule Service</a>
+        </nav>
+
+        <div class="border-t border-garage-metal pt-8 flex flex-col md:flex-row justify-between text-xs text-garage-dust">
+            <span>Detroit Metropolitan Workshop</span>
+            <span>Uncompromising Mechanical Standards</span>
         </div>
     </div>
 
     <!-- MAIN HEADER & NAVIGATION -->
-    <header class="relative z-40 border-b border-atelier-clay py-6 px-6 md:px-16 flex justify-between items-center bg-transparent">
+    <header class="relative z-40 border-b border-garage-metal py-6 px-6 md:px-16 flex justify-between items-center bg-transparent">
         <div class="flex flex-col">
-            <span class="font-editorial text-xl tracking-wide text-atelier-bone font-bold">VALVE and MANIFOLD</span>
-            <span class="text-[9px] uppercase tracking-[0.3em] text-atelier-rust">Restoration Atelier</span>
+            <span class="font-editorial text-xl tracking-wide text-garage-bone font-bold">VANGUARD PERFORMANCE</span>
+            <span class="text-[9px] uppercase tracking-[0.3em] text-garage-safety">Elite Automotive Repair and Tuning</span>
         </div>
 
-        <div class="hidden md:flex space-x-12 text-xs uppercase tracking-widest text-atelier-dust">
-            <a href="#philosophy" class="hover:text-atelier-bone smooth-hover">Philosophy</a>
-            <a href="#workbench" class="hover:text-atelier-bone smooth-hover">Workbench</a>
-            <a href="#journal" class="hover:text-atelier-bone smooth-hover">Visual Journal</a>
-            <a href="#phases" class="hover:text-atelier-bone smooth-hover">Phases</a>
-        </div>
-
-        <div>
-            <button onclick="toggleOverlayMenu()" class="text-xs uppercase tracking-widest text-atelier-rust hover:text-atelier-ochre border-b border-atelier-rust pb-1 smooth-hover">
+        <div class="flex items-center space-x-8">
+            <a href="#diagnostics" class="hidden md:inline-block text-xs uppercase tracking-widest text-garage-dust hover:text-garage-bone smooth-hover">
+                Diagnostic Console
+            </a>
+            <button onclick="toggleOverlayMenu()" class="text-xs uppercase tracking-widest text-garage-bone border-b border-garage-safety pb-1 hover:text-garage-safety smooth-hover">
                 Explore Portal
             </button>
         </div>
     </header>
 
-    <!-- INTRODUCING THE HERO: EDITORIAL LUXURY INSPIRED BY MECHANICS -->
-    <section class="relative min-h-screen flex flex-col justify-between pt-16 pb-24 px-6 md:px-16 bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(13,14,16,0.85), rgba(13,14,16,0.95)), url('https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=2000&q=80');">
+    <!-- HERO SECTION (Authentic Car Workshop Atmosphere) -->
+    <section class="relative min-h-screen flex flex-col justify-between pt-16 pb-24 px-6 md:px-16 bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(11,12,13,0.85), rgba(11,12,13,0.95)), url('https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=2000&q=80');">
 
-        <!-- Decorative subtle grid border -->
-        <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-atelier-clay to-transparent"></div>
-
-        <div class="max-w-7xl mx-auto w-full flex flex-col justify-center my-auto space-y-12">
-            <!-- Left tag -->
-            <div class="flex items-center space-x-4">
-                <span class="w-8 h-[2px] bg-atelier-rust"></span>
-                <span class="text-xs uppercase tracking-[0.4em] text-atelier-rust font-semibold">Master Class Automotive Revival</span>
-            </div>
-
-            <!-- Massive Editorial Title -->
-            <h1 class="font-editorial text-huge text-atelier-bone tracking-tighter">
-                Crafting <span class="text-atelier-rust italic font-normal">Pure</span> <br>
-                Mechanical <br>
-                Longevity
+        <div class="max-w-4xl mx-auto my-auto relative z-10 text-center space-y-8">
+            <span class="text-xs uppercase tracking-[0.4em] text-garage-safety font-bold block">Master Class Automotive Diagnostics and Repair</span>
+            <h1 class="font-editorial text-5xl md:text-7xl lg:text-8xl text-garage-bone leading-tight">
+                Restoring <span class="italic font-light">Mechanical Absolute</span> Integrity
             </h1>
-
-            <!-- Grid Layout describing the premium nature -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-atelier-clay">
-                <div>
-                    <h3 class="font-editorial text-xl italic text-atelier-ochre mb-2">The Legacy of Metal</h3>
-                    <p class="text-sm text-atelier-dust leading-relaxed font-light">
-                        Classic combustion setups represent an artistic blueprint. We do not simply fix problems; we rebuild engine blocks to tolerate extreme tolerances, emphasizing manual lathe work and direct mechanical feedback.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="font-editorial text-xl italic text-atelier-ochre mb-2">Absolute Analog Mastery</h3>
-                    <p class="text-sm text-atelier-dust leading-relaxed font-light">
-                        Bypassing digital diagnostics, our technicians listen directly to the combustion chamber. Using hand-made stethoscopes and manual vacuum diagnostics, we achieve sync curves that are unmatched in durability.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="font-editorial text-xl italic text-atelier-ochre mb-2">Asymmetrical Tolerance</h3>
-                    <p class="text-sm text-atelier-dust leading-relaxed font-light">
-                        Every component passing through our facility is cataloged with custom engineering blueprints, completely hand-drawn, detailing micro-tolerances of metal wear, dynamic flow dynamics, and historical compression profiles.
-                    </p>
-                </div>
+            <p class="text-base md:text-lg text-garage-dust max-w-2xl mx-auto font-light leading-relaxed">
+                We diagnose, repair, and tune high-end European, performance, and classic cars. No guess-work, no shortcuts. Just master technicians utilizing precise mechanical calibrations and premium component overhauls.
+            </p>
+            <div class="pt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#diagnostics" class="w-full sm:w-auto px-8 py-4 bg-garage-safety hover:bg-opacity-90 text-garage-coal font-semibold text-xs uppercase tracking-widest rounded-sm text-center smooth-hover">
+                    Interactive Diagnostics Console
+                </a>
+                <a href="#inquiry" class="w-full sm:w-auto px-8 py-4 border border-garage-metal hover:border-garage-safety text-garage-bone hover:text-garage-safety font-semibold text-xs uppercase tracking-widest rounded-sm text-center smooth-hover">
+                    Request Automotive Intake
+                </a>
             </div>
         </div>
 
-        <!-- Prompt to scroll, stylized with text -->
-        <div class="max-w-7xl mx-auto w-full flex justify-between items-center text-xs tracking-widest text-atelier-dust pt-12">
+        <!-- Scroll indicator -->
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center text-xs tracking-widest text-garage-dust pt-12 relative z-10">
             <span>Scroll to Enter the Workshop</span>
-            <span class="animate-bounce font-sans text-xs tracking-widest uppercase text-atelier-rust">Scroll to Explore</span>
+            <span class="animate-bounce font-sans text-xs tracking-widest uppercase text-garage-safety">Scroll to Explore</span>
         </div>
     </section>
 
-    <!-- SECTION: THE MANIFESTO (HUMAN TOUCH EDITORIAL SPLIT) -->
-    <section id="philosophy" class="py-32 px-6 md:px-16 bg-atelier-bone text-atelier-coal relative overflow-hidden">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <!-- SECTION 1: THE WORKSHOP PHILOSOPHY -->
+    <section id="about" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-b border-garage-metal">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
 
-            <div class="space-y-8">
-                <p class="text-xs uppercase tracking-[0.3em] text-atelier-rust font-bold">Our Philosophy</p>
-                <h2 class="font-editorial text-4xl md:text-6xl text-atelier-coal leading-none tracking-tight">
-                    Dedicated to the meticulous tactile feedback of vintage metalwork.
+            <div class="lg:col-span-5 space-y-8">
+                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Automotive Excellence Studio</span>
+                <h2 class="font-editorial text-4xl md:text-5xl text-garage-bone leading-tight">
+                    Dedicated to the meticulous tactile feedback of real horsepower.
                 </h2>
-                <p class="text-base text-atelier-clay leading-relaxed font-light">
-                    Modern plastic components are meant to be thrown away. Metal parts, forged through labor and flame, are designed to outlive generations. At Valve and Manifold, we specialize in breathing new life into blocks that have rested in rust for decades.
+                <p class="text-base text-garage-dust leading-relaxed font-light">
+                    Modern plastic components are meant to be thrown away. Forged steel, performance cylinder sleeves, and mechanical linkages, built through precise engineering, are designed to outlive generations. At Vanguard Performance, we specialize in breathing new life into blocks that have suffered thermal wear, timing failures, or suspension fatigue.
                 </p>
 
-                <!-- Detailed blockquote -->
-                <blockquote class="border-l-4 border-atelier-rust pl-6 py-2 my-6">
-                    <p class="font-editorial text-lg italic text-atelier-clay">
-                        "The exact click of a lifter matching a camshaft lobe is not a calculation; it is a musical symphony that only a human ear, honed over decades of mechanical dedication, can master."
-                    </p>
-                    <cite class="block mt-2 text-xs uppercase tracking-wider text-atelier-rust font-semibold">— Master Carver of Cylinders</cite>
-                </blockquote>
-
-                <p class="text-sm text-atelier-clay font-light leading-relaxed">
-                    By limiting our restoration projects to just a handful of masterpieces annually, we secure enough focus to blueprint every minute mechanical connection. We inspect valves using blue-dying paste, custom hand-lap seats, and align combustion chambers with micrometer-level tactile feedback.
-                </p>
-            </div>
-
-            <!-- Overlapping Editorial Image Grid -->
-            <div class="relative">
-                <!-- Main Image: Human worker holding tools with real grease -->
-                <div class="relative z-20 overflow-hidden shadow-2xl rounded-sm group">
-                    <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1200&q=80"
-                         alt="Manual greasy work on classic block"
-                         class="w-full h-[500px] object-cover filter grayscale hover:grayscale-0 transition-all duration-700 ease-in-out">
-                    <div class="absolute inset-0 bg-atelier-rust/10 mix-blend-multiply opacity-100 group-hover:opacity-0 transition-opacity duration-500"></div>
-                </div>
-
-                <!-- Overlapping floating image: Close-up of machined engine parts -->
-                <div class="absolute -bottom-12 -left-12 w-64 h-64 z-30 hidden md:block overflow-hidden shadow-xl border-4 border-atelier-bone rounded-sm group">
-                    <img src="https://images.unsplash.com/photo-1530047139182-5485141a7265?auto=format&fit=crop&w=1200&q=80"
-                         alt="Machined steel components"
-                         class="w-full h-full object-cover filter sepia hover:sepia-0 transition-all duration-500">
-                </div>
-
-                <!-- Minimalist caption -->
-                <div class="absolute -right-4 -top-8 bg-atelier-rust text-atelier-bone px-4 py-3 text-xs uppercase tracking-widest font-bold z-30 shadow-md">
-                    Genuine Mechanical Labor
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION: THE WORKBENCH INTERACTIVE DASHBOARD (PRO CUSTOM CONTROLS) -->
-    <section id="workbench" class="py-32 px-6 md:px-16 bg-atelier-clay text-atelier-bone relative">
-        <div class="max-w-7xl mx-auto">
-
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-atelier-coal pb-8">
-                <div class="max-w-xl">
-                    <p class="text-xs uppercase tracking-[0.3em] text-atelier-rust font-semibold mb-2">Tuning Simulator</p>
-                    <h2 class="font-editorial text-4xl md:text-5xl leading-tight">
-                        Analog Calibration <span class="italic text-atelier-ochre">Workbench</span>
-                    </h2>
-                </div>
-                <div class="mt-4 md:mt-0 max-w-sm">
-                    <p class="text-xs text-atelier-dust font-light leading-relaxed">
-                        Experiment with our physical calibration variables. Click the console knobs to toggle timing settings, spark gaps, and manifold routing to observe engine resonance updates in real time.
+                <div class="border-l-2 border-garage-safety pl-6 py-2">
+                    <p class="font-editorial italic text-lg text-garage-steel">
+                        "True mechanics listen with stethoscopes, measure with physical dial indicators, and confirm tolerances to the microscopic scale."
                     </p>
                 </div>
             </div>
 
-            <!-- Dashboard Console Container -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-
-                <!-- Left Console Controls: Interactive Knobs -->
-                <div class="lg:col-span-4 bg-atelier-coal p-8 rounded-sm border border-atelier-rust/20 flex flex-col justify-between space-y-8">
-                    <div>
-                        <span class="text-[10px] uppercase tracking-widest text-atelier-dust block mb-4">Control Inputs</span>
-                        <h4 class="font-editorial text-xl italic text-atelier-bone mb-6">Select Mechanical Variable</h4>
+            <div class="lg:col-span-7 grid grid-cols-2 gap-4 relative">
+                <div class="space-y-4">
+                    <div class="overflow-hidden rounded-sm aspect-[4/5] bg-garage-carbon border border-garage-metal">
+                        <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1200&q=80"
+                             alt="Mechanic examining an engine core under garage illumination"
+                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-750 ease-out transform hover:scale-105">
                     </div>
-
-                    <!-- Knobs Grid -->
-                    <div class="space-y-6">
-                        <!-- Knob A -->
-                        <div onclick="selectKnob('timing')" class="cursor-pointer group p-4 border border-atelier-clay hover:border-atelier-rust/50 rounded-sm bg-atelier-clay/50 smooth-hover" id="control-timing">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-xs uppercase tracking-widest text-atelier-dust group-hover:text-atelier-bone smooth-hover">Valve Timing Offset</span>
-                                <span class="text-[10px] uppercase text-atelier-rust font-bold" id="status-timing">Symmetrical</span>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <!-- Dial Visualizer (Pure CSS rotation animation) -->
-                                <div class="w-10 h-10 rounded-full border-2 border-atelier-dust flex items-center justify-center relative transition-transform duration-500 ease-in-out" id="dial-timing">
-                                    <div class="w-1 h-3 bg-atelier-rust absolute top-0 left-1/2 -translate-x-1/2 rounded-full"></div>
-                                </div>
-                                <p class="text-xs text-atelier-dust font-light">Toggles between Standard, Aggressive, and Endurance timing calibrations.</p>
-                            </div>
-                        </div>
-
-                        <!-- Knob B -->
-                        <div onclick="selectKnob('manifold')" class="cursor-pointer group p-4 border border-atelier-clay hover:border-atelier-rust/50 rounded-sm bg-atelier-clay/50 smooth-hover" id="control-manifold">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-xs uppercase tracking-widest text-atelier-dust group-hover:text-atelier-bone smooth-hover">Manifold Aspiration</span>
-                                <span class="text-[10px] uppercase text-atelier-rust font-bold" id="status-manifold">Naturally Aspirated</span>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <!-- Dial Visualizer -->
-                                <div class="w-10 h-10 rounded-full border-2 border-atelier-dust flex items-center justify-center relative transition-transform duration-500 ease-in-out" id="dial-manifold">
-                                    <div class="w-1 h-3 bg-atelier-rust absolute top-0 left-1/2 -translate-x-1/2 rounded-full"></div>
-                                </div>
-                                <p class="text-xs text-atelier-dust font-light">Controls bypass routing within the intake plenum chamber.</p>
-                            </div>
-                        </div>
-
-                        <!-- Knob C -->
-                        <div onclick="selectKnob('carburetion')" class="cursor-pointer group p-4 border border-atelier-clay hover:border-atelier-rust/50 rounded-sm bg-atelier-clay/50 smooth-hover" id="control-carburetion">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-xs uppercase tracking-widest text-atelier-dust group-hover:text-atelier-bone smooth-hover">Fuel Mixture Density</span>
-                                <span class="text-[10px] uppercase text-atelier-rust font-bold" id="status-carburetion">Stoichiometric</span>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <!-- Dial Visualizer -->
-                                <div class="w-10 h-10 rounded-full border-2 border-atelier-dust flex items-center justify-center relative transition-transform duration-500 ease-in-out" id="dial-carburetion">
-                                    <div class="w-1 h-3 bg-atelier-rust absolute top-0 left-1/2 -translate-x-1/2 rounded-full"></div>
-                                </div>
-                                <p class="text-xs text-atelier-dust font-light">Fine-tunes the atomization balance inside the brass venturi jet.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center pt-4">
-                        <span class="text-[9px] uppercase tracking-widest text-atelier-dust">Click any dial panel to toggle the mechanics</span>
-                    </div>
-                </div>
-
-                <!-- Right Screen: Dynamic Simulation & Feedbacks -->
-                <div class="lg:col-span-8 bg-atelier-coal/90 p-8 rounded-sm border border-atelier-clay flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-center border-b border-atelier-clay pb-4 mb-6">
-                            <span class="text-[10px] uppercase tracking-widest text-atelier-rust font-bold">Oscilloscope Diagnostics Display</span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-atelier-rust animate-ping" id="simulation-light"></span>
-                        </div>
-
-                        <p class="font-editorial text-2xl italic text-atelier-ochre mb-6" id="workbench-feedback-title">Standard Engine Resonance Baseline</p>
-                        <p class="text-sm text-atelier-dust leading-relaxed font-light mb-8" id="workbench-feedback-text">
-                            The valve sequence is completely synchronous with the piston stroke. Fluid dynamic simulations predict high-end thermal endurance and maximum exhaust scavenger velocity at normal operating loads. Perfect baseline setup.
-                        </p>
-                    </div>
-
-                    <!-- Oscilloscope Canvas Animation representing waves -->
-                    <div class="bg-atelier-coal border border-atelier-clay h-44 rounded-sm relative overflow-hidden flex items-center justify-center">
-                        <canvas id="oscilloscopeCanvas" class="absolute inset-0 w-full h-full"></canvas>
-                        <!-- Retro CRT scanline effect -->
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40 pointer-events-none"></div>
-                        <div class="absolute top-4 left-4 bg-atelier-coal/80 border border-atelier-clay px-3 py-1 text-[9px] uppercase text-atelier-dust tracking-wider rounded-sm">
-                            Friction Coeff Signal Output
-                        </div>
-                    </div>
-
-                    <!-- Bottom diagnostic labels (Pure text, NO numbers) -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-atelier-clay text-center">
-                        <div class="p-2 border border-atelier-clay rounded-sm">
-                            <span class="text-[9px] uppercase text-atelier-dust block">Manifold Vacuum</span>
-                            <span class="text-xs font-semibold text-atelier-bone" id="stat-vacuum">High Efficiency</span>
-                        </div>
-                        <div class="p-2 border border-atelier-clay rounded-sm">
-                            <span class="text-[9px] uppercase text-atelier-dust block">Combustion Heat</span>
-                            <span class="text-xs font-semibold text-atelier-bone" id="stat-heat">Optimal Operating</span>
-                        </div>
-                        <div class="p-2 border border-atelier-clay rounded-sm">
-                            <span class="text-[9px] uppercase text-atelier-dust block">Oil Film Tension</span>
-                            <span class="text-xs font-semibold text-atelier-bone" id="stat-tension">Unbreakable</span>
-                        </div>
-                        <div class="p-2 border border-atelier-clay rounded-sm">
-                            <span class="text-[9px] uppercase text-atelier-dust block">Vibration Pattern</span>
-                            <span class="text-xs font-semibold text-atelier-bone" id="stat-vibration">Perfect Harmonic</span>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION: THE VISUAL JOURNAL (ASYMMETRICAL IMAGE COLLAGE) -->
-    <section id="journal" class="py-32 px-6 md:px-16 bg-atelier-bone text-atelier-coal">
-        <div class="max-w-7xl mx-auto">
-
-            <div class="max-w-2xl mb-24 space-y-4">
-                <p class="text-xs uppercase tracking-[0.3em] text-atelier-rust font-bold">Visual Journal</p>
-                <h2 class="font-editorial text-4xl md:text-6xl text-atelier-coal leading-none">
-                    Capturing raw physical textures from our restoration bench.
-                </h2>
-                <p class="text-sm text-atelier-clay font-light leading-relaxed">
-                    Hover over or click any photograph below to access engineering logs, highlighting details from classic carburetion manifolds to complete valvetrain geometry rebuilds. Real work, captured with human presence.
-                </p>
-            </div>
-
-            <!-- Asymmetrical Grid layout of genuine workshop imagery -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-
-                <!-- Left heavy block -->
-                <div class="md:col-span-7 space-y-8">
-                    <!-- Image Card A -->
-                    <div class="relative group overflow-hidden bg-atelier-coal rounded-sm shadow-lg border-2 border-atelier-coal/10" onclick="showJournalLog('lubrication')">
-                        <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=1200&q=80"
-                             alt="Handcraft mechanics validation"
-                             class="w-full h-[450px] object-cover group-hover:scale-105 smooth-hover filter grayscale hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-atelier-coal/80 via-transparent to-transparent opacity-90 group-hover:opacity-40 transition-opacity duration-500"></div>
-                        <div class="absolute bottom-8 left-8 right-8 text-atelier-bone">
-                            <span class="text-[10px] uppercase tracking-widest text-atelier-rust font-bold">Log Record — Lubrication Channels</span>
-                            <h3 class="font-editorial text-2xl italic mt-1">Manual Port Oil Flow Clearance</h3>
-                            <p class="text-xs text-atelier-dust mt-2 opacity-0 group-hover:opacity-100 max-w-md transition-opacity duration-500 font-light leading-relaxed">
-                                Hand-polishing oil galleys prevents starvation under maximum rev sweeps. Click to expand technical blueprint logs.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Image Card B -->
-                    <div class="relative group overflow-hidden bg-atelier-coal rounded-sm shadow-lg border-2 border-atelier-coal/10" onclick="showJournalLog('induction')">
-                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80"
-                             alt="Machining high performance manifold parts"
-                             class="w-full h-[320px] object-cover group-hover:scale-105 smooth-hover filter grayscale hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-atelier-coal/80 via-transparent to-transparent opacity-90 group-hover:opacity-40 transition-opacity duration-500"></div>
-                        <div class="absolute bottom-8 left-8 right-8 text-atelier-bone">
-                            <span class="text-[10px] uppercase tracking-widest text-atelier-rust font-bold">Log Record — Induction Plenum</span>
-                            <h3 class="font-editorial text-2xl italic mt-1">Symmetrical Manifold Balancing</h3>
-                            <p class="text-xs text-atelier-dust mt-2 opacity-0 group-hover:opacity-100 max-w-md transition-opacity duration-500 font-light leading-relaxed">
-                                Aligning intake velocities prevents lean mixtures from stressing individual combustion cylinders. Click to expand technical blueprint logs.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right light block (Staggered layout) -->
-                <div class="md:col-span-5 space-y-8 md:mt-16">
-                    <!-- Image Card C -->
-                    <div class="relative group overflow-hidden bg-atelier-coal rounded-sm shadow-lg border-2 border-atelier-coal/10" onclick="showJournalLog('valve')">
-                        <img src="https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80"
-                             alt="Cylinder head close up detail work"
-                             class="w-full h-[550px] object-cover group-hover:scale-105 smooth-hover filter grayscale hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-atelier-coal/80 via-transparent to-transparent opacity-90 group-hover:opacity-40 transition-opacity duration-500"></div>
-                        <div class="absolute bottom-8 left-8 right-8 text-atelier-bone">
-                            <span class="text-[10px] uppercase tracking-widest text-atelier-rust font-bold">Log Record — Valve Seating</span>
-                            <h3 class="font-editorial text-2xl italic mt-1">Lapping Valves by Human Feel</h3>
-                            <p class="text-xs text-atelier-dust mt-2 opacity-0 group-hover:opacity-100 max-w-md transition-opacity duration-500 font-light leading-relaxed">
-                                Lapping paste and specialized wooden hand-rods establish perfect heat transfer thresholds. Click to expand technical blueprint logs.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Simple Technical Info block instead of picture -->
-                    <div class="bg-atelier-coal p-8 rounded-sm border border-atelier-rust/20 text-atelier-bone space-y-4">
-                        <span class="text-[10px] uppercase tracking-widest text-atelier-rust font-bold">Daily Engineering Observation</span>
-                        <p class="font-editorial text-xl italic text-atelier-ochre">The Beauty of Heat Cycles</p>
-                        <p class="text-xs text-atelier-dust font-light leading-relaxed">
-                            Every mechanical metal block possesses its own physical personality. When heated to maximum load, blocks warp asymmetrical distances. Experienced technicians anticipate these exact thermal displacements during machining phases.
+                    <div class="p-6 bg-garage-carbon rounded-sm border border-garage-metal">
+                        <h4 class="font-editorial text-xl text-garage-bone mb-2">Internal Diagnostics</h4>
+                        <p class="text-xs text-garage-dust leading-relaxed">
+                            Borescope wall imaging and compression profiling reveal hidden wear before engine disassemblies begin.
                         </p>
                     </div>
                 </div>
 
+                <div class="space-y-4 pt-12">
+                    <div class="p-6 bg-garage-carbon rounded-sm border border-garage-metal">
+                        <h4 class="font-editorial text-xl text-garage-bone mb-2">Performance Calibration</h4>
+                        <p class="text-xs text-garage-dust leading-relaxed">
+                            We balance valve clearances, calibrate timing belts, and set fuel mixtures for high-performance and classic setups.
+                        </p>
+                    </div>
+                    <div class="overflow-hidden rounded-sm aspect-[4/5] bg-garage-carbon border border-garage-metal">
+                        <img src="https://images.unsplash.com/photo-1530047139182-5485141a7265?auto=format&fit=crop&w=1200&q=80"
+                             alt="Master auto repair tools placed inside a neat mechanic tray"
+                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-750 ease-out transform hover:scale-105">
+                    </div>
+                </div>
             </div>
 
         </div>
     </section>
 
-    <!-- FLOATING POPUP BOX FOR TECHNICAL JOURNAL LOGS (DYNAMIC CLICKS) -->
-    <div id="journalPopup" class="fixed inset-0 bg-atelier-coal/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
-        <div class="bg-atelier-clay border-2 border-atelier-rust max-w-2xl w-full p-8 rounded-sm text-atelier-bone space-y-6 relative">
-            <button onclick="closeJournalLog()" class="absolute top-6 right-6 text-xs uppercase tracking-widest text-atelier-dust hover:text-atelier-rust border-b border-atelier-rust pb-0.5 smooth-hover">
-                Close Log
-            </button>
-            <span class="text-[10px] uppercase tracking-widest text-atelier-rust font-bold" id="popup-category">Atelier Lab Record</span>
-            <h3 class="font-editorial text-3xl italic text-atelier-ochre" id="popup-title">Manual Polish Log</h3>
-
-            <div class="space-y-4 font-light text-sm text-atelier-dust leading-relaxed">
-                <p id="popup-body-main">
-                    This represents our detailed workshop mechanical blueprint records, showing human tactile handwork observations.
-                </p>
-                <div class="border-t border-atelier-coal pt-4">
-                    <span class="text-[9px] uppercase tracking-widest text-atelier-rust block mb-2">Technician Recommendation Note</span>
-                    <p class="text-xs italic text-atelier-bone" id="popup-recommendation">
-                        Always verify visual lubrication pathways under extreme manifold pressure parameters.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SECTION: THE RESTORATION TIMELINE / PHASE SELECTOR (INTERACTIVE SLIDERS) -->
-    <section id="phases" class="py-32 px-6 md:px-16 bg-atelier-coal text-atelier-bone relative overflow-hidden">
-        <div class="max-w-7xl mx-auto">
+    <!-- SECTION 2: CORE AUTOMOTIVE SERVICES GRID -->
+    <section id="services" class="relative z-10 py-24 md:py-32 bg-garage-carbon border-b border-garage-metal">
+        <div class="max-w-7xl mx-auto px-6 md:px-16">
 
             <div class="max-w-2xl mb-16 space-y-4">
-                <p class="text-xs uppercase tracking-[0.3em] text-atelier-rust font-semibold">Restoration Evolution</p>
-                <h2 class="font-editorial text-4xl md:text-5xl leading-tight">
-                    Progressing Hand-Crafted <span class="text-atelier-rust italic">Mastery</span>
+                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Professional Disciplines</span>
+                <h2 class="font-editorial text-4xl md:text-5xl text-garage-bone leading-tight">
+                    Elite Repair and Restoration Capabilities
                 </h2>
-                <p class="text-sm text-atelier-dust font-light">
-                    Every project moving through Valve and Manifold is structured through specific sequential disciplines. Select any phase below to visualize the technical approach, image, and mechanical priorities.
+                <p class="text-sm text-garage-dust font-light leading-relaxed">
+                    We approach every automobile from a master diagnostic perspective, treating all assemblies as high-tolerance mechanical units.
                 </p>
             </div>
 
-            <!-- Horizontal Phase Navigation (Pure Text, NO numbers) -->
-            <div class="flex flex-wrap border-b border-atelier-clay mb-12" id="phase-tabs">
-                <button onclick="selectPhase('disassembly')" id="tab-disassembly" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-atelier-rust text-atelier-rust transition-all duration-300">
-                    Disassembly and Micro-Cleanse
+            <!-- Asymmetrical Service Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Service Card 1 -->
+                <div class="bg-garage-coal p-8 rounded-sm border border-garage-metal flex flex-col justify-between space-y-8 hover:border-garage-safety smooth-hover">
+                    <div class="space-y-4">
+                        <span class="text-[10px] uppercase tracking-widest text-garage-safety font-bold">Assembly Alpha</span>
+                        <h3 class="font-editorial text-2xl text-garage-bone">Engine Core Overhaul and Rebuild</h3>
+                        <p class="text-xs text-garage-dust leading-relaxed">
+                            Complete teardown of multi-cylinder performance powerplants. Cylinder block deck resurfacing, cylinder wall honing, piston ring replacement, and valve guide rebuilding.
+                        </p>
+                    </div>
+                    <div class="h-48 overflow-hidden rounded-sm border border-garage-metal">
+                        <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=1200&q=80"
+                             alt="Clean automotive pistons inside a high-end cylinder engine"
+                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-garage-coal p-8 rounded-sm border border-garage-metal flex flex-col justify-between space-y-8 hover:border-garage-safety smooth-hover">
+                    <div class="space-y-4">
+                        <span class="text-[10px] uppercase tracking-widest text-garage-safety font-bold">Assembly Beta</span>
+                        <h3 class="font-editorial text-2xl text-garage-bone">Performance Suspension and Steering</h3>
+                        <p class="text-xs text-garage-dust leading-relaxed">
+                            Double-wishbone setups, damper rebuilding, bushing swaps, and specialized wheel-alignment calibrations to ensure precise track feedback.
+                        </p>
+                    </div>
+                    <div class="h-48 overflow-hidden rounded-sm border border-garage-metal">
+                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80"
+                             alt="Mechanic calibrating rear multi-link automotive shock absorbers"
+                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-garage-coal p-8 rounded-sm border border-garage-metal flex flex-col justify-between space-y-8 hover:border-garage-safety smooth-hover">
+                    <div class="space-y-4">
+                        <span class="text-[10px] uppercase tracking-widest text-garage-safety font-bold">Assembly Gamma</span>
+                        <h3 class="font-editorial text-2xl text-garage-bone">Drivetrain and Manual Transmission</h3>
+                        <p class="text-xs text-garage-dust leading-relaxed">
+                            Synchromesh reconstruction, differential ratio setup, and performance clutch replacements designed to handle extreme engine power.
+                        </p>
+                    </div>
+                    <div class="h-48 overflow-hidden rounded-sm border border-garage-metal">
+                        <img src="https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80"
+                             alt="Gears within a complex manual transmission assembly"
+                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: INTERACTIVE SYMPTOM DIAGNOSTICS PANEL -->
+    <section id="diagnostics" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-b border-garage-metal">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-end">
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Interactive Garage Simulator</span>
+                    <h2 class="font-editorial text-4xl md:text-5xl text-garage-bone leading-tight">
+                        Interactive Symptom Diagnostics Panel
+                    </h2>
+                    <p class="text-sm text-garage-dust font-light leading-relaxed">
+                        Automobiles speak through mechanics and physics. Select a common vehicular symptom below to run virtual diagnostics and view real-time feedback.
+                    </p>
+                </div>
+                <div class="lg:col-span-5 text-left lg:text-right">
+                    <span class="text-xs uppercase tracking-widest text-garage-dust block mb-2">Technical Engine Diagnostics</span>
+                    <span class="font-editorial text-2xl italic text-garage-safety font-semibold">Live Calibration Workbench</span>
+                </div>
+            </div>
+
+            <!-- Double Column Workbench Workspace -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                <!-- Left Screen: Selectable Symptom Cards and Knobs -->
+                <div class="lg:col-span-4 space-y-6">
+                    <span class="text-[10px] uppercase tracking-widest text-garage-dust block font-semibold mb-2">Select Vehicle Symptom</span>
+
+                    <!-- Symptom Option 1 -->
+                    <div onclick="selectSymptom('idle')" id="card-idle" class="p-6 bg-garage-carbon border border-garage-safety rounded-sm cursor-pointer hover:border-garage-safety transition-all duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-widest text-garage-safety font-bold" id="label-idle">Engine Vibration Pattern</span>
+                            <div class="w-2 h-2 rounded-full bg-garage-safety" id="dot-idle"></div>
+                        </div>
+                        <h3 class="font-editorial text-xl text-garage-bone mb-1">Rough Idling and Stumble</h3>
+                        <p class="text-xs text-garage-dust leading-relaxed">
+                            Misfires at absolute dead-center under partial vacuum.
+                        </p>
+                    </div>
+
+                    <!-- Symptom Option 2 -->
+                    <div onclick="selectSymptom('brake')" id="card-brake" class="p-6 bg-garage-carbon border border-garage-metal rounded-sm cursor-pointer hover:border-garage-safety transition-all duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-widest text-garage-dust font-bold" id="label-brake">Hydraulic System Signal</span>
+                            <div class="w-2 h-2 rounded-full bg-transparent" id="dot-brake"></div>
+                        </div>
+                        <h3 class="font-editorial text-xl text-garage-bone mb-1">Spongy Brake Response</h3>
+                        <p class="text-xs text-garage-dust leading-relaxed">
+                            Loss of mechanical resistance inside pedal linkages.
+                        </p>
+                    </div>
+
+                    <!-- Symptom Option 3 -->
+                    <div onclick="selectSymptom('smoke')" id="card-smoke" class="p-6 bg-garage-carbon border border-garage-metal rounded-sm cursor-pointer hover:border-garage-safety transition-all duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-widest text-garage-dust font-bold" id="label-smoke">Exhaust Chemical Exhaust</span>
+                            <div class="w-2 h-2 rounded-full bg-transparent" id="dot-smoke"></div>
+                        </div>
+                        <h3 class="font-editorial text-xl text-garage-bone mb-1">Exhaust Smoke Discoloration</h3>
+                        <p class="text-xs text-garage-dust leading-relaxed">
+                            Blue-grey particulate emission under high RPM load.
+                        </p>
+                    </div>
+
+                    <!-- Physical Dial Feedback (Rotates on user interaction) -->
+                    <div class="p-6 bg-garage-carbon rounded-sm border border-garage-metal flex justify-between items-center">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-garage-dust block mb-1">Damping Calibration Dial</span>
+                            <span class="text-xs text-garage-bone font-medium" id="dial-value">Calibrated Position: Standard</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border-2 border-garage-safety relative transition-transform duration-500 ease-out" id="rotary-dial">
+                            <div class="absolute top-1 left-1/2 -translate-x-1/2 w-1 h-3 bg-garage-safety rounded-sm"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Screen: Dynamic Diagnostic Output and Oscilloscope -->
+                <div class="lg:col-span-8 bg-garage-carbon rounded-sm border border-garage-metal p-8 flex flex-col justify-between space-y-8 relative">
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-garage-metal pb-4">
+                            <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Diagnostics Output</span>
+                            <span class="text-[10px] uppercase tracking-widest text-garage-dust" id="active-symptom-tag">Symptom Target: Engine Vibration</span>
+                        </div>
+
+                        <h3 class="font-editorial text-3xl text-garage-bone" id="symptom-title">Rough Idling and Vacuum Leakage Misfires</h3>
+                        <p class="text-sm text-garage-dust leading-relaxed font-light" id="symptom-desc">
+                            The engine experiences rhythmic structural tremors at idle speed. This indicates a potential vacuum leakage inside the intake manifold plenum or individual injector seal decay, causing lean combustion gradients.
+                        </p>
+                    </div>
+
+                    <!-- Analog Oscilloscope Simulator -->
+                    <div class="relative bg-garage-coal border border-garage-metal rounded-sm p-4 h-64 overflow-hidden flex flex-col justify-between">
+                        <span class="absolute top-4 left-4 text-[9px] uppercase tracking-widest text-garage-dust">Interactive Mechanical Frequency Analyzer</span>
+                        <canvas id="oscilloscopeScreen" class="w-full h-full"></canvas>
+                        <span class="absolute bottom-4 right-4 text-[9px] uppercase tracking-widest text-garage-safety">Real-Time Waveform Calibration</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-garage-metal pt-6">
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-garage-dust block mb-1">Mechanic Remediation Solution</span>
+                            <span class="text-xs text-garage-bone" id="stat-remediation">Manifold Plenum Sealing</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-garage-dust block mb-1">Recommended Operation Scope</span>
+                            <span class="text-xs text-garage-bone" id="stat-scope">Intake Demount and Gasket Overhaul</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-garage-dust block mb-1">Estimated Diagnostic Certainty</span>
+                            <span class="text-xs text-garage-safety" id="stat-certainty">Highly Likely / Confirmed</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: SEQUENTIAL INSPECTION SEQUENCE TABS -->
+    <section id="inspections" class="relative z-10 py-24 md:py-32 bg-garage-carbon border-b border-garage-metal">
+        <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+            <div class="max-w-2xl mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Standard Workshop Procedures</span>
+                <h2 class="font-editorial text-4xl md:text-5xl text-garage-bone leading-tight">
+                    Automotive Inspection Sequence
+                </h2>
+                <p class="text-sm text-garage-dust font-light leading-relaxed">
+                    We maintain absolute consistency during automotive diagnosis. Select any phase below to visualize the technical approach, imagery, and mechanical priorities.
+                </p>
+            </div>
+
+            <!-- Tabs System (Pure Text, NO numbers, NO icons) -->
+            <div class="flex flex-wrap border-b border-garage-metal mb-12" id="phase-tabs">
+                <button onclick="selectPhase('admission')" id="tab-admission" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-garage-safety text-garage-safety transition-all duration-300">
+                    Automotive Intake and Assessment
                 </button>
-                <button onclick="selectPhase('rectification')" id="tab-rectification" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-transparent text-atelier-dust hover:text-atelier-bone transition-all duration-300">
-                    Precision Lathe Rectification
+                <button onclick="selectPhase('teardown')" id="tab-teardown" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-transparent text-garage-dust hover:text-garage-bone transition-all duration-300">
+                    Disassembly and Blueprinting
                 </button>
-                <button onclick="selectPhase('blueprinting')" id="tab-blueprinting" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-transparent text-atelier-dust hover:text-atelier-bone transition-all duration-300">
-                    Dynamic Valvetrain Blueprinting
-                </button>
-                <button onclick="selectPhase('validation')" id="tab-validation" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-transparent text-atelier-dust hover:text-atelier-bone transition-all duration-300">
-                    Combustion Flame Validation
+                <button onclick="selectPhase('calibration')" id="tab-calibration" class="py-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 border-transparent text-garage-dust hover:text-garage-bone transition-all duration-300">
+                    Precision Calibration and Road Test
                 </button>
             </div>
 
-            <!-- Phase Content Container (Animated Slide-Like effect) -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-atelier-clay p-8 md:p-12 border border-atelier-rust/10 rounded-sm">
+            <!-- Tab Content Panel -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
                 <!-- Description Panel -->
                 <div class="lg:col-span-5 space-y-6" id="phase-content-panel">
-                    <span class="text-[10px] uppercase tracking-widest text-atelier-rust font-bold" id="phase-subtitle">Phase Main Objective</span>
-                    <h3 class="font-editorial text-3xl md:text-4xl text-atelier-bone" id="phase-title">Thermal Cleansing and Microscopic Crack Inspections</h3>
-                    <p class="text-sm text-atelier-dust font-light leading-relaxed" id="phase-description">
-                        We completely strip individual blocks back to pure structural steel. Components are hot-tanked and pressure washed before visual dye-penetrant checks expose structural stress anomalies.
+                    <span class="text-[10px] uppercase tracking-widest text-garage-safety font-bold" id="phase-subtitle">Phase Main Objective</span>
+                    <h3 class="font-editorial text-3xl md:text-4xl text-garage-bone" id="phase-title">Intake Fluid Analysis and Diagnostic Scanning</h3>
+                    <p class="text-sm text-garage-dust font-light leading-relaxed" id="phase-description">
+                        We begin with comprehensive chassis inspection. Fluids are extracted for particle analysis, and diagnostic parameters are scanned before structural mechanical tasks begin to protect vintage and classic gears.
                     </p>
-                    <div class="border-t border-atelier-coal pt-6 flex flex-col space-y-2">
-                        <span class="text-[9px] uppercase tracking-widest text-atelier-ochre">Physical Metric Inspected</span>
-                        <span class="text-xs font-semibold text-atelier-bone" id="phase-metric">Structural Metal Porosity Analysis</span>
+
+                    <div class="pt-4 border-t border-garage-metal">
+                        <span class="text-[9px] uppercase tracking-widest text-garage-dust block mb-1">Critical Measurement Scope</span>
+                        <span class="text-xs text-garage-bone italic font-medium" id="phase-metric">Fluid Viscosity and Chemical Impurity Assessment</span>
                     </div>
                 </div>
 
-                <!-- Visual Panel: Interactive transitioning photo -->
+                <!-- Visualization Panel (Unsplash Engine / Lift Imagery) -->
                 <div class="lg:col-span-7">
-                    <div class="relative overflow-hidden rounded-sm h-96 group shadow-2xl border-4 border-atelier-coal">
-                        <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1200&q=80"
-                             alt="Active Phase Visual"
+                    <div class="relative overflow-hidden rounded-sm aspect-[16/10] bg-garage-coal border border-garage-metal">
+                        <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80"
+                             alt="Vehicle raised on a physical hydraulic car lift inside a clean automotive garage"
                              id="phase-image"
-                             class="w-full h-full object-cover transition-all duration-700 ease-in-out filter grayscale hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-atelier-coal/90 via-transparent to-transparent opacity-80"></div>
-                        <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center text-atelier-bone text-xs">
-                            <span class="uppercase tracking-widest" id="phase-image-label">Manual Disassembly Phase</span>
-                            <span class="italic text-atelier-rust">No Computer Prescriptions</span>
-                        </div>
+                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out transform hover:scale-105">
+                        <span class="absolute bottom-4 right-4 bg-garage-coal bg-opacity-85 text-garage-bone px-4 py-2 border border-garage-metal text-[10px] uppercase tracking-widest rounded-sm font-semibold" id="phase-label">
+                            Automotive Lift Assessment
+                        </span>
                     </div>
                 </div>
 
@@ -524,99 +443,95 @@
         </div>
     </section>
 
-    <!-- SECTION: THE WORKSHOP GET IN TOUCH (HUMAN-CENTRIC REQUEST) -->
-    <section id="contact" class="py-32 px-6 md:px-16 bg-atelier-bone text-atelier-coal border-t-4 border-atelier-rust">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+    <!-- SECTION 5: HUMAN-CENTRIC INTAKE INQUIRY FORM -->
+    <section id="inquiry" class="relative z-10 py-24 md:py-32 px-6 md:px-16 border-b border-garage-metal">
+        <div class="max-w-4xl mx-auto bg-garage-carbon rounded-sm border border-garage-metal p-8 md:p-16 relative">
 
-            <div class="lg:col-span-5 space-y-8">
-                <p class="text-xs uppercase tracking-[0.3em] text-atelier-rust font-bold">Request Access</p>
-                <h2 class="font-editorial text-4xl md:text-5xl leading-none">
-                    Begin Your Mechanical <br>
-                    <span class="italic text-atelier-rust">Blueprinting Journey</span>
-                </h2>
-                <p class="text-sm text-atelier-clay font-light leading-relaxed">
-                    We only open a select few mechanical calibration spaces each quarter. If you possess a vintage engine or a high-performance block requiring absolute human precision tuning, reach out to secure access.
+            <div class="text-center space-y-4 mb-12">
+                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold block">Inquire For Garage Intake</span>
+                <h2 class="font-editorial text-4xl text-garage-bone">Automotive Service Scheduling</h2>
+                <p class="text-xs text-garage-dust max-w-lg mx-auto leading-relaxed">
+                    To reserve diagnostic bench slots, describe your vehicle and performance issues using descriptive terms. We review every narrative carefully.
                 </p>
-
-                <div class="space-y-4 pt-4 border-t border-atelier-dust/40">
-                    <span class="text-[10px] uppercase tracking-widest text-atelier-rust font-bold">In-Person Workshop Locations</span>
-                    <p class="text-xs text-atelier-clay font-semibold">
-                        The Historic Industrial Docklands, South Basin Yard, Workshop G
-                    </p>
-                    <p class="text-xs text-atelier-dust italic">
-                        Access is restricted strictly to scheduled consultation appointments.
-                    </p>
-                </div>
             </div>
 
-            <!-- Form Area (Pure English Text, NO numbers or phone-number digits allowed in descriptive labels) -->
-            <div class="lg:col-span-7 bg-atelier-clay p-8 md:p-12 rounded-sm text-atelier-bone border border-atelier-clay">
-                <h3 class="font-editorial text-2xl italic text-atelier-ochre mb-6">Atelier Registration Details</h3>
-
-                <form onsubmit="handleContactSubmit(event)" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-atelier-dust mb-2">Mechanical Visionary Name</label>
-                            <input type="text" required placeholder="Jane Doe" class="w-full bg-atelier-coal border border-atelier-clay focus:border-atelier-rust p-4 rounded-sm text-sm text-atelier-bone outline-none transition-colors">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-atelier-dust mb-2">Electronic Mail Coordinates</label>
-                            <input type="email" required placeholder="contact@domain.com" class="w-full bg-atelier-coal border border-atelier-clay focus:border-atelier-rust p-4 rounded-sm text-sm text-atelier-bone outline-none transition-colors">
-                        </div>
-                    </div>
-
+            <!-- Intake Form with strictly ZERO numbers, icons, emojis -->
+            <form onsubmit="handleInquirySubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-atelier-dust mb-2">Cylinder Block Heritage and Year</label>
-                        <input type="text" required placeholder="Vintage Straight-Eight Assembly" class="w-full bg-atelier-coal border border-atelier-clay focus:border-atelier-rust p-4 rounded-sm text-sm text-atelier-bone outline-none transition-colors">
+                        <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Owner Full Identity</label>
+                        <input type="text" required placeholder="Johnathan Miller" class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors">
                     </div>
-
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-atelier-dust mb-2">Your Mechanical Narrative and Vision</label>
-                        <textarea rows="4" required placeholder="Detail your mechanical history, desired engine clearances, and long-term operating targets..." class="w-full bg-atelier-coal border border-atelier-clay focus:border-atelier-rust p-4 rounded-sm text-sm text-atelier-bone outline-none transition-colors"></textarea>
+                        <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Electronic Mail Coordinates</label>
+                        <input type="email" required placeholder="miller.performance@domain.com" class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors">
                     </div>
-
-                    <div>
-                        <button type="submit" class="w-full bg-atelier-rust hover:bg-atelier-ochre text-atelier-bone text-xs uppercase tracking-[0.2em] font-bold py-5 rounded-sm smooth-hover shadow-lg">
-                            Request Workshop Calibration Clearance
-                        </button>
-                    </div>
-                </form>
-
-                <!-- Success Prompt -->
-                <div id="contactSuccess" class="hidden mt-6 p-4 bg-atelier-rust/20 border border-atelier-rust text-atelier-bone text-center rounded-sm transition-all duration-500">
-                    <p class="font-editorial italic text-lg text-atelier-ochre">Transmission Captured</p>
-                    <p class="text-xs text-atelier-dust mt-1">Our master engine blueprint technician will communicate via electronic coordinates.</p>
                 </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Vehicle Chassis Make and Model</label>
+                        <input type="text" required placeholder="Vintage European Inline-Six Coupe" class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Approximate Mechanical Era</label>
+                        <input type="text" required placeholder="Late Twentieth Century Era" class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-garage-dust mb-2">Performance Symptom Narrative</label>
+                    <textarea rows="4" required placeholder="Detail the physical symptoms, sounds under acceleration, steering vibration feedback, and specific mechanical repair objectives..." class="w-full bg-garage-coal border border-garage-metal focus:border-garage-safety p-4 rounded-sm text-sm text-garage-bone outline-none transition-colors"></textarea>
+                </div>
+
+                <div class="text-center pt-4">
+                    <button type="submit" class="w-full md:w-auto px-12 py-4 bg-garage-safety hover:bg-opacity-90 text-garage-coal font-bold text-xs uppercase tracking-widest rounded-sm smooth-hover">
+                        Submit Vehicle Intake Application
+                    </button>
+                </div>
+            </form>
+
+            <div id="submissionSuccess" class="hidden absolute inset-0 bg-garage-carbon flex flex-col justify-center items-center text-center p-8 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-garage-safety font-bold">Intake Logged Successfully</span>
+                <h3 class="font-editorial text-3xl text-garage-bone">Your Mechanical Narrative Has Been Registered</h3>
+                <p class="text-sm text-garage-dust max-w-md leading-relaxed">
+                    Our lead diagnostics technician is analyzing your mechanical symptoms. We will contact you shortly via electronic mail to schedule physical garage intake.
+                </p>
+                <button onclick="resetInquiryForm()" class="px-6 py-2 border border-garage-metal hover:border-garage-safety text-garage-bone hover:text-garage-safety text-xs uppercase tracking-widest rounded-sm smooth-hover">
+                    Register New Chassis
+                </button>
             </div>
 
         </div>
     </section>
 
-    <!-- FOOTER WITH EDITORIAL DETAILS (STRICT NO-NUMBERS RULES) -->
-    <footer class="bg-atelier-coal text-atelier-dust py-16 px-6 md:px-16 border-t border-atelier-clay">
+    <!-- FOOTER -->
+    <footer class="relative z-10 bg-garage-coal py-16 px-6 md:px-16 border-t border-garage-metal text-garage-bone">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between space-y-8 md:space-y-0">
 
             <div class="space-y-2">
-                <span class="font-editorial text-lg tracking-wider text-atelier-bone font-bold">VALVE and MANIFOLD</span>
-                <p class="text-[9px] uppercase tracking-widest text-atelier-rust">The Restoration Atelier — Absolute Engineering Dedication</p>
+                <span class="font-editorial text-lg tracking-wider text-garage-bone font-bold">VANGUARD PERFORMANCE</span>
+                <p class="text-[9px] uppercase tracking-widest text-garage-safety">The Restoration and Repair Atelier — Absolute Mechanical Integrity</p>
             </div>
 
-            <div class="flex flex-col md:items-end space-y-2 text-xs">
-                <p class="font-light">
-                    Made entirely with real human intelligence, physical measurements, and manual lathe machinery.
-                </p>
-                <p class="text-[10px] text-atelier-dust">
-                    Established in the Era of Analog Craft. All Rights Reserved.
-                </p>
+            <div class="flex flex-wrap gap-8 text-xs text-garage-dust">
+                <a href="#about" class="hover:text-garage-bone smooth-hover">About</a>
+                <a href="#services" class="hover:text-garage-bone smooth-hover">Capabilities</a>
+                <a href="#diagnostics" class="hover:text-garage-bone smooth-hover">Diagnostics</a>
+                <a href="#inspections" class="hover:text-garage-bone smooth-hover">Intake Sequence</a>
             </div>
 
         </div>
+
+        <div class="max-w-7xl mx-auto border-t border-garage-metal mt-12 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-garage-dust">
+            <span>Detroit Metropolitan Workshop. Direct Technician-to-Client Consultation.</span>
+            <span>All Mechanical Rights Secured.</span>
+        </div>
     </footer>
 
-
-    <!-- ATELIER PORTER SCRIPTS AND DYNAMIC INTERACTIONS -->
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
-        // 1. Overlay Navigation Drawer Toggle
+        /* Part 1: Full-Screen Overlay Menu */
         function toggleOverlayMenu() {
             const overlay = document.getElementById('navigationOverlay');
             if (overlay.classList.contains('translate-y-full')) {
@@ -626,12 +541,10 @@
             }
         }
 
-        // 2. HTML5 Canvas Ambient Muted Workshop Dust Particle Simulation
-        const canvas = document.getElementById('ambientDustCanvas');
+        /* Part 2: Canvas Ambient Background Particles (Drifting glowing sparks / embers) */
+        const canvas = document.getElementById('workshopSparks');
         const ctx = canvas.getContext('2d');
-
         let particles = [];
-        const particleCount = 45; // Purely numerical code-level config is allowed, text holds no numbers
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -640,112 +553,201 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        class AmbientDust {
+        class SparkParticle {
             constructor() {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.15 - 0.075;
-                this.speedY = Math.random() * 0.2 - 0.05; // Muted upward drift
-                this.alpha = Math.random() * 0.5 + 0.1;
-                this.glowColor = '#D4A373'; // Amber dust glow
+                this.y = Math.random() * canvas.height + canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = -(Math.random() * 0.8 + 0.2);
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.alpha = Math.random() * 0.5 + 0.3;
+                this.fade = Math.random() * 0.002 + 0.001;
             }
             update() {
-                this.x += this.speedX;
                 this.y += this.speedY;
-
-                // Boundaries reset
-                if (this.y < 0) {
-                    this.y = canvas.height;
+                this.x += this.speedX;
+                this.alpha -= this.fade;
+                if (this.alpha <= 0 || this.y < 0) {
                     this.x = Math.random() * canvas.width;
-                }
-                if (this.x < 0 || this.x > canvas.width) {
-                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + Math.random() * 50;
+                    this.alpha = Math.random() * 0.5 + 0.3;
+                    this.size = Math.random() * 2 + 0.5;
                 }
             }
             draw() {
                 ctx.save();
                 ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = '#f97316'; /* Soft safety performance orange */
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = this.glowColor;
-                ctx.fillStyle = this.glowColor;
                 ctx.fill();
                 ctx.restore();
             }
         }
 
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new AmbientDust());
+        // Initialize particles
+        // Note: Using loop variable names that avoid digits, e.g. 'index'
+        for (let index = 0; index < 45; index++) {
+            particles.push(new SparkParticle());
         }
 
-        function animateAmbientDust() {
+        function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.update();
                 p.draw();
             });
-            requestAnimationFrame(animateAmbientDust);
+            requestAnimationFrame(animateParticles);
         }
-        animateAmbientDust();
+        animateParticles();
 
 
-        // 3. Oscilloscope Live Canvas Animation with adjustable variables
-        const oscCanvas = document.getElementById('oscilloscopeCanvas');
+        /* Part 3: Interactive Symptom Diagnostics Panel Logic */
+        const symptomsData = {
+            idle: {
+                title: 'Rough Idling and Vacuum Leakage Misfires',
+                desc: 'The engine experiences rhythmic structural tremors at idle speed. This indicates a potential vacuum leakage inside the intake manifold plenum or individual injector seal decay, causing lean combustion gradients.',
+                tag: 'Symptom Target: Engine Vibration',
+                remediation: 'Manifold Plenum Sealing',
+                scope: 'Intake Demount and Gasket Overhaul',
+                certainty: 'Highly Likely / Confirmed',
+                dialValue: 'Calibrated Position: Standard Idle',
+                dialAngle: 0,
+                waveFreq: 0.08,
+                waveAmp: 25,
+                waveSpeed: 0.1
+            },
+            brake: {
+                title: 'Spongy Braking Response and Air Trapping',
+                desc: 'Brake pedal action feels soft, lagging mechanical clamping performance. This is typically caused by micro-bubbles within brake lines or degraded master cylinder seals, demanding complete system fluid purge.',
+                tag: 'Symptom Target: Hydraulic System',
+                remediation: 'Complete Hydraulic Purging',
+                scope: 'Vacuum Pressure Bleeding',
+                certainty: 'Requires Physical Lift Check',
+                dialValue: 'Calibrated Position: Bleed Setting',
+                dialAngle: 90,
+                waveFreq: 0.02,
+                waveAmp: 50,
+                waveSpeed: 0.05
+            },
+            smoke: {
+                title: 'Exhaust Smoke Discoloration and Valve Guide Wear',
+                desc: 'A distinct blue-grey smoke cloud under high acceleration profiles. This confirms cylinder oil passing through degraded valve stem seals or worn piston scraper rings, allowing lubricant to enter combustion chambers.',
+                tag: 'Symptom Target: Exhaust Chemical Exhaust',
+                remediation: 'Valve Stem Seal Overhaul',
+                scope: 'Cylinder Head Valve Component Rebuild',
+                certainty: 'Oil Analysis Confirmed',
+                dialValue: 'Calibrated Position: High Pressure Mode',
+                dialAngle: 180,
+                waveFreq: 0.15,
+                waveAmp: 10,
+                waveSpeed: 0.25
+            }
+        };
+
+        let currentWaveParams = {
+            freq: 0.08,
+            amp: 25,
+            speed: 0.1,
+            time: 0
+        };
+
+        function selectSymptom(key) {
+            // Update active state visual styles
+            const keys = ['idle', 'brake', 'smoke'];
+            keys.forEach(k => {
+                const card = document.getElementById('card-' + k);
+                const dot = document.getElementById('dot-' + k);
+                const label = document.getElementById('label-' + k);
+                if (k === key) {
+                    card.classList.add('border-garage-safety');
+                    card.classList.remove('border-garage-metal');
+                    dot.classList.add('bg-garage-safety');
+                    dot.classList.remove('bg-transparent');
+                    label.classList.add('text-garage-safety');
+                    label.classList.remove('text-garage-dust');
+                } else {
+                    card.classList.remove('border-garage-safety');
+                    card.classList.add('border-garage-metal');
+                    dot.classList.remove('bg-garage-safety');
+                    dot.classList.add('bg-transparent');
+                    label.classList.remove('text-garage-safety');
+                    label.classList.add('text-garage-dust');
+                }
+            });
+
+            // Update visible content fields
+            const data = symptomsData[key];
+            document.getElementById('active-symptom-tag').innerText = data.tag;
+            document.getElementById('symptom-title').innerText = data.title;
+            document.getElementById('symptom-desc').innerText = data.desc;
+            document.getElementById('stat-remediation').innerText = data.remediation;
+            document.getElementById('stat-scope').innerText = data.scope;
+            document.getElementById('stat-certainty').innerText = data.certainty;
+
+            // Adjust rotary dials
+            document.getElementById('dial-value').innerText = data.dialValue;
+            document.getElementById('rotary-dial').style.transform = `rotate(${data.dialAngle}deg)`;
+
+            // Trigger oscilloscope wave modifications
+            currentWaveParams.freq = data.waveFreq;
+            currentWaveParams.amp = data.waveAmp;
+            currentWaveParams.speed = data.waveSpeed;
+        }
+
+        /* Oscilloscope Drawing Loop */
+        const oscCanvas = document.getElementById('oscilloscopeScreen');
         const oscCtx = oscCanvas.getContext('2d');
 
-        let waveAngle = 0;
-        let waveFrequency = 0.02;
-        let waveAmplitude = 25;
-        let waveSpeed = 0.05;
-
-        function resizeOscilloscope() {
-            oscCanvas.width = oscCanvas.offsetWidth;
-            oscCanvas.height = oscCanvas.offsetHeight;
+        function resizeOscCanvas() {
+            oscCanvas.width = oscCanvas.parentElement.clientWidth;
+            oscCanvas.height = oscCanvas.parentElement.clientHeight;
         }
-        window.addEventListener('resize', resizeOscilloscope);
-        resizeOscilloscope();
+        window.addEventListener('resize', resizeOscCanvas);
+        resizeOscCanvas();
 
         function drawOscilloscope() {
             oscCtx.clearRect(0, 0, oscCanvas.width, oscCanvas.height);
 
             // Draw grid lines
-            oscCtx.strokeStyle = '#1C1E22';
+            oscCtx.strokeStyle = '#1e2124';
             oscCtx.lineWidth = 1;
-            const gridSpacing = 20;
 
-            for (let x = 0; x < oscCanvas.width; x += gridSpacing) {
-                oscCtx.beginPath();
-                oscCtx.moveTo(x, 0);
-                oscCtx.lineTo(x, oscCanvas.height);
-                oscCtx.stroke();
-            }
+            // Horizontal lines
+            const gridSpacing = 20;
             for (let y = 0; y < oscCanvas.height; y += gridSpacing) {
                 oscCtx.beginPath();
                 oscCtx.moveTo(0, y);
                 oscCtx.lineTo(oscCanvas.width, y);
                 oscCtx.stroke();
             }
+            // Vertical lines
+            for (let x = 0; x < oscCanvas.width; x += gridSpacing) {
+                oscCtx.beginPath();
+                oscCtx.moveTo(x, 0);
+                oscCtx.lineTo(x, oscCanvas.height);
+                oscCtx.stroke();
+            }
 
             // Draw center reference lines
-            oscCtx.strokeStyle = '#A6A29A';
-            oscCtx.globalAlpha = 0.3;
+            oscCtx.strokeStyle = '#2d3137';
             oscCtx.beginPath();
             oscCtx.moveTo(0, oscCanvas.height / 2);
             oscCtx.lineTo(oscCanvas.width, oscCanvas.height / 2);
             oscCtx.stroke();
-            oscCtx.globalAlpha = 1;
 
-            // Draw dynamic green/orange oscilloscope signal
-            oscCtx.beginPath();
-            oscCtx.strokeStyle = '#C86A3C'; // Copper tone line
+            // Draw Sine Wave representing simulated component vibration
+            oscCtx.strokeStyle = '#f97316';
             oscCtx.lineWidth = 2.5;
-            oscCtx.shadowBlur = 12;
-            oscCtx.shadowColor = '#C86A3C';
+            oscCtx.shadowColor = '#f97316';
+            oscCtx.shadowBlur = 10;
+
+            oscCtx.beginPath();
+            const centerY = oscCanvas.height / 2;
+            currentWaveParams.time += currentWaveParams.speed;
 
             for (let x = 0; x < oscCanvas.width; x++) {
-                const y = oscCanvas.height / 2 + Math.sin(x * waveFrequency + waveAngle) * waveAmplitude;
+                const y = centerY + Math.sin(x * currentWaveParams.freq + currentWaveParams.time) * currentWaveParams.amp;
                 if (x === 0) {
                     oscCtx.moveTo(x, y);
                 } else {
@@ -753,235 +755,88 @@
                 }
             }
             oscCtx.stroke();
-            oscCtx.shadowBlur = 0; // Reset shadow
 
-            waveAngle += waveSpeed;
+            // Clear shadow for next loops
+            oscCtx.shadowBlur = 0;
+
             requestAnimationFrame(drawOscilloscope);
         }
         drawOscilloscope();
 
 
-        // 4. Custom Knob Tuning System (Click Dial updates)
-        const knobsData = {
-            timing: {
-                states: ['Symmetrical', 'Aggressive Advance', 'Endurance Delay'],
-                angles: [0, 90, -90],
-                amplitudes: [25, 45, 12],
-                frequencies: [0.02, 0.05, 0.01],
-                speeds: [0.05, 0.09, 0.02],
-                vacuums: ['High Efficiency', 'Combustion Peak', 'Mild Scavenge'],
-                heats: ['Optimal Operating', 'Extremely Severe', 'Cool Conservative'],
-                title: 'Valve Timing System Recalibrated',
-                text: 'The timing parameters dictate when the intake and exhaust chambers seal. Aggressive advance offsets push combustion peaks closer to absolute dead-center, optimizing track velocity while sacrificing cool idling stability.'
+        /* Part 4: Sequential Inspection Sequence Tabs Logic */
+        const inspectionPhases = {
+            admission: {
+                title: 'Intake Fluid Analysis and Diagnostic Scanning',
+                description: 'We begin with comprehensive chassis inspection. Fluids are extracted for particle analysis, and diagnostic parameters are scanned before structural mechanical tasks begin to protect vintage and classic gears.',
+                metric: 'Fluid Viscosity and Chemical Impurity Assessment',
+                image: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80',
+                label: 'Automotive Lift Assessment'
             },
-            manifold: {
-                states: ['Naturally Aspirated', 'Positive Supercharge', 'Vacuum Intercooled'],
-                angles: [0, 45, 180],
-                amplitudes: [20, 55, 30],
-                frequencies: [0.03, 0.015, 0.06],
-                speeds: [0.04, 0.07, 0.03],
-                vacuums: ['Balanced Baseline', 'Massive Plenum Pressure', 'High Flow Velocity'],
-                heats: ['Controlled Thermal', 'Elevated Chamber Heat', 'Optimally Fluid'],
-                title: 'Manifold Aspiration System Rerouted',
-                text: 'Dynamic pressure routing inside the aluminum plenums completely alters intake volumetric parameters. Switching configurations manually shifts the fluid dynamic resonance, matching distinct cylinder demands.'
-            },
-            carburetion: {
-                states: ['Stoichiometric', 'Enriched Ratio', 'Highly Atomized Lean'],
-                angles: [0, -135, 135],
-                amplitudes: [15, 35, 8],
-                frequencies: [0.025, 0.045, 0.015],
-                speeds: [0.06, 0.12, 0.01],
-                vacuums: ['Stable Induction', 'Slight Combustion Over-fuel', 'Sustained Flow Peak'],
-                heats: ['Sustained Normal', 'Cool Combustion Crown', 'Extreme Thermal Load'],
-                title: 'Atomization Density Calibrated',
-                text: 'Fine-tuning fuel density inside mechanical brass orifices controls maximum cylinder flame propagation speed. Rich stoichiometry protects pistons through localized gasoline cooling, while lean mixtures offer raw acceleration.'
-            }
-        };
-
-        const activeStates = {
-            timing: 0,
-            manifold: 0,
-            carburetion: 0
-        };
-
-        function selectKnob(knobKey) {
-            const data = knobsData[knobKey];
-
-            // Increment state loop
-            activeStates[knobKey] = (activeStates[knobKey] + 1) % data.states.length;
-            const currentStateIndex = activeStates[knobKey];
-
-            // Update visual text status
-            document.getElementById(`status-${knobKey}`).innerText = data.states[currentStateIndex];
-
-            // Rotate dial visual
-            const angle = data.angles[currentStateIndex];
-            document.getElementById(`dial-${knobKey}`).style.transform = `rotate(${angle}deg)`;
-
-            // Modify wave parameters dynamically
-            waveAmplitude = data.amplitudes[currentStateIndex];
-            waveFrequency = data.frequencies[currentStateIndex];
-            waveSpeed = data.speeds[currentStateIndex];
-
-            // Update diagnostic panel
-            document.getElementById('stat-vacuum').innerText = data.vacuums[currentStateIndex];
-            document.getElementById('stat-heat').innerText = data.heats[currentStateIndex];
-
-            // Set workbench texts
-            document.getElementById('workbench-feedback-title').innerText = data.title;
-            document.getElementById('workbench-feedback-text').innerText = data.text;
-
-            // Flash indicator light for interaction validation
-            const light = document.getElementById('simulation-light');
-            light.classList.remove('bg-atelier-rust');
-            light.classList.add('bg-atelier-ochre');
-            setTimeout(() => {
-                light.classList.remove('bg-atelier-ochre');
-                light.classList.add('bg-atelier-rust');
-            }, 300);
-        }
-
-
-        // 5. Interactive Journal Log Expand Overlay
-        const journalLogs = {
-            lubrication: {
-                title: 'High-Velocity Mechanical Oil Blueprint',
-                category: 'Log Record — Lubrication Channels',
-                body: 'We hand-machine our lubrication galleyways with precision micro-drills. Vintage cylinder blocks often suffer from restricted flow due to prehistoric casting sands. By smoothing core ports to a mirror finish, lubricant bypasses typical structural friction points smoothly.',
-                recommendation: 'Check oil tension clearance at extreme thermal loads.'
-            },
-            induction: {
-                title: 'Fluid Dynamic Balancing and Port Matching',
-                category: 'Log Record — Induction Plenum',
-                body: 'Using custom casting templates, we port-match intake runners to cylinder ports exactly. Unbalanced airflow causes cylinders to operate at offset temperatures, creating vibration and early mechanical wear. Our custom human-centered flow testing achieves maximum combustion equilibrium.',
-                recommendation: 'Ensure standard manifold gaskets remain unclipped during torque.'
-            },
-            valve: {
-                title: 'The Organic Symphony of Hand-Lapped Valves',
-                category: 'Log Record — Valve Seating',
-                body: 'There are no robotic calibration steps inside our valvetrain laboratory. Technicians apply abrasive lapping compounds manually, rotating the stem with a wooden hand-suction rod. Only the tactile sensation of sliding steel tells us when the seal is complete.',
-                recommendation: 'Apply Prussian Blue paste to verify dynamic geometric seating.'
-            }
-        };
-
-        function showJournalLog(logKey) {
-            const data = journalLogs[logKey];
-            document.getElementById('popup-category').innerText = data.category;
-            document.getElementById('popup-title').innerText = data.title;
-            document.getElementById('popup-body-main').innerText = data.body;
-            document.getElementById('popup-recommendation').innerText = data.recommendation;
-
-            const popup = document.getElementById('journalPopup');
-            popup.classList.remove('hidden');
-            popup.classList.add('flex');
-        }
-
-        function closeJournalLog() {
-            const popup = document.getElementById('journalPopup');
-            popup.classList.remove('flex');
-            popup.classList.add('hidden');
-        }
-
-
-        // 6. Restoration Evolution Phase Selector script
-        const phasesData = {
-            disassembly: {
-                subtitle: 'Disassembly Main Objective',
-                title: 'Thermal Cleansing and Microscopic Crack Inspections',
-                description: 'We completely strip individual blocks back to pure structural steel. Components are hot-tanked and pressure washed before visual dye-penetrant checks expose structural stress anomalies.',
-                metric: 'Structural Metal Porosity Analysis',
+            teardown: {
+                title: 'Careful Component Disassembly and Blueprinting',
+                description: 'Cylinder heads, intake runners, and manifolds are completely dismantled. Individual valve clearances are micrometer-profiled to blueprint performance metrics.',
+                metric: 'Mechanical Micrometer Alignment Blueprint',
                 image: 'https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1200&q=80',
-                label: 'Manual Disassembly Phase'
+                label: 'Intense Engine Restructuring'
             },
-            rectification: {
-                subtitle: 'Precision Milling Core Target',
-                title: 'Asymmetrical Crank Journal Rectification',
-                description: 'We align classic crankshaft axes using hand-scraped bronze journals. Balancing the rotating mass eliminates dynamic vibration harmonics, securing rotational smoothness even under high torque loops.',
-                metric: 'Micrometer Axis Alignment Profile',
-                image: 'https://images.unsplash.com/photo-1530047139182-5485141a7265?auto=format&fit=crop&w=1200&q=80',
-                label: 'Precision Lathe and Scraping Phase'
-            },
-            blueprinting: {
-                subtitle: 'Cylinder Flow Mastery',
-                title: 'Dynamic Cylinder Deck Blueprinting and Squish Checks',
-                description: 'Decks are surfaced with specialized cutters, and chamber volumes are verified using high-precision laboratory burettes. Perfect deck heights guarantee uniform combustion temperature gradients.',
-                metric: 'Combustion Chamber Fluid Volumetric Calibration',
+            calibration: {
+                title: 'Master Mechanical Calibration and Real-World Road Test',
+                description: 'Our certified master mechanics perform ignition timing tuning and intake throttle synchronization. Afterward, the vehicle is subject to intense, real-world road assessment.',
+                metric: 'Rotational Synchrony and Ignition Timing Profile',
                 image: 'https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80',
-                label: 'Analytical Volumetric Blueprinting'
-            },
-            validation: {
-                subtitle: 'Combustion Calibration Step',
-                title: 'Stethoscopic Chamber Combustion Harmonic Validation',
-                description: 'The final tuning phase occurs inside our acoustic test chamber. Sound profile sensors isolate structural knocks, guaranteeing smooth dynamic performance under varying vacuum and heat levels.',
-                metric: 'Acoustic Mechanical Harmonic Signature Mapping',
-                image: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=1200&q=80',
-                label: 'Acoustic Calibration Validation'
+                label: 'Precision Dynamic Alignment Check'
             }
         };
 
         function selectPhase(phaseKey) {
-            const data = phasesData[phaseKey];
-
-            // Visual indicators for Tabs
-            const tabs = document.querySelectorAll('#phase-tabs button');
-            tabs.forEach(tab => {
-                tab.classList.remove('border-atelier-rust', 'text-atelier-rust');
-                tab.classList.add('border-transparent', 'text-atelier-dust');
+            // Manage Active Button States
+            const tabs = ['admission', 'teardown', 'calibration'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('tab-' + t);
+                if (t === phaseKey) {
+                    btn.classList.add('border-garage-safety', 'text-garage-safety');
+                    btn.classList.remove('border-transparent', 'text-garage-dust');
+                } else {
+                    btn.classList.remove('border-garage-safety', 'text-garage-safety');
+                    btn.classList.add('border-transparent', 'text-garage-dust');
+                }
             });
 
-            const activeTab = document.getElementById(`tab-${phaseKey}`);
-            activeTab.classList.remove('border-transparent', 'text-atelier-dust');
-            activeTab.classList.add('border-atelier-rust', 'text-atelier-rust');
-
-            // Fade-out content panel before updating
+            // Smooth content fade transition
             const panel = document.getElementById('phase-content-panel');
-            panel.style.opacity = 0;
-            panel.style.transform = 'translateY(10px)';
-            panel.style.transition = 'all 0.4s ease';
+            const img = document.getElementById('phase-image');
+            const lbl = document.getElementById('phase-label');
 
-            const imgElement = document.getElementById('phase-image');
-            imgElement.style.opacity = 0;
-            imgElement.style.transform = 'scale(1.02)';
+            panel.style.opacity = 0;
+            img.style.opacity = 0;
 
             setTimeout(() => {
-                // Update Content Texts
-                document.getElementById('phase-subtitle').innerText = data.subtitle;
+                const data = inspectionPhases[phaseKey];
                 document.getElementById('phase-title').innerText = data.title;
                 document.getElementById('phase-description').innerText = data.description;
                 document.getElementById('phase-metric').innerText = data.metric;
+                img.src = data.image;
+                lbl.innerText = data.label;
 
-                // Update Image
-                imgElement.src = data.image;
-                document.getElementById('phase-image-label').innerText = data.label;
-
-                // Fade-in Content Panel
                 panel.style.opacity = 1;
-                panel.style.transform = 'translateY(0)';
-
-                imgElement.style.opacity = 1;
-                imgElement.style.transform = 'scale(1)';
-            }, 400);
+                img.style.opacity = 1;
+            }, 250);
         }
 
 
-        // 7. Human Contact Form Submission simulation
-        function handleContactSubmit(event) {
+        /* Part 5: Contact Inquiry Intake Form Submission Handler */
+        function handleInquirySubmit(event) {
             event.preventDefault();
+            // Display clean confirmation panel to represent human-authored follow up
+            document.getElementById('submissionSuccess').classList.remove('hidden');
+        }
 
-            const form = event.target;
-            const successDiv = document.getElementById('contactSuccess');
-
-            // Simulated visual loading
-            form.style.opacity = 0.5;
-            form.style.pointerEvents = 'none';
-
-            setTimeout(() => {
-                form.reset();
-                form.classList.add('hidden');
-
-                successDiv.classList.remove('hidden');
-                successDiv.style.opacity = 1;
-            }, 1000);
+        function resetInquiryForm() {
+            document.getElementById('submissionSuccess').classList.add('hidden');
+            // Clear text inputs
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => input.value = '');
         }
     </script>
 </body>
