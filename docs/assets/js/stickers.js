@@ -1,45 +1,45 @@
 /**
- * Interactive Digital Sticker Physics System
- * Powered by Canvas 2D math, Image Preloading, & CSS 3D transforms.
+ * High-Fidelity Interactive Digital Sticker Physics System
+ * Powered by centered-canvas page curl simulation & CSS 3D transforms.
  */
 
 class DigitalSticker {
     constructor(container, options = {}) {
         this.container = container;
 
-        // Get custom sticker image URL from data-attribute or option
+        // Load sticker asset URLs from data attributes or defaults
         this.imgUrl = container.getAttribute('data-sticker-img') || options.imgUrl || 'https://menutechdeveloper.github.io/bddImg/assets/mk/sticker1.png';
         this.color = container.getAttribute('data-sticker-color') || options.color || '#FFE0B2';
         this.text = options.text || '';
 
-        this.width = options.width || 140;
-        this.height = options.height || 140;
-        this.radius = this.width / 2;
+        // Fixed dimension parameters
+        this.width = 140;
+        this.height = 140;
+        this.radius = this.width / 2; // 70px
 
         // States: 'STUCK', 'PEELING', 'FLOATING', 'STICKING'
         this.state = 'STUCK';
         this.x = 0;
         this.y = 0;
 
-        // Movement threshold tracking
+        // Interaction coordinates
         this.startX = 0;
         this.startY = 0;
         this.isPointerDown = false;
-        this.dragThreshold = 6; // 6 pixels threshold to prevent clicking bugs
+        this.dragThreshold = 6; // Click suppression threshold
         this.hasMovedPastThreshold = false;
 
-        // Grab coordinates relative to sticker
-        this.grabAngle = 0;
+        // Vector tracking
         this.grabPoint = { x: 0, y: 0 };
         this.dragOffset = { x: 0, y: 0 };
         this.velocity = { x: 0, y: 0 };
         this.lastPointerPos = { x: 0, y: 0 };
 
-        // 3D inertia rotation
+        // Floating orientation parameters
         this.tiltX = 0;
         this.tiltY = 0;
 
-        // Load image asset
+        // Image preloader
         this.isImageLoaded = false;
         this.stickerImg = new Image();
         this.stickerImg.crossOrigin = 'anonymous';
@@ -54,21 +54,31 @@ class DigitalSticker {
     }
 
     initDOM() {
-        // Create Canvas inside the container
+        // Center a larger 280x280 canvas to allow the curl to peel off in any direction without clipping
+        this.canvasSize = 280;
         this.canvas = document.createElement('canvas');
-        this.canvas.width = this.width * window.devicePixelRatio;
-        this.canvas.height = this.height * window.devicePixelRatio;
-        this.canvas.style.width = `${this.width}px`;
-        this.canvas.style.height = `${this.height}px`;
+        this.canvas.width = this.canvasSize * window.devicePixelRatio;
+        this.canvas.height = this.canvasSize * window.devicePixelRatio;
+        this.canvas.style.width = `${this.canvasSize}px`;
+        this.canvas.style.height = `${this.canvasSize}px`;
+        this.canvas.style.position = 'absolute';
+
+        // Center the 280x280 canvas exactly over the 140x140 container
+        this.canvas.style.left = '-70px';
+        this.canvas.style.top = '-70px';
+        this.canvas.style.pointerEvents = 'none';
         this.canvas.className = 'sticker-canvas';
+
         this.ctx = this.canvas.getContext('2d');
         this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 
         this.container.classList.add('sticker-element');
         this.container.appendChild(this.canvas);
 
+        // Set fixed container dimension
         this.container.style.width = `${this.width}px`;
         this.container.style.height = `${this.height}px`;
+        this.container.style.position = 'relative';
     }
 
     initEvents() {
@@ -78,8 +88,8 @@ class DigitalSticker {
         window.addEventListener('pointercancel', (e) => this.onPointerUp(e));
     }
 
-    // Helper to draw sticker content with real branding/QR/logo
-    drawStickerContent(ctx, cx, cy, radius, bgColor, applyBackReflection = false) {
+    // Centered drawing helper
+    drawStickerContent(ctx, cx, cy, radius, bgColor) {
         ctx.save();
 
         // Draw backing circle
@@ -109,7 +119,7 @@ class DigitalSticker {
 
         ctx.restore();
 
-        // Draw custom label text on top (phone numbers or promo details)
+        // Custom label text (phone / details)
         if (this.text) {
             ctx.save();
             ctx.translate(cx, cy);
@@ -130,16 +140,17 @@ class DigitalSticker {
     }
 
     drawStuck() {
-        this.ctx.clearRect(0, 0, this.width, this.height);
-        this.drawStickerContent(this.ctx, this.radius, this.radius, this.radius - 4, this.color);
+        this.ctx.clearRect(0, 0, this.canvasSize, this.canvasSize);
+        // Center is (140, 140) inside the 280x280 canvas
+        this.drawStickerContent(this.ctx, 140, 140, this.radius - 4, this.color);
     }
 
     onPointerDown(e) {
         if (this.state === 'STICKING') return;
 
         // Save initial coordinates to verify threshold drag
-        this.startX = e.clientX;
-        this.startY = e.clientY;
+        this.startX = e.pageX;
+        this.startY = e.pageY;
         this.isPointerDown = true;
         this.hasMovedPastThreshold = false;
 
@@ -155,12 +166,12 @@ class DigitalSticker {
     onPointerMove(e) {
         if (!this.isPointerDown) return;
 
-        const clientX = e.clientX;
-        const clientY = e.clientY;
+        // Calculate drag distance
+        const dx = e.pageX - this.startX;
+        const dy = e.pageY - this.startY;
+        const dist = Math.hypot(dx, dy);
 
-        // Check threshold distance
         if (!this.hasMovedPastThreshold) {
-            const dist = Math.hypot(clientX - this.startX, clientY - this.startY);
             if (dist < this.dragThreshold) {
                 return; // Suppress movement, click is just a tap
             }
@@ -168,30 +179,29 @@ class DigitalSticker {
             this.hasMovedPastThreshold = true;
             this.container.setPointerCapture(e.pointerId);
 
+            // Determine grab angle relative to sticker center
             const rect = this.container.getBoundingClientRect();
-            const px = e.clientX - rect.left;
-            const py = e.clientY - rect.top;
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            const rx = clickX - this.radius;
+            const ry = clickY - this.radius;
+            const grabAngle = Math.atan2(ry, rx);
 
-            const dx = px - this.radius;
-            const dy = py - this.radius;
-            const grabDist = Math.hypot(dx, dy);
-
-            // If grabbed near outer edge (outer 35%), enter peeling physics
-            const isNearEdge = grabDist > this.radius * 0.55;
-
-            this.grabAngle = Math.atan2(dy, dx);
+            // Grab point starts at the exact outer edge in the direction of the grab
             this.grabPoint = {
-                x: this.radius + Math.cos(this.grabAngle) * this.radius,
-                y: this.radius + Math.sin(this.grabAngle) * this.radius
+                x: 140 + Math.cos(grabAngle) * this.radius,
+                y: 140 + Math.sin(grabAngle) * this.radius
             };
 
+            // Only peel if dragging from near edge, otherwise just float/drag immediately
+            const isNearEdge = Math.hypot(rx, ry) > this.radius * 0.55;
             this.state = isNearEdge ? 'PEELING' : 'FLOATING';
 
             if (this.state === 'FLOATING') {
                 this.container.classList.remove('sticker-stuck');
                 this.container.classList.add('sticker-floating');
 
-                // Absolute placement matching current location on page
+                // Lift container to body space absolute placement to avoid relative clipping
                 const bodyRect = document.body.getBoundingClientRect();
                 this.x = rect.left - bodyRect.left;
                 this.y = rect.top - bodyRect.top;
@@ -199,35 +209,28 @@ class DigitalSticker {
                 this.container.style.position = 'absolute';
                 this.container.style.left = `${this.x}px`;
                 this.container.style.top = `${this.y}px`;
+                this.container.style.zIndex = '1000';
             }
         }
 
-        // Handle Active Dragging Physics
-        const currentPointer = { x: e.pageX, y: e.pageY };
+        // Active dragging state machine
         this.velocity = {
-            x: currentPointer.x - this.lastPointerPos.x,
-            y: currentPointer.y - this.lastPointerPos.y
+            x: e.pageX - this.lastPointerPos.x,
+            y: e.pageY - this.lastPointerPos.y
         };
-        this.lastPointerPos = currentPointer;
+        this.lastPointerPos = { x: e.pageX, y: e.pageY };
 
         if (this.state === 'PEELING') {
-            const rect = this.container.getBoundingClientRect();
-            const px = e.clientX - rect.left;
-            const py = e.clientY - rect.top;
-
-            const p1 = this.grabPoint;
-            const p2 = { x: px, y: py };
-
-            const dx = p2.x - p1.x;
-            const dy = p2.y - p1.y;
-            const dragDistance = Math.hypot(dx, dy);
-
-            // Detaches completely into floating 3D state once peeled past 1.5 radius
-            if (dragDistance > this.radius * 1.5) {
+            // During peeling, container stays static. The canvas renders the curl!
+            // The curl follows the mouse drag. Max distance to fully peel is 140px (the diameter)
+            if (dist > this.width) {
+                // Completely peeled off! Transition to FLOATING state.
                 this.state = 'FLOATING';
                 this.container.classList.remove('sticker-stuck');
                 this.container.classList.add('sticker-floating');
 
+                const rect = this.container.getBoundingClientRect();
+                const bodyRect = document.body.getBoundingClientRect();
                 const parentRect = this.container.offsetParent ? this.container.offsetParent.getBoundingClientRect() : { left: 0, top: 0 };
                 this.x = e.pageX - parentRect.left - this.dragOffset.x;
                 this.y = e.pageY - parentRect.top - this.dragOffset.y;
@@ -235,12 +238,14 @@ class DigitalSticker {
                 this.container.style.position = 'absolute';
                 this.container.style.left = `${this.x}px`;
                 this.container.style.top = `${this.y}px`;
+                this.container.style.zIndex = '1000';
 
                 this.drawStuck();
                 return;
             }
 
-            this.renderPeel(p1, p2, dragDistance);
+            // Render peeling using the drag vector
+            this.renderPeel(this.grabPoint, dx, dy, dist);
         } else if (this.state === 'FLOATING') {
             const parentRect = this.container.offsetParent ? this.container.offsetParent.getBoundingClientRect() : { left: 0, top: 0 };
             this.x = e.pageX - parentRect.left - this.dragOffset.x;
@@ -249,7 +254,7 @@ class DigitalSticker {
             this.container.style.left = `${this.x}px`;
             this.container.style.top = `${this.y}px`;
 
-            // Inertia-based elegant 3D tilt
+            // Elegant inertial tilting
             this.tiltX = Math.max(-15, Math.min(15, -this.velocity.y * 0.4));
             this.tiltY = Math.max(-15, Math.min(15, this.velocity.x * 0.4));
 
@@ -259,10 +264,7 @@ class DigitalSticker {
 
     onPointerUp(e) {
         this.isPointerDown = false;
-        if (!this.hasMovedPastThreshold) {
-            // It was a simple click, nothing was moved! No teleportation!
-            return;
-        }
+        if (!this.hasMovedPastThreshold) return;
 
         if (this.state === 'PEELING') {
             this.state = 'STICKING';
@@ -280,24 +282,31 @@ class DigitalSticker {
         }
     }
 
-    renderPeel(p1, p2, dragDistance) {
+    renderPeel(grabPoint, dx, dy, dist) {
         const ctx = this.ctx;
-        ctx.clearRect(0, 0, this.width, this.height);
+        ctx.clearRect(0, 0, this.canvasSize, this.canvasSize);
 
         const r = this.radius;
-        const cx = r, cy = r;
+        const cx = 140, cy = 140;
 
-        // Calculate mid point of fold
+        // Current peeled pointer relative to the grab point on canvas
+        const p1 = grabPoint;
+        const p2 = {
+            x: grabPoint.x + dx,
+            y: grabPoint.y + dy
+        };
+
+        // Mid point of the segment is on the fold line
         const mx = (p1.x + p2.x) / 2;
         const my = (p1.y + p2.y) / 2;
 
-        const peelAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+        const peelAngle = Math.atan2(dy, dx);
 
-        // Step 1: Draw stuck portion (clipped by the fold line)
+        // Step 1: Draw the stuck portion of sticker (clipped by the fold line)
         ctx.save();
 
         ctx.beginPath();
-        const clipSize = this.width * 2;
+        const clipSize = this.canvasSize * 2;
         const foldNormalX = -Math.sin(peelAngle);
         const foldNormalY = Math.cos(peelAngle);
 
@@ -314,7 +323,7 @@ class DigitalSticker {
         this.drawStickerContent(ctx, cx, cy, r - 4, this.color);
         ctx.restore();
 
-        // Step 2: Draw the peeled flap (Reflected symmetrically)
+        // Step 2: Draw the peeled flap (Reflected symmetrically over fold line)
         ctx.save();
 
         ctx.beginPath();
@@ -325,7 +334,7 @@ class DigitalSticker {
         ctx.closePath();
         ctx.clip();
 
-        // Reflect coordinates symmetrically over fold line
+        // Symmetrical reflection transformation over fold line at Midpoint
         ctx.translate(mx, my);
         ctx.rotate(peelAngle);
         ctx.scale(-1, 1);
@@ -333,10 +342,10 @@ class DigitalSticker {
         ctx.translate(-mx, -my);
 
         ctx.save();
-        // Draw reflected side
-        this.drawStickerContent(ctx, cx, cy, r - 4, 'rgba(255,255,255,0.95)', true);
+        // Draw sticker backside backing
+        this.drawStickerContent(ctx, cx, cy, r - 4, 'rgba(255,255,255,0.95)');
 
-        // Overlay beautiful silver foil reflection
+        // Overlay vinyl silver foil reflection
         ctx.globalCompositeOperation = 'source-atop';
         const silverGrad = ctx.createLinearGradient(mx, my, p2.x, p2.y);
         silverGrad.addColorStop(0, 'rgba(225, 225, 230, 0.95)');
@@ -363,10 +372,10 @@ class DigitalSticker {
         ctx.restore();
         ctx.restore();
 
-        // Step 3: Draw oclusion shadow under the curl on base layer
+        // Step 3: Draw soft oclusion shadow under the curl on the base layer
         ctx.save();
-        const outerShadowGrad = ctx.createLinearGradient(mx, my, mx - Math.cos(peelAngle) * 18, my - Math.sin(peelAngle) * 18);
-        outerShadowGrad.addColorStop(0, 'rgba(0, 0, 0, 0.28)');
+        const outerShadowGrad = ctx.createLinearGradient(mx, my, mx - Math.cos(peelAngle) * 20, my - Math.sin(peelAngle) * 20);
+        outerShadowGrad.addColorStop(0, 'rgba(0, 0, 0, 0.3)');
         outerShadowGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.strokeStyle = 'transparent';
@@ -375,8 +384,8 @@ class DigitalSticker {
         ctx.beginPath();
         ctx.moveTo(mx + foldNormalX * r, my + foldNormalY * r);
         ctx.lineTo(mx - foldNormalX * r, my - foldNormalY * r);
-        ctx.lineTo(mx - foldNormalX * r - Math.cos(peelAngle) * 18, my - foldNormalY * r - Math.sin(peelAngle) * 18);
-        ctx.lineTo(mx + foldNormalX * r - Math.cos(peelAngle) * 18, my + foldNormalY * r - Math.sin(peelAngle) * 18);
+        ctx.lineTo(mx - foldNormalX * r - Math.cos(peelAngle) * 20, my - foldNormalY * r - Math.sin(peelAngle) * 20);
+        ctx.lineTo(mx + foldNormalX * r - Math.cos(peelAngle) * 20, my + foldNormalY * r - Math.sin(peelAngle) * 20);
         ctx.closePath();
         ctx.fill();
         ctx.restore();
