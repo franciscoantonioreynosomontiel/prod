@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PastelStickers — El Universo de los Stickers Digitales</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'Quicksand', 'sans-serif'],
+                        rounded: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        pastel: {
+                            pink: '#FFD1DC',
+                            blue: '#B3E5FC',
+                            purple: '#E1BEE7',
+                            green: '#C8E6C9',
+                            yellow: '#FFF9C4',
+                            orange: '#FFE0B2',
+                            mint: '#E0F2F1',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Sticker System Styles -->
+    <link rel="stylesheet" href="assets/css/stickers.css">
+
+    <style>
+        /* Custom styles for physical sticker interactions */
+        body {
+            background-color: #f7fafc;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow-x: hidden;
+        }
+
+        /* Ambient glowing backgrounds */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 209, 220, 0.4) 0%, rgba(179, 229, 252, 0.2) 50%, rgba(255,255,255,0) 100%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(225, 190, 231, 0.3) 0%, rgba(200, 230, 201, 0.2) 50%, rgba(255,255,255,0) 100%);
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Decorative mockups */
+        .laptop-mockup {
+            border: 12px solid #e2e8f0;
+            border-bottom-width: 24px;
+            border-radius: 20px;
+            position: relative;
+            background: #ffffff;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .laptop-base {
+            height: 12px;
+            background: #cbd5e1;
+            border-radius: 0 0 20px 20px;
+            width: calc(100% + 40px);
+            margin-left: -20px;
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .laptop-base::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 6px;
+            background: #94a3b8;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .phone-mockup {
+            border: 10px solid #e2e8f0;
+            border-radius: 32px;
+            background: #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .phone-notch {
+            width: 80px;
+            height: 16px;
+            background: #e2e8f0;
+            border-radius: 0 0 12px 12px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen relative overflow-x-hidden">
+
+    <!-- Ambient glowing backdrops -->
+    <div class="ambient-glow top-10 left-10"></div>
+    <div class="ambient-glow-2 top-[600px] right-10"></div>
+    <div class="ambient-glow bottom-20 left-[20%]"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 transition-all">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-pink-200 border-2 border-white shadow-sm flex items-center justify-center font-bold text-pink-600 text-lg">
+                    ✨
+                </div>
+                <span class="font-rounded font-bold text-xl tracking-tight bg-gradient-to-r from-pink-400 to-indigo-500 bg-clip-text text-transparent">PastelStickers</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
+                <a href="#welcome" class="hover:text-pink-500 transition-colors">Inicio</a>
+                <a href="#sticker-sheet" class="hover:text-pink-500 transition-colors">Colección</a>
+                <a href="#workspace" class="hover:text-pink-500 transition-colors">Mesa de Trabajo</a>
+                <a href="#creator" class="hover:text-pink-500 transition-colors">Diseñar Sticker</a>
+                <a href="#about" class="hover:text-pink-500 transition-colors">Física y Tecnología</a>
+            </nav>
+            <div class="flex items-center space-x-3">
+                <span class="text-xs bg-indigo-50 text-indigo-600 border border-indigo-100 rounded-full px-3 py-1.5 font-semibold">
+                    Interactive Tech Demo
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero / Welcome Section -->
+    <section id="welcome" class="max-w-6xl mx-auto px-6 pt-16 pb-12 text-center relative">
+        <span class="inline-block bg-pink-100/60 text-pink-600 border border-pink-200/50 rounded-full px-4 py-1.5 text-sm font-semibold mb-6">
+            🎨 ¡Tócalos, desbélalos y arrástralos por toda la web!
+        </span>
+        <h1 class="text-4xl md:text-6xl font-rounded font-extrabold tracking-tight text-slate-900 leading-tight mb-6">
+            El Arte Digital Hecho <br>
+            <span class="bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">Físicamente Interactivo</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8">
+            Experimenta el primer sistema de stickers digitales con simulación física de despegado. Siente la tensión del vinilo, la curvatura tridimensional y colócalos donde quieras en nuestra mesa de trabajo.
+        </p>
+
+        <!-- Live Counters & Hints -->
+        <div class="flex flex-wrap justify-center gap-6 max-w-lg mx-auto">
+            <div class="bg-white/80 border border-slate-100 rounded-2xl px-6 py-4 shadow-sm flex items-center space-x-4">
+                <span class="text-3xl">📐</span>
+                <div class="text-left">
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Física de Flexión</p>
+                    <p class="text-sm font-bold text-slate-700">Cálculo en Tiempo Real</p>
+                </div>
+            </div>
+            <div class="bg-white/80 border border-slate-100 rounded-2xl px-6 py-4 shadow-sm flex items-center space-x-4">
+                <span class="text-3xl">🚀</span>
+                <div class="text-left">
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Rendimiento</p>
+                    <p class="text-sm font-bold text-slate-700">60 FPS Ultra-Optimizado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticker Sheet Pack Section -->
+    <section id="sticker-sheet" class="max-w-6xl mx-auto px-6 py-12 relative">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3.5xl font-rounded font-extrabold text-slate-900 mb-3">La Colección Pastel</h2>
+            <p class="text-slate-500">Haz clic y mantén presionado sobre la esquina de cualquier sticker para despegarlo. ¡Arrástralo al escritorio!</p>
+        </div>
+
+        <!-- The Sticker Pack Binder -->
+        <div class="bg-white/90 border border-slate-100/80 rounded-3xl p-8 md:p-12 shadow-md max-w-4xl mx-auto relative min-h-[360px] flex items-center justify-center">
+
+            <!-- Grid of Initial Stickers -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-12 w-full max-w-3xl justify-items-center relative py-8">
+
+                <!-- Sticker 1 Container (Stuck initially) -->
+                <div class="w-32 h-32 relative flex items-center justify-center">
+                    <div class="sticker-wrapper" data-sticker-type="donut" data-sticker-color="#FFD1DC"></div>
+                </div>
+
+                <!-- Sticker 2 Container -->
+                <div class="w-32 h-32 relative flex items-center justify-center">
+                    <div class="sticker-wrapper" data-sticker-type="magic-cat" data-sticker-color="#E1BEE7"></div>
+                </div>
+
+                <!-- Sticker 3 Container -->
+                <div class="w-32 h-32 relative flex items-center justify-center">
+                    <div class="sticker-wrapper" data-sticker-type="planet" data-sticker-color="#B3E5FC"></div>
+                </div>
+
+                <!-- Sticker 4 Container -->
+                <div class="w-32 h-32 relative flex items-center justify-center">
+                    <div class="sticker-wrapper" data-sticker-type="hello-world" data-sticker-color="#C8E6C9"></div>
+                </div>
+
+            </div>
+
+            <!-- Page Curl Binder Details (Visual background touch) -->
+            <div class="absolute inset-y-0 left-6 w-1 bg-slate-100/50 hidden md:block"></div>
+            <div class="absolute inset-y-0 right-6 w-1 bg-slate-100/50 hidden md:block"></div>
+        </div>
+    </section>
+
+    <!-- Virtual Workspace / Laptop, Journal Mockup Area -->
+    <section id="workspace" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+            <span class="bg-indigo-100/60 text-indigo-600 border border-indigo-200/50 rounded-full px-4 py-1.5 text-sm font-semibold mb-3 inline-block">
+                💻 Espacio de Personalización Colectivo
+            </span>
+            <h2 class="text-3xl md:text-4xl font-rounded font-extrabold text-slate-900 mb-4">Decora tu Mesa Virtual</h2>
+            <p class="text-slate-500 max-w-xl mx-auto">
+                Suelta tus stickers despegados sobre cualquiera de estos objetos. Los stickers se adaptarán y permanecerán pegados sobre la superficie elegida.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-5xl mx-auto items-stretch">
+
+            <!-- Laptop Area -->
+            <div class="lg:col-span-2 flex flex-col justify-between">
+                <div class="bg-gradient-to-tr from-sky-50 to-pink-50/60 rounded-3xl p-8 border border-slate-100 flex-grow flex flex-col items-center justify-center relative overflow-hidden group min-h-[380px]">
+                    <div class="absolute top-4 left-4 text-xs font-bold text-slate-400">VISTA EXTERIOR DE LAPTOP</div>
+
+                    <!-- Laptop Screen Outer (Using it as drop space) -->
+                    <div class="w-full max-w-[440px] laptop-mockup flex flex-col items-center justify-center aspect-[16/10] bg-slate-900/5 drop-target transition-all duration-300 relative" id="laptop-screen">
+                        <!-- Laptop lid branding -->
+                        <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-slate-400 font-bold text-xl pointer-events-none">
+                            
+                        </div>
+                        <div class="absolute bottom-4 text-center text-xs text-slate-400 pointer-events-none">
+                            Arrastra y suelta tus stickers aquí
+                        </div>
+                    </div>
+                    <div class="w-full max-w-[480px] laptop-base pointer-events-none"></div>
+                </div>
+            </div>
+
+            <!-- Phone & Notebook Areas -->
+            <div class="flex flex-col gap-8">
+                <!-- Phone Mockup -->
+                <div class="bg-gradient-to-tr from-purple-50 to-teal-50 rounded-3xl p-8 border border-slate-100 flex-grow flex flex-col items-center justify-center relative overflow-hidden min-h-[260px]">
+                    <div class="absolute top-4 left-4 text-xs font-bold text-slate-400 font-mono">TELÉFONO INTELIGENTE</div>
+
+                    <!-- Phone Container -->
+                    <div class="w-[140px] h-[260px] phone-mockup drop-target transition-all duration-300 relative flex items-center justify-center" id="phone-body">
+                        <div class="phone-notch"></div>
+                        <div class="text-center text-[10px] text-slate-300 px-4 pointer-events-none absolute bottom-4">
+                            ¡Pega un sticker en el reverso!
+                        </div>
+                        <div class="w-8 h-8 rounded-full border-4 border-slate-200/40 absolute top-8 pointer-events-none"></div>
+                    </div>
+                </div>
+
+                <!-- Notebook Mockup -->
+                <div class="bg-gradient-to-tr from-amber-50 to-rose-50 rounded-3xl p-8 border border-slate-100 flex-grow flex flex-col items-center justify-center relative overflow-hidden min-h-[260px]">
+                    <div class="absolute top-4 left-4 text-xs font-bold text-slate-400">DIARIO PERSONAL</div>
+
+                    <!-- Notebook Body -->
+                    <div class="w-[160px] h-[220px] bg-amber-100/80 rounded-r-xl rounded-l shadow-lg border-l-8 border-amber-800/40 drop-target transition-all duration-300 relative flex flex-col justify-between p-4" id="notebook-body">
+                        <div class="w-full h-px bg-amber-800/10 mt-12"></div>
+                        <div class="w-full h-px bg-amber-800/10"></div>
+                        <div class="w-full h-px bg-amber-800/10"></div>
+                        <div class="w-full h-px bg-amber-800/10 mb-8"></div>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <span class="font-rounded font-bold text-xs text-amber-800/30 uppercase tracking-widest">Mis Ideas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sticker Custom Generator / Design Studio -->
+    <section id="creator" class="max-w-6xl mx-auto px-6 py-12">
+        <div class="max-w-4xl mx-auto bg-white border border-slate-100 rounded-3xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
+
+            <!-- Left Side: Controls -->
+            <div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-slate-100 flex flex-col justify-between">
+                <div>
+                    <span class="bg-pink-100 text-pink-600 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 inline-block">Estudio de Diseño</span>
+                    <h3 class="text-2xl font-rounded font-extrabold text-slate-900 mb-2">Crea tu Sticker</h3>
+                    <p class="text-slate-500 text-sm mb-8">Personaliza tu propio sticker físico interactivo. Elige un fondo pastel, un ícono y agrégale texto.</p>
+
+                    <!-- Inputs -->
+                    <div class="space-y-6">
+                        <!-- Custom Text Input -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Texto del Sticker</label>
+                            <input type="text" id="sticker-text-input" value="SÚPER!" maxlength="15" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 text-slate-700 font-semibold font-rounded">
+                        </div>
+
+                        <!-- Color selection -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Color de Fondo Pastel</label>
+                            <div class="flex flex-wrap gap-3" id="color-selectors">
+                                <button class="w-8 h-8 rounded-full bg-[#FFD1DC] border-2 border-slate-800 ring-2 ring-slate-200 transition-all focus:outline-none" data-color="#FFD1DC"></button>
+                                <button class="w-8 h-8 rounded-full bg-[#B3E5FC] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#B3E5FC"></button>
+                                <button class="w-8 h-8 rounded-full bg-[#E1BEE7] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#E1BEE7"></button>
+                                <button class="w-8 h-8 rounded-full bg-[#C8E6C9] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#C8E6C9"></button>
+                                <button class="w-8 h-8 rounded-full bg-[#FFE0B2] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#FFE0B2"></button>
+                                <button class="w-8 h-8 rounded-full bg-[#E0F2F1] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#E0F2F1"></button>
+                            </div>
+                        </div>
+
+                        <!-- Icon selection -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ícono Central</label>
+                            <div class="grid grid-cols-5 gap-3" id="icon-selectors">
+                                <button class="py-2.5 px-3 rounded-xl border-2 border-slate-800 font-semibold text-xl flex items-center justify-center transition-all bg-slate-50 focus:outline-none" data-icon="star">⭐</button>
+                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 font-semibold text-xl flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-icon="heart">💖</button>
+                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 font-semibold text-xl flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-icon="smile">😊</button>
+                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 font-semibold text-xl flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-icon="cloud">☁️</button>
+                                <button class="py-2.5 px-3 rounded-xl border border-slate-200 font-semibold text-xl flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-icon="sparkles">✨</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generate-sticker-btn" class="w-full mt-8 bg-slate-900 hover:bg-slate-800 text-white font-rounded font-bold py-4 px-6 rounded-2xl shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                    Generar y Imprimir Sticker 🖨️
+                </button>
+            </div>
+
+            <!-- Right Side: Live preview and Output -->
+            <div class="p-8 md:p-12 bg-slate-50 flex flex-col items-center justify-center relative min-h-[300px]">
+                <div class="absolute top-4 left-4 text-xs font-bold text-slate-400">VISTA PREVIA DE PRODUCCIÓN</div>
+
+                <!-- Live Preview Space -->
+                <div class="w-44 h-44 flex items-center justify-center relative bg-white/40 border border-dashed border-slate-200 rounded-3xl shadow-inner">
+                    <!-- Preview Sticker -->
+                    <div id="preview-sticker-container" class="w-32 h-32 relative flex items-center justify-center">
+                        <div id="preview-sticker-wrapper"></div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-400 mt-6 text-center">
+                    Modifica los parámetros y mira el resultado en tiempo real. Al hacer clic en el botón, el sticker aparecerá listo para usar.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Technical Specs & Physics details -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-100">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-3xl font-rounded font-extrabold text-slate-900 mb-4">¿Cómo Funciona la Física del Despegado?</h2>
+            <p class="text-slate-600">
+                Detrás del renderizado interactivo de los stickers hay un sofisticado modelo matemático de deformación de superficies en 2D que imita la flexión tridimensional.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+            <!-- Card 1 -->
+            <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center font-bold text-pink-600 mb-6 text-xl">
+                    📐
+                </div>
+                <h4 class="font-rounded font-bold text-lg text-slate-900 mb-2">Mediatriz de Flexión</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Calculamos la línea de doblado como la mediatriz del segmento que une el punto de agarre original en el borde del sticker con la posición actual del cursor.
+                </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center font-bold text-indigo-600 mb-6 text-xl">
+                    🔄
+                </div>
+                <h4 class="font-rounded font-bold text-lg text-slate-900 mb-2">Reflexión Matricial</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Aplicamos una transformación de escala negativa simétrica sobre la mediatriz en el plano 2D para renderizar con precisión matemática la solapa doblada y pegada al revés.
+                </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center font-bold text-teal-600 mb-6 text-xl">
+                    🔆
+                </div>
+                <h4 class="font-rounded font-bold text-lg text-slate-900 mb-2">Gradientes Cilíndricos</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Para lograr el brillo 3D del vinilo rígido, calculamos un gradiente lineal dinámico perpendicular a la línea de doblado que crea sombras de oclusión y un haz de luz reflejado.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Simple, Elegant Footer -->
+    <footer class="border-t border-slate-100 bg-white/40 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-pink-200 border-2 border-white shadow-sm flex items-center justify-center font-bold text-pink-600 text-sm">
+                    ✨
+                </div>
+                <span class="font-rounded font-bold text-lg text-slate-800">PastelStickers</span>
+            </div>
+            <p class="text-xs text-slate-400">
+                © 2026 PastelStickers. Diseñado con ❤️ para la interactividad de alta fidelidad.
+            </p>
+            <div class="flex space-x-6 text-sm text-slate-500 font-semibold">
+                <a href="#" class="hover:text-pink-500 transition-colors">Terminos</a>
+                <a href="#" class="hover:text-pink-500 transition-colors">Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- STICKER INTERACTION SCRIPT -->
+    <script src="assets/js/stickers.js"></script>
+</body>
+</html>
