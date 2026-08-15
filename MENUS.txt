@@ -1,0 +1,63 @@
+==============================================================================
+GUÍA DE CONFIGURACIÓN Y REDIMENSIONAMIENTO DEL MENÚ (TURN.JS / FLIP.JS)
+==============================================================================
+
+Para modificar el tamaño del menú interactivo (tanto el ancho/horizontal como el
+alto/vertical), debes ajustar los valores en los siguientes dos archivos:
+
+------------------------------------------------------------------------------
+1. ARCHIVO DE ESTILOS CSS: docs/menus/assets/css/flip.css
+------------------------------------------------------------------------------
+Líneas exactas a modificar (Líneas 25-27):
+
+```css
+.flipbook-viewport .flipbook {
+  width: 600px;  /* Línea 26: Ancho horizontal base */
+  height: 420px; /* Línea 27: Alto vertical base */
+}
+```
+
+- Para cambiar el ANCHO (Horizontal): modifica el valor de `width:` (ej. 600px, 500px, etc.)
+- Para cambiar el ALTO (Vertical): modifica el valor de `height:` (ej. 420px, 350px, etc.)
+
+
+------------------------------------------------------------------------------
+2. ARCHIVO HTML / JAVASCRIPT: docs/menus/index.html
+------------------------------------------------------------------------------
+Líneas exactas a modificar:
+
+A) Inicialización del Turn.js (Líneas 51-54):
+```javascript
+      $flipbook.turn({
+        width: 600,  // Línea 52: Ancho base inicial
+        height: 420, // Línea 53: Alto base inicial
+```
+
+B) Variables de Escalado Responsivo (Líneas 58-59, 68, 73):
+```javascript
+        var baseWidth = 600;  // Línea 58: Ancho base horizontal
+        var baseHeight = 420; // Línea 59: Alto base vertical
+
+        if (windowWidth <= 768) {
+          // ...
+          baseWidth = 300; // Línea 68: Ancho en móviles (1 sola página = la mitad del ancho base)
+        } else {
+          // ...
+          baseWidth = 600; // Línea 73: Ancho en escritorio (2 páginas = ancho base completo)
+        }
+```
+
+------------------------------------------------------------------------------
+CÓMO AJUSTAR ANCHO O ALTO DE FORMA INDEPENDIENTE:
+------------------------------------------------------------------------------
+1. Si deseas hacer el menú MÁS ANCHO o MÁS ANGOSTO (Horizontal):
+   - En `flip.css` (Línea 26): Cambia `width: XXXpx;`
+   - En `index.html` (Línea 52 y 58 y 73): Cambia `width` / `baseWidth` al mismo valor XXX.
+   - En `index.html` (Línea 68): Pon la mitad del valor XXX (ej. si el total es 600, pon 300).
+
+2. Si deseas hacer el menú MÁS ALTO o MÁS BAJO (Vertical):
+   - En `flip.css` (Línea 27): Cambia `height: YYYpx;`
+   - En `index.html` (Línea 53 y 59): Cambia `height` / `baseHeight` al mismo valor YYY.
+
+Nota: El script responsivo adaptará y mantendrá siempre el menú centrado y contenido
+dentro de la columna sin salirse ni deformarse en ningún dispositivo.
