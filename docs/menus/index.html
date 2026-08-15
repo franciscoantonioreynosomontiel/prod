@@ -53,7 +53,61 @@
   <script src="./assets/js/turn.js"></script>
 
   <script>
-    $(".flipbook").turn();
+    $(document).ready(function() {
+      var $flipbook = $(".flipbook");
+
+      // Inicializar turn.js
+      $flipbook.turn({
+        width: 600,
+        height: 420,
+        autoCenter: true,
+        gradients: true,
+        acceleration: true
+      });
+
+      function resizeFlipbook() {
+        var containerWidth = $(".flipbook-viewport").width();
+        var baseWidth = 600;
+        var baseHeight = 420;
+        var windowWidth = $(window).width();
+
+        // En pantallas pequeñas (móviles <= 768px), usar vista de 1 sola página para óptimo espacio
+        if (windowWidth <= 768) {
+          if ($flipbook.turn("display") !== "single") {
+            $flipbook.turn("display", "single");
+          }
+          baseWidth = 300; // 1 sola página
+        } else {
+          if ($flipbook.turn("display") !== "double") {
+            $flipbook.turn("display", "double");
+          }
+          baseWidth = 600; // 2 páginas
+        }
+
+        // Calcular escala de reducción ajustada para asegurar que no sobresalga de la columna
+        var scale = 1;
+        var padding = 20; // margen de seguridad
+        var availableWidth = containerWidth - padding;
+
+        if (availableWidth < baseWidth) {
+          scale = availableWidth / baseWidth;
+        }
+
+        // Aplicar transformación CSS conservando centrado
+        $flipbook.css({
+          "transform": "scale(" + scale + ")",
+          "transform-origin": "center center"
+        });
+
+        // Ajustar altura de contenedor .menu1 para evitar solapamientos verticales
+        var scaledHeight = baseHeight * scale;
+        $(".menu1").css("min-height", (scaledHeight + 20) + "px");
+      }
+
+      // Ejecutar al cargar y al redimensionar ventana
+      resizeFlipbook();
+      $(window).on("resize", resizeFlipbook);
+    });
   </script>
 </div>
         <div class="dbanner">
@@ -159,19 +213,6 @@ Vibrant colors and high resolution to make dish images attractive.</p></div>
     yearSpan.textContent = currentYear;
 </script>
 
-
-<!--<h2 class="featured-title">Featured Promotions</h2>
-<div class="custom-gallery">
-  <a href="https://menutechdeveloper.github.io/lpmenus/" class="img-container" data-set="1">
-    <img src="./assets/img/i7.webp" alt="">
-  </a>
-  <a href="https://link2.com" class="img-container" data-set="2">
-    <img src="img/imagen2.jpg" alt="">
-  </a>
-  <a href="https://link3.com" class="img-container" data-set="3">
-    <img src="img/imagen3.jpg" alt="">
-  </a>
-</div>-->
     <script src="./assets/js/muestra.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/smart-forms.min.js"></script>
