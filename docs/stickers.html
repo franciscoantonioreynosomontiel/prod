@@ -59,31 +59,6 @@
             opacity: 0.6;
         }
 
-        /* Mockup Drop Targets with Kawaii Borders */
-        .bag-mockup {
-            background: #F3E3D3;
-            border-radius: 28px;
-            border: 4px dashed #D4C0AD;
-            box-shadow: 0 10px 25px rgba(212, 192, 173, 0.3);
-            position: relative;
-        }
-
-        .table-mockup {
-            background: #EFE4D6;
-            border-radius: 28px;
-            border: 4px dashed #CBB8A5;
-            box-shadow: 0 10px 25px rgba(203, 184, 165, 0.3);
-            position: relative;
-        }
-
-        .glass-mockup {
-            background: #E0F2F1;
-            border-radius: 28px;
-            border: 4px dashed #B2DFDB;
-            box-shadow: 0 10px 25px rgba(178, 223, 219, 0.3);
-            position: relative;
-        }
-
         /* Animated Tech Glow for QR & NFC Cards */
         @keyframes pulse-tech {
             0%, 100% { transform: scale(1); opacity: 0.9; }
@@ -116,19 +91,27 @@
                 <a href="#welcome" class="hover:text-pink-400 transition-colors">Inicio</a>
                 <a href="#guide" class="hover:text-pink-400 transition-colors">¿Para Qué Sirven?</a>
                 <a href="#tech" class="hover:text-pink-400 transition-colors">Tecnología QR & NFC</a>
-                <a href="#sticker-sheet" class="hover:text-pink-400 transition-colors">Colección</a>
-                <a href="#workspace" class="hover:text-pink-400 transition-colors">Zonas de Pegado</a>
             </nav>
             <div class="flex items-center space-x-2">
                 <span class="text-xs font-kawaii font-bold bg-pink-100 text-pink-500 border border-pink-200 rounded-full px-4 py-1.5 shadow-sm">
-                    ✨ Guía Informativa Interactiva
+                    ✨ Guía Informativa de Adhesivos
                 </span>
             </div>
         </div>
     </header>
 
-    <!-- Welcome / Hero Section -->
-    <section id="welcome" class="max-w-5xl mx-auto px-6 pt-16 pb-10 text-center relative">
+    <!-- Welcome / Hero Section (Scattered Stickers Included) -->
+    <section id="welcome" class="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center relative">
+        <!-- Scattered Sticker 1 on top-left of Hero -->
+        <div class="hidden lg:block absolute left-[-60px] top-10">
+            <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker1.png" data-sticker-color="#FFD1DC"></div>
+        </div>
+
+        <!-- Scattered Sticker 2 on top-right of Hero -->
+        <div class="hidden lg:block absolute right-[-60px] top-12">
+            <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticke2.png" data-sticker-color="#E1BEE7"></div>
+        </div>
+
         <span class="inline-block bg-kawaii-pink/60 text-pink-600 border border-pink-200/60 rounded-full px-5 py-2 font-kawaii font-bold text-sm mb-6 shadow-sm">
             🌸 Adhesivos Profesionales e Inteligentes para Negocios
         </span>
@@ -143,52 +126,64 @@
         </p>
     </section>
 
-    <!-- Educational Section: ¿Para qué sirven? -->
-    <section id="guide" class="max-w-6xl mx-auto px-6 py-12">
+    <!-- Educational Section: ¿Para qué sirven? (Scattered Stickers Included) -->
+    <section id="guide" class="max-w-6xl mx-auto px-6 py-12 relative">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-kawaii font-bold text-slate-800 mb-3">🌸 ¿Por Qué Usar Stickers en tu Negocio?</h2>
             <p class="text-slate-500 max-w-lg mx-auto font-medium">Un pequeño detalle adhesivo que genera gran impacto visual y engagement.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             <!-- Card 1 -->
-            <div class="bg-white/90 border-2 border-kawaii-pink/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all text-center">
+            <div class="bg-white/90 border-2 border-kawaii-pink/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all text-center relative">
                 <div class="w-16 h-16 rounded-2xl bg-kawaii-pink/60 flex items-center justify-center text-3xl mx-auto mb-6">
                     🎁
                 </div>
                 <h3 class="font-kawaii font-bold text-xl text-slate-800 mb-3">Sellado de Seguridad</h3>
-                <p class="text-sm text-slate-500 leading-relaxed font-medium">
+                <p class="text-sm text-slate-500 leading-relaxed font-medium mb-4">
                     Colocados sobre bolsas Kraft o empaques de takeout, garantizan que los alimentos lleguen intactos mientras refuerzan el logotipo de tu restaurante.
                 </p>
+                <!-- Scattered Sticker 3 -->
+                <div class="flex justify-center mt-4">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker3.png" data-sticker-color="#B3E5FC"></div>
+                </div>
             </div>
 
             <!-- Card 2 -->
-            <div class="bg-white/90 border-2 border-kawaii-purple/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all text-center">
+            <div class="bg-white/90 border-2 border-kawaii-purple/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all text-center relative">
                 <div class="w-16 h-16 rounded-2xl bg-kawaii-purple/60 flex items-center justify-center text-3xl mx-auto mb-6">
                     📲
                 </div>
                 <h3 class="font-kawaii font-bold text-xl text-slate-800 mb-3">Acceso Inmediato al Menú</h3>
-                <p class="text-sm text-slate-500 leading-relaxed font-medium">
+                <p class="text-sm text-slate-500 leading-relaxed font-medium mb-4">
                     Impresos en vinilo resistente al agua para cada mesa, permiten a los comensales escanear o acercar su celular para ver la carta digital al instante.
                 </p>
+                <!-- Scattered Sticker 4 -->
+                <div class="flex justify-center mt-4">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker4.png" data-sticker-color="#C8E6C9"></div>
+                </div>
             </div>
 
             <!-- Card 3 -->
-            <div class="bg-white/90 border-2 border-kawaii-blue/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all text-center">
+            <div class="bg-white/90 border-2 border-kawaii-blue/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all text-center relative">
                 <div class="w-16 h-16 rounded-2xl bg-kawaii-blue/60 flex items-center justify-center text-3xl mx-auto mb-6">
                     ⭐
                 </div>
                 <h3 class="font-kawaii font-bold text-xl text-slate-800 mb-3">Fidelización y Reseñas</h3>
-                <p class="text-sm text-slate-500 leading-relaxed font-medium">
+                <p class="text-sm text-slate-500 leading-relaxed font-medium mb-4">
                     Incentiva a tus clientes a calificar tu servicio en Google Maps o seguir tus redes sociales con enlaces directos impresos en el adhesivo.
                 </p>
+                <!-- Scattered Sticker 5 -->
+                <div class="flex justify-center mt-4">
+                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker5.png" data-sticker-color="#FFE0B2"></div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Animated Section: QR Code & NFC Technology -->
     <section id="tech" class="max-w-6xl mx-auto px-6 py-12">
-        <div class="bg-gradient-to-r from-kawaii-lavender/80 via-white to-kawaii-mint/80 border-2 border-purple-200/60 rounded-3xl p-8 md:p-12 shadow-sm">
+        <div class="bg-gradient-to-r from-kawaii-lavender/80 via-white to-kawaii-mint/80 border-2 border-purple-200/60 rounded-3xl p-8 md:p-12 shadow-sm relative">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="bg-purple-100 text-purple-600 font-kawaii font-bold text-xs uppercase px-4 py-1.5 rounded-full mb-3 inline-block">
                     ⚡ Tecnología Integrada
@@ -204,9 +199,11 @@
                         📷
                     </div>
                     <h4 class="font-kawaii font-bold text-xl text-slate-800 mb-2">1. Escaneo de Código QR</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">
+                    <p class="text-xs text-slate-500 leading-relaxed font-medium mb-4">
                         El cliente abre la cámara de cualquier teléfono inteligente, apunta al código QR impreso en el sticker y se abre la página web o menú en menos de 2 segundos.
                     </p>
+                    <!-- Scattered Sticker 6 -->
+                    <div class="sticker-wrapper mt-2" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker6.png" data-sticker-color="#E0F2F1"></div>
                 </div>
 
                 <!-- NFC Explanation -->
@@ -215,213 +212,18 @@
                         📡
                     </div>
                     <h4 class="font-kawaii font-bold text-xl text-slate-800 mb-2">2. Toque Inalámbrico NFC</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">
+                    <p class="text-xs text-slate-500 leading-relaxed font-medium mb-4">
                         Un pequeño chip ultradelgado integrado dentro del adhesivo transmite la URL al acercar el teléfono a pocos centímetros, ¡sin necesidad de abrir la cámara!
                     </p>
+                    <!-- Scattered Sticker 7 -->
+                    <div class="sticker-wrapper mt-2" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker7.png" data-sticker-color="#FFF9C4"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Sticker Sheet Collection -->
-    <section id="sticker-sheet" class="max-w-6xl mx-auto px-6 py-12">
-        <div class="text-center mb-8">
-            <span class="bg-kawaii-pink text-pink-600 font-kawaii font-bold text-xs uppercase px-4 py-1.5 rounded-full mb-3 inline-block">
-                ✨ Demostración Interactiva
-            </span>
-            <h2 class="text-3xl font-kawaii font-extrabold text-slate-800 mb-2">Colección de Stickers de Ejemplo</h2>
-            <p class="text-slate-500 font-medium">Haz clic y mantén presionado para ver la animación de despegado. ¡Arrástralo a cualquier zona!</p>
-        </div>
-
-        <!-- The Binder Grid Container -->
-        <div class="bg-white/90 border-2 border-kawaii-pink/40 rounded-3xl p-8 md:p-12 shadow-md max-w-5xl mx-auto relative min-h-[420px] flex items-center justify-center">
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-12 w-full max-w-4xl justify-items-center relative py-6">
-
-                <!-- Sticker 1 -->
-                <div class="w-36 h-36 relative flex flex-col items-center">
-                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker1.png" data-sticker-color="#FFD1DC"></div>
-                    <span class="text-xs font-kawaii font-semibold text-slate-400 mt-2">Bistro QR Code</span>
-                </div>
-
-                <!-- Sticker 2 -->
-                <div class="w-36 h-36 relative flex flex-col items-center">
-                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticke2.png" data-sticker-color="#E1BEE7"></div>
-                    <span class="text-xs font-kawaii font-semibold text-slate-400 mt-2">Sabor Especial</span>
-                </div>
-
-                <!-- Sticker 3 -->
-                <div class="w-36 h-36 relative flex flex-col items-center">
-                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker3.png" data-sticker-color="#B3E5FC"></div>
-                    <span class="text-xs font-kawaii font-semibold text-slate-400 mt-2">Takeout Seal</span>
-                </div>
-
-                <!-- Sticker 4 -->
-                <div class="w-36 h-36 relative flex flex-col items-center">
-                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker4.png" data-sticker-color="#C8E6C9"></div>
-                    <span class="text-xs font-kawaii font-semibold text-slate-400 mt-2">Burger Stamp</span>
-                </div>
-
-                <!-- Sticker 5 -->
-                <div class="w-36 h-36 relative flex flex-col items-center">
-                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker5.png" data-sticker-color="#FFE0B2"></div>
-                    <span class="text-xs font-kawaii font-semibold text-slate-400 mt-2">Pizza Delivery</span>
-                </div>
-
-                <!-- Sticker 6 -->
-                <div class="w-36 h-36 relative flex flex-col items-center">
-                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker6.png" data-sticker-color="#E0F2F1"></div>
-                    <span class="text-xs font-kawaii font-semibold text-slate-400 mt-2">Eco Organic Label</span>
-                </div>
-
-                <!-- Sticker 7 -->
-                <div class="w-36 h-36 relative flex flex-col items-center">
-                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker7.png" data-sticker-color="#FFF9C4"></div>
-                    <span class="text-xs font-kawaii font-semibold text-slate-400 mt-2">Sweet Bakery</span>
-                </div>
-
-                <!-- Sticker 8 -->
-                <div class="w-36 h-36 relative flex flex-col items-center">
-                    <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker8.png" data-sticker-color="#FFE0B2"></div>
-                    <span class="text-xs font-kawaii font-semibold text-slate-400 mt-2">Espresso Cup</span>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Virtual Workspace / 3 Interactive Surface Drop Zones -->
-    <section id="workspace" class="max-w-6xl mx-auto px-6 py-16">
-        <div class="text-center mb-12">
-            <span class="bg-kawaii-blue text-sky-600 font-kawaii font-bold text-xs uppercase px-4 py-1.5 rounded-full mb-3 inline-block">
-                🏪 Zonas de Aplicación Comercial
-            </span>
-            <h2 class="text-3xl font-kawaii font-extrabold text-slate-800 mb-3">Mesa de Pruebas de Pegado</h2>
-            <p class="text-slate-500 font-medium max-w-xl mx-auto">
-                Arrastra cualquier sticker despegado y suéltalo sobre estas superficies. Al soltarlo, el sticker se desdoblará automáticamente.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
-
-            <!-- Target A: Kraft Bag -->
-            <div class="bag-mockup p-8 flex flex-col justify-between items-center aspect-[4/5] drop-target relative overflow-hidden" id="kraft-bag">
-                <div class="w-20 h-8 rounded-t-full border-4 border-[#C8B094] border-b-0 absolute top-2"></div>
-                <div class="w-24 h-1 bg-[#D8C0A4] rounded mt-4 absolute top-10"></div>
-
-                <div class="flex-grow flex flex-col justify-center items-center pointer-events-none mt-10">
-                    <span class="font-kawaii font-bold text-base text-[#7D6652] uppercase tracking-wider mb-1">Bolsa Kraft</span>
-                    <span class="text-xs text-[#9E8672] text-center px-4 font-medium">Sello de Seguridad Takeout</span>
-                </div>
-
-                <div class="text-xs font-kawaii font-bold text-[#8C7461] pointer-events-none mb-1">
-                    🛍️ Suelta stickers aquí
-                </div>
-            </div>
-
-            <!-- Target B: Wooden Table -->
-            <div class="table-mockup p-8 flex flex-col justify-between items-center aspect-[4/5] drop-target relative overflow-hidden" id="wooden-table">
-                <div class="flex-grow flex flex-col justify-center items-center pointer-events-none">
-                    <span class="font-kawaii font-bold text-base text-[#8D7B65] uppercase tracking-wider mb-1">Mesa de Restaurante</span>
-                    <span class="text-xs text-[#AA9983] text-center px-4 font-medium">Ubicación para Table QR / NFC</span>
-                </div>
-
-                <div class="text-xs font-kawaii font-bold text-[#917E65] pointer-events-none mb-1">
-                    🍽️ Suelta códigos QR aquí
-                </div>
-            </div>
-
-            <!-- Target C: Glass Window -->
-            <div class="glass-mockup p-8 flex flex-col justify-between items-center aspect-[4/5] drop-target relative overflow-hidden" id="glass-window">
-                <div class="flex-grow flex flex-col justify-center items-center pointer-events-none">
-                    <span class="font-kawaii font-bold text-base text-teal-700 uppercase tracking-wider mb-1">Vitrina de Cristal</span>
-                    <span class="text-xs text-teal-600 text-center px-4 font-medium">Adhesivo de Horarios / Marcas</span>
-                </div>
-
-                <div class="text-xs font-kawaii font-bold text-teal-600 pointer-events-none mb-1">
-                    🪟 Suelta adhesivos aquí
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Sticker Custom Generator / Design Studio -->
-    <section id="creator" class="max-w-6xl mx-auto px-6 py-12">
-        <div class="max-w-4xl mx-auto bg-white border-2 border-pink-100 rounded-3xl shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-2">
-
-            <!-- Controls -->
-            <div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-pink-100 flex flex-col justify-between">
-                <div>
-                    <span class="bg-pink-100 text-pink-600 font-kawaii font-bold text-xs uppercase px-4 py-1.5 rounded-full mb-4 inline-block">
-                        🎨 Diseñador de Prueba
-                    </span>
-                    <h3 class="text-2xl font-kawaii font-extrabold text-slate-800 mb-2">Personaliza un Adhesivo</h3>
-                    <p class="text-slate-500 text-sm mb-6 font-medium">Elige el color pastel, el logotipo comercial y añade el número telefónico de tu negocio.</p>
-
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-xs font-kawaii font-bold text-slate-500 uppercase tracking-wider mb-2">Teléfono / Texto de Marca</label>
-                            <input type="text" id="sticker-text-input" value="1-800-FOOD" maxlength="15" class="w-full border border-pink-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 text-slate-700 font-semibold font-kawaii">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-kawaii font-bold text-slate-500 uppercase tracking-wider mb-2">Fondo Pastel</label>
-                            <div class="flex flex-wrap gap-3" id="color-selectors">
-                                <button class="w-8 h-8 rounded-full bg-[#FFD1DC] border-2 border-slate-800 ring-2 ring-slate-200 transition-all focus:outline-none" data-color="#FFD1DC"></button>
-                                <button class="w-8 h-8 rounded-full bg-[#B3E5FC] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#B3E5FC"></button>
-                                <button class="w-8 h-8 rounded-full bg-[#E1BEE7] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#E1BEE7"></button>
-                                <button class="w-8 h-8 rounded-full bg-[#C8E6C9] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#C8E6C9"></button>
-                                <button class="w-8 h-8 rounded-full bg-[#FFE0B2] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#FFE0B2"></button>
-                                <button class="w-8 h-8 rounded-full bg-[#E0F2F1] border-2 border-transparent transition-all hover:scale-105 focus:outline-none" data-color="#E0F2F1"></button>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-kawaii font-bold text-slate-500 uppercase tracking-wider mb-2">Logotipo / QR</label>
-                            <div class="grid grid-cols-4 gap-3" id="icon-selectors">
-                                <button class="py-2.5 px-3 rounded-2xl border-2 border-slate-800 flex items-center justify-center transition-all bg-slate-50 focus:outline-none" data-img-url="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker1.png">
-                                    <img src="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker1.png" class="w-8 h-8 object-contain">
-                                </button>
-                                <button class="py-2.5 px-3 rounded-2xl border border-slate-200 flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-img-url="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker3.png">
-                                    <img src="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker3.png" class="w-8 h-8 object-contain">
-                                </button>
-                                <button class="py-2.5 px-3 rounded-2xl border border-slate-200 flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-img-url="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker5.png">
-                                    <img src="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker5.png" class="w-8 h-8 object-contain">
-                                </button>
-                                <button class="py-2.5 px-3 rounded-2xl border border-slate-200 flex items-center justify-center transition-all hover:bg-slate-50 focus:outline-none" data-img-url="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker8.png">
-                                    <img src="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker8.png" class="w-8 h-8 object-contain">
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button id="generate-sticker-btn" class="w-full mt-8 bg-slate-800 hover:bg-slate-900 text-white font-kawaii font-bold py-4 px-6 rounded-2xl shadow-md transition-all">
-                    Generar Adhesivo 🖨️
-                </button>
-            </div>
-
-            <!-- Preview -->
-            <div class="p-8 md:p-12 bg-kawaii-cream flex flex-col items-center justify-center relative min-h-[300px]">
-                <div class="absolute top-4 left-4 text-xs font-kawaii font-bold text-slate-400">VISTA PREVIA</div>
-
-                <div class="w-48 h-48 flex items-center justify-center relative bg-white border-2 border-dashed border-pink-200 rounded-3xl shadow-inner">
-                    <div id="preview-sticker-container" class="w-36 h-36 relative flex items-center justify-center">
-                        <div id="preview-sticker-wrapper"></div>
-                    </div>
-                </div>
-
-                <p class="text-xs text-slate-400 mt-6 text-center font-medium">
-                    Prueba despegarlo y soltarlo para experimentar la animación.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-pink-100 bg-white/60 py-10 px-6 mt-12">
+    <!-- Footer (With Scattered Sticker 8) -->
+    <footer class="border-t border-pink-100 bg-white/60 py-10 px-6 mt-12 relative">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-xl bg-kawaii-pink flex items-center justify-center text-sm shadow-sm">
@@ -432,6 +234,8 @@
             <p class="text-xs text-slate-400 font-medium">
                 © 2026 KawaiiStickers Pro. Guía Informativa e Interactiva sobre Adhesivos Inteligentes.
             </p>
+            <!-- Scattered Sticker 8 in Footer -->
+            <div class="sticker-wrapper" data-sticker-img="https://menutechdeveloper.github.io/bddImg/assets/mk/sticker8.png" data-sticker-color="#FFE0B2"></div>
         </div>
     </footer>
 

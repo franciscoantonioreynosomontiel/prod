@@ -1,6 +1,6 @@
 /**
- * KawaiiStickers Pro — 1:1 Milimetric Drag & Corner Peel System
- * Smooth, lag-free sticker peeling and unfolding.
+ * KawaiiStickers Pro — Major Diagonal Corner Peel & 1:1 Drag System
+ * Matches physical sticker peel aesthetics with major diagonal curl.
  */
 
 class DigitalSticker {
@@ -17,14 +17,14 @@ class DigitalSticker {
 
         this.isPointerDown = false;
         this.hasMovedPastThreshold = false;
-        this.dragThreshold = 6; // 6px drag threshold to prevent click bugs
+        this.dragThreshold = 6; // 6px click suppression
 
         this.startX = 0;
         this.startY = 0;
         this.offsetX = 0;
         this.offsetY = 0;
 
-        // Image asset preloader
+        // Image preloader
         this.isImageLoaded = false;
         this.stickerImg = new Image();
         this.stickerImg.crossOrigin = 'anonymous';
@@ -93,7 +93,7 @@ class DigitalSticker {
 
         ctx.restore();
 
-        // Text label
+        // Optional custom text plate
         if (this.text) {
             ctx.save();
             ctx.translate(cx, cy);
@@ -118,21 +118,22 @@ class DigitalSticker {
         this.drawStickerContent(this.ctx, this.radius, this.radius, this.radius - 4, this.color);
     }
 
-    // Corner Folded Peel State (Top-Left Corner Folded towards Center)
+    // Major Diagonal Corner Folded Peel State (Matching exampleSticker.png)
     drawPeeled() {
         const ctx = this.ctx;
         ctx.clearRect(0, 0, this.width, this.height);
 
         const r = this.radius; // 70px
         const cx = r, cy = r;
-        const foldDist = 38; // Fold size in pixels
 
-        // Step 1: Draw stuck portion clipped at the top-left corner fold line
+        // Major fold line cutting across upper-left diagonal (from (0, 88) to (88, 0))
+        const foldA = 88;
+
+        // Step 1: Draw stuck portion clipped at diagonal fold line
         ctx.save();
         ctx.beginPath();
-        // Polygon cutting off top-left corner (from (0, foldDist) to (foldDist, 0))
-        ctx.moveTo(0, foldDist);
-        ctx.lineTo(foldDist, 0);
+        ctx.moveTo(0, foldA);
+        ctx.lineTo(foldA, 0);
         ctx.lineTo(this.width, 0);
         ctx.lineTo(this.width, this.height);
         ctx.lineTo(0, this.height);
@@ -142,38 +143,46 @@ class DigitalSticker {
         this.drawStickerContent(ctx, cx, cy, r - 4, this.color);
         ctx.restore();
 
-        // Step 2: Draw the folded corner flap (reflected over line x + y = foldDist)
+        // Step 2: Draw the major folded corner flap (reflected symmetrically over x + y = foldA)
         ctx.save();
         ctx.beginPath();
-        ctx.moveTo(0, foldDist);
-        ctx.lineTo(foldDist, 0);
-        ctx.lineTo(foldDist * 1.1, foldDist * 1.1);
+        ctx.moveTo(0, foldA);
+        ctx.lineTo(foldA, 0);
+        // Extended flap peak towards center
+        ctx.lineTo(foldA * 1.15, foldA * 1.15);
         ctx.closePath();
         ctx.clip();
 
-        // Silver adhesive back gradient
-        const silverGrad = ctx.createLinearGradient(0, 0, foldDist, foldDist);
-        silverGrad.addColorStop(0, 'rgba(235, 235, 240, 0.98)');
-        silverGrad.addColorStop(0.5, 'rgba(255, 255, 255, 1)');
-        silverGrad.addColorStop(1, 'rgba(200, 200, 205, 0.95)');
+        // Rich metallic gold/silver adhesive back gradient as shown in exampleSticker.png
+        const goldGrad = ctx.createLinearGradient(0, 0, foldA, foldA);
+        goldGrad.addColorStop(0, '#E5C158');
+        goldGrad.addColorStop(0.3, '#FDF2A9');
+        goldGrad.addColorStop(0.6, '#D4A838');
+        goldGrad.addColorStop(1, '#9E781B');
 
-        ctx.fillStyle = silverGrad;
+        ctx.fillStyle = goldGrad;
         ctx.beginPath();
         ctx.arc(cx, cy, r - 4, 0, Math.PI * 2);
         ctx.fill();
 
-        // Soft oclusion shadow along the fold line
-        const shadowGrad = ctx.createLinearGradient(foldDist, 0, 0, foldDist);
-        shadowGrad.addColorStop(0, 'rgba(0,0,0,0.25)');
+        // Outer rim border on flap
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.stroke();
+
+        // Soft 3D oclusion shadow along the fold line
+        const shadowGrad = ctx.createLinearGradient(foldA, 0, 0, foldA);
+        shadowGrad.addColorStop(0, 'rgba(0,0,0,0.35)');
+        shadowGrad.addColorStop(0.5, 'rgba(0,0,0,0.12)');
         shadowGrad.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = shadowGrad;
-        ctx.fillRect(0, 0, foldDist * 1.2, foldDist * 1.2);
+        ctx.fillRect(0, 0, foldA * 1.3, foldA * 1.3);
 
         ctx.restore();
     }
 
     onPointerDown(e) {
-        if (e.button !== undefined && e.button !== 0) return; // Main button only
+        if (e.button !== undefined && e.button !== 0) return;
 
         const rect = this.container.getBoundingClientRect();
         this.offsetX = e.clientX - rect.left;
@@ -194,21 +203,21 @@ class DigitalSticker {
 
         if (!this.hasMovedPastThreshold) {
             const dist = Math.hypot(clientX - this.startX, clientY - this.startY);
-            if (dist < this.dragThreshold) return; // Suppress small click movements
+            if (dist < this.dragThreshold) return;
 
             this.hasMovedPastThreshold = true;
             this.container.setPointerCapture(e.pointerId);
 
-            // Promote to fixed position on document body for 1:1 milimetric dragging across entire screen
+            // Fixed positioning on body level to allow 1:1 milimetric dragging across entire screen
             this.container.style.position = 'fixed';
             this.container.style.left = `${clientX - this.offsetX}px`;
             this.container.style.top = `${clientY - this.offsetY}px`;
 
             this.container.classList.add('sticker-peeled-drag');
-            this.drawPeeled(); // Render folded corner peel
+            this.drawPeeled(); // Render major diagonal fold
         }
 
-        // 1:1 Milimetric Drag: Position container directly under cursor offset
+        // 1:1 Milimetric Pointer Tracking
         this.container.style.left = `${clientX - this.offsetX}px`;
         this.container.style.top = `${clientY - this.offsetY}px`;
     }
@@ -217,19 +226,19 @@ class DigitalSticker {
         if (!this.isPointerDown) return;
         this.isPointerDown = false;
 
-        if (!this.hasMovedPastThreshold) return; // Simple tap, do nothing
+        if (!this.hasMovedPastThreshold) return;
 
         this.container.classList.remove('sticker-peeled-drag');
         this.container.classList.add('sticker-unfold-bounce');
 
-        // Play un-folding ("desdoblar") animation back to flat stuck state
+        // Un-folding ("desdoblar") animation back to flat
         this.drawStuck();
 
         setTimeout(() => {
             this.container.classList.remove('sticker-unfold-bounce');
         }, 450);
 
-        // Check if dropped over a surface mockup target
+        // Check if dropped over a surface target
         const dropTarget = this.checkDropTargets(e.clientX, e.clientY);
         if (dropTarget) {
             const targetRect = dropTarget.getBoundingClientRect();
@@ -242,7 +251,6 @@ class DigitalSticker {
 
             dropTarget.appendChild(this.container);
         } else {
-            // Keep absolute in page body where dropped
             const pageX = e.clientX + window.scrollX;
             const pageY = e.clientY + window.scrollY;
 
@@ -269,7 +277,7 @@ class DigitalSticker {
     }
 }
 
-// Global script initialization
+// Global initialization
 window.addEventListener('DOMContentLoaded', () => {
     const wrappers = document.querySelectorAll('.sticker-wrapper');
     wrappers.forEach(wrap => {
@@ -324,36 +332,21 @@ window.addEventListener('DOMContentLoaded', () => {
         const colorVal = document.querySelector('#color-selectors button.ring-2').getAttribute('data-color');
         const imgVal = document.querySelector('#icon-selectors button.border-slate-800').getAttribute('data-img-url');
 
-        const binder = document.querySelector('#sticker-sheet .grid');
-        const gridCol = document.createElement('div');
-        gridCol.className = 'w-36 h-36 relative flex flex-col items-center';
-
+        const spawnZone = document.querySelector('#welcome');
         const wrapEl = document.createElement('div');
         wrapEl.setAttribute('data-sticker-img', imgVal);
         wrapEl.setAttribute('data-sticker-color', colorVal);
+        wrapEl.style.position = 'absolute';
+        wrapEl.style.top = '100px';
+        wrapEl.style.right = '40px';
 
-        const labelSpan = document.createElement('span');
-        labelSpan.className = 'text-xs font-kawaii font-semibold text-slate-400 mt-2';
-        labelSpan.innerText = textVal || 'Adhesivo Custom';
-
-        gridCol.appendChild(wrapEl);
-        gridCol.appendChild(labelSpan);
-        binder.appendChild(gridCol);
+        spawnZone.appendChild(wrapEl);
 
         new DigitalSticker(wrapEl, {
             imgUrl: imgVal,
             color: colorVal,
             text: textVal
         });
-
-        // Soft spawn animation
-        gridCol.style.opacity = '0';
-        gridCol.style.transform = 'scale(0.3)';
-        gridCol.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        setTimeout(() => {
-            gridCol.style.opacity = '1';
-            gridCol.style.transform = 'scale(1)';
-        }, 50);
     });
 
     updatePreview();
