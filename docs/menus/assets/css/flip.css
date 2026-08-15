@@ -1,36 +1,26 @@
 .flipbook-viewport {
   width: 100%;
   max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: visible;
   position: relative;
+  overflow: visible;
   box-sizing: border-box;
 }
 
 .flipbook-viewport .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  margin: 0 auto;
-  text-align: center;
   position: relative;
   width: 100%;
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
 /* =========================================================
-   TAMAÑO BASE DEL MENU / FLIPBOOK
-   Modifica aquí el ancho (width) y alto (height) del menú:
+   TAMAÑO DEL MENÚ (FLIPBOOK)
    ========================================================= */
 .flipbook-viewport .flipbook {
-  width: 600px;  /* Linea 21: Ancho horizontal total (vista 2 paginas) */
-  height: 420px; /* Linea 22: Alto vertical */
-  margin: 0 auto;
-  transform-origin: center center;
-  transition: transform 0.2s ease;
+  width: 800px;
+  height: 600px;
+  transform-origin: top left;
 }
 
 .flipbook-viewport .page {
@@ -67,9 +57,6 @@
 .menu1 {
   position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .misMenus {

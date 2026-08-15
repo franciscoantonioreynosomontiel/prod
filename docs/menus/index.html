@@ -56,55 +56,35 @@
     $(document).ready(function() {
       var $flipbook = $(".flipbook");
 
-      // Inicializar turn.js
+      var baseWidth = 800;
+      var baseHeight = 600;
+
+      // Inicializar turn.js siempre con 2 paginas
       $flipbook.turn({
-        width: 600,
-        height: 420,
-        autoCenter: true,
+        width: baseWidth,
+        height: baseHeight,
+        display: 'double',
+        autoCenter: false,
         gradients: true,
         acceleration: true
       });
 
       function resizeFlipbook() {
         var containerWidth = $(".flipbook-viewport").width();
-        var baseWidth = 600;
-        var baseHeight = 420;
-        var windowWidth = $(window).width();
 
-        // En pantallas pequeñas (móviles <= 768px), usar vista de 1 sola página para óptimo espacio
-        if (windowWidth <= 768) {
-          if ($flipbook.turn("display") !== "single") {
-            $flipbook.turn("display", "single");
-          }
-          baseWidth = 300; // 1 sola página
-        } else {
-          if ($flipbook.turn("display") !== "double") {
-            $flipbook.turn("display", "double");
-          }
-          baseWidth = 600; // 2 páginas
-        }
-
-        // Calcular escala de reducción ajustada para asegurar que no sobresalga de la columna
         var scale = 1;
-        var padding = 20; // margen de seguridad
-        var availableWidth = containerWidth - padding;
-
-        if (availableWidth < baseWidth) {
-          scale = availableWidth / baseWidth;
+        if (containerWidth < baseWidth) {
+          scale = containerWidth / baseWidth;
         }
 
-        // Aplicar transformación CSS conservando centrado
         $flipbook.css({
           "transform": "scale(" + scale + ")",
-          "transform-origin": "center center"
+          "transform-origin": "top left"
         });
 
-        // Ajustar altura de contenedor .menu1 para evitar solapamientos verticales
-        var scaledHeight = baseHeight * scale;
-        $(".menu1").css("min-height", (scaledHeight + 20) + "px");
+        $(".menu1").css("height", (baseHeight * scale) + "px");
       }
 
-      // Ejecutar al cargar y al redimensionar ventana
       resizeFlipbook();
       $(window).on("resize", resizeFlipbook);
     });
