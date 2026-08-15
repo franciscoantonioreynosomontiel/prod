@@ -1,6 +1,6 @@
 /**
  * KawaiiStickers Pro — Major Diagonal Corner Peel & 1:1 Drag System
- * Matches physical sticker peel aesthetics with major diagonal curl.
+ * Matches physical sticker peel aesthetics with mathematically exact circular fold.
  */
 
 class DigitalSticker {
@@ -118,65 +118,80 @@ class DigitalSticker {
         this.drawStickerContent(this.ctx, this.radius, this.radius, this.radius - 4, this.color);
     }
 
-    // Major Diagonal Corner Folded Peel State (Matching exampleSticker.png)
+    // Circular Folded Peel State (White Adhesive Backing + Circular Arc Reflection)
     drawPeeled() {
         const ctx = this.ctx;
         ctx.clearRect(0, 0, this.width, this.height);
 
         const r = this.radius; // 70px
         const cx = r, cy = r;
+        const R = r - 4; // 66px
 
-        // Major fold line cutting across upper-left diagonal (from (0, 88) to (88, 0))
-        const foldA = 88;
+        // Diagonal fold line x + y = d
+        const d = 86;
 
-        // Step 1: Draw stuck portion clipped at diagonal fold line
+        // Step 1: Draw remaining stuck portion in region x + y >= d
         ctx.save();
         ctx.beginPath();
-        ctx.moveTo(0, foldA);
-        ctx.lineTo(foldA, 0);
+        ctx.moveTo(d, 0);
         ctx.lineTo(this.width, 0);
         ctx.lineTo(this.width, this.height);
         ctx.lineTo(0, this.height);
+        ctx.lineTo(0, d);
         ctx.closePath();
         ctx.clip();
 
-        this.drawStickerContent(ctx, cx, cy, r - 4, this.color);
+        this.drawStickerContent(ctx, cx, cy, R, this.color);
         ctx.restore();
 
-        // Step 2: Draw the major folded corner flap (reflected symmetrically over x + y = foldA)
+        // Step 2: Draw the reflected circular flap (white paper backing) in region x + y >= d
+        const refCx = d - cx; // 86 - 70 = 16
+        const refCy = d - cy; // 16
+
         ctx.save();
+        // Clip to half plane x + y >= d
         ctx.beginPath();
-        ctx.moveTo(0, foldA);
-        ctx.lineTo(foldA, 0);
-        // Extended flap peak towards center
-        ctx.lineTo(foldA * 1.15, foldA * 1.15);
+        ctx.moveTo(d, 0);
+        ctx.lineTo(this.width, 0);
+        ctx.lineTo(this.width, this.height);
+        ctx.lineTo(0, this.height);
+        ctx.lineTo(0, d);
         ctx.closePath();
         ctx.clip();
 
-        // Rich metallic gold/silver adhesive back gradient as shown in exampleSticker.png
-        const goldGrad = ctx.createLinearGradient(0, 0, foldA, foldA);
-        goldGrad.addColorStop(0, '#E5C158');
-        goldGrad.addColorStop(0.3, '#FDF2A9');
-        goldGrad.addColorStop(0.6, '#D4A838');
-        goldGrad.addColorStop(1, '#9E781B');
-
-        ctx.fillStyle = goldGrad;
+        // Draw reflected circle path
         ctx.beginPath();
-        ctx.arc(cx, cy, r - 4, 0, Math.PI * 2);
+        ctx.arc(refCx, refCy, R, 0, Math.PI * 2);
+
+        // White paper / adhesive backing fill gradient
+        const paperGrad = ctx.createLinearGradient(0, d, d, 0);
+        paperGrad.addColorStop(0, '#EAEFF5');
+        paperGrad.addColorStop(0.4, '#F8FAFC');
+        paperGrad.addColorStop(1, '#FFFFFF');
+
+        ctx.fillStyle = paperGrad;
         ctx.fill();
 
-        // Outer rim border on flap
+        // Outer white border and subtle contour on the turned flap
         ctx.lineWidth = 3;
         ctx.strokeStyle = '#FFFFFF';
         ctx.stroke();
 
-        // Soft 3D oclusion shadow along the fold line
-        const shadowGrad = ctx.createLinearGradient(foldA, 0, 0, foldA);
-        shadowGrad.addColorStop(0, 'rgba(0,0,0,0.35)');
-        shadowGrad.addColorStop(0.5, 'rgba(0,0,0,0.12)');
-        shadowGrad.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = shadowGrad;
-        ctx.fillRect(0, 0, foldA * 1.3, foldA * 1.3);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+        ctx.stroke();
+
+        // Soft 3D occlusion shadow line along fold line x + y = d
+        ctx.beginPath();
+        ctx.moveTo(0, d);
+        ctx.lineTo(d, 0);
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.12)';
+        ctx.stroke();
+
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.22)';
+        ctx.stroke();
 
         ctx.restore();
     }
@@ -214,7 +229,7 @@ class DigitalSticker {
             this.container.style.top = `${clientY - this.offsetY}px`;
 
             this.container.classList.add('sticker-peeled-drag');
-            this.drawPeeled(); // Render major diagonal fold
+            this.drawPeeled(); // Render circular fold
         }
 
         // 1:1 Milimetric Pointer Tracking
@@ -283,71 +298,4 @@ window.addEventListener('DOMContentLoaded', () => {
     wrappers.forEach(wrap => {
         new DigitalSticker(wrap);
     });
-
-    // Custom design studio
-    const previewContainer = document.getElementById('preview-sticker-wrapper');
-    let previewSticker = null;
-
-    function updatePreview() {
-        const textVal = document.getElementById('sticker-text-input').value;
-        const colorVal = document.querySelector('#color-selectors button.ring-2').getAttribute('data-color');
-        const imgVal = document.querySelector('#icon-selectors button.border-slate-800').getAttribute('data-img-url');
-
-        previewContainer.innerHTML = '';
-        previewContainer.setAttribute('data-sticker-img', imgVal);
-        previewContainer.setAttribute('data-sticker-color', colorVal);
-
-        previewSticker = new DigitalSticker(previewContainer, {
-            imgUrl: imgVal,
-            color: colorVal,
-            text: textVal
-        });
-    }
-
-    // Connect color selection
-    const colorButtons = document.querySelectorAll('#color-selectors button');
-    colorButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            colorButtons.forEach(b => b.className = b.className.replace('border-slate-800 ring-2 ring-slate-200', 'border-transparent'));
-            btn.className = btn.className.replace('border-transparent', 'border-slate-800 ring-2 ring-slate-200');
-            updatePreview();
-        });
-    });
-
-    // Connect brand logos selection
-    const iconButtons = document.querySelectorAll('#icon-selectors button');
-    iconButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            iconButtons.forEach(b => b.className = b.className.replace('border-slate-800', 'border-slate-200'));
-            btn.className = btn.className.replace('border-slate-200', 'border-slate-800');
-            updatePreview();
-        });
-    });
-
-    document.getElementById('sticker-text-input').addEventListener('input', updatePreview);
-
-    // Click Generate button
-    document.getElementById('generate-sticker-btn').addEventListener('click', () => {
-        const textVal = document.getElementById('sticker-text-input').value;
-        const colorVal = document.querySelector('#color-selectors button.ring-2').getAttribute('data-color');
-        const imgVal = document.querySelector('#icon-selectors button.border-slate-800').getAttribute('data-img-url');
-
-        const spawnZone = document.querySelector('#welcome');
-        const wrapEl = document.createElement('div');
-        wrapEl.setAttribute('data-sticker-img', imgVal);
-        wrapEl.setAttribute('data-sticker-color', colorVal);
-        wrapEl.style.position = 'absolute';
-        wrapEl.style.top = '100px';
-        wrapEl.style.right = '40px';
-
-        spawnZone.appendChild(wrapEl);
-
-        new DigitalSticker(wrapEl, {
-            imgUrl: imgVal,
-            color: colorVal,
-            text: textVal
-        });
-    });
-
-    updatePreview();
 });
