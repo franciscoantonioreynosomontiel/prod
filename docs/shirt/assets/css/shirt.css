@@ -257,6 +257,7 @@ model-viewer {
 
 /* Form Section */
 #formulario {
+  scroll-margin-top: 60px;
   max-width: 1100px;
   min-height: 480px;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -349,6 +350,7 @@ model-viewer {
 }
 
 #textform {
+  scroll-margin-top: 60px;
   width: 48%;
   color: #ffffff;
   z-index: 2;
