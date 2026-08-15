@@ -34,7 +34,37 @@
     if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
   });
 </script>
-    <div id="modelo3d"><div class="menu1">
+    <div id="modelo3d">
+<style>
+  .menu1 {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  .menu1 .flipbook-viewport {
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+  .menu1 .flipbook-viewport .container {
+    position: relative !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .menu1 .flipbook {
+    width: 800px !important;
+    height: 600px !important;
+    transform-origin: top left;
+  }
+  .menu1 .flipbook .page img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+</style>
+<div class="menu1">
 <div class="flipbook-viewport">
         <div class="container">
           <div class="flipbook">
@@ -56,10 +86,10 @@
     $(document).ready(function() {
       var $flipbook = $(".flipbook");
 
-      var baseWidth = 800;
-      var baseHeight = 600;
+      // TAMAÑO BASE DEL MENU (MODIFICAR AQUI ANCHO Y ALTO)
+      var baseWidth = 800;   // Ancho horizontal del menú
+      var baseHeight = 600;  // Alto vertical del menú
 
-      // Inicializar turn.js siempre con 2 paginas
       $flipbook.turn({
         width: baseWidth,
         height: baseHeight,
@@ -70,10 +100,10 @@
       });
 
       function resizeFlipbook() {
-        var containerWidth = $(".flipbook-viewport").width();
+        var containerWidth = $(".flipbook-viewport").width() || $(".menu1").width();
 
         var scale = 1;
-        if (containerWidth < baseWidth) {
+        if (containerWidth && containerWidth < baseWidth) {
           scale = containerWidth / baseWidth;
         }
 
@@ -193,6 +223,19 @@ Vibrant colors and high resolution to make dish images attractive.</p></div>
     yearSpan.textContent = currentYear;
 </script>
 
+
+<!--<h2 class="featured-title">Featured Promotions</h2>
+<div class="custom-gallery">
+  <a href="https://menutechdeveloper.github.io/lpmenus/" class="img-container" data-set="1">
+    <img src="./assets/img/i7.webp" alt="">
+  </a>
+  <a href="https://link2.com" class="img-container" data-set="2">
+    <img src="img/imagen2.jpg" alt="">
+  </a>
+  <a href="https://link3.com" class="img-container" data-set="3">
+    <img src="img/imagen3.jpg" alt="">
+  </a>
+</div>-->
     <script src="./assets/js/muestra.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/smart-forms.min.js"></script>

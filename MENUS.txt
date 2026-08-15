@@ -1,11 +1,11 @@
 Para modificar el tamaño (ancho y alto) del menú flipbook:
 
-1. ARCHIVO CSS: docs/menus/assets/css/flip.css (Líneas 18 y 19)
-   - width: 800px;  (Ancho total del menú)
-   - height: 600px; (Alto del menú)
+1. ARCHIVO HTML: docs/menus/index.html (Líneas 90 y 91)
+   - var baseWidth = 800;   (Ancho horizontal del menú)
+   - var baseHeight = 600;  (Alto vertical del menú)
 
-2. ARCHIVO HTML: docs/menus/index.html (Líneas 51 y 52)
-   - var baseWidth = 800;  (Ancho total del menú)
-   - var baseHeight = 600; (Alto del menú)
+2. ESTILOS INLINE: docs/menus/index.html (Línea 57)
+   - width: 800px !important;
+   - height: 600px !important;
 
-Nota: Coloca exactamente los mismos números en el CSS y en el HTML para ajustar el ancho y alto a la medida que desees.
+Nota: Ajusta los valores numéricos para cambiar el ancho (horizontal) o el alto (vertical) según tus necesidades.
