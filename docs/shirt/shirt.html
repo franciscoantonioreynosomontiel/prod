@@ -3,228 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Custom Branded Shirts - MenuTech</title>
-
-  <!-- Google Font: Montserrat (Ultra Premium & Professional) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Montserrat', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>t-shirt</title>
 
   <!-- Estilos existentes -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/css/Lightbox-Gallery-baguetteBox.min.css">
   <link rel="stylesheet" href="./assets/css/shirt.css">
   <link rel="stylesheet" href="./assets/css/slider.css">
-
-  <!-- Custom Premium Overrides to align typography & styles beautifully -->
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif !important;
-      background-color: #fafafa !important;
-      color: #111827 !important;
-    }
-
-    /* Perfect Gltf Camouflage & Clean Straight Hero Section */
-    #modelo3d {
-      background-color: #ffa500 !important;
-      background: #ffa500 !important;
-      border: none !important;
-      box-shadow: none !important;
-      outline: none !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      padding: 4rem 2rem !important;
-      height: auto !important;
-      min-height: 700px !important;
-      position: relative !important;
-      overflow: hidden !important;
-    }
-
-    /* Ensure model-viewer has transparent background and takes proper space */
-    model-viewer {
-      background-color: transparent !important;
-      background: transparent !important;
-      border: none !important;
-      outline: none !important;
-      box-shadow: none !important;
-      width: 45% !important;
-      max-width: 550px !important;
-      height: 520px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      display: block !important;
-      --poster-color: transparent !important;
-    }
-
-    @media (max-width: 992px) {
-      #modelo3d {
-        flex-direction: column-reverse !important;
-        text-align: center !important;
-        padding: 5rem 1.5rem !important;
-      }
-      model-viewer {
-        width: 100% !important;
-        height: 420px !important;
-        margin: 2.5rem auto 0 auto !important;
-      }
-    }
-
-    /* Banner info styles */
-    .dbanner {
-      width: 50% !important;
-      padding: 0 2rem !important;
-      z-index: 10 !important;
-    }
-
-    @media (max-width: 992px) {
-      .dbanner {
-        width: 100% !important;
-        padding: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-      }
-    }
-
-    .dbanner h1 {
-      font-size: 3.5rem !important;
-      font-weight: 900 !important;
-      line-height: 1.15 !important;
-      letter-spacing: -0.02em !important;
-      color: #ffffff !important;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
-      margin-bottom: 1.5rem !important;
-      text-transform: none !important;
-    }
-
-    @media (max-width: 640px) {
-      .dbanner h1 {
-        font-size: 2.5rem !important;
-      }
-    }
-
-    .dbanner p {
-      font-size: 1.25rem !important;
-      font-weight: 500 !important;
-      line-height: 1.6 !important;
-      color: rgba(255, 255, 255, 0.95) !important;
-      text-shadow: 0 1px 5px rgba(0,0,0,0.1) !important;
-      margin-bottom: 2.5rem !important;
-    }
-
-    @media (max-width: 640px) {
-      .dbanner p {
-        font-size: 1.1rem !important;
-      }
-    }
-
-    .dbanner .btn {
-      font-size: 1rem !important;
-      font-weight: 800 !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.05em !important;
-      border: none !important;
-      color: #ea580c !important;
-      background-color: #ffffff !important;
-      padding: 1.125rem 2.5rem !important;
-      border-radius: 9999px !important;
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1) !important;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      text-decoration: none !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 0.75rem !important;
-    }
-
-    .dbanner .btn:hover {
-      background-color: #fffaf0 !important;
-      color: #c2410c !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2), 0 12px 15px -8px rgba(0,0,0,0.15) !important;
-    }
-
-    /* Neutralize form styles from shirt.css */
-    #formulario {
-      background: none !important;
-      background-image: none !important;
-      height: auto !important;
-      padding: 6rem 0 !important;
-      max-width: 100% !important;
-    }
-
-    #miform {
-      width: 100% !important;
-      order: unset !important;
-    }
-
-    #miform form {
-      width: 100% !important;
-    }
-
-    #textform {
-      width: 100% !important;
-      color: inherit !important;
-    }
-
-    #textform h1 {
-      text-shadow: none !important;
-      font-size: inherit !important;
-    }
-
-    #textform p {
-      font-size: inherit !important;
-      text-shadow: none !important;
-    }
-
-    .columnas {
-      width: auto !important;
-      margin-bottom: 0 !important;
-    }
-  </style>
 </head>
 
 <body>
   <script>
-    // Bloquear clic derecho silenciosamente
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
+  // Bloquear clic derecho silenciosamente
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
 
-    // Bloquear combinaciones de teclas para inspeccionar
-    document.addEventListener('keydown', function(e) {
-      // F12
-      if (e.key === 'F12') e.preventDefault();
-      // Ctrl + Shift + I / C / J
-      if (e.ctrlKey && e.shiftKey && ['i','c','j'].includes(e.key.toLowerCase())) e.preventDefault();
-      // Ctrl + U (Ver código fuente)
-      if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
-    });
-  </script>
+  // Bloquear combinaciones de teclas para inspeccionar
+  document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.key === 'F12') e.preventDefault();
+    // Ctrl + Shift + I / C / J
+    if (e.ctrlKey && e.shiftKey && ['i','c','j'].includes(e.key.toLowerCase())) e.preventDefault();
+    // Ctrl + U (Ver código fuente)
+    if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
+  });
+</script>
 
-  <!-- Hero Section with completely integrated GLTF model viewer -->
   <div id="modelo3d">
-    <!-- Decorative subtle background lighting elements to make it feel premium -->
-    <div class="absolute inset-0 bg-gradient-to-tr from-amber-600/20 via-transparent to-white/10 pointer-events-none"></div>
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-yellow-400/10 rounded-full filter blur-3xl pointer-events-none"></div>
-
     <model-viewer
       id="reveal"
       loading="eager"
@@ -236,243 +42,110 @@
       alt="element3D"
       exposure="1"
       environment-image="neutral"
+      style="height: 500px;"
     ></model-viewer>
 
-    <div class="dbanner flex flex-col items-start text-left">
-      <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-[11px] font-extrabold uppercase px-4 py-1.5 rounded-full mb-6 border border-white/20">
-        <i class="fa-solid fa-star"></i> Premium Quality DTF
-      </div>
-      <h1 class="font-extrabold text-white text-5xl lg:text-6xl tracking-tight mb-4">
-        We design T-shirts for your restaurant or bar
-      </h1>
-      <p class="text-white/95 text-lg lg:text-xl font-medium max-w-xl mb-8 leading-relaxed">
-        perfect for promotion, resale, and for your staff to wear.
-      </p>
-      <a class="btn shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" role="button" href="#formulario">
-        <span>Enjoy 10% off</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
+    <div class="dbanner">
+      <h1>We design T-shirts for your restaurant or bar</h1>
+      <p>perfect for promotion, resale, and for your staff to wear.</p>
+      <a class="btn" role="button" href="https://menutech.biz/shirt/shirt.html#textform">Enjoy 10% off</a>
     </div>
   </div>
 
-  <!-- Showcase Section: Clean and high-end editorial display -->
-  <section class="py-24 bg-white relative">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-
-      <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-20">
-        <span class="text-orange-600 font-extrabold text-xs tracking-widest uppercase bg-orange-50 px-4 py-1.5 rounded-full inline-block mb-3 border border-orange-200">
-          Professional Design Showcase
-        </span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-gray-900 leading-tight">
-          Custom T-Shirts Crafted for Excellence
-        </h2>
-        <p class="text-gray-500 font-medium text-base mt-4 max-w-xl mx-auto">
-          Explore our signature range designed to elevate brand representation, ensuring exceptional comfort, high visual fidelity, and supreme durability.
-        </p>
-        <div class="w-16 h-1 bg-orange-500 rounded-full mx-auto mt-6"></div>
-      </div>
-
-      <!-- Grid Wrapper: preserves id="columnas" to ensure structural integrity -->
-      <div id="columnas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-        <!-- Shirt 1: Daily Wear Logo T-Shirt -->
-        <div class="group relative flex flex-col justify-between transition-all duration-300">
-          <div>
-            <!-- Image Container with soft minimalist styling -->
-            <div class="aspect-square bg-[#fbfbfb] rounded-2xl overflow-hidden flex items-center justify-center p-6 mb-6 border border-gray-100 group-hover:border-orange-500/20 group-hover:bg-orange-500/[0.01] transition-all duration-300 relative">
-              <img class="max-h-[220px] object-contain group-hover:scale-105 transition-transform duration-500" src="https://menutechdeveloper.github.io/bddImg/assets/shirt/shirt1.png" alt="Daily Wear Logo T-Shirt">
-              <span class="absolute top-4 left-4 bg-orange-600 text-white font-extrabold text-[9px] px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm">
-                01 / Daily Wear
-              </span>
-            </div>
-
-            <h4 class="font-extrabold text-gray-950 text-lg mb-2 group-hover:text-orange-600 transition-colors duration-200">
-              Daily Wear Logo T-Shirt
-            </h4>
-
-            <p class="text-gray-500 text-sm leading-relaxed font-medium">
-              Made for those who keep things moving, this DTF-printed t-shirt delivers comfort, breathability, and lasting wear. Featuring a crisp front logo with vivid detail, it’s perfect for everyday use while maintaining a sharp, professional look.
-            </p>
-          </div>
-        </div>
-
-        <!-- Shirt 2: Branded Essential Tee -->
-        <div class="group relative flex flex-col justify-between transition-all duration-300">
-          <div>
-            <!-- Image Container with soft minimalist styling -->
-            <div class="aspect-square bg-[#fbfbfb] rounded-2xl overflow-hidden flex items-center justify-center p-6 mb-6 border border-gray-100 group-hover:border-orange-500/20 group-hover:bg-orange-500/[0.01] transition-all duration-300 relative">
-              <img class="max-h-[220px] object-contain group-hover:scale-105 transition-transform duration-500" src="https://menutechdeveloper.github.io/bddImg/assets/shirt/shirt3.png" alt="Branded Essential Tee">
-              <span class="absolute top-4 left-4 bg-orange-600 text-white font-extrabold text-[9px] px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm">
-                02 / Essential
-              </span>
-            </div>
-
-            <h4 class="font-extrabold text-gray-950 text-lg mb-2 group-hover:text-orange-600 transition-colors duration-200">
-              Branded Essential Tee
-            </h4>
-
-            <p class="text-gray-500 text-sm leading-relaxed font-medium">
-              This DTF-printed t-shirt is a practical choice for fast-paced environments like kitchens or front-of-house roles. The high-quality transfer logo adds brand identity without overdoing it—just the right balance of function and style.
-            </p>
-          </div>
-        </div>
-
-        <!-- Shirt 3: Lightweight & Durable Work Tee -->
-        <div class="group relative flex flex-col justify-between transition-all duration-300">
-          <div>
-            <!-- Image Container with soft minimalist styling -->
-            <div class="aspect-square bg-[#fbfbfb] rounded-2xl overflow-hidden flex items-center justify-center p-6 mb-6 border border-gray-100 group-hover:border-orange-500/20 group-hover:bg-orange-500/[0.01] transition-all duration-300 relative">
-              <img class="max-h-[220px] object-contain group-hover:scale-105 transition-transform duration-500" src="https://menutechdeveloper.github.io/bddImg/assets/shirt/shirt2.png" alt="Lightweight & Durable Work Tee">
-              <span class="absolute top-4 left-4 bg-orange-600 text-white font-extrabold text-[9px] px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm">
-                03 / Durable Work
-              </span>
-            </div>
-
-            <h4 class="font-extrabold text-gray-950 text-lg mb-2 group-hover:text-orange-600 transition-colors duration-200">
-              Lightweight & Durable Work Tee
-            </h4>
-
-            <p class="text-gray-500 text-sm leading-relaxed font-medium">
-              Designed for daily wear, this DTF-printed t-shirt offers a breathable fit and durable design that stands up to repeated washing. The front logo provides a crisp branded touch, ideal for those who want comfort and a polished appearance.
-            </p>
-          </div>
-        </div>
-
-        <!-- Shirt 4: Simple Style with a Branded Edge -->
-        <div class="group relative flex flex-col justify-between transition-all duration-300">
-          <div>
-            <!-- Image Container with soft minimalist styling -->
-            <div class="aspect-square bg-[#fbfbfb] rounded-2xl overflow-hidden flex items-center justify-center p-6 mb-6 border border-gray-100 group-hover:border-orange-500/20 group-hover:bg-orange-500/[0.01] transition-all duration-300 relative">
-              <img class="max-h-[220px] object-contain group-hover:scale-105 transition-transform duration-500" src="https://menutechdeveloper.github.io/bddImg/assets/shirt/shirt4.png" alt="Simple Style with a Branded Edge">
-              <span class="absolute top-4 left-4 bg-orange-600 text-white font-extrabold text-[9px] px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm">
-                04 / Minimalist
-              </span>
-            </div>
-
-            <h4 class="font-extrabold text-gray-950 text-lg mb-2 group-hover:text-orange-600 transition-colors duration-200">
-              Simple Style with a Branded Edge
-            </h4>
-
-            <p class="text-gray-500 text-sm leading-relaxed font-medium">
-              This clean-cut DTF-printed t-shirt brings together practicality and subtle branding. Soft, durable fabric makes it perfect for long shifts, and the logo adds just the right amount of identity without being flashy.
-            </p>
-          </div>
-        </div>
-
-      </div>
+  <div id="columnas" class="columnas">
+    <div class="columna">
+      <img src="https://menutechdeveloper.github.io/bddImg/assets/shirt/shirt1.png">
+      <p><strong>Daily Wear Logo T-Shirt</strong><br />Made for those who keep things moving, this DTF-printed t-shirt delivers comfort, breathability, and lasting wear. Featuring a crisp front logo with vivid detail, it’s perfect for everyday use while maintaining a sharp, professional look.</p>
     </div>
-  </section>
-
-  <!-- Carousel Section: Kept Intact and Stylized with Elegant Headers -->
-  <section class="mockup-slider bg-slate-50 py-24 border-t border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 text-center">
-      <span class="text-orange-600 font-extrabold text-xs tracking-widest uppercase bg-orange-50 px-4 py-1.5 rounded-full inline-block mb-3 border border-orange-200">
-        3D Interactive Mockup Gallery
-      </span>
-      <h3 class="text-2xl sm:text-3xl font-black tracking-tight text-gray-950">
-        Click on any Shirt to Rotate & Explore in 3D
-      </h3>
+    <div class="columna2">
+      <img src="https://menutechdeveloper.github.io/bddImg/assets/shirt/shirt3.png">
+      <p><strong>Branded Essential Tee</strong><br/>This DTF-printed t-shirt is a practical choice for fast-paced environments like kitchens or front-of-house roles. The high-quality transfer logo adds brand identity without overdoing it—just the right balance of function and style.</p>
     </div>
-
-    <div class="banner">
-      <div class="slider" style="--quantity: 8">
-        <div class="item" style="--position: 1" data-url="https://menutechdeveloper.github.io/modelados3d/carretashirt2.html">
-          <img src="https://menutechdeveloper.github.io/modelados3d/shirt/carreta2d.png" alt="T-shirt 1">
-        </div>
-        <div class="item" style="--position: 2" data-url="https://menutechdeveloper.github.io/modelados3d/guillisshirt.html">
-          <img src="https://menutechdeveloper.github.io/modelados3d/shirt/guillis2d.png" alt="T-shirt 2">
-        </div>
-        <div class="item" style="--position: 3" data-url="https://menutechdeveloper.github.io/modelados3d/huastecosshirt.html">
-          <img src="https://menutechdeveloper.github.io/modelados3d/shirt/huastecos2d.png" alt="T-shirt 3">
-        </div>
-        <div class="item" style="--position: 4" data-url="https://menutechdeveloper.github.io/modelados3d/margaritasshirt.html">
-          <img src="https://menutechdeveloper.github.io/modelados3d/shirt/margaritas2d.png" alt="T-shirt 4">
-        </div>
-        <div class="item" style="--position: 5" data-url="https://menutechdeveloper.github.io/modelados3d/morelianasshirt.html">
-          <img src="https://menutechdeveloper.github.io/modelados3d/shirt/morelianas2d.png" alt="T-shirt 5">
-        </div>
-        <div class="item" style="--position: 6" data-url="https://menutechdeveloper.github.io/modelados3d/olamenidsshirt.html">
-          <img src="https://menutechdeveloper.github.io/modelados3d/shirt/olamendis2d.png" alt="T-shirt 6">
-        </div>
-        <div class="item" style="--position: 7" data-url="https://menutechdeveloper.github.io/modelados3d/rodeoshirt.html">
-          <img src="https://menutechdeveloper.github.io/modelados3d/shirt/rodeo2d.png" alt="T-shirt 7">
-        </div>
-        <div class="item" style="--position: 8" data-url="https://menutechdeveloper.github.io/modelados3d/vivajaliscoshirt.html">
-          <img src="https://menutechdeveloper.github.io/modelados3d/shirt/vivajalisco2d.png" alt="T-shirt 8">
-        </div>
-      </div>
+    <div class="columna">
+      <img src="https://menutechdeveloper.github.io/bddImg/assets/shirt/shirt2.png">
+      <p><strong>Lightweight & Durable Work Tee</strong><br/>Designed for daily wear, this DTF-printed t-shirt offers a breathable fit and durable design that stands up to repeated washing. The front logo provides a crisp branded touch, ideal for those who want comfort and a polished appearance.</p>
     </div>
-  </section>
-
-  <!-- Popup: Kept Intact and Styled beautifully -->
-  <div class="popup-overlay" id="popup">
-    <div class="popup-content shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
-      <span class="popup-close text-gray-400 hover:text-gray-900 transition-colors duration-200" id="popupClose">&times;</span>
-      <iframe src="" id="popupFrame" frameborder="0" allowfullscreen></iframe>
+    <div class="columna2">
+      <img src="https://menutechdeveloper.github.io/bddImg/assets/shirt/shirt4.png">
+      <p><strong>Simple Style with a Branded Edge</strong><br/>This clean-cut DTF-printed t-shirt brings together practicality and subtle branding. Soft, durable fabric makes it perfect for long shifts, and the logo adds just the right amount of identity without being flashy.</p>
     </div>
   </div>
 
-  <!-- Form Section: High-converting, gorgeous custom glassmorphic subscription panel -->
-  <section id="formulario" class="py-24 bg-gradient-to-tr from-orange-50 to-amber-50/50 relative overflow-hidden flex items-center justify-center">
-    <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60"></div>
 
-    <div class="max-w-6xl w-full mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
-        <!-- Left Side: Copy -->
-        <div id="textform" class="lg:col-span-6 space-y-6 text-center lg:text-left">
-          <span class="text-orange-600 font-extrabold text-xs tracking-widest uppercase bg-orange-100 px-4 py-1.5 rounded-full inline-block border border-orange-200">
-            Exclusive Campaign
-          </span>
-          <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-gray-950 leading-tight">
-            Subscribe now and get 10% off
-          </h1>
-          <p class="text-gray-600 text-lg font-medium leading-relaxed">
-            Don’t miss out — it won’t last forever! Take advantage of our premium branding service with a special markdown on your next order.
-          </p>
-        </div>
 
-        <!-- Right Side: Beautiful Glass Card with pristine form alignment -->
-        <div id="miform" class="lg:col-span-6 w-full">
-          <div class="bg-white/80 backdrop-blur-md border border-white p-8 sm:p-10 rounded-[2rem] shadow-xl shadow-orange-950/5">
-            <form data-bss-recipient="0769ed07de9623dd212a615bc33516e5" class="space-y-4">
-              <div>
-                <label for="name-2" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">Full Name</label>
-                <input class="form-control w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 text-sm font-medium transition-all duration-300" type="text" id="name-2" name="Name" placeholder="John Doe">
-              </div>
-
-              <div>
-                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">Email Address</label>
-                <input class="form-control w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 text-sm font-medium transition-all duration-300" type="text" id="email" name="email" placeholder="john@example.com">
-              </div>
-
-              <div>
-                <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">Phone Number</label>
-                <input class="form-control w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 text-sm font-medium transition-all duration-300" type="text" id="phone" name="phone" placeholder="+1 (555) 000-0000">
-              </div>
-
-              <div>
-                <label for="shirts" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">Quantity Ordered</label>
-                <input class="form-control w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 text-sm font-medium transition-all duration-300" type="text" id="shirts" name="shirts" placeholder="Number of shirts you wish to order">
-              </div>
-
-              <!-- Hidden Campaign Identifier -->
-              <input id="phone-1" class="form-control" type="hidden" name="T-shirt" value="10% off" />
-
-              <div class="pt-2">
-                <button class="w-full bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-sm py-4 rounded-xl shadow-lg hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 flex items-center justify-center gap-2" type="submit">
-                  <span>Claim Your 10% Off Now</span>
-                  <i class="fa-solid fa-paper-plane text-xs"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
+<section class="mockup-slider">
+  <div class="banner">
+    <div class="slider" style="--quantity: 8">
+      <div class="item" style="--position: 1" data-url="https://menutechdeveloper.github.io/modelados3d/carretashirt2.html">
+        <img src="https://menutechdeveloper.github.io/modelados3d/shirt/carreta2d.png" alt="T-shirt 1">
+      </div>
+      <div class="item" style="--position: 2" data-url="https://menutechdeveloper.github.io/modelados3d/guillisshirt.html">
+        <img src="https://menutechdeveloper.github.io/modelados3d/shirt/guillis2d.png" alt="T-shirt 2">
+      </div>
+      <div class="item" style="--position: 3" data-url="https://menutechdeveloper.github.io/modelados3d/huastecosshirt.html">
+        <img src="https://menutechdeveloper.github.io/modelados3d/shirt/huastecos2d.png" alt="T-shirt 3">
+      </div>
+      <div class="item" style="--position: 4" data-url="https://menutechdeveloper.github.io/modelados3d/margaritasshirt.html">
+        <img src="https://menutechdeveloper.github.io/modelados3d/shirt/margaritas2d.png" alt="T-shirt 4">
+      </div>
+      <div class="item" style="--position: 5" data-url="https://menutechdeveloper.github.io/modelados3d/morelianasshirt.html">
+        <img src="https://menutechdeveloper.github.io/modelados3d/shirt/morelianas2d.png" alt="T-shirt 5">
+      </div>
+      <div class="item" style="--position: 6" data-url="https://menutechdeveloper.github.io/modelados3d/olamenidsshirt.html">
+        <img src="https://menutechdeveloper.github.io/modelados3d/shirt/olamendis2d.png" alt="T-shirt 6">
+      </div>
+      <div class="item" style="--position: 7" data-url="https://menutechdeveloper.github.io/modelados3d/rodeoshirt.html">
+        <img src="https://menutechdeveloper.github.io/modelados3d/shirt/rodeo2d.png" alt="T-shirt 7">
+      </div>
+      <div class="item" style="--position: 8" data-url="https://menutechdeveloper.github.io/modelados3d/vivajaliscoshirt.html">
+        <img src="https://menutechdeveloper.github.io/modelados3d/shirt/vivajalisco2d.png" alt="T-shirt 8">
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Popup -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-content">
+    <span class="popup-close" id="popupClose">&times;</span>
+    <iframe src="" id="popupFrame" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  <div id="formulario" class="formulario">
+    <div id="miform">
+      <form data-bss-recipient="0769ed07de9623dd212a615bc33516e5">
+        <div class="mb-3">
+          <input class="form-control" type="text" id="name-2" name="Name" placeholder="Name" style="background: rgba(255,255,255,0.5);">
+        </div>
+        <div class="mb-3">
+          <input class="form-control" type="text" id="email" name="email" placeholder="Email" style="background: rgba(255,255,255,0.5);">
+        </div>
+        <div class="mb-3">
+          <input class="form-control" type="text" id="phone" name="phone" placeholder="Phone" style="background: rgba(255,255,255,0.5);">
+        </div>
+        <div class="mb-3">
+          <input class="form-control" type="text" id="shirts" name="shirts" placeholder="number of shirts you wish to order" style="background: rgba(255,255,255,0.5);">
+        </div>
+        <div class="mb-3">
+          <input id="phone-1" class="form-control" type="hidden" name="T-shirt" value="10% off" placeholder="Phome" style="background: rgba(255,255,255,0.5);" />
+        </div>
+        <div><button class="btn w-100 d-block" type="submit">Send </button></div>
+      </form>
+    </div>
+    <div id="textform">
+      <h1>Subscribe now and get 10% off</h1>
+      <p>Don’t miss out — it won’t last forever!</p>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
